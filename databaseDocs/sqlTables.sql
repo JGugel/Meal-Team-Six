@@ -35,8 +35,7 @@ CREATE TABLE Serving_size(
 	ProductID int NOT NULL,
 	ServingSize double(4,2) NOT NULL,
 	uom char(1) NOT NULL,
-	PRIMARY KEY (ProductID),
-	FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
+	PRIMARY KEY (ProductID)
 );
 
 CREATE TABLE Inventory_List(
@@ -45,8 +44,7 @@ CREATE TABLE Inventory_List(
 	uom varchar(6) NOT NULL,
 	use_by date,
 	avg_usage double (4,2) NOT NULL,
-	PRIMARY KEY (ProductID),
-	FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
+	PRIMARY KEY (ProductID)
 );
 
 CREATE TABLE Usage_data(
