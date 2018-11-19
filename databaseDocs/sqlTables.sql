@@ -6,7 +6,7 @@ USE Inventory_System;
 
 CREATE TABLE Category(
 	catCode int(3) NOT NULL,
-	categoryName varchar(60) NOT NULL,
+	categoryName varchar(100) NOT NULL,
 	PRIMARY KEY (catCode)
 );
 
@@ -15,7 +15,7 @@ CREATE TABLE Category(
 CREATE TABLE Product(
 	ProductID int NOT NULL,
 	UPC int(12) NOT NULL,
-	invName varchar(80) NOT NULL,
+	invName varchar(100) NOT NULL,
 	Category int(3) NOT NULL,
 	PRIMARY KEY (ProductID),
 	FOREIGN KEY (Category) REFERENCES Category(catCode)
