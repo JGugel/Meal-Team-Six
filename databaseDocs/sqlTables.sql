@@ -14,7 +14,7 @@ CREATE TABLE Category(
  once you find the largest number*/
 CREATE TABLE Product(
 	ProductID int NOT NULL,
-	UPC int(12) NOT NULL,
+	UPC BIGINT(12) NOT NULL,
 	invName varchar(100) NOT NULL,
 	Category int(3) NOT NULL,
 	PRIMARY KEY (ProductID),
@@ -24,17 +24,17 @@ CREATE TABLE Product(
 CREATE TABLE Nutrition(
 	ProductID int NOT NULL, 
 	Nut_Code int NOT NULL,
-	Nutr_name varchar(15) NOT NULL,
-	nut_val double(6,2) NOT NULL,
-	uom char(1) NOT NULL,
+	Nutr_name varchar(150) NOT NULL,
+	nut_val double NOT NULL,
+	uom char(5) NOT NULL,
 	PRIMARY KEY (ProductID, Nut_Code),
 	FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
 );
 
 CREATE TABLE Serving_size(
 	ProductID int NOT NULL,
-	ServingSize double(4,2) NOT NULL,
-	uom char(1) NOT NULL,
+	ServingSize double NOT NULL,
+	uom char(5) NOT NULL,
 	PRIMARY KEY (ProductID)
 );
 
