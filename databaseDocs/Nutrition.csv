@@ -2756,3 +2756,2556 @@
 45002208,601,Cholesterol,3,mg
 45002208,605,"Fatty acids, total trans",0,g
 45002208,606,"Fatty acids, total saturated",0,g
+45001851,203,Protein,6.67,g
+45001851,204,Total lipid (fat),1.11,g
+45001851,205,"Carbohydrate, by difference",75.56,g
+45001851,208,Energy,333,kcal
+45001851,307,"Sodium, Na",0,mg
+45037730,203,Protein,0,g
+45037730,204,Total lipid (fat),10.29,g
+45037730,205,"Carbohydrate, by difference",35.29,g
+45037730,208,Energy,235,kcal
+45037730,269,"Sugars, total",32.35,g
+45037730,291,"Fiber, total dietary",0,g
+45037730,301,"Calcium, Ca",0,mg
+45037730,303,"Iron, Fe",0,mg
+45037730,307,"Sodium, Na",794,mg
+45037730,318,"Vitamin A, IU",294,IU
+45037730,401,"Vitamin C, total ascorbic acid",3.5,mg
+45037730,601,Cholesterol,0,mg
+45037730,605,"Fatty acids, total trans",0,g
+45037730,606,"Fatty acids, total saturated",1.47,g
+45138493,203,Protein,0,g
+45138493,204,Total lipid (fat),20,g
+45138493,205,"Carbohydrate, by difference",46.67,g
+45138493,208,Energy,367,kcal
+45138493,269,"Sugars, total",20,g
+45138493,291,"Fiber, total dietary",0,g
+45138493,301,"Calcium, Ca",0,mg
+45138493,303,"Iron, Fe",0,mg
+45138493,307,"Sodium, Na",1133,mg
+45138493,318,"Vitamin A, IU",0,IU
+45138493,401,"Vitamin C, total ascorbic acid",8,mg
+45138493,601,Cholesterol,0,mg
+45138493,605,"Fatty acids, total trans",0,g
+45138493,606,"Fatty acids, total saturated",3.33,g
+45138493,645,"Fatty acids, total monounsaturated",5,g
+45138493,646,"Fatty acids, total polyunsaturated",11.67,g
+45121812,203,Protein,1.76,g
+45121812,204,Total lipid (fat),1.18,g
+45121812,205,"Carbohydrate, by difference",4.7,g
+45121812,208,Energy,31,kcal
+45121812,269,"Sugars, total",2.94,g
+45121812,291,"Fiber, total dietary",1.2,g
+45121812,307,"Sodium, Na",307,mg
+45121812,601,Cholesterol,2,mg
+45121812,605,"Fatty acids, total trans",0,g
+45121812,606,"Fatty acids, total saturated",0.59,g
+45078879,203,Protein,0,g
+45078879,204,Total lipid (fat),18.18,g
+45078879,205,"Carbohydrate, by difference",24.24,g
+45078879,208,Energy,273,kcal
+45078879,269,"Sugars, total",24.24,g
+45078879,291,"Fiber, total dietary",0,g
+45078879,301,"Calcium, Ca",0,mg
+45078879,303,"Iron, Fe",0,mg
+45078879,307,"Sodium, Na",1121,mg
+45078879,318,"Vitamin A, IU",303,IU
+45078879,401,"Vitamin C, total ascorbic acid",0,mg
+45078879,601,Cholesterol,0,mg
+45078879,605,"Fatty acids, total trans",0,g
+45078879,606,"Fatty acids, total saturated",3.03,g
+45362366,203,Protein,0.91,g
+45362366,204,Total lipid (fat),0.04,g
+45362366,205,"Carbohydrate, by difference",4.96,g
+45362366,208,Energy,20,kcal
+45362366,269,"Sugars, total",3.31,g
+45362366,291,"Fiber, total dietary",1.7,g
+45362366,301,"Calcium, Ca",17,mg
+45362366,303,"Iron, Fe",1.19,mg
+45362366,307,"Sodium, Na",17,mg
+45362366,318,"Vitamin A, IU",413,IU
+45362366,401,"Vitamin C, total ascorbic acid",5,mg
+45362366,601,Cholesterol,0,mg
+45362366,605,"Fatty acids, total trans",0,g
+45362366,606,"Fatty acids, total saturated",0.04,g
+45096631,203,Protein,2.27,g
+45096631,204,Total lipid (fat),45.45,g
+45096631,205,"Carbohydrate, by difference",9.09,g
+45096631,208,Energy,455,kcal
+45096631,269,"Sugars, total",0,g
+45096631,291,"Fiber, total dietary",0,g
+45096631,301,"Calcium, Ca",45,mg
+45096631,303,"Iron, Fe",0.82,mg
+45096631,307,"Sodium, Na",3682,mg
+45096631,318,"Vitamin A, IU",0,IU
+45096631,401,"Vitamin C, total ascorbic acid",0,mg
+45096631,601,Cholesterol,0,mg
+45096631,605,"Fatty acids, total trans",0,g
+45096631,606,"Fatty acids, total saturated",9.09,g
+45241452,203,Protein,2.67,g
+45241452,204,Total lipid (fat),48.67,g
+45241452,205,"Carbohydrate, by difference",4.67,g
+45241452,208,Energy,473,kcal
+45241452,269,"Sugars, total",4.67,g
+45241452,291,"Fiber, total dietary",0,g
+45241452,301,"Calcium, Ca",0,mg
+45241452,303,"Iron, Fe",0,mg
+45241452,307,"Sodium, Na",1033,mg
+45241452,318,"Vitamin A, IU",0,IU
+45241452,401,"Vitamin C, total ascorbic acid",0,mg
+45241452,601,Cholesterol,0,mg
+45241452,605,"Fatty acids, total trans",0,g
+45241452,606,"Fatty acids, total saturated",0,g
+45084204,203,Protein,0,g
+45084204,204,Total lipid (fat),0,g
+45084204,205,"Carbohydrate, by difference",4.76,g
+45084204,208,Energy,24,kcal
+45084204,269,"Sugars, total",3.17,g
+45084204,291,"Fiber, total dietary",1.6,g
+45084204,301,"Calcium, Ca",0,mg
+45084204,303,"Iron, Fe",0.57,mg
+45084204,306,"Potassium, K",286,mg
+45084204,307,"Sodium, Na",508,mg
+45084204,318,"Vitamin A, IU",476,IU
+45084204,401,"Vitamin C, total ascorbic acid",1.9,mg
+45084204,601,Cholesterol,0,mg
+45084204,605,"Fatty acids, total trans",0,g
+45084204,606,"Fatty acids, total saturated",0,g
+45083997,203,Protein,0,g
+45083997,204,Total lipid (fat),2.78,g
+45083997,205,"Carbohydrate, by difference",33.33,g
+45083997,208,Energy,167,kcal
+45083997,269,"Sugars, total",27.78,g
+45083997,291,"Fiber, total dietary",0,g
+45083997,301,"Calcium, Ca",0,mg
+45083997,303,"Iron, Fe",2,mg
+45083997,307,"Sodium, Na",1000,mg
+45083997,318,"Vitamin A, IU",556,IU
+45083997,401,"Vitamin C, total ascorbic acid",6.7,mg
+45083997,601,Cholesterol,0,mg
+45083997,605,"Fatty acids, total trans",0,g
+45083997,606,"Fatty acids, total saturated",0,g
+45078918,203,Protein,0,g
+45078918,204,Total lipid (fat),38.71,g
+45078918,205,"Carbohydrate, by difference",19.35,g
+45078918,208,Energy,419,kcal
+45078918,269,"Sugars, total",19.35,g
+45078918,291,"Fiber, total dietary",0,g
+45078918,301,"Calcium, Ca",0,mg
+45078918,303,"Iron, Fe",0,mg
+45078918,307,"Sodium, Na",903,mg
+45078918,318,"Vitamin A, IU",323,IU
+45078918,401,"Vitamin C, total ascorbic acid",0,mg
+45078918,601,Cholesterol,0,mg
+45078918,605,"Fatty acids, total trans",0,g
+45078918,606,"Fatty acids, total saturated",6.45,g
+45077928,203,Protein,0.03,g
+45077928,204,Total lipid (fat),0,g
+45077928,205,"Carbohydrate, by difference",0,g
+45077928,208,Energy,33,kcal
+45077928,291,"Fiber, total dietary",0,g
+45077928,301,"Calcium, Ca",0,mg
+45077928,303,"Iron, Fe",0,mg
+45077928,307,"Sodium, Na",0,mg
+45077928,318,"Vitamin A, IU",0,IU
+45077928,401,"Vitamin C, total ascorbic acid",0,mg
+45077928,601,Cholesterol,0,mg
+45077928,606,"Fatty acids, total saturated",0,g
+45257643,203,Protein,0,g
+45257643,204,Total lipid (fat),39.29,g
+45257643,205,"Carbohydrate, by difference",39.29,g
+45257643,208,Energy,500,kcal
+45257643,269,"Sugars, total",35.71,g
+45257643,291,"Fiber, total dietary",0,g
+45257643,301,"Calcium, Ca",0,mg
+45257643,303,"Iron, Fe",0,mg
+45257643,307,"Sodium, Na",679,mg
+45257643,318,"Vitamin A, IU",0,IU
+45257643,401,"Vitamin C, total ascorbic acid",0,mg
+45257643,601,Cholesterol,0,mg
+45257643,605,"Fatty acids, total trans",0,g
+45257643,606,"Fatty acids, total saturated",12.5,g
+45059212,203,Protein,1.64,g
+45059212,204,Total lipid (fat),0,g
+45059212,205,"Carbohydrate, by difference",8.2,g
+45059212,208,Energy,41,kcal
+45059212,269,"Sugars, total",4.92,g
+45059212,291,"Fiber, total dietary",1.6,g
+45059212,301,"Calcium, Ca",0,mg
+45059212,303,"Iron, Fe",1.18,mg
+45059212,307,"Sodium, Na",197,mg
+45059212,318,"Vitamin A, IU",492,IU
+45059212,401,"Vitamin C, total ascorbic acid",9.8,mg
+45059212,601,Cholesterol,0,mg
+45059212,605,"Fatty acids, total trans",0,g
+45059212,606,"Fatty acids, total saturated",0,g
+45059069,203,Protein,0,g
+45059069,204,Total lipid (fat),76.92,g
+45059069,205,"Carbohydrate, by difference",0,g
+45059069,208,Energy,692,kcal
+45059069,307,"Sodium, Na",577,mg
+45059069,601,Cholesterol,38,mg
+45059069,606,"Fatty acids, total saturated",11.54,g
+45057974,203,Protein,0,g
+45057974,204,Total lipid (fat),0,g
+45057974,205,"Carbohydrate, by difference",4.76,g
+45057974,208,Energy,24,kcal
+45057974,269,"Sugars, total",3.17,g
+45057974,291,"Fiber, total dietary",1.6,g
+45057974,301,"Calcium, Ca",0,mg
+45057974,303,"Iron, Fe",0.57,mg
+45057974,307,"Sodium, Na",349,mg
+45057974,318,"Vitamin A, IU",476,IU
+45057974,401,"Vitamin C, total ascorbic acid",1.9,mg
+45057974,601,Cholesterol,0,mg
+45057974,605,"Fatty acids, total trans",0,g
+45057974,606,"Fatty acids, total saturated",0,g
+45043734,203,Protein,2.86,g
+45043734,204,Total lipid (fat),22.86,g
+45043734,205,"Carbohydrate, by difference",11.43,g
+45043734,208,Energy,257,kcal
+45043734,269,"Sugars, total",0,g
+45043734,291,"Fiber, total dietary",5.7,g
+45043734,301,"Calcium, Ca",57,mg
+45043734,303,"Iron, Fe",2.06,mg
+45043734,307,"Sodium, Na",1686,mg
+45043734,318,"Vitamin A, IU",10000,IU
+45043734,401,"Vitamin C, total ascorbic acid",17.1,mg
+45043734,605,"Fatty acids, total trans",0,g
+45043734,606,"Fatty acids, total saturated",4.29,g
+45040421,203,Protein,7.32,g
+45040421,204,Total lipid (fat),3.25,g
+45040421,205,"Carbohydrate, by difference",20.33,g
+45040421,208,Energy,138,kcal
+45040421,269,"Sugars, total",2.44,g
+45040421,291,"Fiber, total dietary",6.5,g
+45040421,301,"Calcium, Ca",33,mg
+45040421,303,"Iron, Fe",1.46,mg
+45040421,307,"Sodium, Na",699,mg
+45040421,318,"Vitamin A, IU",407,IU
+45040421,401,"Vitamin C, total ascorbic acid",1,mg
+45040421,601,Cholesterol,8,mg
+45040421,605,"Fatty acids, total trans",0,g
+45040421,606,"Fatty acids, total saturated",1.22,g
+45040420,203,Protein,2.44,g
+45040420,204,Total lipid (fat),1.22,g
+45040420,205,"Carbohydrate, by difference",8.94,g
+45040420,208,Energy,57,kcal
+45040420,269,"Sugars, total",0,g
+45040420,291,"Fiber, total dietary",0,g
+45040420,301,"Calcium, Ca",0,mg
+45040420,303,"Iron, Fe",0,mg
+45040420,307,"Sodium, Na",496,mg
+45040420,318,"Vitamin A, IU",610,IU
+45040420,401,"Vitamin C, total ascorbic acid",0,mg
+45040420,601,Cholesterol,4,mg
+45040420,605,"Fatty acids, total trans",0,g
+45040420,606,"Fatty acids, total saturated",0,g
+45040419,203,Protein,2.44,g
+45040419,204,Total lipid (fat),1.63,g
+45040419,205,"Carbohydrate, by difference",11.38,g
+45040419,208,Energy,73,kcal
+45040419,269,"Sugars, total",0,g
+45040419,291,"Fiber, total dietary",0.8,g
+45040419,301,"Calcium, Ca",0,mg
+45040419,303,"Iron, Fe",0.59,mg
+45040419,307,"Sodium, Na",390,mg
+45040419,318,"Vitamin A, IU",610,IU
+45040419,401,"Vitamin C, total ascorbic acid",0,mg
+45040419,601,Cholesterol,16,mg
+45040419,605,"Fatty acids, total trans",0,g
+45040419,606,"Fatty acids, total saturated",0.41,g
+45192424,203,Protein,12.5,g
+45192424,204,Total lipid (fat),2.68,g
+45192424,205,"Carbohydrate, by difference",69.64,g
+45192424,208,Energy,357,kcal
+45192424,269,"Sugars, total",0,g
+45192424,301,"Calcium, Ca",36,mg
+45192424,303,"Iron, Fe",1.29,mg
+45192424,307,"Sodium, Na",18,mg
+45192424,318,"Vitamin A, IU",0,IU
+45192424,401,"Vitamin C, total ascorbic acid",0,mg
+45192424,601,Cholesterol,71,mg
+45192424,605,"Fatty acids, total trans",0,g
+45192424,606,"Fatty acids, total saturated",0,g
+45021890,203,Protein,14.67,g
+45021890,204,Total lipid (fat),4.17,g
+45021890,205,"Carbohydrate, by difference",3.83,g
+45021890,208,Energy,112,kcal
+45021890,269,"Sugars, total",1.83,g
+45021890,291,"Fiber, total dietary",1.7,g
+45021890,301,"Calcium, Ca",417,mg
+45021890,303,"Iron, Fe",1.2,mg
+45021890,307,"Sodium, Na",445,mg
+45021890,318,"Vitamin A, IU",833,IU
+45021890,401,"Vitamin C, total ascorbic acid",0,mg
+45021890,601,Cholesterol,83,mg
+45021890,606,"Fatty acids, total saturated",1.5,g
+45021425,203,Protein,1.64,g
+45021425,204,Total lipid (fat),0,g
+45021425,205,"Carbohydrate, by difference",6.56,g
+45021425,208,Energy,33,kcal
+45021425,269,"Sugars, total",3.28,g
+45021425,291,"Fiber, total dietary",1.6,g
+45021425,301,"Calcium, Ca",0,mg
+45021425,303,"Iron, Fe",1.18,mg
+45021425,307,"Sodium, Na",213,mg
+45021425,318,"Vitamin A, IU",492,IU
+45021425,401,"Vitamin C, total ascorbic acid",2,mg
+45021425,601,Cholesterol,0,mg
+45021425,605,"Fatty acids, total trans",0,g
+45021425,606,"Fatty acids, total saturated",0,g
+45019139,203,Protein,13.33,g
+45019139,204,Total lipid (fat),5,g
+45019139,205,"Carbohydrate, by difference",70,g
+45019139,208,Energy,367,kcal
+45019139,269,"Sugars, total",10,g
+45019139,291,"Fiber, total dietary",6.7,g
+45019139,301,"Calcium, Ca",133,mg
+45019139,303,"Iron, Fe",1.2,mg
+45019139,307,"Sodium, Na",1633,mg
+45019139,318,"Vitamin A, IU",0,IU
+45019139,401,"Vitamin C, total ascorbic acid",0,mg
+45019139,404,Thiamin,0,mg
+45019139,405,Riboflavin,1.133,mg
+45019139,406,Niacin,10,mg
+45019139,601,Cholesterol,0,mg
+45019139,605,"Fatty acids, total trans",0,g
+45019139,606,"Fatty acids, total saturated",0,g
+45019138,203,Protein,13.33,g
+45019138,204,Total lipid (fat),3.33,g
+45019138,205,"Carbohydrate, by difference",73.33,g
+45019138,208,Energy,367,kcal
+45019138,269,"Sugars, total",6.67,g
+45019138,291,"Fiber, total dietary",6.7,g
+45019138,301,"Calcium, Ca",267,mg
+45019138,303,"Iron, Fe",3.6,mg
+45019138,307,"Sodium, Na",767,mg
+45019138,318,"Vitamin A, IU",0,IU
+45019138,401,"Vitamin C, total ascorbic acid",0,mg
+45019138,601,Cholesterol,0,mg
+45019138,605,"Fatty acids, total trans",0,g
+45019138,606,"Fatty acids, total saturated",0,g
+45018855,203,Protein,6.25,g
+45018855,204,Total lipid (fat),0,g
+45018855,205,"Carbohydrate, by difference",6.25,g
+45018855,208,Energy,12,kcal
+45018855,269,"Sugars, total",0,g
+45018855,291,"Fiber, total dietary",0,g
+45018855,301,"Calcium, Ca",0,mg
+45018855,303,"Iron, Fe",0,mg
+45018855,307,"Sodium, Na",0,mg
+45018855,318,"Vitamin A, IU",0,IU
+45018855,401,"Vitamin C, total ascorbic acid",0,mg
+45018855,601,Cholesterol,0,mg
+45018855,605,"Fatty acids, total trans",0,g
+45018855,606,"Fatty acids, total saturated",0,g
+45170832,203,Protein,0,g
+45170832,204,Total lipid (fat),0,g
+45170832,205,"Carbohydrate, by difference",38.33,g
+45170832,208,Energy,150,kcal
+45170832,269,"Sugars, total",33.33,g
+45170832,307,"Sodium, Na",583,mg
+45015344,203,Protein,3.23,g
+45015344,204,Total lipid (fat),0,g
+45015344,205,"Carbohydrate, by difference",19.35,g
+45015344,208,Energy,81,kcal
+45015344,269,"Sugars, total",16.13,g
+45015344,291,"Fiber, total dietary",0,g
+45015344,301,"Calcium, Ca",65,mg
+45015344,303,"Iron, Fe",2.32,mg
+45015344,306,"Potassium, K",903,mg
+45015344,307,"Sodium, Na",48,mg
+45015344,318,"Vitamin A, IU",2419,IU
+45015344,401,"Vitamin C, total ascorbic acid",38.7,mg
+45015344,601,Cholesterol,0,mg
+45015344,605,"Fatty acids, total trans",0,g
+45015344,606,"Fatty acids, total saturated",0,g
+45011147,203,Protein,1.6,g
+45011147,204,Total lipid (fat),4.8,g
+45011147,205,"Carbohydrate, by difference",8,g
+45011147,208,Energy,80,kcal
+45011147,269,"Sugars, total",0.8,g
+45011147,291,"Fiber, total dietary",1.6,g
+45011147,301,"Calcium, Ca",16,mg
+45011147,303,"Iron, Fe",0.29,mg
+45011147,307,"Sodium, Na",640,mg
+45011147,318,"Vitamin A, IU",0,IU
+45011147,401,"Vitamin C, total ascorbic acid",0,mg
+45011147,601,Cholesterol,0,mg
+45011147,605,"Fatty acids, total trans",0,g
+45011147,606,"Fatty acids, total saturated",0.8,g
+45009358,203,Protein,0.41,g
+45009358,204,Total lipid (fat),0.82,g
+45009358,205,"Carbohydrate, by difference",0.41,g
+45009358,208,Energy,10,kcal
+45009358,269,"Sugars, total",0,g
+45009358,291,"Fiber, total dietary",0.4,g
+45009358,301,"Calcium, Ca",0,mg
+45009358,303,"Iron, Fe",0,mg
+45009358,307,"Sodium, Na",465,mg
+45009358,318,"Vitamin A, IU",0,IU
+45009358,401,"Vitamin C, total ascorbic acid",0,mg
+45009358,601,Cholesterol,0,mg
+45009358,605,"Fatty acids, total trans",0,g
+45009358,606,"Fatty acids, total saturated",0.2,g
+45004328,203,Protein,2.45,g
+45004328,204,Total lipid (fat),0.41,g
+45004328,205,"Carbohydrate, by difference",9.39,g
+45004328,208,Energy,49,kcal
+45004328,269,"Sugars, total",1.63,g
+45004328,291,"Fiber, total dietary",2.4,g
+45004328,301,"Calcium, Ca",24,mg
+45004328,303,"Iron, Fe",0.44,mg
+45004328,307,"Sodium, Na",306,mg
+45004328,318,"Vitamin A, IU",41,IU
+45004328,401,"Vitamin C, total ascorbic acid",0,mg
+45004328,601,Cholesterol,0,mg
+45004328,605,"Fatty acids, total trans",0,g
+45004328,606,"Fatty acids, total saturated",0,g
+45004328,645,"Fatty acids, total monounsaturated",0,g
+45004328,646,"Fatty acids, total polyunsaturated",0,g
+45008795,203,Protein,3.53,g
+45008795,204,Total lipid (fat),3.92,g
+45008795,205,"Carbohydrate, by difference",11.37,g
+45008795,208,Energy,98,kcal
+45008795,269,"Sugars, total",2.75,g
+45008795,291,"Fiber, total dietary",2.4,g
+45008795,301,"Calcium, Ca",16,mg
+45008795,303,"Iron, Fe",1.06,mg
+45008795,306,"Potassium, K",184,mg
+45008795,307,"Sodium, Na",294,mg
+45008795,318,"Vitamin A, IU",78,IU
+45008795,401,"Vitamin C, total ascorbic acid",0.9,mg
+45008795,404,Thiamin,0,mg
+45008795,405,Riboflavin,0.067,mg
+45008795,406,Niacin,1.569,mg
+45008795,601,Cholesterol,8,mg
+45008795,605,"Fatty acids, total trans",0,g
+45008795,606,"Fatty acids, total saturated",1.37,g
+45279327,203,Protein,0,g
+45279327,204,Total lipid (fat),12.5,g
+45279327,205,"Carbohydrate, by difference",15.62,g
+45279327,208,Energy,156,kcal
+45279327,269,"Sugars, total",15.62,g
+45279327,291,"Fiber, total dietary",0,g
+45279327,301,"Calcium, Ca",0,mg
+45279327,303,"Iron, Fe",0,mg
+45279327,307,"Sodium, Na",875,mg
+45279327,318,"Vitamin A, IU",0,IU
+45279327,401,"Vitamin C, total ascorbic acid",0,mg
+45279327,601,Cholesterol,0,mg
+45279327,605,"Fatty acids, total trans",0,g
+45279327,606,"Fatty acids, total saturated",1.56,g
+45009157,203,Protein,12.5,g
+45009157,204,Total lipid (fat),4.17,g
+45009157,205,"Carbohydrate, by difference",75,g
+45009157,208,Energy,417,kcal
+45009157,269,"Sugars, total",4.17,g
+45009157,291,"Fiber, total dietary",4.2,g
+45009157,301,"Calcium, Ca",33,mg
+45009157,303,"Iron, Fe",4.58,mg
+45009157,306,"Potassium, K",17,mg
+45009157,307,"Sodium, Na",1458,mg
+45009157,324,Vitamin D,0,IU
+45009157,404,Thiamin,0,mg
+45009157,405,Riboflavin,0.417,mg
+45009157,406,Niacin,4.167,mg
+45009157,431,Folic acid,146,mcg
+45009157,539,"Sugars, added",4.2,g
+45009157,601,Cholesterol,0,mg
+45009157,605,"Fatty acids, total trans",0,g
+45009157,606,"Fatty acids, total saturated",0,g
+45009157,645,"Fatty acids, total monounsaturated",0,g
+45009157,646,"Fatty acids, total polyunsaturated",0,g
+45054348,203,Protein,0,g
+45054348,204,Total lipid (fat),0,g
+45054348,205,"Carbohydrate, by difference",10,g
+45054348,208,Energy,50,kcal
+45054348,269,"Sugars, total",6.67,g
+45054348,291,"Fiber, total dietary",0,g
+45054348,301,"Calcium, Ca",7,mg
+45054348,303,"Iron, Fe",0,mg
+45054348,306,"Potassium, K",17,mg
+45054348,307,"Sodium, Na",1557,mg
+45054348,318,"Vitamin A, IU",3,IU
+45054348,401,"Vitamin C, total ascorbic acid",0,mg
+45054348,601,Cholesterol,0,mg
+45054348,606,"Fatty acids, total saturated",0,g
+45051579,203,Protein,0,g
+45051579,204,Total lipid (fat),0,g
+45051579,205,"Carbohydrate, by difference",9.38,g
+45051579,208,Energy,47,kcal
+45051579,269,"Sugars, total",6.25,g
+45051579,307,"Sodium, Na",2031,mg
+45051579,318,"Vitamin A, IU",1250,IU
+45051579,401,"Vitamin C, total ascorbic acid",11.2,mg
+45003005,203,Protein,2.86,g
+45003005,204,Total lipid (fat),0.2,g
+45003005,205,"Carbohydrate, by difference",9.8,g
+45003005,208,Energy,53,kcal
+45003005,269,"Sugars, total",1.63,g
+45003005,291,"Fiber, total dietary",2.9,g
+45003005,301,"Calcium, Ca",8,mg
+45003005,303,"Iron, Fe",0.59,mg
+45003005,307,"Sodium, Na",233,mg
+45003005,318,"Vitamin A, IU",306,IU
+45003005,401,"Vitamin C, total ascorbic acid",0,mg
+45003005,601,Cholesterol,0,mg
+45003005,605,"Fatty acids, total trans",0,g
+45003005,606,"Fatty acids, total saturated",0,g
+45002554,203,Protein,19.44,g
+45002554,204,Total lipid (fat),0,g
+45002554,205,"Carbohydrate, by difference",61.11,g
+45002554,208,Energy,167,kcal
+45002554,269,"Sugars, total",2.78,g
+45002554,291,"Fiber, total dietary",38.9,g
+45002554,301,"Calcium, Ca",111,mg
+45002554,303,"Iron, Fe",7.5,mg
+45002554,307,"Sodium, Na",42,mg
+45002554,318,"Vitamin A, IU",0,IU
+45002554,401,"Vitamin C, total ascorbic acid",0,mg
+45002554,601,Cholesterol,0,mg
+45002554,605,"Fatty acids, total trans",0,g
+45002554,606,"Fatty acids, total saturated",0,g
+45001790,203,Protein,8.89,g
+45001790,204,Total lipid (fat),1.11,g
+45001790,205,"Carbohydrate, by difference",73.33,g
+45001790,208,Energy,356,kcal
+45001790,269,"Sugars, total",6.67,g
+45001790,291,"Fiber, total dietary",20,g
+45001790,301,"Calcium, Ca",178,mg
+45001790,303,"Iron, Fe",4,mg
+45001790,307,"Sodium, Na",22,mg
+45001790,318,"Vitamin A, IU",0,IU
+45001790,401,"Vitamin C, total ascorbic acid",0,mg
+45001790,601,Cholesterol,0,mg
+45001790,605,"Fatty acids, total trans",0,g
+45001790,606,"Fatty acids, total saturated",0,g
+45001543,203,Protein,0,g
+45001543,204,Total lipid (fat),0,g
+45001543,205,"Carbohydrate, by difference",0,g
+45001543,208,Energy,0,kcal
+45001543,307,"Sodium, Na",900,mg
+45342662,203,Protein,12.5,g
+45342662,204,Total lipid (fat),1.79,g
+45342662,205,"Carbohydrate, by difference",73.21,g
+45342662,208,Energy,375,kcal
+45342662,269,"Sugars, total",3.57,g
+45342662,291,"Fiber, total dietary",3.6,g
+45342662,301,"Calcium, Ca",0,mg
+45342662,303,"Iron, Fe",3.21,mg
+45342662,307,"Sodium, Na",0,mg
+45342662,318,"Vitamin A, IU",0,IU
+45342662,401,"Vitamin C, total ascorbic acid",0,mg
+45342662,404,Thiamin,1,mg
+45342662,405,Riboflavin,0.455,mg
+45342662,406,Niacin,7.143,mg
+45342662,417,"Folate, total",179,mcg
+45342662,601,Cholesterol,0,mg
+45342662,605,"Fatty acids, total trans",0,g
+45342662,606,"Fatty acids, total saturated",0,g
+45342662,645,"Fatty acids, total monounsaturated",0,g
+45342662,646,"Fatty acids, total polyunsaturated",0,g
+45077180,203,Protein,0,g
+45077180,204,Total lipid (fat),0,g
+45077180,205,"Carbohydrate, by difference",28.57,g
+45077180,208,Energy,143,kcal
+45077180,269,"Sugars, total",28.57,g
+45077180,303,"Iron, Fe",5.14,mg
+45077180,307,"Sodium, Na",0,mg
+45054412,203,Protein,21.43,g
+45054412,204,Total lipid (fat),25,g
+45054412,205,"Carbohydrate, by difference",3.57,g
+45054412,208,Energy,321,kcal
+45054412,269,"Sugars, total",0,g
+45054412,291,"Fiber, total dietary",0,g
+45054412,301,"Calcium, Ca",214,mg
+45054412,303,"Iron, Fe",0,mg
+45054412,306,"Potassium, K",0,mg
+45054412,307,"Sodium, Na",1143,mg
+45054412,324,Vitamin D,0,IU
+45054412,601,Cholesterol,71,mg
+45054412,605,"Fatty acids, total trans",0,g
+45054412,606,"Fatty acids, total saturated",17.86,g
+45061876,203,Protein,0,g
+45061876,204,Total lipid (fat),30,g
+45061876,205,"Carbohydrate, by difference",13.33,g
+45061876,208,Energy,300,kcal
+45061876,269,"Sugars, total",6.67,g
+45061876,291,"Fiber, total dietary",0,g
+45061876,301,"Calcium, Ca",0,mg
+45061876,303,"Iron, Fe",0,mg
+45061876,307,"Sodium, Na",2667,mg
+45061876,318,"Vitamin A, IU",667,IU
+45061876,401,"Vitamin C, total ascorbic acid",0,mg
+45061876,601,Cholesterol,33,mg
+45061876,605,"Fatty acids, total trans",0,g
+45061876,606,"Fatty acids, total saturated",3.33,g
+45064821,203,Protein,14.71,g
+45064821,204,Total lipid (fat),5.88,g
+45064821,205,"Carbohydrate, by difference",67.65,g
+45064821,208,Energy,382,kcal
+45064821,269,"Sugars, total",5.88,g
+45064821,291,"Fiber, total dietary",5.9,g
+45064821,301,"Calcium, Ca",118,mg
+45064821,303,"Iron, Fe",7.94,mg
+45064821,307,"Sodium, Na",1059,mg
+45064821,318,"Vitamin A, IU",0,IU
+45064821,401,"Vitamin C, total ascorbic acid",0,mg
+45064821,601,Cholesterol,0,mg
+45064821,605,"Fatty acids, total trans",0,g
+45064821,606,"Fatty acids, total saturated",0,g
+45064821,645,"Fatty acids, total monounsaturated",0,g
+45064821,646,"Fatty acids, total polyunsaturated",0,g
+45004306,203,Protein,3.61,g
+45004306,204,Total lipid (fat),3.61,g
+45004306,205,"Carbohydrate, by difference",13.65,g
+45004306,208,Energy,100,kcal
+45004306,269,"Sugars, total",2.01,g
+45004306,291,"Fiber, total dietary",1.2,g
+45004306,301,"Calcium, Ca",8,mg
+45004306,303,"Iron, Fe",1.08,mg
+45004306,307,"Sodium, Na",289,mg
+45004306,318,"Vitamin A, IU",80,IU
+45004306,401,"Vitamin C, total ascorbic acid",1,mg
+45004306,601,Cholesterol,8,mg
+45004306,605,"Fatty acids, total trans",0,g
+45004306,606,"Fatty acids, total saturated",1.41,g
+45008715,203,Protein,11.67,g
+45008715,204,Total lipid (fat),2.5,g
+45008715,205,"Carbohydrate, by difference",80,g
+45008715,208,Energy,333,kcal
+45008715,269,"Sugars, total",0,g
+45008715,291,"Fiber, total dietary",13.3,g
+45008715,295,"Fiber, soluble",3,g
+45008715,297,"Fiber, insoluble",10,g
+45008715,301,"Calcium, Ca",33,mg
+45008715,303,"Iron, Fe",3,mg
+45008715,304,"Magnesium, Mg",67,mg
+45008715,305,"Phosphorus, P",333,mg
+45008715,306,"Potassium, K",450,mg
+45008715,307,"Sodium, Na",17,mg
+45008715,309,"Zinc, Zn",3.75,mg
+45008715,312,"Copper, Cu",0.833,mg
+45008715,324,Vitamin D,0,IU
+45008715,404,Thiamin,0,mg
+45008715,406,Niacin,5,mg
+45008715,415,Vitamin B-6,0.2,mg
+45008715,417,"Folate, total",42,mcg
+45008715,605,"Fatty acids, total trans",0,g
+45008715,606,"Fatty acids, total saturated",0,g
+45008715,645,"Fatty acids, total monounsaturated",0,g
+45008715,646,"Fatty acids, total polyunsaturated",0.83,g
+45077394,203,Protein,0,g
+45077394,204,Total lipid (fat),0,g
+45077394,205,"Carbohydrate, by difference",0,g
+45077394,208,Energy,0,kcal
+45077394,269,"Sugars, total",0,g
+45077394,307,"Sodium, Na",0,mg
+45077394,601,Cholesterol,0,mg
+45077394,605,"Fatty acids, total trans",0,g
+45077394,606,"Fatty acids, total saturated",0,g
+45062101,203,Protein,17.86,g
+45062101,204,Total lipid (fat),21.43,g
+45062101,205,"Carbohydrate, by difference",3.57,g
+45062101,208,Energy,286,kcal
+45062101,269,"Sugars, total",0,g
+45062101,291,"Fiber, total dietary",3.6,g
+45062101,301,"Calcium, Ca",214,mg
+45062101,303,"Iron, Fe",0,mg
+45062101,307,"Sodium, Na",1143,mg
+45062101,318,"Vitamin A, IU",714,IU
+45062101,401,"Vitamin C, total ascorbic acid",0,mg
+45062101,601,Cholesterol,71,mg
+45062101,605,"Fatty acids, total trans",0,g
+45062101,606,"Fatty acids, total saturated",14.29,g
+45102449,203,Protein,0,g
+45102449,204,Total lipid (fat),36.67,g
+45102449,205,"Carbohydrate, by difference",23.33,g
+45102449,208,Energy,433,kcal
+45102449,269,"Sugars, total",20,g
+45102449,291,"Fiber, total dietary",0,g
+45102449,301,"Calcium, Ca",0,mg
+45102449,303,"Iron, Fe",0,mg
+45102449,307,"Sodium, Na",933,mg
+45102449,318,"Vitamin A, IU",1000,IU
+45102449,401,"Vitamin C, total ascorbic acid",0,mg
+45102449,601,Cholesterol,0,mg
+45102449,605,"Fatty acids, total trans",0,g
+45102449,606,"Fatty acids, total saturated",5,g
+45016362,203,Protein,12.73,g
+45016362,204,Total lipid (fat),9.09,g
+45016362,205,"Carbohydrate, by difference",67.27,g
+45016362,208,Energy,400,kcal
+45016362,269,"Sugars, total",16.36,g
+45016362,291,"Fiber, total dietary",10.9,g
+45016362,295,"Fiber, soluble",2,g
+45016362,297,"Fiber, insoluble",9,g
+45016362,301,"Calcium, Ca",109,mg
+45016362,303,"Iron, Fe",3.27,mg
+45016362,304,"Magnesium, Mg",109,mg
+45016362,305,"Phosphorus, P",273,mg
+45016362,306,"Potassium, K",382,mg
+45016362,307,"Sodium, Na",27,mg
+45016362,309,"Zinc, Zn",2.18,mg
+45016362,318,"Vitamin A, IU",0,IU
+45016362,401,"Vitamin C, total ascorbic acid",0,mg
+45016362,601,Cholesterol,0,mg
+45016362,605,"Fatty acids, total trans",0,g
+45016362,606,"Fatty acids, total saturated",3.64,g
+45016362,645,"Fatty acids, total monounsaturated",3.64,g
+45016362,646,"Fatty acids, total polyunsaturated",1.82,g
+45058827,203,Protein,6.06,g
+45058827,204,Total lipid (fat),0,g
+45058827,205,"Carbohydrate, by difference",24.24,g
+45058827,208,Energy,121,kcal
+45058827,269,"Sugars, total",15.15,g
+45058827,291,"Fiber, total dietary",3,g
+45058827,301,"Calcium, Ca",0,mg
+45058827,303,"Iron, Fe",2.18,mg
+45058827,307,"Sodium, Na",212,mg
+45058827,318,"Vitamin A, IU",2273,IU
+45058827,401,"Vitamin C, total ascorbic acid",27.3,mg
+45058827,601,Cholesterol,0,mg
+45058827,605,"Fatty acids, total trans",0,g
+45058827,606,"Fatty acids, total saturated",0,g
+45093509,203,Protein,12.5,g
+45093509,204,Total lipid (fat),1.79,g
+45093509,205,"Carbohydrate, by difference",75,g
+45093509,208,Energy,357,kcal
+45093509,269,"Sugars, total",1.79,g
+45093509,291,"Fiber, total dietary",3.6,g
+45093509,303,"Iron, Fe",3.21,mg
+45093509,306,"Potassium, K",188,mg
+45093509,307,"Sodium, Na",0,mg
+45093509,404,Thiamin,1,mg
+45093509,405,Riboflavin,0.304,mg
+45093509,406,Niacin,5.357,mg
+45093509,417,"Folate, total",179,mcg
+45093509,601,Cholesterol,0,mg
+45093509,605,"Fatty acids, total trans",0,g
+45093509,606,"Fatty acids, total saturated",0,g
+45093509,645,"Fatty acids, total monounsaturated",0,g
+45093509,646,"Fatty acids, total polyunsaturated",0,g
+45001585,203,Protein,0,g
+45001585,204,Total lipid (fat),0,g
+45001585,205,"Carbohydrate, by difference",40,g
+45001585,208,Energy,300,kcal
+45001585,269,"Sugars, total",40,g
+45001585,307,"Sodium, Na",900,mg
+45263384,203,Protein,0,g
+45263384,204,Total lipid (fat),0,g
+45263384,205,"Carbohydrate, by difference",3.57,g
+45263384,208,Energy,18,kcal
+45263384,269,"Sugars, total",3.57,g
+45263384,307,"Sodium, Na",1643,mg
+45263331,203,Protein,0,g
+45263331,204,Total lipid (fat),0,g
+45263331,205,"Carbohydrate, by difference",25,g
+45263331,208,Energy,107,kcal
+45263331,269,"Sugars, total",25,g
+45263331,307,"Sodium, Na",714,mg
+45045806,203,Protein,0,g
+45045806,204,Total lipid (fat),41.38,g
+45045806,205,"Carbohydrate, by difference",6.9,g
+45045806,208,Energy,414,kcal
+45045806,269,"Sugars, total",6.9,g
+45045806,291,"Fiber, total dietary",0,g
+45045806,301,"Calcium, Ca",0,mg
+45045806,303,"Iron, Fe",0,mg
+45045806,307,"Sodium, Na",1000,mg
+45045806,318,"Vitamin A, IU",0,IU
+45045806,401,"Vitamin C, total ascorbic acid",8.3,mg
+45045806,601,Cholesterol,0,mg
+45045806,605,"Fatty acids, total trans",0,g
+45045806,606,"Fatty acids, total saturated",6.9,g
+45130337,203,Protein,0.79,g
+45130337,204,Total lipid (fat),0.79,g
+45130337,205,"Carbohydrate, by difference",8.73,g
+45130337,269,"Sugars, total",3.97,g
+45130337,291,"Fiber, total dietary",2.4,g
+45130337,301,"Calcium, Ca",16,mg
+45130337,303,"Iron, Fe",0.57,mg
+45130337,306,"Potassium, K",262,mg
+45130337,307,"Sodium, Na",444,mg
+45130337,318,"Vitamin A, IU",397,IU
+45130337,401,"Vitamin C, total ascorbic acid",2.9,mg
+45130337,601,Cholesterol,0,mg
+45130337,605,"Fatty acids, total trans",0,g
+45130337,606,"Fatty acids, total saturated",0,g
+45130337,645,"Fatty acids, total monounsaturated",0,g
+45130337,646,"Fatty acids, total polyunsaturated",0,g
+45206561,203,Protein,12.5,g
+45206561,204,Total lipid (fat),1.79,g
+45206561,205,"Carbohydrate, by difference",75,g
+45206561,208,Energy,357,kcal
+45206561,269,"Sugars, total",1.79,g
+45206561,291,"Fiber, total dietary",3.6,g
+45206561,303,"Iron, Fe",3.21,mg
+45206561,306,"Potassium, K",188,mg
+45206561,307,"Sodium, Na",0,mg
+45206561,404,Thiamin,1,mg
+45206561,405,Riboflavin,0.304,mg
+45206561,406,Niacin,5.357,mg
+45206561,417,"Folate, total",179,mcg
+45206561,601,Cholesterol,0,mg
+45206561,605,"Fatty acids, total trans",0,g
+45206561,606,"Fatty acids, total saturated",0,g
+45206561,645,"Fatty acids, total monounsaturated",0,g
+45206561,646,"Fatty acids, total polyunsaturated",0,g
+45089465,203,Protein,0,g
+45089465,204,Total lipid (fat),36.67,g
+45089465,205,"Carbohydrate, by difference",16.67,g
+45089465,208,Energy,400,kcal
+45089465,269,"Sugars, total",10,g
+45089465,291,"Fiber, total dietary",0,g
+45089465,301,"Calcium, Ca",0,mg
+45089465,303,"Iron, Fe",0,mg
+45089465,307,"Sodium, Na",833,mg
+45089465,318,"Vitamin A, IU",0,IU
+45089465,401,"Vitamin C, total ascorbic acid",0,mg
+45089465,601,Cholesterol,0,mg
+45089465,605,"Fatty acids, total trans",0,g
+45089465,606,"Fatty acids, total saturated",5,g
+45080208,203,Protein,0,g
+45080208,204,Total lipid (fat),46.67,g
+45080208,205,"Carbohydrate, by difference",13.33,g
+45080208,208,Energy,467,kcal
+45080208,269,"Sugars, total",6.67,g
+45080208,307,"Sodium, Na",633,mg
+45080208,601,Cholesterol,33,mg
+45080208,606,"Fatty acids, total saturated",6.67,g
+45059829,203,Protein,0,g
+45059829,204,Total lipid (fat),78.57,g
+45059829,205,"Carbohydrate, by difference",0,g
+45059829,208,Energy,714,kcal
+45059829,307,"Sodium, Na",643,mg
+45059829,601,Cholesterol,36,mg
+45059829,606,"Fatty acids, total saturated",10.71,g
+45059829,645,"Fatty acids, total monounsaturated",17.86,g
+45059829,646,"Fatty acids, total polyunsaturated",50,g
+45357116,203,Protein,12.5,g
+45357116,204,Total lipid (fat),0.89,g
+45357116,205,"Carbohydrate, by difference",73.21,g
+45357116,208,Energy,357,kcal
+45357116,269,"Sugars, total",1.79,g
+45357116,291,"Fiber, total dietary",3.6,g
+45357116,301,"Calcium, Ca",18,mg
+45357116,303,"Iron, Fe",4.46,mg
+45357116,306,"Potassium, K",196,mg
+45357116,307,"Sodium, Na",0,mg
+45357116,324,Vitamin D,0,IU
+45357116,404,Thiamin,1,mg
+45357116,405,Riboflavin,0.357,mg
+45357116,406,Niacin,6.25,mg
+45357116,431,Folic acid,196,mcg
+45357116,601,Cholesterol,0,mg
+45357116,605,"Fatty acids, total trans",0,g
+45357116,606,"Fatty acids, total saturated",0,g
+45357116,645,"Fatty acids, total monounsaturated",0,g
+45357116,646,"Fatty acids, total polyunsaturated",0,g
+45011282,203,Protein,0.42,g
+45011282,204,Total lipid (fat),0.21,g
+45011282,205,"Carbohydrate, by difference",0.42,g
+45011282,208,Energy,4,kcal
+45011282,269,"Sugars, total",0,g
+45011282,291,"Fiber, total dietary",0,g
+45011282,301,"Calcium, Ca",0,mg
+45011282,303,"Iron, Fe",0,mg
+45011282,307,"Sodium, Na",408,mg
+45011282,318,"Vitamin A, IU",0,IU
+45011282,401,"Vitamin C, total ascorbic acid",0,mg
+45011282,601,Cholesterol,2,mg
+45011282,605,"Fatty acids, total trans",0,g
+45011282,606,"Fatty acids, total saturated",0,g
+45011282,645,"Fatty acids, total monounsaturated",0,g
+45011282,646,"Fatty acids, total polyunsaturated",0,g
+45239362,203,Protein,1.11,g
+45239362,204,Total lipid (fat),0,g
+45239362,205,"Carbohydrate, by difference",5.56,g
+45239362,208,Energy,33,kcal
+45239362,269,"Sugars, total",6.67,g
+45239362,291,"Fiber, total dietary",1.1,g
+45239362,301,"Calcium, Ca",22,mg
+45239362,303,"Iron, Fe",0.4,mg
+45239362,307,"Sodium, Na",222,mg
+45239362,318,"Vitamin A, IU",833,IU
+45239362,401,"Vitamin C, total ascorbic acid",4,mg
+45239362,601,Cholesterol,0,mg
+45239362,605,"Fatty acids, total trans",0,g
+45239362,606,"Fatty acids, total saturated",0,g
+45006735,203,Protein,8.93,g
+45006735,204,Total lipid (fat),1.79,g
+45006735,205,"Carbohydrate, by difference",80.36,g
+45006735,208,Energy,375,kcal
+45006735,269,"Sugars, total",32.14,g
+45006735,291,"Fiber, total dietary",12.5,g
+45006735,301,"Calcium, Ca",71,mg
+45006735,303,"Iron, Fe",8.04,mg
+45006735,304,"Magnesium, Mg",143,mg
+45006735,305,"Phosphorus, P",357,mg
+45006735,306,"Potassium, K",518,mg
+45006735,307,"Sodium, Na",625,mg
+45006735,309,"Zinc, Zn",2.68,mg
+45006735,312,"Copper, Cu",0.357,mg
+45006735,318,"Vitamin A, IU",1339,IU
+45006735,324,Vitamin D,71,IU
+45006735,401,"Vitamin C, total ascorbic acid",10.7,mg
+45006735,404,Thiamin,1,mg
+45006735,405,Riboflavin,0.759,mg
+45006735,406,Niacin,8.929,mg
+45006735,415,Vitamin B-6,0.893,mg
+45006735,417,"Folate, total",179,mcg
+45006735,601,Cholesterol,0,mg
+45006735,605,"Fatty acids, total trans",0,g
+45006735,606,"Fatty acids, total saturated",0,g
+45004341,203,Protein,3.67,g
+45004341,204,Total lipid (fat),0.41,g
+45004341,205,"Carbohydrate, by difference",4.08,g
+45004341,208,Energy,37,kcal
+45004341,269,"Sugars, total",0,g
+45004341,291,"Fiber, total dietary",0,g
+45004341,301,"Calcium, Ca",16,mg
+45004341,303,"Iron, Fe",0.29,mg
+45004341,307,"Sodium, Na",400,mg
+45004341,318,"Vitamin A, IU",816,IU
+45004341,401,"Vitamin C, total ascorbic acid",17.1,mg
+45004341,601,Cholesterol,10,mg
+45004341,605,"Fatty acids, total trans",0,g
+45004341,606,"Fatty acids, total saturated",0,g
+45003034,203,Protein,4.62,g
+45003034,204,Total lipid (fat),0.38,g
+45003034,205,"Carbohydrate, by difference",18.46,g
+45003034,208,Energy,92,kcal
+45003034,269,"Sugars, total",3.85,g
+45003034,291,"Fiber, total dietary",5.4,g
+45003034,301,"Calcium, Ca",46,mg
+45003034,303,"Iron, Fe",1.38,mg
+45003034,307,"Sodium, Na",300,mg
+45003034,318,"Vitamin A, IU",0,IU
+45003034,401,"Vitamin C, total ascorbic acid",0,mg
+45003034,601,Cholesterol,0,mg
+45003034,605,"Fatty acids, total trans",0,g
+45003034,606,"Fatty acids, total saturated",0,g
+45002934,203,Protein,7.29,g
+45002934,204,Total lipid (fat),1.82,g
+45002934,205,"Carbohydrate, by difference",10.93,g
+45002934,208,Energy,89,kcal
+45002934,269,"Sugars, total",2.02,g
+45002934,291,"Fiber, total dietary",2.8,g
+45002934,301,"Calcium, Ca",32,mg
+45002934,303,"Iron, Fe",1.09,mg
+45002934,307,"Sodium, Na",385,mg
+45002934,318,"Vitamin A, IU",202,IU
+45002934,401,"Vitamin C, total ascorbic acid",0.5,mg
+45002934,601,Cholesterol,12,mg
+45002934,605,"Fatty acids, total trans",0,g
+45002934,606,"Fatty acids, total saturated",0.61,g
+45001788,203,Protein,20,g
+45001788,204,Total lipid (fat),6,g
+45001788,205,"Carbohydrate, by difference",60,g
+45001788,208,Energy,360,kcal
+45001788,269,"Sugars, total",10,g
+45001788,291,"Fiber, total dietary",18,g
+45001788,301,"Calcium, Ca",120,mg
+45001788,303,"Iron, Fe",5.4,mg
+45001788,307,"Sodium, Na",20,mg
+45001788,318,"Vitamin A, IU",0,IU
+45001788,401,"Vitamin C, total ascorbic acid",4.8,mg
+45001788,601,Cholesterol,0,mg
+45001788,605,"Fatty acids, total trans",0,g
+45001788,606,"Fatty acids, total saturated",0,g
+45001769,203,Protein,9.3,g
+45001769,204,Total lipid (fat),2.33,g
+45001769,205,"Carbohydrate, by difference",76.74,g
+45001769,208,Energy,349,kcal
+45001769,269,"Sugars, total",0,g
+45001769,291,"Fiber, total dietary",4.7,g
+45001769,301,"Calcium, Ca",0,mg
+45001769,303,"Iron, Fe",0.84,mg
+45001769,307,"Sodium, Na",0,mg
+45001769,318,"Vitamin A, IU",0,IU
+45001769,401,"Vitamin C, total ascorbic acid",0,mg
+45001769,601,Cholesterol,0,mg
+45001769,605,"Fatty acids, total trans",0,g
+45001769,606,"Fatty acids, total saturated",0,g
+45001768,203,Protein,9.3,g
+45001768,204,Total lipid (fat),2.33,g
+45001768,205,"Carbohydrate, by difference",76.74,g
+45001768,208,Energy,349,kcal
+45001768,269,"Sugars, total",0,g
+45001768,291,"Fiber, total dietary",4.7,g
+45001768,301,"Calcium, Ca",0,mg
+45001768,303,"Iron, Fe",0.84,mg
+45001768,307,"Sodium, Na",0,mg
+45001768,318,"Vitamin A, IU",0,IU
+45001768,401,"Vitamin C, total ascorbic acid",0,mg
+45001768,601,Cholesterol,0,mg
+45001768,605,"Fatty acids, total trans",0,g
+45001768,606,"Fatty acids, total saturated",0,g
+45001767,203,Protein,9.09,g
+45001767,204,Total lipid (fat),0,g
+45001767,205,"Carbohydrate, by difference",81.82,g
+45001767,208,Energy,364,kcal
+45001767,269,"Sugars, total",0,g
+45001767,291,"Fiber, total dietary",2.3,g
+45001767,301,"Calcium, Ca",45,mg
+45001767,303,"Iron, Fe",3.27,mg
+45001767,307,"Sodium, Na",11,mg
+45001767,318,"Vitamin A, IU",0,IU
+45001767,401,"Vitamin C, total ascorbic acid",0,mg
+45001767,601,Cholesterol,0,mg
+45001767,605,"Fatty acids, total trans",0,g
+45001767,606,"Fatty acids, total saturated",0,g
+45001704,203,Protein,0,g
+45001704,204,Total lipid (fat),0,g
+45001704,205,"Carbohydrate, by difference",4.76,g
+45001704,208,Energy,24,kcal
+45001704,269,"Sugars, total",3.17,g
+45001704,291,"Fiber, total dietary",1.6,g
+45001704,301,"Calcium, Ca",0,mg
+45001704,303,"Iron, Fe",0.57,mg
+45001704,307,"Sodium, Na",508,mg
+45001704,318,"Vitamin A, IU",476,IU
+45001704,401,"Vitamin C, total ascorbic acid",1.9,mg
+45001704,601,Cholesterol,0,mg
+45001704,605,"Fatty acids, total trans",0,g
+45001704,606,"Fatty acids, total saturated",0,g
+45001547,203,Protein,0,g
+45001547,204,Total lipid (fat),33.33,g
+45001547,205,"Carbohydrate, by difference",6.67,g
+45001547,208,Energy,333,kcal
+45001547,269,"Sugars, total",0,g
+45001547,291,"Fiber, total dietary",0,g
+45001547,301,"Calcium, Ca",0,mg
+45001547,303,"Iron, Fe",0,mg
+45001547,307,"Sodium, Na",600,mg
+45001547,318,"Vitamin A, IU",0,IU
+45001547,401,"Vitamin C, total ascorbic acid",0,mg
+45001547,601,Cholesterol,67,mg
+45001547,605,"Fatty acids, total trans",0,g
+45001547,606,"Fatty acids, total saturated",6.67,g
+45001544,203,Protein,0,g
+45001544,204,Total lipid (fat),0,g
+45001544,205,"Carbohydrate, by difference",0,g
+45001544,208,Energy,0,kcal
+45001544,307,"Sodium, Na",1100,mg
+45001534,203,Protein,0,g
+45001534,204,Total lipid (fat),0,g
+45001534,205,"Carbohydrate, by difference",36.11,g
+45001534,208,Energy,139,kcal
+45001534,269,"Sugars, total",30.56,g
+45001534,307,"Sodium, Na",778,mg
+45001533,203,Protein,0,g
+45001533,204,Total lipid (fat),0,g
+45001533,205,"Carbohydrate, by difference",34.29,g
+45001533,208,Energy,143,kcal
+45001533,269,"Sugars, total",28.57,g
+45001533,307,"Sodium, Na",1257,mg
+45001532,203,Protein,0,g
+45001532,204,Total lipid (fat),0,g
+45001532,205,"Carbohydrate, by difference",48.65,g
+45001532,208,Energy,189,kcal
+45001532,269,"Sugars, total",43.24,g
+45001532,291,"Fiber, total dietary",0,g
+45001532,301,"Calcium, Ca",0,mg
+45001532,303,"Iron, Fe",0,mg
+45001532,307,"Sodium, Na",730,mg
+45001532,318,"Vitamin A, IU",0,IU
+45001532,401,"Vitamin C, total ascorbic acid",0,mg
+45001532,601,Cholesterol,0,mg
+45001532,605,"Fatty acids, total trans",0,g
+45001532,606,"Fatty acids, total saturated",0,g
+45138289,203,Protein,3.33,g
+45138289,204,Total lipid (fat),3.33,g
+45138289,205,"Carbohydrate, by difference",36.67,g
+45138289,208,Energy,167,kcal
+45138289,269,"Sugars, total",30,g
+45138289,291,"Fiber, total dietary",0,g
+45138289,301,"Calcium, Ca",0,mg
+45138289,303,"Iron, Fe",1.2,mg
+45138289,307,"Sodium, Na",2233,mg
+45138289,318,"Vitamin A, IU",0,IU
+45138289,401,"Vitamin C, total ascorbic acid",0,mg
+45138289,601,Cholesterol,0,mg
+45138289,606,"Fatty acids, total saturated",0,g
+45112211,203,Protein,3.51,g
+45112211,204,Total lipid (fat),17.54,g
+45112211,205,"Carbohydrate, by difference",57.89,g
+45112211,208,Energy,386,kcal
+45112211,269,"Sugars, total",36.84,g
+45112211,291,"Fiber, total dietary",1.8,g
+45112211,301,"Calcium, Ca",35,mg
+45112211,303,"Iron, Fe",1.26,mg
+45112211,307,"Sodium, Na",333,mg
+45112211,318,"Vitamin A, IU",351,IU
+45112211,401,"Vitamin C, total ascorbic acid",0,mg
+45112211,601,Cholesterol,18,mg
+45112211,605,"Fatty acids, total trans",0,g
+45112211,606,"Fatty acids, total saturated",8.77,g
+45112211,645,"Fatty acids, total monounsaturated",6.14,g
+45112211,646,"Fatty acids, total polyunsaturated",2.63,g
+45102572,203,Protein,5.56,g
+45102572,204,Total lipid (fat),25.93,g
+45102572,205,"Carbohydrate, by difference",48.15,g
+45102572,208,Energy,444,kcal
+45102572,269,"Sugars, total",24.07,g
+45102572,291,"Fiber, total dietary",1.9,g
+45102572,301,"Calcium, Ca",37,mg
+45102572,303,"Iron, Fe",2,mg
+45102572,307,"Sodium, Na",407,mg
+45102572,318,"Vitamin A, IU",741,IU
+45102572,401,"Vitamin C, total ascorbic acid",0,mg
+45102572,404,Thiamin,0,mg
+45102572,405,Riboflavin,0.189,mg
+45102572,406,Niacin,1.481,mg
+45102572,417,"Folate, total",44,mcg
+45102572,601,Cholesterol,28,mg
+45102572,605,"Fatty acids, total trans",0,g
+45102572,606,"Fatty acids, total saturated",12.96,g
+45102343,203,Protein,4.26,g
+45102343,204,Total lipid (fat),23.4,g
+45102343,205,"Carbohydrate, by difference",51.06,g
+45102343,208,Energy,426,kcal
+45102343,269,"Sugars, total",25.53,g
+45102343,291,"Fiber, total dietary",2.1,g
+45102343,301,"Calcium, Ca",0,mg
+45102343,303,"Iron, Fe",1.53,mg
+45102343,307,"Sodium, Na",383,mg
+45102343,318,"Vitamin A, IU",0,IU
+45102343,401,"Vitamin C, total ascorbic acid",0,mg
+45102343,601,Cholesterol,32,mg
+45102343,605,"Fatty acids, total trans",0,g
+45102343,606,"Fatty acids, total saturated",10.64,g
+45044515,203,Protein,5.31,g
+45044515,204,Total lipid (fat),19.47,g
+45044515,205,"Carbohydrate, by difference",38.94,g
+45044515,208,Energy,354,kcal
+45044515,269,"Sugars, total",24.78,g
+45044515,291,"Fiber, total dietary",0.9,g
+45044515,301,"Calcium, Ca",71,mg
+45044515,303,"Iron, Fe",0.64,mg
+45044515,307,"Sodium, Na",133,mg
+45044515,318,"Vitamin A, IU",442,IU
+45044515,401,"Vitamin C, total ascorbic acid",0,mg
+45044515,601,Cholesterol,71,mg
+45044515,605,"Fatty acids, total trans",0,g
+45044515,606,"Fatty acids, total saturated",3.54,g
+45044977,203,Protein,5.26,g
+45044977,204,Total lipid (fat),14.04,g
+45044977,205,"Carbohydrate, by difference",42.11,g
+45044977,208,Energy,351,kcal
+45044977,269,"Sugars, total",21.05,g
+45044977,291,"Fiber, total dietary",1.8,g
+45044977,301,"Calcium, Ca",35,mg
+45044977,303,"Iron, Fe",1.89,mg
+45044977,307,"Sodium, Na",263,mg
+45044977,318,"Vitamin A, IU",702,IU
+45044977,401,"Vitamin C, total ascorbic acid",0,mg
+45044977,601,Cholesterol,9,mg
+45044977,605,"Fatty acids, total trans",0,g
+45044977,606,"Fatty acids, total saturated",5.26,g
+45037702,203,Protein,4.42,g
+45037702,204,Total lipid (fat),22.12,g
+45037702,205,"Carbohydrate, by difference",43.36,g
+45037702,208,Energy,389,kcal
+45037702,269,"Sugars, total",21.24,g
+45037702,291,"Fiber, total dietary",2.7,g
+45037702,301,"Calcium, Ca",35,mg
+45037702,303,"Iron, Fe",2.39,mg
+45037702,307,"Sodium, Na",336,mg
+45037702,318,"Vitamin A, IU",88,IU
+45037702,401,"Vitamin C, total ascorbic acid",0,mg
+45037702,601,Cholesterol,49,mg
+45037702,605,"Fatty acids, total trans",0,g
+45037702,606,"Fatty acids, total saturated",3.98,g
+45037696,203,Protein,4.42,g
+45037696,204,Total lipid (fat),17.7,g
+45037696,205,"Carbohydrate, by difference",38.05,g
+45037696,208,Energy,327,kcal
+45037696,269,"Sugars, total",20.35,g
+45037696,291,"Fiber, total dietary",0.9,g
+45037696,301,"Calcium, Ca",18,mg
+45037696,303,"Iron, Fe",1.59,mg
+45037696,307,"Sodium, Na",274,mg
+45037696,318,"Vitamin A, IU",88,IU
+45037696,401,"Vitamin C, total ascorbic acid",3.2,mg
+45037696,601,Cholesterol,53,mg
+45037696,605,"Fatty acids, total trans",0,g
+45037696,606,"Fatty acids, total saturated",3.1,g
+45037686,203,Protein,4.92,g
+45037686,204,Total lipid (fat),16.39,g
+45037686,205,"Carbohydrate, by difference",40.98,g
+45037686,208,Energy,328,kcal
+45037686,269,"Sugars, total",24.59,g
+45037686,291,"Fiber, total dietary",0,g
+45037686,301,"Calcium, Ca",33,mg
+45037686,303,"Iron, Fe",1.77,mg
+45037686,307,"Sodium, Na",115,mg
+45037686,318,"Vitamin A, IU",0,IU
+45037686,401,"Vitamin C, total ascorbic acid",0,mg
+45037686,601,Cholesterol,57,mg
+45037686,605,"Fatty acids, total trans",0,g
+45037686,606,"Fatty acids, total saturated",2.46,g
+45037677,203,Protein,5.31,g
+45037677,204,Total lipid (fat),20.35,g
+45037677,205,"Carbohydrate, by difference",50.44,g
+45037677,208,Energy,407,kcal
+45037677,269,"Sugars, total",24.78,g
+45037677,291,"Fiber, total dietary",0.9,g
+45037677,301,"Calcium, Ca",18,mg
+45037677,303,"Iron, Fe",2.39,mg
+45037677,307,"Sodium, Na",363,mg
+45037677,318,"Vitamin A, IU",88,IU
+45037677,401,"Vitamin C, total ascorbic acid",0,mg
+45037677,601,Cholesterol,75,mg
+45037677,605,"Fatty acids, total trans",0,g
+45037677,606,"Fatty acids, total saturated",3.98,g
+45037667,203,Protein,4.51,g
+45037667,204,Total lipid (fat),19.55,g
+45037667,205,"Carbohydrate, by difference",39.85,g
+45037667,208,Energy,353,kcal
+45037667,269,"Sugars, total",24.06,g
+45037667,291,"Fiber, total dietary",2.3,g
+45037667,301,"Calcium, Ca",30,mg
+45037667,303,"Iron, Fe",2.03,mg
+45037667,307,"Sodium, Na",263,mg
+45037667,318,"Vitamin A, IU",75,IU
+45037667,401,"Vitamin C, total ascorbic acid",0,mg
+45037667,601,Cholesterol,56,mg
+45037667,605,"Fatty acids, total trans",0,g
+45037667,606,"Fatty acids, total saturated",4.51,g
+45003496,203,Protein,9.09,g
+45003496,204,Total lipid (fat),21.21,g
+45003496,205,"Carbohydrate, by difference",66.67,g
+45003496,208,Energy,485,kcal
+45003496,269,"Sugars, total",21.21,g
+45003496,291,"Fiber, total dietary",3,g
+45003496,301,"Calcium, Ca",0,mg
+45003496,303,"Iron, Fe",3.27,mg
+45003496,307,"Sodium, Na",348,mg
+45003496,318,"Vitamin A, IU",0,IU
+45003496,401,"Vitamin C, total ascorbic acid",0,mg
+45003496,601,Cholesterol,0,mg
+45003496,605,"Fatty acids, total trans",0,g
+45003496,606,"Fatty acids, total saturated",6.06,g
+45003496,645,"Fatty acids, total monounsaturated",9.09,g
+45003496,646,"Fatty acids, total polyunsaturated",6.06,g
+45039641,203,Protein,4.35,g
+45039641,204,Total lipid (fat),18.48,g
+45039641,205,"Carbohydrate, by difference",50,g
+45039641,208,Energy,380,kcal
+45039641,269,"Sugars, total",26.09,g
+45039641,291,"Fiber, total dietary",1.1,g
+45039641,301,"Calcium, Ca",43,mg
+45039641,303,"Iron, Fe",1.17,mg
+45039641,307,"Sodium, Na",293,mg
+45039641,318,"Vitamin A, IU",109,IU
+45039641,401,"Vitamin C, total ascorbic acid",0,mg
+45039641,601,Cholesterol,60,mg
+45039641,605,"Fatty acids, total trans",0,g
+45039641,606,"Fatty acids, total saturated",3.26,g
+45012009,203,Protein,3.53,g
+45012009,204,Total lipid (fat),20,g
+45012009,205,"Carbohydrate, by difference",57.65,g
+45012009,208,Energy,412,kcal
+45012009,269,"Sugars, total",41.18,g
+45012009,291,"Fiber, total dietary",1.2,g
+45012009,301,"Calcium, Ca",59,mg
+45012009,303,"Iron, Fe",1.41,mg
+45012009,306,"Potassium, K",224,mg
+45012009,307,"Sodium, Na",294,mg
+45012009,324,Vitamin D,0,IU
+45012009,539,"Sugars, added",40,g
+45012009,601,Cholesterol,41,mg
+45012009,605,"Fatty acids, total trans",0,g
+45012009,606,"Fatty acids, total saturated",7.06,g
+45012009,645,"Fatty acids, total monounsaturated",5.88,g
+45012009,646,"Fatty acids, total polyunsaturated",5.29,g
+45011545,203,Protein,3.53,g
+45011545,204,Total lipid (fat),23.53,g
+45011545,205,"Carbohydrate, by difference",41.18,g
+45011545,208,Energy,388,kcal
+45011545,269,"Sugars, total",27.06,g
+45011545,291,"Fiber, total dietary",1.2,g
+45011545,301,"Calcium, Ca",47,mg
+45011545,303,"Iron, Fe",1.27,mg
+45011545,307,"Sodium, Na",294,mg
+45011545,318,"Vitamin A, IU",2059,IU
+45011545,401,"Vitamin C, total ascorbic acid",0,mg
+45011545,601,Cholesterol,59,mg
+45011545,605,"Fatty acids, total trans",0,g
+45011545,606,"Fatty acids, total saturated",8.24,g
+45011474,203,Protein,4,g
+45011474,204,Total lipid (fat),11,g
+45011474,205,"Carbohydrate, by difference",32,g
+45011474,208,Energy,240,kcal
+45011474,269,"Sugars, total",31,g
+45011474,291,"Fiber, total dietary",1,g
+45011474,301,"Calcium, Ca",100,mg
+45011474,303,"Iron, Fe",0,mg
+45011474,307,"Sodium, Na",65,mg
+45011474,318,"Vitamin A, IU",300,IU
+45011474,401,"Vitamin C, total ascorbic acid",0,mg
+45011474,601,Cholesterol,80,mg
+45011474,606,"Fatty acids, total saturated",6,g
+45011025,203,Protein,4.42,g
+45011025,204,Total lipid (fat),9.73,g
+45011025,205,"Carbohydrate, by difference",32.74,g
+45011025,208,Energy,219,kcal
+45011025,269,"Sugars, total",20.35,g
+45011025,291,"Fiber, total dietary",3.5,g
+45011025,301,"Calcium, Ca",88,mg
+45011025,303,"Iron, Fe",2.39,mg
+45011025,307,"Sodium, Na",137,mg
+45011025,318,"Vitamin A, IU",442,IU
+45011025,401,"Vitamin C, total ascorbic acid",1.1,mg
+45011025,601,Cholesterol,86,mg
+45011025,606,"Fatty acids, total saturated",5.31,g
+45011024,203,Protein,5.26,g
+45011024,204,Total lipid (fat),24.56,g
+45011024,205,"Carbohydrate, by difference",35.09,g
+45011024,208,Energy,386,kcal
+45011024,269,"Sugars, total",22.81,g
+45011024,291,"Fiber, total dietary",1.8,g
+45011024,301,"Calcium, Ca",70,mg
+45011024,303,"Iron, Fe",1.89,mg
+45011024,307,"Sodium, Na",333,mg
+45011024,318,"Vitamin A, IU",702,IU
+45011024,401,"Vitamin C, total ascorbic acid",0,mg
+45011024,601,Cholesterol,88,mg
+45011024,605,"Fatty acids, total trans",0,g
+45011024,606,"Fatty acids, total saturated",15.79,g
+45044182,203,Protein,4.71,g
+45044182,204,Total lipid (fat),16.47,g
+45044182,205,"Carbohydrate, by difference",40,g
+45044182,208,Energy,318,kcal
+45044182,269,"Sugars, total",27.06,g
+45044182,291,"Fiber, total dietary",1.2,g
+45044182,301,"Calcium, Ca",47,mg
+45044182,303,"Iron, Fe",0.42,mg
+45044182,307,"Sodium, Na",135,mg
+45044182,318,"Vitamin A, IU",235,IU
+45044182,401,"Vitamin C, total ascorbic acid",10.6,mg
+45044182,601,Cholesterol,71,mg
+45044182,605,"Fatty acids, total trans",0,g
+45044182,606,"Fatty acids, total saturated",9.41,g
+45011576,203,Protein,2.44,g
+45011576,204,Total lipid (fat),17.07,g
+45011576,205,"Carbohydrate, by difference",58.54,g
+45011576,208,Energy,390,kcal
+45011576,269,"Sugars, total",43.9,g
+45011576,291,"Fiber, total dietary",0,g
+45011576,301,"Calcium, Ca",49,mg
+45011576,303,"Iron, Fe",1.76,mg
+45011576,307,"Sodium, Na",341,mg
+45011576,318,"Vitamin A, IU",0,IU
+45011576,401,"Vitamin C, total ascorbic acid",0,mg
+45011576,601,Cholesterol,24,mg
+45011576,605,"Fatty acids, total trans",0,g
+45011576,606,"Fatty acids, total saturated",14.63,g
+45053831,203,Protein,4.69,g
+45053831,204,Total lipid (fat),21.88,g
+45053831,205,"Carbohydrate, by difference",45.31,g
+45053831,208,Energy,391,kcal
+45053831,269,"Sugars, total",20.31,g
+45053831,291,"Fiber, total dietary",1.6,g
+45053831,301,"Calcium, Ca",234,mg
+45053831,303,"Iron, Fe",1.69,mg
+45053831,307,"Sodium, Na",312,mg
+45053831,318,"Vitamin A, IU",0,IU
+45053831,401,"Vitamin C, total ascorbic acid",1.9,mg
+45053831,601,Cholesterol,0,mg
+45053831,605,"Fatty acids, total trans",0,g
+45053831,606,"Fatty acids, total saturated",9.38,g
+45003122,203,Protein,17.86,g
+45003122,204,Total lipid (fat),3.57,g
+45003122,205,"Carbohydrate, by difference",25,g
+45003122,208,Energy,214,kcal
+45003122,269,"Sugars, total",0,g
+45003122,291,"Fiber, total dietary",10.7,g
+45003122,301,"Calcium, Ca",143,mg
+45003122,303,"Iron, Fe",6.43,mg
+45003122,307,"Sodium, Na",464,mg
+45003122,318,"Vitamin A, IU",0,IU
+45003122,401,"Vitamin C, total ascorbic acid",0,mg
+45003122,601,Cholesterol,0,mg
+45003122,605,"Fatty acids, total trans",0,g
+45003122,606,"Fatty acids, total saturated",0,g
+45003706,203,Protein,10.2,g
+45003706,204,Total lipid (fat),7.14,g
+45003706,205,"Carbohydrate, by difference",48.98,g
+45003706,208,Energy,286,kcal
+45003706,269,"Sugars, total",8.16,g
+45003706,291,"Fiber, total dietary",2,g
+45003706,301,"Calcium, Ca",0,mg
+45003706,303,"Iron, Fe",2.94,mg
+45003706,307,"Sodium, Na",469,mg
+45003706,318,"Vitamin A, IU",0,IU
+45003706,401,"Vitamin C, total ascorbic acid",0,mg
+45003706,601,Cholesterol,10,mg
+45003706,605,"Fatty acids, total trans",0,g
+45003706,606,"Fatty acids, total saturated",3.06,g
+45003706,645,"Fatty acids, total monounsaturated",2.04,g
+45003706,646,"Fatty acids, total polyunsaturated",2.04,g
+45003499,203,Protein,6.39,g
+45003499,204,Total lipid (fat),19.17,g
+45003499,205,"Carbohydrate, by difference",70.29,g
+45003499,208,Energy,479,kcal
+45003499,269,"Sugars, total",38.34,g
+45003499,291,"Fiber, total dietary",3.2,g
+45003499,301,"Calcium, Ca",0,mg
+45003499,303,"Iron, Fe",5.75,mg
+45003499,307,"Sodium, Na",511,mg
+45003499,318,"Vitamin A, IU",0,IU
+45003499,401,"Vitamin C, total ascorbic acid",0,mg
+45003499,601,Cholesterol,0,mg
+45003499,605,"Fatty acids, total trans",0,g
+45003499,606,"Fatty acids, total saturated",7.99,g
+45003499,645,"Fatty acids, total monounsaturated",6.39,g
+45003499,646,"Fatty acids, total polyunsaturated",3.19,g
+45003497,203,Protein,6.39,g
+45003497,204,Total lipid (fat),19.17,g
+45003497,205,"Carbohydrate, by difference",73.48,g
+45003497,208,Energy,479,kcal
+45003497,269,"Sugars, total",35.14,g
+45003497,291,"Fiber, total dietary",3.2,g
+45003497,301,"Calcium, Ca",0,mg
+45003497,303,"Iron, Fe",2.3,mg
+45003497,307,"Sodium, Na",288,mg
+45003497,318,"Vitamin A, IU",0,IU
+45003497,401,"Vitamin C, total ascorbic acid",0,mg
+45003497,601,Cholesterol,0,mg
+45003497,605,"Fatty acids, total trans",0,g
+45003497,606,"Fatty acids, total saturated",7.99,g
+45003497,645,"Fatty acids, total monounsaturated",6.39,g
+45003497,646,"Fatty acids, total polyunsaturated",4.79,g
+45003705,203,Protein,5.56,g
+45003705,204,Total lipid (fat),16.67,g
+45003705,205,"Carbohydrate, by difference",66.67,g
+45003705,208,Energy,417,kcal
+45003705,269,"Sugars, total",30.56,g
+45003705,291,"Fiber, total dietary",8.3,g
+45003705,301,"Calcium, Ca",833,mg
+45003705,303,"Iron, Fe",4,mg
+45003705,307,"Sodium, Na",250,mg
+45003705,318,"Vitamin A, IU",0,IU
+45003705,401,"Vitamin C, total ascorbic acid",0,mg
+45003705,601,Cholesterol,0,mg
+45003705,605,"Fatty acids, total trans",0,g
+45003705,606,"Fatty acids, total saturated",6.94,g
+45002836,203,Protein,14.71,g
+45002836,204,Total lipid (fat),0,g
+45002836,205,"Carbohydrate, by difference",47.06,g
+45002836,208,Energy,265,kcal
+45002836,269,"Sugars, total",5.88,g
+45002836,291,"Fiber, total dietary",5.9,g
+45002836,301,"Calcium, Ca",0,mg
+45002836,303,"Iron, Fe",2.12,mg
+45002836,305,"Phosphorus, P",235,mg
+45002836,306,"Potassium, K",221,mg
+45002836,307,"Sodium, Na",471,mg
+45002836,318,"Vitamin A, IU",0,IU
+45002836,401,"Vitamin C, total ascorbic acid",0,mg
+45002836,601,Cholesterol,0,mg
+45002836,605,"Fatty acids, total trans",0,g
+45002836,606,"Fatty acids, total saturated",0,g
+45011322,203,Protein,6.25,g
+45011322,204,Total lipid (fat),4.69,g
+45011322,205,"Carbohydrate, by difference",50,g
+45011322,208,Energy,250,kcal
+45011322,269,"Sugars, total",3.12,g
+45011322,291,"Fiber, total dietary",3.1,g
+45011322,301,"Calcium, Ca",62,mg
+45011322,303,"Iron, Fe",2.25,mg
+45011322,307,"Sodium, Na",594,mg
+45011322,318,"Vitamin A, IU",0,IU
+45011322,401,"Vitamin C, total ascorbic acid",0,mg
+45011322,601,Cholesterol,0,mg
+45011322,605,"Fatty acids, total trans",0,g
+45011322,606,"Fatty acids, total saturated",0,g
+45011322,645,"Fatty acids, total monounsaturated",0,g
+45011322,646,"Fatty acids, total polyunsaturated",1.56,g
+45003991,203,Protein,4.42,g
+45003991,204,Total lipid (fat),17.7,g
+45003991,205,"Carbohydrate, by difference",44.25,g
+45003991,208,Energy,345,kcal
+45003991,269,"Sugars, total",24.78,g
+45003991,291,"Fiber, total dietary",0.9,g
+45003991,301,"Calcium, Ca",35,mg
+45003991,303,"Iron, Fe",1.27,mg
+45003991,307,"Sodium, Na",327,mg
+45003991,318,"Vitamin A, IU",88,IU
+45003991,401,"Vitamin C, total ascorbic acid",1.1,mg
+45003991,601,Cholesterol,53,mg
+45003991,605,"Fatty acids, total trans",0,g
+45003991,606,"Fatty acids, total saturated",3.1,g
+45011340,203,Protein,10.71,g
+45011340,204,Total lipid (fat),1.79,g
+45011340,205,"Carbohydrate, by difference",50,g
+45011340,208,Energy,250,kcal
+45011340,269,"Sugars, total",7.14,g
+45011340,291,"Fiber, total dietary",10.7,g
+45011340,301,"Calcium, Ca",714,mg
+45011340,303,"Iron, Fe",6.43,mg
+45011340,306,"Potassium, K",196,mg
+45011340,307,"Sodium, Na",321,mg
+45011340,318,"Vitamin A, IU",0,IU
+45011340,401,"Vitamin C, total ascorbic acid",0,mg
+45011340,404,Thiamin,1,mg
+45011340,405,Riboflavin,0.607,mg
+45011340,406,Niacin,7.143,mg
+45011340,601,Cholesterol,0,mg
+45011340,605,"Fatty acids, total trans",0,g
+45011340,606,"Fatty acids, total saturated",0,g
+45011340,645,"Fatty acids, total monounsaturated",0,g
+45011340,646,"Fatty acids, total polyunsaturated",0,g
+45011339,203,Protein,9.68,g
+45011339,204,Total lipid (fat),3.23,g
+45011339,205,"Carbohydrate, by difference",48.39,g
+45011339,208,Energy,226,kcal
+45011339,269,"Sugars, total",6.45,g
+45011339,291,"Fiber, total dietary",9.7,g
+45011339,301,"Calcium, Ca",0,mg
+45011339,303,"Iron, Fe",2.32,mg
+45011339,306,"Potassium, K",242,mg
+45011339,307,"Sodium, Na",387,mg
+45011339,318,"Vitamin A, IU",0,IU
+45011339,401,"Vitamin C, total ascorbic acid",0,mg
+45011339,404,Thiamin,0,mg
+45011339,405,Riboflavin,0.11,mg
+45011339,406,Niacin,3.871,mg
+45011339,601,Cholesterol,0,mg
+45011339,605,"Fatty acids, total trans",0,g
+45011339,606,"Fatty acids, total saturated",0,g
+45011339,645,"Fatty acids, total monounsaturated",0,g
+45011339,646,"Fatty acids, total polyunsaturated",1.61,g
+45011338,203,Protein,10.71,g
+45011338,204,Total lipid (fat),3.57,g
+45011338,205,"Carbohydrate, by difference",44.64,g
+45011338,208,Energy,250,kcal
+45011338,269,"Sugars, total",7.14,g
+45011338,291,"Fiber, total dietary",5.4,g
+45011338,301,"Calcium, Ca",357,mg
+45011338,303,"Iron, Fe",3.21,mg
+45011338,307,"Sodium, Na",429,mg
+45011338,318,"Vitamin A, IU",0,IU
+45011338,324,Vitamin D,107,IU
+45011338,401,"Vitamin C, total ascorbic acid",0,mg
+45011338,404,Thiamin,1,mg
+45011338,405,Riboflavin,0.243,mg
+45011338,406,Niacin,5.357,mg
+45011338,601,Cholesterol,0,mg
+45011338,605,"Fatty acids, total trans",0,g
+45011338,606,"Fatty acids, total saturated",0,g
+45011338,645,"Fatty acids, total monounsaturated",0,g
+45011338,646,"Fatty acids, total polyunsaturated",1.79,g
+45054130,203,Protein,5.26,g
+45054130,204,Total lipid (fat),21.05,g
+45054130,205,"Carbohydrate, by difference",52.63,g
+45054130,208,Energy,404,kcal
+45054130,269,"Sugars, total",28.07,g
+45054130,291,"Fiber, total dietary",1.8,g
+45054130,301,"Calcium, Ca",35,mg
+45054130,303,"Iron, Fe",1.89,mg
+45054130,307,"Sodium, Na",439,mg
+45054130,318,"Vitamin A, IU",0,IU
+45054130,401,"Vitamin C, total ascorbic acid",0,mg
+45054130,601,Cholesterol,35,mg
+45054130,605,"Fatty acids, total trans",0,g
+45054130,606,"Fatty acids, total saturated",8.77,g
+45054126,203,Protein,3.17,g
+45054126,204,Total lipid (fat),17.46,g
+45054126,205,"Carbohydrate, by difference",50.79,g
+45054126,208,Energy,381,kcal
+45054126,269,"Sugars, total",30.16,g
+45054126,291,"Fiber, total dietary",1.6,g
+45054126,301,"Calcium, Ca",95,mg
+45054126,303,"Iron, Fe",1.71,mg
+45054126,307,"Sodium, Na",429,mg
+45054126,318,"Vitamin A, IU",476,IU
+45054126,401,"Vitamin C, total ascorbic acid",0,mg
+45054126,601,Cholesterol,0,mg
+45054126,605,"Fatty acids, total trans",0,g
+45054126,606,"Fatty acids, total saturated",7.94,g
+45006095,203,Protein,7.32,g
+45006095,204,Total lipid (fat),2.44,g
+45006095,205,"Carbohydrate, by difference",51.22,g
+45006095,208,Energy,268,kcal
+45006095,269,"Sugars, total",4.88,g
+45006095,291,"Fiber, total dietary",2.4,g
+45006095,301,"Calcium, Ca",98,mg
+45006095,303,"Iron, Fe",2.63,mg
+45006095,307,"Sodium, Na",439,mg
+45006095,318,"Vitamin A, IU",0,IU
+45006095,401,"Vitamin C, total ascorbic acid",0,mg
+45006095,404,Thiamin,0,mg
+45006095,405,Riboflavin,0.249,mg
+45006095,406,Niacin,2.927,mg
+45006095,601,Cholesterol,0,mg
+45006095,605,"Fatty acids, total trans",0,g
+45006095,606,"Fatty acids, total saturated",0,g
+45006095,645,"Fatty acids, total monounsaturated",0,g
+45006095,646,"Fatty acids, total polyunsaturated",0,g
+45004110,203,Protein,13.33,g
+45004110,204,Total lipid (fat),16.67,g
+45004110,205,"Carbohydrate, by difference",60,g
+45004110,208,Energy,433,kcal
+45004110,269,"Sugars, total",30,g
+45004110,291,"Fiber, total dietary",0,g
+45004110,301,"Calcium, Ca",0,mg
+45004110,303,"Iron, Fe",1.2,mg
+45004110,307,"Sodium, Na",117,mg
+45004110,318,"Vitamin A, IU",0,IU
+45004110,401,"Vitamin C, total ascorbic acid",0,mg
+45004110,601,Cholesterol,17,mg
+45004110,605,"Fatty acids, total trans",0,g
+45004110,606,"Fatty acids, total saturated",1.67,g
+45004010,203,Protein,3.57,g
+45004010,204,Total lipid (fat),21.43,g
+45004010,205,"Carbohydrate, by difference",64.29,g
+45004010,208,Energy,464,kcal
+45004010,269,"Sugars, total",39.29,g
+45004010,291,"Fiber, total dietary",3.6,g
+45004010,301,"Calcium, Ca",71,mg
+45004010,303,"Iron, Fe",1.29,mg
+45004010,306,"Potassium, K",161,mg
+45004010,307,"Sodium, Na",214,mg
+45004010,318,"Vitamin A, IU",0,IU
+45004010,401,"Vitamin C, total ascorbic acid",0,mg
+45004010,601,Cholesterol,0,mg
+45004010,605,"Fatty acids, total trans",0,g
+45004010,606,"Fatty acids, total saturated",17.86,g
+45004010,645,"Fatty acids, total monounsaturated",1.79,g
+45004010,646,"Fatty acids, total polyunsaturated",0,g
+45004009,203,Protein,7.41,g
+45004009,204,Total lipid (fat),29.63,g
+45004009,205,"Carbohydrate, by difference",59.26,g
+45004009,208,Energy,519,kcal
+45004009,269,"Sugars, total",29.63,g
+45004009,291,"Fiber, total dietary",3.7,g
+45004009,301,"Calcium, Ca",74,mg
+45004009,303,"Iron, Fe",2.67,mg
+45004009,307,"Sodium, Na",389,mg
+45004009,318,"Vitamin A, IU",0,IU
+45004009,401,"Vitamin C, total ascorbic acid",0,mg
+45004009,601,Cholesterol,0,mg
+45004009,605,"Fatty acids, total trans",0,g
+45004009,606,"Fatty acids, total saturated",16.67,g
+45004009,645,"Fatty acids, total monounsaturated",7.41,g
+45004009,646,"Fatty acids, total polyunsaturated",3.7,g
+45003905,203,Protein,2.63,g
+45003905,204,Total lipid (fat),15.79,g
+45003905,205,"Carbohydrate, by difference",65.79,g
+45003905,208,Energy,421,kcal
+45003905,269,"Sugars, total",31.58,g
+45003905,291,"Fiber, total dietary",0,g
+45003905,301,"Calcium, Ca",0,mg
+45003905,303,"Iron, Fe",1.89,mg
+45003905,307,"Sodium, Na",421,mg
+45003905,318,"Vitamin A, IU",0,IU
+45003905,401,"Vitamin C, total ascorbic acid",0,mg
+45003905,601,Cholesterol,0,mg
+45003905,605,"Fatty acids, total trans",0,g
+45003905,606,"Fatty acids, total saturated",6.58,g
+45003905,645,"Fatty acids, total monounsaturated",5.26,g
+45003905,646,"Fatty acids, total polyunsaturated",2.63,g
+45003544,203,Protein,5.45,g
+45003544,204,Total lipid (fat),16.35,g
+45003544,205,"Carbohydrate, by difference",62.67,g
+45003544,208,Energy,409,kcal
+45003544,269,"Sugars, total",24.52,g
+45003544,291,"Fiber, total dietary",2.7,g
+45003544,301,"Calcium, Ca",54,mg
+45003544,303,"Iron, Fe",0.98,mg
+45003544,307,"Sodium, Na",163,mg
+45003544,318,"Vitamin A, IU",0,IU
+45003544,401,"Vitamin C, total ascorbic acid",0,mg
+45003544,601,Cholesterol,27,mg
+45003544,606,"Fatty acids, total saturated",10.9,g
+45003244,203,Protein,6.67,g
+45003244,204,Total lipid (fat),6.67,g
+45003244,205,"Carbohydrate, by difference",80,g
+45003244,208,Energy,433,kcal
+45003244,269,"Sugars, total",66.67,g
+45003244,291,"Fiber, total dietary",6.7,g
+45003244,301,"Calcium, Ca",0,mg
+45003244,303,"Iron, Fe",0,mg
+45003244,307,"Sodium, Na",0,mg
+45003244,318,"Vitamin A, IU",0,IU
+45003244,401,"Vitamin C, total ascorbic acid",0,mg
+45003244,601,Cholesterol,0,mg
+45003244,605,"Fatty acids, total trans",0,g
+45003244,606,"Fatty acids, total saturated",0,g
+45003085,203,Protein,3.57,g
+45003085,204,Total lipid (fat),10.71,g
+45003085,205,"Carbohydrate, by difference",64.29,g
+45003085,208,Energy,357,kcal
+45003085,269,"Sugars, total",35.71,g
+45003085,291,"Fiber, total dietary",0,g
+45003085,301,"Calcium, Ca",0,mg
+45003085,303,"Iron, Fe",0,mg
+45003085,307,"Sodium, Na",500,mg
+45003085,318,"Vitamin A, IU",0,IU
+45003085,401,"Vitamin C, total ascorbic acid",0,mg
+45003085,601,Cholesterol,36,mg
+45003085,605,"Fatty acids, total trans",3.57,g
+45003085,606,"Fatty acids, total saturated",3.57,g
+45002963,203,Protein,10.71,g
+45002963,204,Total lipid (fat),3.57,g
+45002963,205,"Carbohydrate, by difference",53.57,g
+45002963,208,Energy,264,kcal
+45002963,269,"Sugars, total",0,g
+45002963,291,"Fiber, total dietary",7.1,g
+45002963,301,"Calcium, Ca",0,mg
+45002963,303,"Iron, Fe",3.21,mg
+45002963,307,"Sodium, Na",532,mg
+45002963,318,"Vitamin A, IU",0,IU
+45002963,401,"Vitamin C, total ascorbic acid",0,mg
+45002963,601,Cholesterol,0,mg
+45002963,606,"Fatty acids, total saturated",0.71,g
+45002602,203,Protein,14.29,g
+45002602,204,Total lipid (fat),0,g
+45002602,205,"Carbohydrate, by difference",51.79,g
+45002602,208,Energy,268,kcal
+45002602,269,"Sugars, total",10.71,g
+45002602,291,"Fiber, total dietary",8.9,g
+45002602,301,"Calcium, Ca",71,mg
+45002602,303,"Iron, Fe",4.82,mg
+45002602,307,"Sodium, Na",27,mg
+45002602,318,"Vitamin A, IU",0,IU
+45002602,401,"Vitamin C, total ascorbic acid",0,mg
+45002602,601,Cholesterol,0,mg
+45002602,605,"Fatty acids, total trans",0,g
+45002602,606,"Fatty acids, total saturated",0,g
+45042478,203,Protein,4.17,g
+45042478,204,Total lipid (fat),29.17,g
+45042478,205,"Carbohydrate, by difference",54.17,g
+45042478,208,Energy,479,kcal
+45042478,269,"Sugars, total",31.25,g
+45042478,291,"Fiber, total dietary",2.1,g
+45042478,301,"Calcium, Ca",42,mg
+45042478,303,"Iron, Fe",3,mg
+45042478,307,"Sodium, Na",354,mg
+45042478,318,"Vitamin A, IU",0,IU
+45042478,401,"Vitamin C, total ascorbic acid",0,mg
+45042478,601,Cholesterol,10,mg
+45042478,605,"Fatty acids, total trans",0,g
+45042478,606,"Fatty acids, total saturated",18.75,g
+45086747,203,Protein,0,g
+45086747,204,Total lipid (fat),0,g
+45086747,205,"Carbohydrate, by difference",0,g
+45086747,208,Energy,0,kcal
+45086747,307,"Sodium, Na",39333,mg
+45086747,314,"Iodine, I",4500,mcg
+45086747,601,Cholesterol,0,mg
+45086747,605,"Fatty acids, total trans",0,g
+45086747,606,"Fatty acids, total saturated",0,g
+45061066,203,Protein,2.38,g
+45061066,204,Total lipid (fat),1.19,g
+45061066,205,"Carbohydrate, by difference",85.71,g
+45061066,208,Energy,357,kcal
+45061066,269,"Sugars, total",42.86,g
+45061066,291,"Fiber, total dietary",0,g
+45061066,301,"Calcium, Ca",0,mg
+45061066,303,"Iron, Fe",0,mg
+45061066,306,"Potassium, K",0,mg
+45061066,307,"Sodium, Na",595,mg
+45061066,324,Vitamin D,0,IU
+45061066,539,"Sugars, added",42.9,g
+45061066,601,Cholesterol,0,mg
+45061066,605,"Fatty acids, total trans",0,g
+45061066,606,"Fatty acids, total saturated",0,g
+45058993,203,Protein,0,g
+45058993,204,Total lipid (fat),0,g
+45058993,205,"Carbohydrate, by difference",0,g
+45058993,208,Energy,0,kcal
+45058993,307,"Sodium, Na",0,mg
+45058913,203,Protein,0,g
+45058913,204,Total lipid (fat),0,g
+45058913,205,"Carbohydrate, by difference",0,g
+45058913,208,Energy,0,kcal
+45058913,307,"Sodium, Na",0,mg
+45038946,203,Protein,3.33,g
+45038946,204,Total lipid (fat),6.67,g
+45038946,205,"Carbohydrate, by difference",83.33,g
+45038946,208,Energy,367,kcal
+45038946,269,"Sugars, total",33.33,g
+45038946,291,"Fiber, total dietary",3.3,g
+45038946,301,"Calcium, Ca",0,mg
+45038946,303,"Iron, Fe",2.4,mg
+45038946,307,"Sodium, Na",567,mg
+45038946,318,"Vitamin A, IU",0,IU
+45038946,401,"Vitamin C, total ascorbic acid",0,mg
+45038946,601,Cholesterol,0,mg
+45038946,605,"Fatty acids, total trans",0,g
+45038946,606,"Fatty acids, total saturated",3.33,g
+45034419,203,Protein,0,g
+45034419,204,Total lipid (fat),0,g
+45034419,205,"Carbohydrate, by difference",0,g
+45034419,208,Energy,0,kcal
+45034419,269,"Sugars, total",0,g
+45034419,291,"Fiber, total dietary",0,g
+45034419,301,"Calcium, Ca",0,mg
+45034419,303,"Iron, Fe",0,mg
+45034419,307,"Sodium, Na",8571,mg
+45034419,318,"Vitamin A, IU",0,IU
+45034419,401,"Vitamin C, total ascorbic acid",0,mg
+45034419,601,Cholesterol,0,mg
+45034419,605,"Fatty acids, total trans",0,g
+45034419,606,"Fatty acids, total saturated",0,g
+45043084,203,Protein,0,g
+45043084,204,Total lipid (fat),0,g
+45043084,205,"Carbohydrate, by difference",0,g
+45043084,208,Energy,0,kcal
+45043084,307,"Sodium, Na",0,mg
+45034222,203,Protein,10,g
+45034222,204,Total lipid (fat),0,g
+45034222,205,"Carbohydrate, by difference",73.33,g
+45034222,208,Energy,333,kcal
+45034222,269,"Sugars, total",0,g
+45034222,291,"Fiber, total dietary",3.3,g
+45034222,301,"Calcium, Ca",200,mg
+45034222,303,"Iron, Fe",3.6,mg
+45034222,306,"Potassium, K",100,mg
+45034222,307,"Sodium, Na",1233,mg
+45034222,318,"Vitamin A, IU",0,IU
+45034222,401,"Vitamin C, total ascorbic acid",0,mg
+45034222,404,Thiamin,1,mg
+45034222,405,Riboflavin,0.397,mg
+45034222,406,Niacin,5.333,mg
+45034222,601,Cholesterol,0,mg
+45034222,605,"Fatty acids, total trans",0,g
+45034222,606,"Fatty acids, total saturated",0,g
+45033420,203,Protein,0,g
+45033420,204,Total lipid (fat),0,g
+45033420,205,"Carbohydrate, by difference",0,g
+45033420,208,Energy,0,kcal
+45033420,307,"Sodium, Na",0,mg
+45033420,318,"Vitamin A, IU",60000,IU
+45032888,203,Protein,10,g
+45032888,204,Total lipid (fat),0,g
+45032888,205,"Carbohydrate, by difference",76.67,g
+45032888,208,Energy,367,kcal
+45032888,269,"Sugars, total",3.33,g
+45032888,291,"Fiber, total dietary",3.3,g
+45032888,301,"Calcium, Ca",0,mg
+45032888,303,"Iron, Fe",4.8,mg
+45032888,307,"Sodium, Na",0,mg
+45032888,318,"Vitamin A, IU",0,IU
+45032888,401,"Vitamin C, total ascorbic acid",0,mg
+45032888,404,Thiamin,0,mg
+45032888,405,Riboflavin,0.453,mg
+45032888,406,Niacin,5.333,mg
+45032888,601,Cholesterol,0,mg
+45032888,605,"Fatty acids, total trans",0,g
+45032888,606,"Fatty acids, total saturated",0,g
+45011311,203,Protein,13.33,g
+45011311,204,Total lipid (fat),1.67,g
+45011311,205,"Carbohydrate, by difference",70,g
+45011311,208,Energy,333,kcal
+45011311,269,"Sugars, total",3.33,g
+45011311,291,"Fiber, total dietary",10,g
+45011311,301,"Calcium, Ca",0,mg
+45011311,303,"Iron, Fe",2.4,mg
+45011311,306,"Potassium, K",367,mg
+45011311,307,"Sodium, Na",0,mg
+45011311,318,"Vitamin A, IU",0,IU
+45011311,401,"Vitamin C, total ascorbic acid",0,mg
+45011311,601,Cholesterol,0,mg
+45011311,605,"Fatty acids, total trans",0,g
+45011311,606,"Fatty acids, total saturated",0,g
+45360892,203,Protein,0,g
+45360892,204,Total lipid (fat),0,g
+45360892,205,"Carbohydrate, by difference",0,g
+45360892,208,Energy,0,kcal
+45360892,307,"Sodium, Na",39333,mg
+45360892,314,"Iodine, I",4500,mcg
+45060536,203,Protein,9.09,g
+45060536,204,Total lipid (fat),0,g
+45060536,205,"Carbohydrate, by difference",81.82,g
+45060536,208,Energy,364,kcal
+45060536,269,"Sugars, total",36.36,g
+45060536,291,"Fiber, total dietary",0,g
+45060536,301,"Calcium, Ca",0,mg
+45060536,303,"Iron, Fe",3.27,mg
+45060536,307,"Sodium, Na",273,mg
+45060536,318,"Vitamin A, IU",0,IU
+45060536,401,"Vitamin C, total ascorbic acid",0,mg
+45060536,601,Cholesterol,0,mg
+45060536,605,"Fatty acids, total trans",0,g
+45060536,606,"Fatty acids, total saturated",0,g
+45060536,645,"Fatty acids, total monounsaturated",0,g
+45060536,646,"Fatty acids, total polyunsaturated",0,g
+45054314,203,Protein,0,g
+45054314,204,Total lipid (fat),0,g
+45054314,205,"Carbohydrate, by difference",0,g
+45054314,208,Energy,0,kcal
+45054314,307,"Sodium, Na",12000,mg
+45051494,203,Protein,4.04,g
+45051494,204,Total lipid (fat),9.09,g
+45051494,205,"Carbohydrate, by difference",83.84,g
+45051494,208,Energy,424,kcal
+45051494,269,"Sugars, total",70.71,g
+45051494,291,"Fiber, total dietary",4,g
+45051494,301,"Calcium, Ca",20,mg
+45051494,303,"Iron, Fe",2.73,mg
+45051494,307,"Sodium, Na",136,mg
+45051494,318,"Vitamin A, IU",0,IU
+45051494,401,"Vitamin C, total ascorbic acid",0,mg
+45051494,601,Cholesterol,0,mg
+45051494,605,"Fatty acids, total trans",0,g
+45051494,606,"Fatty acids, total saturated",5.05,g
+45051409,203,Protein,2.56,g
+45051409,204,Total lipid (fat),7.69,g
+45051409,205,"Carbohydrate, by difference",79.49,g
+45051409,208,Energy,410,kcal
+45051409,269,"Sugars, total",43.59,g
+45051409,291,"Fiber, total dietary",2.6,g
+45051409,301,"Calcium, Ca",103,mg
+45051409,303,"Iron, Fe",1.85,mg
+45051409,306,"Potassium, K",51,mg
+45051409,307,"Sodium, Na",590,mg
+45051409,318,"Vitamin A, IU",0,IU
+45051409,401,"Vitamin C, total ascorbic acid",0,mg
+45051409,601,Cholesterol,0,mg
+45051409,605,"Fatty acids, total trans",0,g
+45051409,606,"Fatty acids, total saturated",2.56,g
+45051409,645,"Fatty acids, total monounsaturated",2.56,g
+45051409,646,"Fatty acids, total polyunsaturated",1.28,g
+45051407,203,Protein,2.56,g
+45051407,204,Total lipid (fat),7.69,g
+45051407,205,"Carbohydrate, by difference",79.49,g
+45051407,208,Energy,410,kcal
+45051407,269,"Sugars, total",43.59,g
+45051407,291,"Fiber, total dietary",2.6,g
+45051407,301,"Calcium, Ca",0,mg
+45051407,303,"Iron, Fe",1.85,mg
+45051407,306,"Potassium, K",51,mg
+45051407,307,"Sodium, Na",615,mg
+45051407,318,"Vitamin A, IU",0,IU
+45051407,401,"Vitamin C, total ascorbic acid",0,mg
+45051407,601,Cholesterol,0,mg
+45051407,605,"Fatty acids, total trans",0,g
+45051407,606,"Fatty acids, total saturated",2.56,g
+45051407,645,"Fatty acids, total monounsaturated",2.56,g
+45051407,646,"Fatty acids, total polyunsaturated",1.28,g
+45082197,203,Protein,0,g
+45082197,204,Total lipid (fat),0,g
+45082197,205,"Carbohydrate, by difference",0,g
+45082197,208,Energy,0,kcal
+45082197,269,"Sugars, total",0,g
+45082197,291,"Fiber, total dietary",0,g
+45082197,301,"Calcium, Ca",0,mg
+45082197,303,"Iron, Fe",0,mg
+45082197,306,"Potassium, K",0,mg
+45082197,307,"Sodium, Na",39333,mg
+45082197,314,"Iodine, I",4500,mcg
+45082197,318,"Vitamin A, IU",0,IU
+45082197,401,"Vitamin C, total ascorbic acid",0,mg
+45082197,601,Cholesterol,0,mg
+45082197,605,"Fatty acids, total trans",0,g
+45082197,606,"Fatty acids, total saturated",0,g
+45082197,645,"Fatty acids, total monounsaturated",0,g
+45082197,646,"Fatty acids, total polyunsaturated",0,g
+45050454,203,Protein,4.76,g
+45050454,204,Total lipid (fat),2.38,g
+45050454,205,"Carbohydrate, by difference",85.71,g
+45050454,208,Energy,381,kcal
+45050454,269,"Sugars, total",64.29,g
+45050454,291,"Fiber, total dietary",2.4,g
+45050454,301,"Calcium, Ca",48,mg
+45050454,303,"Iron, Fe",1.71,mg
+45050454,307,"Sodium, Na",452,mg
+45050454,318,"Vitamin A, IU",0,IU
+45050454,401,"Vitamin C, total ascorbic acid",0,mg
+45050454,601,Cholesterol,0,mg
+45050454,605,"Fatty acids, total trans",0,g
+45050454,606,"Fatty acids, total saturated",2.38,g
+45051408,203,Protein,5.13,g
+45051408,204,Total lipid (fat),10.26,g
+45051408,205,"Carbohydrate, by difference",76.92,g
+45051408,208,Energy,410,kcal
+45051408,269,"Sugars, total",41.03,g
+45051408,291,"Fiber, total dietary",2.6,g
+45051408,301,"Calcium, Ca",0,mg
+45051408,303,"Iron, Fe",2.77,mg
+45051408,306,"Potassium, K",321,mg
+45051408,307,"Sodium, Na",769,mg
+45051408,318,"Vitamin A, IU",0,IU
+45051408,401,"Vitamin C, total ascorbic acid",0,mg
+45051408,601,Cholesterol,0,mg
+45051408,605,"Fatty acids, total trans",0,g
+45051408,606,"Fatty acids, total saturated",3.85,g
+45051408,645,"Fatty acids, total monounsaturated",2.56,g
+45051408,646,"Fatty acids, total polyunsaturated",2.56,g
+45332952,203,Protein,0,g
+45332952,204,Total lipid (fat),0,g
+45332952,205,"Carbohydrate, by difference",0,g
+45332952,208,Energy,0,kcal
+45332952,307,"Sodium, Na",0,mg
+45060446,203,Protein,0,g
+45060446,204,Total lipid (fat),0,g
+45060446,205,"Carbohydrate, by difference",0,g
+45060446,208,Energy,0,kcal
+45060446,307,"Sodium, Na",0,mg
+45045025,203,Protein,4,g
+45045025,205,"Carbohydrate, by difference",76,g
+45045025,208,Energy,400,kcal
+45045025,269,"Sugars, total",40,g
+45045025,291,"Fiber, total dietary",4,g
+45045025,301,"Calcium, Ca",0,mg
+45045025,303,"Iron, Fe",1.44,mg
+45045025,307,"Sodium, Na",440,mg
+45045025,318,"Vitamin A, IU",0,IU
+45045025,401,"Vitamin C, total ascorbic acid",0,mg
+45045025,601,Cholesterol,0,mg
+45045025,605,"Fatty acids, total trans",0,g
+45045025,606,"Fatty acids, total saturated",4,g
+45035558,203,Protein,10,g
+45035558,204,Total lipid (fat),0,g
+45035558,205,"Carbohydrate, by difference",76.67,g
+45035558,208,Energy,367,kcal
+45035558,269,"Sugars, total",0,g
+45035558,291,"Fiber, total dietary",16.7,g
+45035558,301,"Calcium, Ca",0,mg
+45035558,303,"Iron, Fe",2.4,mg
+45035558,307,"Sodium, Na",10,mg
+45035558,318,"Vitamin A, IU",0,IU
+45035558,401,"Vitamin C, total ascorbic acid",0,mg
+45035558,601,Cholesterol,0,mg
+45035558,605,"Fatty acids, total trans",0,g
+45035558,606,"Fatty acids, total saturated",0,g
+45289035,203,Protein,0,g
+45289035,204,Total lipid (fat),0,g
+45289035,205,"Carbohydrate, by difference",0,g
+45289035,208,Energy,0,kcal
+45289035,269,"Sugars, total",0,g
+45289035,307,"Sodium, Na",0,mg
+45289035,601,Cholesterol,0,mg
+45038952,203,Protein,7.14,g
+45038952,205,"Carbohydrate, by difference",71.43,g
+45038952,208,Energy,429,kcal
+45038952,269,"Sugars, total",42.86,g
+45038952,291,"Fiber, total dietary",3.6,g
+45038952,301,"Calcium, Ca",0,mg
+45038952,303,"Iron, Fe",1.29,mg
+45038952,307,"Sodium, Na",821,mg
+45038952,318,"Vitamin A, IU",0,IU
+45038952,401,"Vitamin C, total ascorbic acid",0,mg
+45038952,601,Cholesterol,0,mg
+45038952,605,"Fatty acids, total trans",0,g
+45038952,606,"Fatty acids, total saturated",3.57,g
+45267462,203,Protein,0,g
+45267462,204,Total lipid (fat),93.33,g
+45267462,205,"Carbohydrate, by difference",0,g
+45267462,208,Energy,800,kcal
+45267462,307,"Sodium, Na",0,mg
+45267462,601,Cholesterol,0,mg
+45267462,605,"Fatty acids, total trans",0,g
+45267462,645,"Fatty acids, total monounsaturated",73.33,g
+45267462,646,"Fatty acids, total polyunsaturated",6.67,g
+45035562,203,Protein,14.29,g
+45035562,204,Total lipid (fat),5.36,g
+45035562,205,"Carbohydrate, by difference",64.29,g
+45035562,208,Energy,393,kcal
+45035562,269,"Sugars, total",0,g
+45035562,291,"Fiber, total dietary",7.1,g
+45035562,301,"Calcium, Ca",36,mg
+45035562,303,"Iron, Fe",4.5,mg
+45035562,307,"Sodium, Na",29,mg
+45035562,318,"Vitamin A, IU",0,IU
+45035562,401,"Vitamin C, total ascorbic acid",0,mg
+45035562,601,Cholesterol,0,mg
+45035562,605,"Fatty acids, total trans",0,g
+45035562,606,"Fatty acids, total saturated",0,g
+45035547,203,Protein,16.67,g
+45035547,204,Total lipid (fat),1.67,g
+45035547,205,"Carbohydrate, by difference",70,g
+45035547,208,Energy,367,kcal
+45035547,269,"Sugars, total",0,g
+45035547,291,"Fiber, total dietary",13.3,g
+45035547,301,"Calcium, Ca",37,mg
+45035547,303,"Iron, Fe",3.33,mg
+45035547,307,"Sodium, Na",0,mg
+45035547,324,Vitamin D,0,IU
+45035547,601,Cholesterol,0,mg
+45035547,605,"Fatty acids, total trans",0,g
+45035547,606,"Fatty acids, total saturated",0,g
+45268089,203,Protein,0,g
+45268089,204,Total lipid (fat),0,g
+45268089,205,"Carbohydrate, by difference",20,g
+45268089,208,Energy,100,kcal
+45268089,269,"Sugars, total",20,g
+45268089,307,"Sodium, Na",0,mg
+45056580,203,Protein,0,g
+45056580,204,Total lipid (fat),0,g
+45056580,205,"Carbohydrate, by difference",0,g
+45056580,208,Energy,0,kcal
+45056580,307,"Sodium, Na",0,mg
+45056580,318,"Vitamin A, IU",20000,IU
+45181100,203,Protein,0,g
+45181100,204,Total lipid (fat),0,g
+45181100,205,"Carbohydrate, by difference",0,g
+45181100,208,Energy,0,kcal
+45181100,269,"Sugars, total",0,g
+45181100,307,"Sodium, Na",0,mg
+45181100,601,Cholesterol,0,mg
+45033192,203,Protein,8,g
+45033192,204,Total lipid (fat),2,g
+45033192,205,"Carbohydrate, by difference",76,g
+45033192,208,Energy,360,kcal
+45033192,269,"Sugars, total",0,g
+45033192,291,"Fiber, total dietary",4,g
+45033192,301,"Calcium, Ca",0,mg
+45033192,303,"Iron, Fe",1.44,mg
+45033192,307,"Sodium, Na",60,mg
+45033192,318,"Vitamin A, IU",0,IU
+45033192,401,"Vitamin C, total ascorbic acid",0,mg
+45033192,601,Cholesterol,0,mg
+45033192,605,"Fatty acids, total trans",0,g
+45033192,606,"Fatty acids, total saturated",0,g
+45176333,203,Protein,7.89,g
+45176333,204,Total lipid (fat),0,g
+45176333,205,"Carbohydrate, by difference",84.21,g
+45176333,208,Energy,368,kcal
+45176333,269,"Sugars, total",60.53,g
+45176333,291,"Fiber, total dietary",0,g
+45176333,301,"Calcium, Ca",158,mg
+45176333,303,"Iron, Fe",0,mg
+45176333,307,"Sodium, Na",474,mg
+45176333,318,"Vitamin A, IU",0,IU
+45176333,401,"Vitamin C, total ascorbic acid",0,mg
+45176333,601,Cholesterol,0,mg
+45176333,605,"Fatty acids, total trans",0,g
+45176333,606,"Fatty acids, total saturated",0,g
+45035878,203,Protein,0,g
+45035878,204,Total lipid (fat),0,g
+45035878,205,"Carbohydrate, by difference",0,g
+45035878,208,Energy,0,kcal
+45035878,307,"Sodium, Na",0,mg
+45035878,318,"Vitamin A, IU",50000,IU
+45054166,203,Protein,7.14,g
+45054166,204,Total lipid (fat),14.29,g
+45054166,205,"Carbohydrate, by difference",71.43,g
+45054166,208,Energy,429,kcal
+45054166,269,"Sugars, total",39.29,g
+45054166,291,"Fiber, total dietary",3.6,g
+45054166,301,"Calcium, Ca",0,mg
+45054166,303,"Iron, Fe",2.57,mg
+45054166,307,"Sodium, Na",286,mg
+45054166,318,"Vitamin A, IU",0,IU
+45054166,401,"Vitamin C, total ascorbic acid",0,mg
+45054166,601,Cholesterol,0,mg
+45054166,605,"Fatty acids, total trans",0,g
+45054166,606,"Fatty acids, total saturated",3.57,g
+45054163,203,Protein,4,g
+45054163,204,Total lipid (fat),10,g
+45054163,205,"Carbohydrate, by difference",80,g
+45054163,208,Energy,400,kcal
+45054163,269,"Sugars, total",48,g
+45054163,291,"Fiber, total dietary",4,g
+45054163,301,"Calcium, Ca",0,mg
+45054163,303,"Iron, Fe",4.32,mg
+45054163,307,"Sodium, Na",280,mg
+45054163,318,"Vitamin A, IU",0,IU
+45054163,401,"Vitamin C, total ascorbic acid",0,mg
+45054163,601,Cholesterol,0,mg
+45054163,605,"Fatty acids, total trans",0,g
+45054163,606,"Fatty acids, total saturated",4,g
+45050255,203,Protein,0,g
+45050255,204,Total lipid (fat),0,g
+45050255,205,"Carbohydrate, by difference",0,g
+45050255,208,Energy,0,kcal
+45050255,307,"Sodium, Na",11000,mg
+45049129,203,Protein,0,g
+45049129,204,Total lipid (fat),0,g
+45049129,205,"Carbohydrate, by difference",50,g
+45049129,208,Energy,250,kcal
+45049129,307,"Sodium, Na",17000,mg
+45049129,605,"Fatty acids, total trans",0,g
+45049077,203,Protein,0,g
+45049077,204,Total lipid (fat),0,g
+45049077,205,"Carbohydrate, by difference",0,g
+45049077,208,Energy,0,kcal
+45049077,307,"Sodium, Na",7000,mg
+45049077,318,"Vitamin A, IU",20000,IU
+45051410,203,Protein,2.56,g
+45051410,204,Total lipid (fat),7.69,g
+45051410,205,"Carbohydrate, by difference",79.49,g
+45051410,208,Energy,410,kcal
+45051410,269,"Sugars, total",43.59,g
+45051410,291,"Fiber, total dietary",0,g
+45051410,301,"Calcium, Ca",103,mg
+45051410,303,"Iron, Fe",1.85,mg
+45051410,306,"Potassium, K",51,mg
+45051410,307,"Sodium, Na",590,mg
+45051410,318,"Vitamin A, IU",0,IU
+45051410,401,"Vitamin C, total ascorbic acid",0,mg
+45051410,601,Cholesterol,0,mg
+45051410,605,"Fatty acids, total trans",0,g
+45051410,606,"Fatty acids, total saturated",3.85,g
+45051410,645,"Fatty acids, total monounsaturated",2.56,g
+45051410,646,"Fatty acids, total polyunsaturated",1.28,g
+45331037,203,Protein,0,g
+45331037,204,Total lipid (fat),0,g
+45331037,205,"Carbohydrate, by difference",0,g
+45331037,208,Energy,0,kcal
+45331037,269,"Sugars, total",0,g
+45331037,291,"Fiber, total dietary",0,g
+45331037,301,"Calcium, Ca",0,mg
+45331037,303,"Iron, Fe",0,mg
+45331037,307,"Sodium, Na",0,mg
+45331037,318,"Vitamin A, IU",0,IU
+45331037,401,"Vitamin C, total ascorbic acid",0,mg
+45331037,601,Cholesterol,0,mg
+45331037,605,"Fatty acids, total trans",0,g
+45331037,606,"Fatty acids, total saturated",0,g
+45284357,203,Protein,0,g
+45284357,204,Total lipid (fat),0,g
+45284357,205,"Carbohydrate, by difference",12.68,g
+45284357,208,Energy,45,kcal
+45284357,269,"Sugars, total",12.68,g
+45284357,307,"Sodium, Na",0,mg
+45142598,203,Protein,0,g
+45142598,204,Total lipid (fat),0,g
+45142598,205,"Carbohydrate, by difference",0,g
+45142598,208,Energy,0,kcal
+45142598,269,"Sugars, total",0,g
+45142598,307,"Sodium, Na",1,mg
+45137642,203,Protein,0,g
+45137642,204,Total lipid (fat),0,g
+45137642,205,"Carbohydrate, by difference",13.33,g
+45137642,208,Energy,50,kcal
+45137642,269,"Sugars, total",13.33,g
+45137642,307,"Sodium, Na",8,mg
+45137508,203,Protein,0,g
+45137508,204,Total lipid (fat),0,g
+45137508,205,"Carbohydrate, by difference",11.27,g
+45137508,208,Energy,45,kcal
+45137508,269,"Sugars, total",11.27,g
+45137508,307,"Sodium, Na",14,mg
+45137398,203,Protein,0,g
+45137398,204,Total lipid (fat),0,g
+45137398,205,"Carbohydrate, by difference",10.42,g
+45137398,208,Energy,42,kcal
+45137398,269,"Sugars, total",10.42,g
+45137398,307,"Sodium, Na",0,mg
+45137331,203,Protein,0,g
+45137331,204,Total lipid (fat),0,g
+45137331,205,"Carbohydrate, by difference",12.5,g
+45137331,208,Energy,50,kcal
+45137331,269,"Sugars, total",12.5,g
+45137331,307,"Sodium, Na",8,mg
+45137291,203,Protein,0,g
+45137291,204,Total lipid (fat),0,g
+45137291,205,"Carbohydrate, by difference",0,g
+45137291,208,Energy,0,kcal
+45137291,269,"Sugars, total",0,g
+45137291,307,"Sodium, Na",6,mg
+45137258,203,Protein,0,g
+45137258,204,Total lipid (fat),0,g
+45137258,205,"Carbohydrate, by difference",12.96,g
+45137258,208,Energy,51,kcal
+45137258,269,"Sugars, total",12.39,g
+45137258,307,"Sodium, Na",10,mg
+45137249,203,Protein,0,g
+45137249,204,Total lipid (fat),0,g
+45137249,205,"Carbohydrate, by difference",13.52,g
+45137249,208,Energy,54,kcal
+45137249,269,"Sugars, total",13.24,g
+45137249,307,"Sodium, Na",10,mg
+45137217,203,Protein,0,g
+45137217,204,Total lipid (fat),0,g
+45137217,205,"Carbohydrate, by difference",12.96,g
+45137217,208,Energy,48,kcal
+45137217,269,"Sugars, total",12.96,g
+45137217,307,"Sodium, Na",7,mg
+45137160,203,Protein,0,g
+45137160,204,Total lipid (fat),0,g
+45137160,205,"Carbohydrate, by difference",0.28,g
+45137160,208,Energy,0,kcal
+45137160,269,"Sugars, total",0,g
+45137160,307,"Sodium, Na",0,mg
+45137134,203,Protein,0,g
+45137134,204,Total lipid (fat),0,g
+45137134,205,"Carbohydrate, by difference",11.25,g
+45137134,208,Energy,46,kcal
+45137134,269,"Sugars, total",11.25,g
+45137134,307,"Sodium, Na",12,mg
+45137109,203,Protein,0,g
+45137109,204,Total lipid (fat),0,g
+45137109,205,"Carbohydrate, by difference",13.8,g
+45137109,208,Energy,56,kcal
+45137109,269,"Sugars, total",13.8,g
+45137109,307,"Sodium, Na",8,mg
+45137101,203,Protein,0,g
+45137101,204,Total lipid (fat),0,g
+45137101,205,"Carbohydrate, by difference",13.24,g
+45137101,208,Energy,51,kcal
+45137101,269,"Sugars, total",13.24,g
+45137101,307,"Sodium, Na",3,mg
+45113623,203,Protein,3.57,g
+45113623,204,Total lipid (fat),0,g
+45113623,205,"Carbohydrate, by difference",92.86,g
+45113623,208,Energy,393,kcal
+45113623,269,"Sugars, total",85.71,g
+45113623,307,"Sodium, Na",0,mg
+45145396,203,Protein,0,g
+45145396,204,Total lipid (fat),0,g
+45145396,205,"Carbohydrate, by difference",0,g
+45145396,208,Energy,0,kcal
+45145396,269,"Sugars, total",0,g
+45145396,291,"Fiber, total dietary",0,g
+45145396,301,"Calcium, Ca",0,mg
+45145396,303,"Iron, Fe",0,mg
+45145396,307,"Sodium, Na",2,mg
+45145396,318,"Vitamin A, IU",0,IU
+45145396,401,"Vitamin C, total ascorbic acid",0,mg
+45145396,601,Cholesterol,0,mg
+45145396,605,"Fatty acids, total trans",0,g
+45145396,606,"Fatty acids, total saturated",0,g
+45148584,203,Protein,0,g
+45148584,204,Total lipid (fat),0,g
+45148584,205,"Carbohydrate, by difference",0,g
+45148584,208,Energy,0,kcal
+45148584,307,"Sodium, Na",0,mg
+45142824,203,Protein,0,g
+45142824,204,Total lipid (fat),0,g
+45142824,205,"Carbohydrate, by difference",0,g
+45142824,208,Energy,0,kcal
+45142824,269,"Sugars, total",0,g
+45142824,307,"Sodium, Na",1,mg
+45305991,203,Protein,0,g
+45305991,204,Total lipid (fat),0,g
+45305991,205,"Carbohydrate, by difference",10.41,g
+45305991,208,Energy,41,kcal
+45305991,269,"Sugars, total",9.95,g
+45305991,307,"Sodium, Na",14,mg
+45010437,203,Protein,6.67,g
+45010437,204,Total lipid (fat),13.33,g
+45010437,205,"Carbohydrate, by difference",73.33,g
+45010437,208,Energy,400,kcal
+45010437,269,"Sugars, total",40,g
+45010437,291,"Fiber, total dietary",6.7,g
+45010437,301,"Calcium, Ca",0,mg
+45010437,303,"Iron, Fe",2.4,mg
+45010437,307,"Sodium, Na",1333,mg
+45010437,318,"Vitamin A, IU",0,IU
+45010437,401,"Vitamin C, total ascorbic acid",0,mg
+45010437,601,Cholesterol,0,mg
+45010437,605,"Fatty acids, total trans",0,g
+45010437,606,"Fatty acids, total saturated",13.33,g
+45250115,203,Protein,0,g
+45250115,204,Total lipid (fat),0,g
+45250115,205,"Carbohydrate, by difference",2,g
+45250115,208,Energy,8,kcal
+45250115,269,"Sugars, total",2,g
+45250115,306,"Potassium, K",12,mg
+45250115,307,"Sodium, Na",45,mg
+45152879,203,Protein,0,g
+45152879,204,Total lipid (fat),0,g
+45152879,205,"Carbohydrate, by difference",12.68,g
+45152879,208,Energy,48,kcal
+45152879,269,"Sugars, total",12.68,g
+45152879,307,"Sodium, Na",10,mg
+45311929,203,Protein,0,g
+45311929,204,Total lipid (fat),0,g
+45311929,205,"Carbohydrate, by difference",0,g
+45311929,208,Energy,0,kcal
+45311929,307,"Sodium, Na",13,mg
+45312391,203,Protein,0,g
+45312391,204,Total lipid (fat),0,g
+45312391,205,"Carbohydrate, by difference",10.83,g
+45312391,208,Energy,41,kcal
+45312391,269,"Sugars, total",10.66,g
+45312391,307,"Sodium, Na",12,mg
+45152844,203,Protein,0,g
+45152844,204,Total lipid (fat),0,g
+45152844,205,"Carbohydrate, by difference",0,g
+45152844,208,Energy,0,kcal
+45152844,269,"Sugars, total",0,g
+45152844,307,"Sodium, Na",1,mg
+45255203,203,Protein,0,g
+45255203,204,Total lipid (fat),0,g
+45255203,205,"Carbohydrate, by difference",11.31,g
+45255203,208,Energy,41,kcal
+45255203,269,"Sugars, total",10.86,g
+45255203,307,"Sodium, Na",16,mg
+45145815,203,Protein,0,g
+45145815,204,Total lipid (fat),0,g
+45145815,205,"Carbohydrate, by difference",0,g
+45145815,208,Energy,0,kcal
+45145815,269,"Sugars, total",0,g
+45145815,307,"Sodium, Na",0,mg
+45150448,203,Protein,0,g
+45150448,204,Total lipid (fat),0,g
+45150448,205,"Carbohydrate, by difference",1.19,g
+45150448,208,Energy,0,kcal
+45150448,299,Total sugar alcohols,1,g
+45150448,307,"Sodium, Na",8,mg
+45150448,401,"Vitamin C, total ascorbic acid",11.9,mg
+45150448,406,Niacin,3.976,mg
+45150448,410,Pantothenic acid,1.988,mg
+45150448,415,Vitamin B-6,0.398,mg
+45150448,418,Vitamin B-12,1.19,mcg
+45150447,203,Protein,0,g
+45150447,204,Total lipid (fat),0,g
+45150447,205,"Carbohydrate, by difference",1.19,g
+45150447,208,Energy,0,kcal
+45150447,299,Total sugar alcohols,1,g
+45150447,307,"Sodium, Na",8,mg
+45150447,401,"Vitamin C, total ascorbic acid",11.9,mg
+45150447,406,Niacin,3.976,mg
+45150447,410,Pantothenic acid,1.988,mg
+45150447,415,Vitamin B-6,0.398,mg
+45150447,418,Vitamin B-12,1.19,mcg
+45236203,203,Protein,0,g
+45236203,204,Total lipid (fat),0,g
+45236203,205,"Carbohydrate, by difference",0,g
+45236203,208,Energy,0,kcal
+45236203,269,"Sugars, total",0,g
+45236203,307,"Sodium, Na",10,mg
+45151161,203,Protein,0,g
+45151161,204,Total lipid (fat),0,g
+45151161,205,"Carbohydrate, by difference",0,g
+45151161,208,Energy,0,kcal
+45151161,269,"Sugars, total",0,g
+45151161,306,"Potassium, K",42,mg
+45151161,307,"Sodium, Na",0,mg
+45313222,203,Protein,0,g
+45313222,204,Total lipid (fat),0,g
+45313222,205,"Carbohydrate, by difference",10.14,g
+45313222,208,Energy,39,kcal
+45313222,269,"Sugars, total",10.14,g
+45313222,307,"Sodium, Na",14,mg
+45267832,203,Protein,0,g
+45267832,204,Total lipid (fat),0,g
+45267832,205,"Carbohydrate, by difference",12.39,g
+45267832,208,Energy,48,kcal
+45267832,269,"Sugars, total",12.39,g
+45267832,307,"Sodium, Na",11,mg
+45147004,203,Protein,0,g
+45147004,204,Total lipid (fat),0,g
+45147004,205,"Carbohydrate, by difference",0,g
+45147004,208,Energy,0,kcal
+45147004,269,"Sugars, total",0,g
+45147004,307,"Sodium, Na",0,mg
+45143237,203,Protein,0,g
+45143237,204,Total lipid (fat),0,g
+45143237,205,"Carbohydrate, by difference",0,g
+45143237,208,Energy,0,kcal
+45143237,269,"Sugars, total",0,g
+45143237,307,"Sodium, Na",0,mg
+45308412,203,Protein,0,g
+45308412,204,Total lipid (fat),0,g
+45308412,205,"Carbohydrate, by difference",10.83,g
+45308412,208,Energy,42,kcal
+45308412,269,"Sugars, total",10.83,g
+45308412,307,"Sodium, Na",19,mg
+45137606,203,Protein,0,g
+45137606,204,Total lipid (fat),0,g
+45137606,205,"Carbohydrate, by difference",12.11,g
+45137606,208,Energy,45,kcal
+45137606,269,"Sugars, total",12.11,g
+45137606,307,"Sodium, Na",10,mg
+45137478,203,Protein,0,g
+45137478,204,Total lipid (fat),0,g
+45137478,205,"Carbohydrate, by difference",9.58,g
+45137478,208,Energy,38,kcal
+45137478,269,"Sugars, total",9.58,g
+45137478,307,"Sodium, Na",10,mg
+45137265,203,Protein,0,g
+45137265,204,Total lipid (fat),0,g
+45137265,205,"Carbohydrate, by difference",9.17,g
+45137265,208,Energy,38,kcal
+45137265,269,"Sugars, total",9.17,g
+45137265,307,"Sodium, Na",6,mg
+45137199,203,Protein,0,g
+45137199,204,Total lipid (fat),0,g
+45137199,205,"Carbohydrate, by difference",0,g
+45137199,208,Energy,0,kcal
+45137199,269,"Sugars, total",0,g
+45137199,307,"Sodium, Na",0,mg
+45137140,203,Protein,0,g
+45137140,204,Total lipid (fat),0,g
+45137140,205,"Carbohydrate, by difference",10.83,g
+45137140,208,Energy,46,kcal
+45137140,269,"Sugars, total",10.83,g
+45137140,307,"Sodium, Na",23,mg
+45289534,203,Protein,0,g
+45289534,204,Total lipid (fat),0,g
+45289534,205,"Carbohydrate, by difference",0,g
+45289534,208,Energy,0,kcal
+45289534,307,"Sodium, Na",0,mg
+45012200,203,Protein,0,g
+45012200,204,Total lipid (fat),0,g
+45012200,205,"Carbohydrate, by difference",0,g
+45012200,208,Energy,0,kcal
+45012200,269,"Sugars, total",0,g
+45012200,307,"Sodium, Na",0,mg
+45012199,203,Protein,0,g
+45012199,204,Total lipid (fat),0,g
+45012199,205,"Carbohydrate, by difference",0,g
+45012199,208,Energy,0,kcal
+45012199,269,"Sugars, total",0,g
+45012199,307,"Sodium, Na",0,mg
+45012201,203,Protein,0,g
+45012201,204,Total lipid (fat),0,g
+45012201,205,"Carbohydrate, by difference",0,g
+45012201,208,Energy,0,kcal
+45012201,269,"Sugars, total",0,g
+45012201,307,"Sodium, Na",0,mg
+45151120,203,Protein,0,g
+45151120,204,Total lipid (fat),0,g
+45151120,205,"Carbohydrate, by difference",0,g
+45151120,208,Energy,0,kcal
+45151120,269,"Sugars, total",0,g
+45151120,306,"Potassium, K",22,mg
+45151120,307,"Sodium, Na",0,mg
+45373261,203,Protein,0,g
+45373261,204,Total lipid (fat),0,g
+45373261,205,"Carbohydrate, by difference",2.25,g
+45373261,208,Energy,1,kcal
+45373261,269,"Sugars, total",0,g
+45373261,307,"Sodium, Na",7,mg
+45373261,406,Niacin,2.254,mg
+45373261,410,Pantothenic acid,0.704,mg
+45373261,415,Vitamin B-6,0.239,mg
+45373261,418,Vitamin B-12,0.34,mcg
+45373753,203,Protein,0,g
+45373753,204,Total lipid (fat),0,g
+45373753,205,"Carbohydrate, by difference",0,g
+45373753,208,Energy,0,kcal
+45373753,269,"Sugars, total",0,g
+45373753,307,"Sodium, Na",0,mg
+45374270,203,Protein,0,g
+45374270,204,Total lipid (fat),0,g
+45374270,205,"Carbohydrate, by difference",0.63,g
+45374270,208,Energy,2,kcal
+45374270,269,"Sugars, total",0.42,g
+45374270,291,"Fiber, total dietary",0,g
+45374270,301,"Calcium, Ca",0,mg
+45374270,303,"Iron, Fe",0,mg
+45374270,307,"Sodium, Na",0,mg
+45374270,318,"Vitamin A, IU",0,IU
+45374270,401,"Vitamin C, total ascorbic acid",0,mg
+45374270,601,Cholesterol,0,mg
+45374270,605,"Fatty acids, total trans",0,g
+45374270,606,"Fatty acids, total saturated",0,g
+45374983,203,Protein,0,g
+45374983,204,Total lipid (fat),0,g
+45374983,205,"Carbohydrate, by difference",0.85,g
+45374983,208,Energy,3,kcal
+45374983,269,"Sugars, total",0.28,g
+45374983,291,"Fiber, total dietary",0.6,g
+45374983,301,"Calcium, Ca",0,mg
+45374983,303,"Iron, Fe",0,mg
+45374983,306,"Potassium, K",19,mg
+45374983,307,"Sodium, Na",0,mg
+45374983,318,"Vitamin A, IU",42,IU
+45374983,401,"Vitamin C, total ascorbic acid",2.5,mg
+45374983,601,Cholesterol,0,mg
+45374983,606,"Fatty acids, total saturated",0,g

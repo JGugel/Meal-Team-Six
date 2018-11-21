@@ -10,8 +10,7 @@ CREATE TABLE Category(
 	PRIMARY KEY (catCode)
 );
 
-/*remember to add a auto incrementer
- once you find the largest number*/
+
 CREATE TABLE Product(
 	ProductID int NOT NULL,
 	UPC BIGINT(12) NOT NULL,
@@ -47,3 +46,4 @@ CREATE TABLE Inventory_List(
 	PRIMARY KEY (ProductID)
 );
 
+ALTER TABLE Product AUTO_INCREMENT=45374984;
