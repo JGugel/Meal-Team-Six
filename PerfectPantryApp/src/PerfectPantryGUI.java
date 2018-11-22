@@ -1,3 +1,4 @@
+
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.table.*;
@@ -32,7 +33,7 @@ public class PerfectPantryGUI extends JFrame {
         inventoryLeftPanel = new JPanel();
         addInventoryButton = new JButton();
         categoriesPanel = new JPanel();
-        fruitCheckBox = new JCheckBox();
+        produceCheckBox = new JCheckBox();
         inventoryRightPanel = new JPanel();
         sortingPanel = new JPanel();
         filterLabel = new JLabel();
@@ -53,8 +54,8 @@ public class PerfectPantryGUI extends JFrame {
 
         categoriesPanel.setBorder(BorderFactory.createTitledBorder("Categories"));
 
-        fruitCheckBox.setText("Fruits");
-        fruitCheckBox.addActionListener(new ActionListener() {
+        produceCheckBox.setText("Produce");
+        produceCheckBox.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 fruitCheckBoxActionPerformed(evt);
             }
@@ -66,14 +67,14 @@ public class PerfectPantryGUI extends JFrame {
             categoriesPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(categoriesPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(fruitCheckBox)
+                .addComponent(produceCheckBox)
                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         categoriesPanelLayout.setVerticalGroup(
             categoriesPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(categoriesPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(fruitCheckBox)
+                .addComponent(produceCheckBox)
                 .addContainerGap(70, Short.MAX_VALUE))
         );
 
@@ -137,13 +138,13 @@ public class PerfectPantryGUI extends JFrame {
 
         inventoryTable.setModel(new DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null,null,null},
+                {null, null, null, null,null,null},
+                {null, null, null, null,null,null},
+                {null, null, null, null,null,null}
             },
             new String [] {
-                "UPC", "Product Name", "Size", "Category"
+                "UPC", "Product Name", "Size", "Category", "Amount Left", "Expiration Date"
             }
         ));
         jScrollPane1.setViewportView(inventoryTable);
@@ -157,7 +158,7 @@ public class PerfectPantryGUI extends JFrame {
                 .addGroup(inventoryRightPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(sortingPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(inventoryRightPanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 407, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 800, GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -214,7 +215,7 @@ public class PerfectPantryGUI extends JFrame {
     private JButton addInventoryButton;
     private JPanel categoriesPanel;
     private JLabel filterLabel;
-    private JCheckBox fruitCheckBox;
+    private JCheckBox produceCheckBox;
     private JPanel inventoryLeftPanel;
     private JPanel inventoryRightPanel;
     private JSplitPane inventorySplitPane;
