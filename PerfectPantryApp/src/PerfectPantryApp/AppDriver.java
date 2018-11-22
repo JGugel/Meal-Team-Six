@@ -1,3 +1,5 @@
+package PerfectPantryApp;
+
 import javax.swing.*;
 
 

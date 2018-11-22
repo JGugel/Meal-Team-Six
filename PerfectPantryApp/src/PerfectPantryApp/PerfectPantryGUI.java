@@ -1,3 +1,5 @@
+package PerfectPantryApp;
+
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.table.*;
