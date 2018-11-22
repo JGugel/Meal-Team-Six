@@ -12,6 +12,7 @@ import javax.swing.table.*;
  */
 public class PerfectPantryGUI extends JFrame {
 
+	JDBC j= new JDBC();
     /**
      * Creates new form PerfectPantryGUI
      */
@@ -135,18 +136,10 @@ public class PerfectPantryGUI extends JFrame {
                     .addComponent(sortingComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        inventoryTable.setModel(new DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null,null},
-                {null, null, null, null,null},
-                {null, null, null, null,null},
-                {null, null, null, null,null}
-            },
-            new String [] {//need to change size to amount remaining in phase 2
-                "UPC", "Product Name", "Size", "Category",  "Expiration Date"
-            }
-        ));
+        j.GetConnection("default");
+        inventoryTable.setModel(
+        	j.tModel	
+        );
         jScrollPane1.setViewportView(inventoryTable);
 
         GroupLayout inventoryRightPanelLayout = new GroupLayout(inventoryRightPanel);
