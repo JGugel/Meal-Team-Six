@@ -138,13 +138,13 @@ public class PerfectPantryGUI extends JFrame {
 
         inventoryTable.setModel(new DefaultTableModel(
             new Object [][] {
-                {null, null, null, null,null,null},
-                {null, null, null, null,null,null},
-                {null, null, null, null,null,null},
-                {null, null, null, null,null,null}
+                {null, null, null, null,null},
+                {null, null, null, null,null},
+                {null, null, null, null,null},
+                {null, null, null, null,null}
             },
-            new String [] {
-                "UPC", "Product Name", "Size", "Category", "Amount Left", "Expiration Date"
+            new String [] {//need to change size to amount remaining in phase 2
+                "UPC", "Product Name", "Size", "Category",  "Expiration Date"
             }
         ));
         jScrollPane1.setViewportView(inventoryTable);
