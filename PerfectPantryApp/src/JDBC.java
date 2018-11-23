@@ -22,7 +22,7 @@ public class JDBC {
             // db parameters
             String url       = "jdbc:mysql://localhost:3306/inventory_system?autoReconnect=true&useSSL=false";
             String user      = "root";
-            String password  = "Postal10";
+            String password  = "";
 
             // create a connection to the database
             conn = DriverManager.getConnection(url, user, password);
