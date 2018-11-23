@@ -12,7 +12,7 @@ CREATE TABLE Category(
 
 
 CREATE TABLE Product(
-	ProductID int NOT NULL,
+	ProductID int NOT NULL AUTO_INCREMENT,
 	UPC char(12) NOT NULL,
 	invName varchar(200) NOT NULL,
 	Category int(3) NOT NULL,
