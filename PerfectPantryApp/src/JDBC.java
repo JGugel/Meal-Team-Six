@@ -17,6 +17,7 @@ public class JDBC {
 
 	// Reference:
 	// http://www.mysqltutorial.org/connecting-to-mysql-using-jdbc-driver/
+	//https://stackoverflow.com/questions/6382877/how-to-show-data-from-database-to-jtable-of-java-swing-controls
 	public void GetConnection(String s) {
 		Connection conn = null;
 		Statement st = null;
