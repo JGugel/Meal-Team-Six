@@ -41,7 +41,7 @@ CREATE TABLE Inventory_List(
 	ProductID int NOT NULL,
 	prod_size double NOT NULL,
 	uom varchar(6) NOT NULL,
-	use_by date,
+	use_by date NULL default NULL,
 	avg_usage double,
 	PRIMARY KEY (ProductID)
 );
