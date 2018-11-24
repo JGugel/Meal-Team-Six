@@ -42,7 +42,6 @@ public class PerfectPantryGUI extends JFrame {
         sortingComboBox = new JComboBox<>();
         jScrollPane1 = new JScrollPane();
         inventoryTable = new JTable();
-
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Perfect Pantry");
 
@@ -136,10 +135,18 @@ public class PerfectPantryGUI extends JFrame {
                     .addComponent(sortingComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+        
         j.GetConnection("default");
         inventoryTable.setModel(
         	j.tModel	
         );
+        inventoryTable.getColumnModel().getColumn(0).setPreferredWidth(10);
+        inventoryTable.getColumnModel().getColumn(1).setPreferredWidth(30);
+        inventoryTable.getColumnModel().getColumn(2).setPreferredWidth(175);
+        inventoryTable.getColumnModel().getColumn(3).setPreferredWidth(15);
+        inventoryTable.getColumnModel().getColumn(4).setPreferredWidth(125);
+        inventoryTable.getColumnModel().getColumn(5).setPreferredWidth(15);
+     
         jScrollPane1.setViewportView(inventoryTable);
 
         GroupLayout inventoryRightPanelLayout = new GroupLayout(inventoryRightPanel);
