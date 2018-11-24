@@ -2,10 +2,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.table.DefaultTableModel;
 
-import com.mysql.jdbc.Statement;
 
 /**
  *
@@ -13,7 +13,7 @@ import com.mysql.jdbc.Statement;
  */
 public class JDBC {
 	protected DefaultTableModel tModel = new DefaultTableModel(
-			new String[] { "Item Number", "upc", "name", "size", "category", "expiration" }, 0);
+			new String[] { "#", "upc", "name", "size", "category", "expiration" }, 0);
 
 	// Reference:
 	// http://www.mysqltutorial.org/connecting-to-mysql-using-jdbc-driver/
@@ -25,7 +25,7 @@ public class JDBC {
 			// db parameters please do not alter the url user and password are ok to alter
 			String url = "jdbc:mysql://localhost:3306/inventory_system?zeroDateTimeBehavior=convertToNull&autoReconnect=true&useSSL=false";
 			String user = "root";
-			String password = "";
+			String password = "Postal10";
 
 			// create a connection to the database
 			conn = DriverManager.getConnection(url, user, password);
