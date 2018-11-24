@@ -1,9 +1,7 @@
-<<<<<<< HEAD:PerfectPantryApp/src/PerfectPantryApp/PerfectPantryGUI.java
-package PerfectPantryApp;
-=======
->>>>>>> origin/master:PerfectPantryApp/src/PerfectPantryGUI.java
 
 import java.awt.event.*;
+import java.sql.SQLException;
+
 import javax.swing.*;
 import javax.swing.table.*;
 
@@ -140,7 +138,9 @@ public class PerfectPantryGUI extends JFrame {
                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         
-        j.GetConnection("default");
+        
+			j.GetConnection("default");
+		
         inventoryTable.setModel(
         	j.tModel	
         );
