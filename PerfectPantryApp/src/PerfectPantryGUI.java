@@ -225,5 +225,6 @@ public class PerfectPantryGUI extends JFrame {
     private JComboBox<String> sortingComboBox;
     private JLabel sortingLabel;
     private JPanel sortingPanel;
+    
     // End of variables declaration//GEN-END:variables
 }
