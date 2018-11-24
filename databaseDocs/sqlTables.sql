@@ -12,8 +12,8 @@ CREATE TABLE Category(
 
 
 CREATE TABLE Product(
-	ProductID int NOT NULL,
-	UPC BIGINT(12) NOT NULL,
+	ProductID int NOT NULL AUTO_INCREMENT,
+	UPC char(12) NOT NULL,
 	invName varchar(200) NOT NULL,
 	Category int(3) NOT NULL,
 	PRIMARY KEY (ProductID),
@@ -41,8 +41,8 @@ CREATE TABLE Inventory_List(
 	ProductID int NOT NULL,
 	prod_size double NOT NULL,
 	uom varchar(6) NOT NULL,
-	use_by date,
-	avg_usage double (4,2) NOT NULL,
+	use_by date NULL default NULL,
+	avg_usage double,
 	PRIMARY KEY (ProductID)
 );
 
