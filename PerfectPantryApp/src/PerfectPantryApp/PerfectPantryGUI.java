@@ -137,7 +137,9 @@ public class PerfectPantryGUI extends JFrame {
             if (e.getSource() == addBtn) {
                 data[0] = upcTextField.getText();
                 data[1] = quantityTextField.getText();
-                data[2] = expirationTextField.getText();
+                data[2] = uomTextField.getText();
+                data[3] = expirationTextField.getText();
+                data[4] = usageTextField.getText();
             } else {
                 data = null;
             }
