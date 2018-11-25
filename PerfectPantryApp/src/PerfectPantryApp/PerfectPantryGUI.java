@@ -17,22 +17,7 @@ import javax.swing.table.*;
 public class PerfectPantryGUI extends JFrame {
 
     private JDBC jdbc;
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private JButton addInventoryButton;
-    private JPanel categoriesPanel;
-    private JLabel filterLabel;
-    private JCheckBox produceCheckBox;
-    private JPanel inventoryLeftPanel;
-    private JPanel inventoryRightPanel;
-    private JSplitPane inventorySplitPane;
-    private JTabbedPane inventoryTabPane;
-    private JTable inventoryTable;
-    private JScrollPane jScrollPane1;
-    private JComboBox<String> sortingComboBox;
-    private JLabel sortingLabel;
-    private JPanel sortingPanel;
-    // End of variables declaration//GEN-END:variables
-    
+
     /**
      * Creates new form PerfectPantryGUI
      */
@@ -290,6 +275,14 @@ public class PerfectPantryGUI extends JFrame {
     private void addInventoryButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_addInventoryButtonActionPerformed
         // TODO add your handling code here:
         
+        String s = (String)JOptionPane.showInputDialog(this,
+                "Enter Item's Universal Product Code *NOT CONNECTED",
+                "Add Item",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                null,
+                null);
+        
         
     }//GEN-LAST:event_addInventoryButtonActionPerformed
 
@@ -364,13 +357,26 @@ public class PerfectPantryGUI extends JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private JButton addInventoryButton;
     private javax.swing.JCheckBox bakingCB;
     private javax.swing.JCheckBox beveragesCB;
     private javax.swing.JCheckBox breadsBakeryCB;
+    private JPanel categoriesPanel;
     private javax.swing.JCheckBox dairyRefCB;
+    private JLabel filterLabel;
     private javax.swing.JCheckBox householdSCB;
+    private JCheckBox produceCheckBox;
+    private JPanel inventoryLeftPanel;
+    private JPanel inventoryRightPanel;
+    private JSplitPane inventorySplitPane;
+    private JTabbedPane inventoryTabPane;
+    private JTable inventoryTable;
+    private JScrollPane jScrollPane1;
     private javax.swing.JCheckBox meatsPoultryCB;
     private javax.swing.JCheckBox miscellaneousCB;
     private javax.swing.JCheckBox pantryCB;
+    private JComboBox<String> sortingComboBox;
+    private JLabel sortingLabel;
+    private JPanel sortingPanel;
     // End of variables declaration//GEN-END:variables
 }
