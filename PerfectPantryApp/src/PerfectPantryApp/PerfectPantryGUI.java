@@ -1,5 +1,3 @@
-package PerfectPantryApp;
-
 
 import java.awt.event.*;
 import java.sql.SQLException;
@@ -109,7 +107,7 @@ public class PerfectPantryGUI extends JFrame {
 
         sortingLabel.setText("Sorting:");
 
-        sortingComboBox.setModel(new DefaultComboBoxModel<>(new String[] { "Name", "Categories" }));
+        sortingComboBox.setModel(new DefaultComboBoxModel<>(new String[] { "UPC","Name", "Categories", "Expiration Date" }));
         sortingComboBox.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 sortingComboBoxActionPerformed(evt);
@@ -144,14 +142,15 @@ public class PerfectPantryGUI extends JFrame {
 			j.GetConnection("default");
 		
         inventoryTable.setModel(
-        	j.tModel	
+        	j.GetModel()
         );
         inventoryTable.getColumnModel().getColumn(0).setPreferredWidth(10);
         inventoryTable.getColumnModel().getColumn(1).setPreferredWidth(30);
         inventoryTable.getColumnModel().getColumn(2).setPreferredWidth(175);
         inventoryTable.getColumnModel().getColumn(3).setPreferredWidth(15);
-        inventoryTable.getColumnModel().getColumn(4).setPreferredWidth(125);
-        inventoryTable.getColumnModel().getColumn(5).setPreferredWidth(15);
+        inventoryTable.getColumnModel().getColumn(4).setPreferredWidth(10);
+        inventoryTable.getColumnModel().getColumn(5).setPreferredWidth(125);
+        inventoryTable.getColumnModel().getColumn(6).setPreferredWidth(15);
      
         jScrollPane1.setViewportView(inventoryTable);
 
@@ -164,7 +163,7 @@ public class PerfectPantryGUI extends JFrame {
                 .addGroup(inventoryRightPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(sortingPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(inventoryRightPanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 800, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 900, GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -208,7 +207,32 @@ public class PerfectPantryGUI extends JFrame {
     }//GEN-LAST:event_addInventoryButtonActionPerformed
 
     private void sortingComboBoxActionPerformed(ActionEvent evt) {//GEN-FIRST:event_sortingComboBoxActionPerformed
-        // TODO add your handling code here:
+    	String sort= (String)sortingComboBox.getSelectedItem();
+    	if(sort.equals("UPC")){
+        	j.GetConnection("default");
+        	inventoryTable.setModel(j.GetModel());
+        	inventoryTable.repaint();
+        }    	else if(sort.equals("Name")){
+        	j.GetConnection("Name");
+        	inventoryTable.setModel(j.GetModel());
+        	inventoryTable.repaint();
+        }else if (sort.equals("Categories")) {
+        	j.GetConnection("Categories"); 
+        	inventoryTable.setModel(j.GetModel());
+        inventoryTable.repaint();
+        }else if (sort.equals("Expiration Date")) {
+        	j.GetConnection("date"); 
+        	inventoryTable.setModel(j.GetModel());
+        inventoryTable.repaint();
+        }
+        inventoryTable.getColumnModel().getColumn(0).setPreferredWidth(10);
+        inventoryTable.getColumnModel().getColumn(1).setPreferredWidth(30);
+        inventoryTable.getColumnModel().getColumn(2).setPreferredWidth(175);
+        inventoryTable.getColumnModel().getColumn(3).setPreferredWidth(15);
+        inventoryTable.getColumnModel().getColumn(4).setPreferredWidth(10);
+        inventoryTable.getColumnModel().getColumn(5).setPreferredWidth(125);
+        inventoryTable.getColumnModel().getColumn(6).setPreferredWidth(15);
+      
     }//GEN-LAST:event_sortingComboBoxActionPerformed
 
     private void fruitCheckBoxActionPerformed(ActionEvent evt) {//GEN-FIRST:event_fruitCheckBoxActionPerformed

@@ -1,5 +1,3 @@
-package PerfectPantryApp;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -20,8 +18,12 @@ import javax.swing.table.DefaultTableModel;
 // http://www.mysqltutorial.org/connecting-to-mysql-using-jdbc-driver/
 //https://docs.oracle.com/javase/tutorial/jdbc/basics/retrieving.html
 public class JDBC {
-	protected  DefaultTableModel tModel = new DefaultTableModel(
-			new String[] { "#", "upc", "name", "size","uom", "category", "expiration" }, 0);
+	protected  DefaultTableModel tModel=null;
+	
+	public DefaultTableModel GetModel() {
+		return tModel;
+	}
+	
 	   /**
      * Get database connection
      *
@@ -31,6 +33,8 @@ public class JDBC {
     public  void GetConnection(String s) {
         Connection conn = null;
         Statement st = null;
+        tModel= new DefaultTableModel(
+    			new String[] { "#", "upc", "name", "size","uom", "category", "expiration" }, 0);
         try (FileInputStream f = new FileInputStream("db.properties")) {
  
             // load the properties file
@@ -48,13 +52,23 @@ public class JDBC {
 
      			// create a connection to the database
      			conn = DriverManager.getConnection(url, user, password);
-     			String query = "";
+     			String query = " select p.upc, p.invName, i.prod_size,i.uom, c.categoryName, i.use_by\r\n"
+ 						+ " from inventory_list i inner join product p on p.ProductID= i.ProductID\r\n"
+ 						+ " inner join category c  on c.catCode=p.Category\r\n" ;
      			//switch case to perform different searches from database
      			switch (s) {
      			case "default":
-     				query = " select p.upc, p.invName, i.prod_size,i.uom, c.categoryName, i.use_by\r\n"
-     						+ " from inventory_list i inner join product p on p.ProductID= i.ProductID\r\n"
-     						+ " inner join category c  on c.catCode=p.Category\r\n" + " ORDER by p.invName;";
+     				query +=" ORDER by p.upc;";
+     				break;
+     			case "Categories":
+     				query +=" ORDER by c.categoryName;";
+     				break;
+     			case "Name":
+     				query +=  " ORDER by p.invName;";
+     				break;
+     			case "date":
+     				query += " ORDER by i.use_by;";
+     				break;
      			default:
      				break;
      			}
