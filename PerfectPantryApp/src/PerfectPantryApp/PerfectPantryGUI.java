@@ -54,7 +54,7 @@ public class PerfectPantryGUI extends JFrame {
             super(frame, "Add Item", true);
             Point loc = frame.getLocation();
             setLocation(loc.x+80,loc.y+80);
-            data = new String[3];
+            data = new String[5];
             JPanel panel = new JPanel();
             GridBagLayout grid = new GridBagLayout();
             panel.setLayout(grid);
