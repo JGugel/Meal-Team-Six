@@ -38,10 +38,14 @@ public class PerfectPantryGUI extends JFrame {
         private String[] data;
         private JLabel upcLabel;
         private JLabel quantityLabel;
+        private JLabel uomLabel;
         private JLabel expirationLabel;
+        private JLabel usageLabel;
         private JTextField upcTextField;
         private JTextField quantityTextField;
+        private JTextField uomTextField;
         private JTextField expirationTextField;
+        private JTextField usageTextField;
         private JButton addBtn;
         private JButton cancelBtn;
         
@@ -58,7 +62,7 @@ public class PerfectPantryGUI extends JFrame {
             gbc.insets = new Insets(5,5,5,5);
             gbc.fill = GridBagConstraints.HORIZONTAL;
             //UPC
-            upcLabel = new JLabel("Item UPC");
+            upcLabel = new JLabel("Item UPC (12 digits)");
             gbc.gridx = 0;
             gbc.gridy = 0;
             panel.add(upcLabel, gbc);
@@ -77,26 +81,46 @@ public class PerfectPantryGUI extends JFrame {
             gbc.gridy = 1;
             panel.add(quantityTextField, gbc);
             
+            //Unit of Measurment
+            uomLabel = new JLabel("Unit of Measurment (6 char max)");
+            gbc.gridx = 0;
+            gbc.gridy = 2;
+            panel.add(uomLabel, gbc);
+            uomTextField = new JTextField(10);
+            gbc.gridx = 1;
+            gbc.gridy = 2;
+            panel.add(uomTextField, gbc);
+            
             //Expiration
             expirationLabel = new JLabel("Expiration");
             gbc.gridx = 0;
-            gbc.gridy = 2;
+            gbc.gridy = 3;
             panel.add(expirationLabel, gbc);
             expirationTextField = new JTextField(10);
             gbc.gridx = 1;
-            gbc.gridy = 2;
+            gbc.gridy = 3;
             panel.add(expirationTextField, gbc);
+            
+            //Average Usage
+            usageLabel = new JLabel("Average Quantity Usage");
+            gbc.gridx = 0;
+            gbc.gridy = 4;
+            panel.add(usageLabel, gbc);
+            usageTextField = new JTextField(10);
+            gbc.gridx = 1;
+            gbc.gridy = 4;
+            panel.add(usageTextField, gbc);
             
             //Add and Cancel Buttons
             addBtn = new JButton("Add");
             addBtn.addActionListener(this);
             gbc.gridx = 0;
-            gbc.gridy = 3;
+            gbc.gridy = 5;
             panel.add(addBtn, gbc);
             cancelBtn = new JButton("Cancel");
             cancelBtn.addActionListener(this);
             gbc.gridx = 1;
-            gbc.gridy = 3;
+            gbc.gridy = 5;
             panel.add(cancelBtn, gbc);
             
             getContentPane().add(panel);
