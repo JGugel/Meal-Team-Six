@@ -40,67 +40,65 @@ public class JDBC {
         try (FileInputStream f = new FileInputStream("db.properties")) {
  
             // load the properties file
-            Properties pros = new Properties();
-            pros.load(f);
+            Properties props = new Properties();
+            props.load(f);
  
             // assign db parameters
-            String url = pros.getProperty("url");
-            String user = pros.getProperty("user");
-            String password = pros.getProperty("password");
+            String url = props.getProperty("url");
+            String user = props.getProperty("user");
+            String password = props.getProperty("password");
             
             // create a connection to the database
             conn = DriverManager.getConnection(url, user, password);
   
 
-     			// create a connection to the database
-     			conn = DriverManager.getConnection(url, user, password);
-     			String query = " select p.upc, p.invName, i.prod_size,i.uom, c.categoryName, i.use_by\r\n"
- 						+ " from inventory_list i inner join product p on p.ProductID= i.ProductID\r\n"
- 						+ " inner join category c  on c.catCode=p.Category\r\n" ;
-     			//switch case to perform different searches from database
-     			switch (s) {
-     			case "default":
-     				query +=" ORDER by p.upc;";
-     				break;
-     			case "Categories":
-     				query +=" ORDER by c.categoryName;";
-     				break;
-     			case "Name":
-     				query +=  " ORDER by p.invName;";
-     				break;
-     			case "date":
-     				query += " ORDER by i.use_by;";
-     				break;
-     			default:
-     				break;
-     			}
-     			st = (Statement) conn.createStatement();
-     			ResultSet rs = st.executeQuery(query);//performs query
-     			int count = 1;
-     			while (rs.next()) { //gets string from db
-     				String number = Integer.toString(count);
-     				String upc = rs.getString("UPC");
-     				String name = rs.getString("invName");
-     				String size = rs.getString("prod_size");
-     				String uom = rs.getString("uom");
-     				String category = rs.getString("categoryName");
-     				String expiration = rs.getString("use_by");
-     				tModel.addRow(new Object[] { number, upc, name, size,uom, category, expiration }); //applies data to table model
-     				count++;
-     			}
-     		} catch (IOException e) {
+            String query = " select p.upc, p.invName, i.prod_size,i.uom, c.categoryName, i.use_by\r\n"
+                            + " from inventory_list i inner join product p on p.ProductID= i.ProductID\r\n"
+                            + " inner join category c  on c.catCode=p.Category\r\n" ;
+            //switch case to perform different searches from database
+            switch (s) {
+            case "default":
+                query +=" ORDER by p.upc;";
+                break;
+            case "Categories":
+                query +=" ORDER by c.categoryName;";
+                break;
+            case "Name":
+                query +=  " ORDER by p.invName;";
+                break;
+            case "date":
+                query += " ORDER by i.use_by;";
+                break;
+            default:
+                break;
+            }
+            st = (Statement) conn.createStatement();
+            ResultSet rs = st.executeQuery(query);//performs query
+            int count = 1;
+            while (rs.next()) { //gets string from db
+                String number = Integer.toString(count);
+                String upc = rs.getString("UPC");
+                String name = rs.getString("invName");
+                String size = rs.getString("prod_size");
+                String uom = rs.getString("uom");
+                String category = rs.getString("categoryName");
+                String expiration = rs.getString("use_by");
+                tModel.addRow(new Object[] { number, upc, name, size,uom, category, expiration }); //applies data to table model
+                count++;
+            }
+        } catch (IOException e) {
                 System.out.println(e.getMessage());
-            }catch (SQLException e) {
-     			System.out.println(e.getMessage());
-     		} finally {
-     			try {
-     				if (st != null && conn != null) {
-     					conn.close();
-     				}
-     			} catch (SQLException ex) {
-     				System.out.println(ex.getMessage());
-     			}
-     		}
+        }catch (SQLException e) {
+                    System.out.println(e.getMessage());
+        } finally {
+            try {
+                if (st != null && conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
        
     }
 	

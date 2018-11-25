@@ -16,11 +16,28 @@ import javax.swing.table.*;
  */
 public class PerfectPantryGUI extends JFrame {
 
-	JDBC j= new JDBC();
+    private JDBC jdbc;
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private JButton addInventoryButton;
+    private JPanel categoriesPanel;
+    private JLabel filterLabel;
+    private JCheckBox produceCheckBox;
+    private JPanel inventoryLeftPanel;
+    private JPanel inventoryRightPanel;
+    private JSplitPane inventorySplitPane;
+    private JTabbedPane inventoryTabPane;
+    private JTable inventoryTable;
+    private JScrollPane jScrollPane1;
+    private JComboBox<String> sortingComboBox;
+    private JLabel sortingLabel;
+    private JPanel sortingPanel;
+    // End of variables declaration//GEN-END:variables
+    
     /**
      * Creates new form PerfectPantryGUI
      */
     public PerfectPantryGUI() {
+        jdbc = new JDBC();
         initComponents();
     }
 
@@ -141,10 +158,10 @@ public class PerfectPantryGUI extends JFrame {
         );
         
         
-			j.GetConnection("default");
+			jdbc.GetConnection("default");
 		
         inventoryTable.setModel(
-        	j.GetModel()
+        	jdbc.GetModel()
         );
         inventoryTable.getColumnModel().getColumn(0).setPreferredWidth(10);
         inventoryTable.getColumnModel().getColumn(1).setPreferredWidth(30);
@@ -211,20 +228,20 @@ public class PerfectPantryGUI extends JFrame {
     private void sortingComboBoxActionPerformed(ActionEvent evt) {//GEN-FIRST:event_sortingComboBoxActionPerformed
     	String sort= (String)sortingComboBox.getSelectedItem();
     	if(sort.equals("UPC")){
-        	j.GetConnection("default");
-        	inventoryTable.setModel(j.GetModel());
+        	jdbc.GetConnection("default");
+        	inventoryTable.setModel(jdbc.GetModel());
         	inventoryTable.repaint();
         }    	else if(sort.equals("Name")){
-        	j.GetConnection("Name");
-        	inventoryTable.setModel(j.GetModel());
+        	jdbc.GetConnection("Name");
+        	inventoryTable.setModel(jdbc.GetModel());
         	inventoryTable.repaint();
         }else if (sort.equals("Categories")) {
-        	j.GetConnection("Categories"); 
-        	inventoryTable.setModel(j.GetModel());
+        	jdbc.GetConnection("Categories"); 
+        	inventoryTable.setModel(jdbc.GetModel());
         inventoryTable.repaint();
         }else if (sort.equals("Expiration Date")) {
-        	j.GetConnection("date"); 
-        	inventoryTable.setModel(j.GetModel());
+        	jdbc.GetConnection("date"); 
+        	inventoryTable.setModel(jdbc.GetModel());
         inventoryTable.repaint();
         }
         inventoryTable.getColumnModel().getColumn(0).setPreferredWidth(10);
@@ -243,19 +260,4 @@ public class PerfectPantryGUI extends JFrame {
 
 
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private JButton addInventoryButton;
-    private JPanel categoriesPanel;
-    private JLabel filterLabel;
-    private JCheckBox produceCheckBox;
-    private JPanel inventoryLeftPanel;
-    private JPanel inventoryRightPanel;
-    private JSplitPane inventorySplitPane;
-    private JTabbedPane inventoryTabPane;
-    private JTable inventoryTable;
-    private JScrollPane jScrollPane1;
-    private JComboBox<String> sortingComboBox;
-    private JLabel sortingLabel;
-    private JPanel sortingPanel;
-    // End of variables declaration//GEN-END:variables
 }
