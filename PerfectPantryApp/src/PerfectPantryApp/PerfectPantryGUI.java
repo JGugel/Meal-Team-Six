@@ -21,6 +21,7 @@ import java.util.logging.Logger;
 
 
 
+
 /**
  * This class creates the GUI for the Perfect Pantry application.
  * @author Hira Waqas, Josh Gugel
@@ -401,58 +402,72 @@ public class PerfectPantryGUI extends JFrame {
         //check item UPC in database to verify
         AddInventoryDialog dialog = new AddInventoryDialog(this);
         String[] data = dialog.run();
-        String upc= data[0];
-        double quantity=Double.parseDouble(data[1]);
-        double avgUse=Double.parseDouble(data[4]);
-        String uom=data[2];
-        SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
-
-         java.sql.Date sqlExp=null;
-        try {
-            java.util.Date exp=dateformat.parse(data[3]);
-             sqlExp = new java.sql.Date(exp.getTime()); 
-        } catch (ParseException ex) {
-            Logger.getLogger(PerfectPantryGUI.class.getName()).log(Level.SEVERE, null, ex);
+        if (data == null) {
+            return;
         }
-        if (data != null) {
-            //TODO - Josh - work in progress
-            //connect to database
-            try (Connection conn = JDBC.getConnection2()) {
-                // print out a message
-                System.out.println(String.format("Connected to database %s "
-                        + "successfully.", conn.getCatalog()));
-                Statement stmt = conn.createStatement();
-                
-                //verify UPC
-                String query ="select productID from product where upc=" + upc;
-                ResultSet rs = stmt.executeQuery(query);
-               Integer candidateId=0;
-                if (rs.next()) {
-                    //if verified, add item
-                    candidateId = rs.getInt("productID");
-                    query="";
-                   if(candidateId.equals(null))
-                       JOptionPane.showMessageDialog(this, "UPC not found");
-                 
-                } else {
-                    JOptionPane.showMessageDialog(this, "Error in SQL");
-                    
+        
+        String upc;
+        double quantity;
+        double avgUse;
+        String uom;
+        SimpleDateFormat dateFormat;
+        java.sql.Date sqlExp;
+        
+        //parse data values
+        try {
+            upc = data[0];
+            quantity = Double.parseDouble(data[1]);
+            avgUse = Double.parseDouble(data[4]);
+            uom = data[2];
+            dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+            java.util.Date exp=dateFormat.parse(data[3]);
+            sqlExp = new java.sql.Date(exp.getTime()); 
+        } catch (ParseException | NumberFormatException ex) {
+            Logger.getLogger(PerfectPantryGUI.class.getName()).log(Level.SEVERE, null, ex);
+            //System.out.println(ex);
+            JOptionPane.showMessageDialog(this, ex);
+            return;
+        }
+        
+        //connect to database
+        try (Connection conn = JDBC.getConnection2()) {
+            // print out a message
+            System.out.println(String.format("Connected to database %s "
+                    + "successfully.", conn.getCatalog()));
+            Statement stmt = conn.createStatement();
+
+            //verify UPC
+            if (upc.length() != 12) {
+                JOptionPane.showMessageDialog(this, "UPC must be a 12 digit integer");
+                return;
+            }
+            String query ="select productID from product where upc=" + upc;
+            ResultSet rs = stmt.executeQuery(query);
+            Integer candidateId=0;
+            if (rs.next()) {
+                //if verified, add item
+                candidateId = rs.getInt("productID");
+                query="";
+                if(candidateId.equals(null)){
+                    JOptionPane.showMessageDialog(this, "UPC not found");
                 }
                 System.out.println(candidateId + " "+quantity+" "+uom+ " " + sqlExp+ " " +avgUse);
-                 query = "insert into inventory_list (productID,prod_size,uom,use_by, avg_usage) values(?,?,?,?,?);";
-                    PreparedStatement pstmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-                    pstmt.setInt(1, candidateId);
-                    pstmt.setDouble(2, quantity);
-                    pstmt.setString(3, uom);
-                    pstmt.setDate(4, sqlExp);
-                    pstmt.setDouble(5, avgUse);
-                    pstmt.execute();
-                    conn.close();
-                    populatePantryList();
-                    JOptionPane.showMessageDialog(this, "Record has been updated");
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
+                query = "insert into inventory_list (productID,prod_size,uom,use_by, avg_usage) values(?,?,?,?,?);";
+                PreparedStatement pstmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+                pstmt.setInt(1, candidateId);
+                pstmt.setDouble(2, quantity);
+                pstmt.setString(3, uom);
+                pstmt.setDate(4, sqlExp);
+                pstmt.setDouble(5, avgUse);
+                pstmt.execute();
+                conn.close();
+                populatePantryList();
+                JOptionPane.showMessageDialog(this, "Record has been updated");
+            } else {
+                JOptionPane.showMessageDialog(this, "Error in SQL");
             }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
         }
         
         
