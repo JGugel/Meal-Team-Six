@@ -38,13 +38,13 @@ public class JDBC {
     			new String[] { "#", "upc", "name", "size","uom", "category", "expiration" }, 0);
         try (FileInputStream f = new FileInputStream("db.properties")) {
             //load the properties file
-            Properties pros = new Properties();
-            pros.load(f);
+            Properties props = new Properties();
+            props.load(f);
  
             // assign db parameters
-            String url = pros.getProperty("url");
-            String user = pros.getProperty("user");
-            String password = pros.getProperty("password");
+            String url = props.getProperty("url");
+            String user = props.getProperty("user");
+            String password = props.getProperty("password");
             
             // create a connection to the database
             conn = DriverManager.getConnection(url, user, password);

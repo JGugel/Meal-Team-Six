@@ -2,6 +2,7 @@ package PerfectPantryApp;
 
 
 import java.awt.event.*;
+import java.awt.*;
 import java.sql.SQLException;
 
 import javax.swing.*;
@@ -26,6 +27,94 @@ public class PerfectPantryGUI extends JFrame {
         initComponents();
     }
 
+    // ref: http://www2.hawaii.edu/~takebaya/ics111/jdialog/jdialog.html
+    class AddInventoryDialog extends JDialog implements ActionListener{
+        private String[] data;
+        private JLabel upcLabel;
+        private JLabel quantityLabel;
+        private JLabel expirationLabel;
+        private JTextField upcTextField;
+        private JTextField quantityTextField;
+        private JTextField expirationTextField;
+        private JButton addBtn;
+        private JButton cancelBtn;
+        
+        //Constructor
+        public AddInventoryDialog(Frame frame){
+            super(frame, "Add Item", true);
+            Point loc = frame.getLocation();
+            setLocation(loc.x+80,loc.y+80);
+            data = new String[3];
+            JPanel panel = new JPanel();
+            GridBagLayout grid = new GridBagLayout();
+            panel.setLayout(grid);
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.insets = new Insets(5,5,5,5);
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+            //UPC
+            upcLabel = new JLabel("Item UPC");
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+            panel.add(upcLabel, gbc);
+            upcTextField = new JTextField(10);
+            gbc.gridx = 1;
+            gbc.gridy = 0;
+            panel.add(upcTextField, gbc);
+            
+            //Quantity
+            quantityLabel = new JLabel("Quantity");
+            gbc.gridx = 0;
+            gbc.gridy = 1;
+            panel.add(quantityLabel, gbc);
+            quantityTextField = new JTextField(10);
+            gbc.gridx = 1;
+            gbc.gridy = 1;
+            panel.add(quantityTextField, gbc);
+            
+            //Expiration
+            expirationLabel = new JLabel("Expiration");
+            gbc.gridx = 0;
+            gbc.gridy = 2;
+            panel.add(expirationLabel, gbc);
+            expirationTextField = new JTextField(10);
+            gbc.gridx = 1;
+            gbc.gridy = 2;
+            panel.add(expirationTextField, gbc);
+            
+            //Add and Cancel Buttons
+            addBtn = new JButton("Add");
+            addBtn.addActionListener(this);
+            gbc.gridx = 0;
+            gbc.gridy = 3;
+            panel.add(addBtn, gbc);
+            cancelBtn = new JButton("Cancel");
+            cancelBtn.addActionListener(this);
+            gbc.gridx = 1;
+            gbc.gridy = 3;
+            panel.add(cancelBtn, gbc);
+            
+            getContentPane().add(panel);
+            pack();
+        }
+        
+        public String [] run() {
+            this.setVisible(true);
+            return data;
+        }
+        
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == addBtn) {
+                data[0] = upcTextField.getText();
+                data[1] = quantityTextField.getText();
+                data[2] = expirationTextField.getText();
+            } else {
+                data = null;
+            }
+            dispose();
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -273,15 +362,12 @@ public class PerfectPantryGUI extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addInventoryButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_addInventoryButtonActionPerformed
-        // TODO add your handling code here:
-        
-        String s = (String)JOptionPane.showInputDialog(this,
-                "Enter Item's Universal Product Code *NOT CONNECTED",
-                "Add Item",
-                JOptionPane.PLAIN_MESSAGE,
-                null,
-                null,
-                null);
+        //check item UPC in database to verify
+        AddInventoryDialog dialog = new AddInventoryDialog(this);
+        String[] data = dialog.run();
+        if (data != null) {
+            //verify UPC ,if found, aff item, if not display error message
+        }
         
         
     }//GEN-LAST:event_addInventoryButtonActionPerformed
