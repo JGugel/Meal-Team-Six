@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
 //https://docs.oracle.com/javase/tutorial/jdbc/basics/retrieving.html
 public class JDBC {
 	protected  DefaultTableModel tModel = new DefaultTableModel(
-			new String[] { "#", "upc", "name", "size", "category", "expiration" }, 0);
+			new String[] { "#", "upc", "name", "size","uom", "category", "expiration" }, 0);
 	   /**
      * Get database connection
      *
@@ -50,7 +50,7 @@ public class JDBC {
      			//switch case to perform different searches from database
      			switch (s) {
      			case "default":
-     				query = " select p.upc, p.invName, i.prod_size, c.categoryName, i.use_by\r\n"
+     				query = " select p.upc, p.invName, i.prod_size,i.uom, c.categoryName, i.use_by\r\n"
      						+ " from inventory_list i inner join product p on p.ProductID= i.ProductID\r\n"
      						+ " inner join category c  on c.catCode=p.Category\r\n" + " ORDER by p.invName;";
      			default:
@@ -64,9 +64,10 @@ public class JDBC {
      				String upc = rs.getString("UPC");
      				String name = rs.getString("invName");
      				String size = rs.getString("prod_size");
+     				String uom = rs.getString("uom");
      				String category = rs.getString("categoryName");
      				String expiration = rs.getString("use_by");
-     				tModel.addRow(new Object[] { number, upc, name, size, category, expiration }); //applies data to table model
+     				tModel.addRow(new Object[] { number, upc, name, size,uom, category, expiration }); //applies data to table model
      				count++;
      			}
      		} catch (IOException e) {
