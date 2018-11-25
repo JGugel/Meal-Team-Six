@@ -64,31 +64,9 @@ public class JDBC {
                     break;
                 case "date":
                     query += " ORDER by i.use_by;";
-                case "bakingCategory":
-                    query += " WHERE c.categoryName LIKE '%Baking, Herbs, and Spices%'";
-                    break;
-                case "beverageCategory":
-                    query += " WHERE c.categoryName LIKE '%Beverages%'";
-                    break;
-                case "breadsBCategory":
-                    query += " WHERE c.categoryName LIKE '%Breads and Bakery%'";
-                    break;
-                case "dairyRCategory":
-                    query += " WHERE c.categoryName LIKE '%Dairy and Refrigerated%'";
-                    break;
-                case "housholdSCategory":
-                    query += " WHERE c.categoryName LIKE '%Household Supplies%'";
-                    break;
-                case "meatsPCategory":
-                    query += " WHERE c.categoryName LIKE '%Meats, Poultry, and Seafood%'";
-                    break;
-                case "miscellaneousCategory":
-                    query += " WHERE c.categoryName LIKE '%Miscellaneous%'";
-                    break;
-                case "pantryCategory":
-                    query += " WHERE c.categoryName LIKE '%Pantry%'";
                     break;
                 default:
+                    query += " WHERE c.categoryName IN ("+s+")";
                     break;
             }
             st = (Statement) conn.createStatement();

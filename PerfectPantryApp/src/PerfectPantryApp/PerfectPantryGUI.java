@@ -302,26 +302,24 @@ public class PerfectPantryGUI extends JFrame {
         
     }//GEN-LAST:event_addInventoryButtonActionPerformed
 
-    private void sortingComboBoxActionPerformed(ActionEvent evt) {//GEN-FIRST:event_sortingComboBoxActionPerformed
+    private String sortedSelectedOption() {
         String sort= (String)sortingComboBox.getSelectedItem();
+        String selectedOption = "";
     	if(sort.equals("UPC")){
-            jdbc.GetConnection("default");
-            inventoryTable.setModel(jdbc.GetModel());
-            inventoryTable.repaint();
+            selectedOption = "default";
         }    	
-        else if(sort.equals("Name")){
-        	jdbc.GetConnection("Name");
-        	inventoryTable.setModel(jdbc.GetModel());
-        	inventoryTable.repaint();
-        }else if (sort.equals("Categories")) {
-        	jdbc.GetConnection("Categories"); 
-        	inventoryTable.setModel(jdbc.GetModel());
-        inventoryTable.repaint();
-        }else if (sort.equals("Expiration Date")) {
-        	jdbc.GetConnection("date"); 
-        	inventoryTable.setModel(jdbc.GetModel());
-        inventoryTable.repaint();
+        else if(sort.equals("Name") || sort.equals("Categories")){
+            selectedOption = sort;
         }
+        else if (sort.equals("Expiration Date")) {
+            selectedOption = "date";
+        }
+        return selectedOption;
+    }
+    private void sortingComboBoxActionPerformed(ActionEvent evt) {//GEN-FIRST:event_sortingComboBoxActionPerformed
+        jdbc.GetConnection(sortedSelectedOption()); 
+        inventoryTable.setModel(jdbc.GetModel());
+        inventoryTable.repaint();
         inventoryTable.getColumnModel().getColumn(0).setPreferredWidth(10);
         inventoryTable.getColumnModel().getColumn(1).setPreferredWidth(30);
         inventoryTable.getColumnModel().getColumn(2).setPreferredWidth(175);
@@ -332,40 +330,47 @@ public class PerfectPantryGUI extends JFrame {
       
     }//GEN-LAST:event_sortingComboBoxActionPerformed
  
+    private String getConcatenatedWhereStatement(String query, String selectedCat) {
+        if (query.length() > 0) {
+            query += "," + selectedCat;
+        } else {
+            query = selectedCat;
+        }
+        return query;
+    }
     private void categoriesSelectionActionPerformed(java.awt.event.ActionEvent evt) {
         
-        jdbc.GetConnection("default");
+        String selectedCategories = "";
         if(bakingCB.isSelected())
         {
-            jdbc.GetConnection("bakingCategory");
+            selectedCategories = getConcatenatedWhereStatement(selectedCategories,"'Baking, Herbs, and Spices'");
         }
         if(beveragesCB.isSelected()){
-            jdbc.GetConnection("beverageCategory");
-            
+            selectedCategories = getConcatenatedWhereStatement(selectedCategories,"'Beverages'");
         }
         if(breadsBakeryCB.isSelected()){
-            jdbc.GetConnection("breadsBCategory");
-            
+            selectedCategories = getConcatenatedWhereStatement(selectedCategories,"'Breads and Bakery'");
         }
         if(dairyRefCB.isSelected()){
-            jdbc.GetConnection("dairyRCategory");
-            
+            selectedCategories = getConcatenatedWhereStatement(selectedCategories,"'Dairy and Refrigerated'");
         }
         if(householdSCB.isSelected()){
-            jdbc.GetConnection("housholdSCategory");
-            
+            selectedCategories = getConcatenatedWhereStatement(selectedCategories,"'Household Supplies'");
         }
         if(meatsPoultryCB.isSelected()){
-            jdbc.GetConnection("meatsPCategory");
-            
+            selectedCategories = getConcatenatedWhereStatement(selectedCategories,"'Meats, Poultry, and Seafood'");            
         }
         if(miscellaneousCB.isSelected()){
-            jdbc.GetConnection("miscellaneousCategory");
-            
+            selectedCategories = getConcatenatedWhereStatement(selectedCategories,"'Miscellaneous'");            
         }
         if(pantryCB.isSelected()){
-            jdbc.GetConnection("pantryCategory");
-            
+            selectedCategories = getConcatenatedWhereStatement(selectedCategories,"'Pantry'");            
+        }
+        
+        if(selectedCategories.length() == 0){
+            jdbc.GetConnection(sortedSelectedOption());
+        } else {
+            jdbc.GetConnection(selectedCategories);
         }
         inventoryTable.setModel(jdbc.GetModel());
         inventoryTable.repaint();
