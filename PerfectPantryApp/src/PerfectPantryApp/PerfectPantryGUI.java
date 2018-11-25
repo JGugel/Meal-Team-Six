@@ -10,6 +10,7 @@ import javax.swing.table.*;
 
 //josh test todo
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -373,24 +374,43 @@ public class PerfectPantryGUI extends JFrame {
         if (data != null) {
             //TODO - Josh - work in progress
             
-            //verify UPC
-            String query = "SELECT upc FROM product;";
             //connect to database
             try (Connection conn = JDBC.getConnection2()) {
                 // print out a message
                 System.out.println(String.format("Connected to database %s "
                         + "successfully.", conn.getCatalog()));
                 Statement stmt = conn.createStatement();
-
+                
+                //verify UPC
+                String query ="select p.productID, from product p"+
+                        "where p.upc=" + data[0];
                 ResultSet rs = stmt.executeQuery(query);
+                if (rs.next()) {
+                    //if verified, add item
+                    rs = null;
+                    int candidateId = 0;
+                    query = "insert into inventory_list values('productID','product_size','uom','use_by', average);";
+                    
+                    PreparedStatement pstmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+//                  pstmt.setString(1, upc);
+//                  pstmt.setString(2, quantity);
+//                  pstmt.setString(3, expiration);
+                    int rowAffected = pstmt.executeUpdate();
+                    
+                    if(rowAffected == 1)
+                    {
+                        // get candidate id (not currently used)
+                        rs = pstmt.getGeneratedKeys();
+                        if(rs.next()){
+                            candidateId = rs.getInt(1);
+                        }
+                    }
+                } else {
+                    //else, display error message
+                    JOptionPane.showMessageDialog(this, "UPC not found");
+                }
                 
-            //if verified add item
-            query = "insert into inventory values('','','');";
-            
-            
-            //else display error message
-                
-                 
+
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }
