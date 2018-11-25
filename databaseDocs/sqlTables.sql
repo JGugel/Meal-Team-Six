@@ -4,13 +4,14 @@ CREATE DATABASE Inventory_System;
 
 USE Inventory_System;
 
+/*table to indicate category of each prodcut*/
 CREATE TABLE Category(
 	catCode int(3) NOT NULL,
 	categoryName varchar(100) NOT NULL,
 	PRIMARY KEY (catCode)
 );
 
-
+/*master table of product data*/
 CREATE TABLE Product(
 	ProductID int NOT NULL AUTO_INCREMENT,
 	UPC char(12) NOT NULL,
@@ -20,6 +21,7 @@ CREATE TABLE Product(
 	FOREIGN KEY (Category) REFERENCES Category(catCode)
 );
 
+/*master table of nutrition data*/
 CREATE TABLE Nutrition(
 	ProductID int NOT NULL, 
 	Nut_Code int NOT NULL,
@@ -30,6 +32,7 @@ CREATE TABLE Nutrition(
 	FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
 );
 
+/*master table of serving sizes*/
 CREATE TABLE Serving_size(
 	ProductID int NOT NULL,
 	ServingSize double NOT NULL,
@@ -37,6 +40,7 @@ CREATE TABLE Serving_size(
 	PRIMARY KEY (ProductID)
 );
 
+/*table to store individual's products*/
 CREATE TABLE Inventory_List(
 	ProductID int NOT NULL,
 	prod_size double NOT NULL,
@@ -46,4 +50,5 @@ CREATE TABLE Inventory_List(
 	PRIMARY KEY (ProductID)
 );
 
+/*command to start incrementing*/
 ALTER TABLE Product AUTO_INCREMENT=45374984;
