@@ -92,7 +92,7 @@ public class PerfectPantryGUI extends JFrame {
             panel.add(uomTextField, gbc);
             
             //Expiration
-            expirationLabel = new JLabel("Expiration");
+            expirationLabel = new JLabel("Expiration (yyyy-mm-dd)");
             gbc.gridx = 0;
             gbc.gridy = 3;
             panel.add(expirationLabel, gbc);
@@ -407,34 +407,39 @@ public class PerfectPantryGUI extends JFrame {
                 Statement stmt = conn.createStatement();
                 
                 //verify UPC
-                String query ="select p.productID, from product p"+
-                        "where p.upc=" + data[0];
-                ResultSet rs = stmt.executeQuery(query);
-                int candidateId=0;
-                if (rs.next()) {
-                    //if verified, add item
-                    rs = null;
-                    candidateId = 0;
-                    query = "insert into inventory_list values('productID','product_size','uom','use_by', average);";
-                    
-                    PreparedStatement pstmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-                    pstmt.setInt(1, candidateId);
-                    pstmt.setDouble(2, Double.parseDouble(data[1]));
-                 //   pstmt.setDate(3, x);
-                //    pstmt.setString(3, expiration);
-                    int rowAffected = pstmt.executeUpdate();
-                    
-                    if(rowAffected == 1)
-                    {
-                        // get candidate id (not currently used)
-                        rs = pstmt.getGeneratedKeys();
-                        if(rs.next()){
-                            candidateId = rs.getInt(1);
+                if (data[0].length() == 12) {
+                    String query ="select p.productID, from product p "+
+                            "where p.upc=" + data[0];
+                    ResultSet rs = stmt.executeQuery(query);
+                    int candidateId=0;
+                    if (rs.next()) {
+                        //if verified, add item
+                        rs = null;
+                        candidateId = 0;
+                        query = "insert into inventory_list values('productID','product_size','uom','use_by', average);";
+
+                        PreparedStatement pstmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+                        pstmt.setInt(1, Integer.parseInt(data[0])); //upc?
+                        pstmt.setDouble(2, Double.parseDouble(data[1])); //quantity
+                        pstmt.setString(3, data[2]);  //uom
+                        pstmt.setString(3, data[3]);   //expiration
+                        pstmt.setDouble(3, Double.parseDouble(data[4]));   //average usage
+                        int rowAffected = pstmt.executeUpdate();
+
+                        if(rowAffected == 1)
+                        {
+                            // get candidate id (not currently used)
+                            rs = pstmt.getGeneratedKeys();
+                            if(rs.next()){
+                                candidateId = rs.getInt(1);
+                            }
                         }
+                    } else {
+                        //else, display error message
+                        JOptionPane.showMessageDialog(this, "UPC not found");
                     }
                 } else {
-                    //else, display error message
-                    JOptionPane.showMessageDialog(this, "UPC not found");
+                    JOptionPane.showMessageDialog(this, "UPC must be a 12 digit integer");
                 }
                 
 
