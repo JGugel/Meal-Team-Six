@@ -397,7 +397,6 @@ public class PerfectPantryGUI extends JFrame {
         String[] data = dialog.run();
         if (data != null) {
             //TODO - Josh - work in progress
-            
             //connect to database
             try (Connection conn = JDBC.getConnection2()) {
                 // print out a message
@@ -409,16 +408,18 @@ public class PerfectPantryGUI extends JFrame {
                 String query ="select p.productID, from product p"+
                         "where p.upc=" + data[0];
                 ResultSet rs = stmt.executeQuery(query);
+                int candidateId=0;
                 if (rs.next()) {
                     //if verified, add item
                     rs = null;
-                    int candidateId = 0;
+                    candidateId = 0;
                     query = "insert into inventory_list values('productID','product_size','uom','use_by', average);";
                     
                     PreparedStatement pstmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-//                  pstmt.setString(1, upc);
-//                  pstmt.setString(2, quantity);
-//                  pstmt.setString(3, expiration);
+                    pstmt.setInt(1, candidateId);
+                    pstmt.setDouble(2, Double.parseDouble(data[1]));
+                 //   pstmt.setDate(3, x);
+                //    pstmt.setString(3, expiration);
                     int rowAffected = pstmt.executeUpdate();
                     
                     if(rowAffected == 1)
