@@ -237,16 +237,7 @@ public class PerfectPantryGUI extends JFrame {
                     .addComponent(sortingComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jdbc.GetConnection("default");
-        inventoryTable.setModel(jdbc.GetModel());
-        inventoryTable.getColumnModel().getColumn(0).setPreferredWidth(10);
-        inventoryTable.getColumnModel().getColumn(1).setPreferredWidth(30);
-        inventoryTable.getColumnModel().getColumn(2).setPreferredWidth(175);
-        inventoryTable.getColumnModel().getColumn(3).setPreferredWidth(15);
-        inventoryTable.getColumnModel().getColumn(4).setPreferredWidth(10);
-        inventoryTable.getColumnModel().getColumn(5).setPreferredWidth(125);
-        inventoryTable.getColumnModel().getColumn(6).setPreferredWidth(15);
-     
+        populatePantryList();
         jScrollPane1.setViewportView(inventoryTable);
 
         GroupLayout inventoryRightPanelLayout = new GroupLayout(inventoryRightPanel);
@@ -317,17 +308,7 @@ public class PerfectPantryGUI extends JFrame {
         return selectedOption;
     }
     private void sortingComboBoxActionPerformed(ActionEvent evt) {//GEN-FIRST:event_sortingComboBoxActionPerformed
-        jdbc.GetConnection(sortedSelectedOption()); 
-        inventoryTable.setModel(jdbc.GetModel());
-        inventoryTable.repaint();
-        inventoryTable.getColumnModel().getColumn(0).setPreferredWidth(10);
-        inventoryTable.getColumnModel().getColumn(1).setPreferredWidth(30);
-        inventoryTable.getColumnModel().getColumn(2).setPreferredWidth(175);
-        inventoryTable.getColumnModel().getColumn(3).setPreferredWidth(15);
-        inventoryTable.getColumnModel().getColumn(4).setPreferredWidth(10);
-        inventoryTable.getColumnModel().getColumn(5).setPreferredWidth(125);
-        inventoryTable.getColumnModel().getColumn(6).setPreferredWidth(15);
-      
+        populatePantryList();
     }//GEN-LAST:event_sortingComboBoxActionPerformed
  
     private String getConcatenatedWhereStatement(String query, String selectedCat) {
@@ -338,8 +319,7 @@ public class PerfectPantryGUI extends JFrame {
         }
         return query;
     }
-    private void categoriesSelectionActionPerformed(java.awt.event.ActionEvent evt) {
-        
+    private void populatePantryList() {
         String selectedCategories = "";
         if(bakingCB.isSelected())
         {
@@ -367,11 +347,7 @@ public class PerfectPantryGUI extends JFrame {
             selectedCategories = getConcatenatedWhereStatement(selectedCategories,"'Pantry'");            
         }
         
-        if(selectedCategories.length() == 0){
-            jdbc.GetConnection(sortedSelectedOption());
-        } else {
-            jdbc.GetConnection(selectedCategories);
-        }
+        jdbc.GetConnection(sortedSelectedOption(), selectedCategories);
         inventoryTable.setModel(jdbc.GetModel());
         inventoryTable.repaint();
         inventoryTable.getColumnModel().getColumn(0).setPreferredWidth(10);
@@ -381,6 +357,10 @@ public class PerfectPantryGUI extends JFrame {
         inventoryTable.getColumnModel().getColumn(4).setPreferredWidth(10);
         inventoryTable.getColumnModel().getColumn(5).setPreferredWidth(125);
         inventoryTable.getColumnModel().getColumn(6).setPreferredWidth(15);
+    }
+    
+    private void categoriesSelectionActionPerformed(java.awt.event.ActionEvent evt) {
+        populatePantryList();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

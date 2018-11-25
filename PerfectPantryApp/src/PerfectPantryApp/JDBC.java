@@ -31,7 +31,7 @@ public class JDBC {
      * @return a Connection object
      * @throws SQLException
      */
-    public  void GetConnection(String s) {
+    public  void GetConnection(String orderBy, String selectedCategories) {
         Connection conn = null;
         Statement st = null;
         tModel= new DefaultTableModel(
@@ -51,8 +51,12 @@ public class JDBC {
             String query = " select p.upc, p.invName, i.prod_size,i.uom, c.categoryName, i.use_by\r\n"
                     + " from inventory_list i inner join product p on p.ProductID= i.ProductID\r\n"
                     + " inner join category c  on c.catCode=p.Category\r\n" ;
+            
+            if (selectedCategories.length() > 0) {
+                query += " WHERE c.categoryName IN ("+selectedCategories+")";
+            }
             //switch case to perform different searches from database
-            switch (s) {
+            switch (orderBy) {
                 case "default":
                     query +=" ORDER by p.upc;";
                     break;
@@ -66,9 +70,9 @@ public class JDBC {
                     query += " ORDER by i.use_by;";
                     break;
                 default:
-                    query += " WHERE c.categoryName IN ("+s+")";
                     break;
             }
+
             st = (Statement) conn.createStatement();
             ResultSet rs = st.executeQuery(query);//performs query
             int count = 1;
