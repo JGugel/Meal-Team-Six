@@ -1,12 +1,9 @@
 package PerfectPantryApp;
 
 import javax.swing.*;
-
-
-
 /**
  *
- * @author Josh
+ * @author Hira, Josh
  */
 public class AppDriver {
     

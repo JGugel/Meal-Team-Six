@@ -8,6 +8,11 @@ import java.sql.SQLException;
 import javax.swing.*;
 import javax.swing.table.*;
 
+//josh test todo
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 
 
@@ -366,7 +371,29 @@ public class PerfectPantryGUI extends JFrame {
         AddInventoryDialog dialog = new AddInventoryDialog(this);
         String[] data = dialog.run();
         if (data != null) {
-            //verify UPC ,if found, aff item, if not display error message
+            //TODO - Josh - work in progress
+            
+            //verify UPC
+            String query = "SELECT upc FROM product;";
+            //connect to database
+            try (Connection conn = JDBC.getConnection2()) {
+                // print out a message
+                System.out.println(String.format("Connected to database %s "
+                        + "successfully.", conn.getCatalog()));
+                Statement stmt = conn.createStatement();
+
+                ResultSet rs = stmt.executeQuery(query);
+                
+            //if verified add item
+            query = "insert into inventory values('','','');";
+            
+            
+            //else display error message
+                
+                 
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
         }
         
         
