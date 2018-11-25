@@ -48,8 +48,6 @@ public class JDBC {
             
             // create a connection to the database
             conn = DriverManager.getConnection(url, user, password);
-            // create a connection to the database
-            conn = DriverManager.getConnection(url, user, password);
             String query = " select p.upc, p.invName, i.prod_size,i.uom, c.categoryName, i.use_by\r\n"
                     + " from inventory_list i inner join product p on p.ProductID= i.ProductID\r\n"
                     + " inner join category c  on c.catCode=p.Category\r\n" ;
@@ -98,20 +96,20 @@ public class JDBC {
             int count = 1;
             while (rs.next()) { //gets string from db
                 String number = Integer.toString(count);
-     		String upc = rs.getString("UPC");
-     		String name = rs.getString("invName");
-     		String size = rs.getString("prod_size");
-     		String uom = rs.getString("uom");
-     		String category = rs.getString("categoryName");
-     		String expiration = rs.getString("use_by");
+                String upc = rs.getString("UPC");
+                String name = rs.getString("invName");
+                String size = rs.getString("prod_size");
+                String uom = rs.getString("uom");
+                String category = rs.getString("categoryName");
+                String expiration = rs.getString("use_by");
                 tModel.addRow(new Object[] { number, upc, name, size,uom, category, expiration }); //applies data to table model
                 count++;
             }
-        } catch (IOException e) {
+        }catch(IOException e){
             System.out.println(e.getMessage());
-        }catch (SQLException e) {
+        }catch(SQLException e){
             System.out.println(e.getMessage());
-        } finally {
+        }finally {
             try {
                 if (st != null && conn != null) {
                     conn.close();
@@ -119,8 +117,8 @@ public class JDBC {
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }
-        }
-    }	
+        }  
+    }
 }
 
 
