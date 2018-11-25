@@ -1,3 +1,5 @@
+package PerfectPantryApp;
+
 
 import java.awt.event.*;
 import java.sql.SQLException;
