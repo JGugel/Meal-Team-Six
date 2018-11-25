@@ -38,7 +38,14 @@ public class PerfectPantryGUI extends JFrame {
         inventoryLeftPanel = new JPanel();
         addInventoryButton = new JButton();
         categoriesPanel = new JPanel();
-        produceCheckBox = new JCheckBox();
+        bakingCB = new javax.swing.JCheckBox();
+        beveragesCB = new javax.swing.JCheckBox();
+        breadsBakeryCB = new javax.swing.JCheckBox();
+        dairyRefCB = new javax.swing.JCheckBox();
+        householdSCB = new javax.swing.JCheckBox();
+        meatsPoultryCB = new javax.swing.JCheckBox();
+        miscellaneousCB = new javax.swing.JCheckBox();
+        pantryCB = new javax.swing.JCheckBox();
         inventoryRightPanel = new JPanel();
         sortingPanel = new JPanel();
         filterLabel = new JLabel();
@@ -55,31 +62,105 @@ public class PerfectPantryGUI extends JFrame {
                 addInventoryButtonActionPerformed(evt);
             }
         });
+        categoriesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Categories"));
 
-        categoriesPanel.setBorder(BorderFactory.createTitledBorder("Categories"));
-
-        produceCheckBox.setText("Produce");
-        produceCheckBox.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                fruitCheckBoxActionPerformed(evt);
+        bakingCB.setText("Baking, Herbs, and Spices");
+        bakingCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                categoriesSelectionActionPerformed(evt);
             }
         });
 
-        GroupLayout categoriesPanelLayout = new GroupLayout(categoriesPanel);
+        beveragesCB.setText("Beverages");
+        beveragesCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                categoriesSelectionActionPerformed(evt);
+            }
+        });
+
+        breadsBakeryCB.setText("Breads and Bakery");
+        breadsBakeryCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                categoriesSelectionActionPerformed(evt);
+            }
+        });
+
+        dairyRefCB.setText("Dairy and Refrigerated");
+        dairyRefCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                categoriesSelectionActionPerformed(evt);
+            }
+        });
+
+        householdSCB.setText("Household Supplies");
+        householdSCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                categoriesSelectionActionPerformed(evt);
+            }
+        });
+
+        meatsPoultryCB.setText("Meats and Poultry");
+        meatsPoultryCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                categoriesSelectionActionPerformed(evt);
+            }
+        });
+
+        miscellaneousCB.setText("Miscellaneous");
+        miscellaneousCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                categoriesSelectionActionPerformed(evt);
+            }
+        });
+
+        pantryCB.setText("Pantry");
+        pantryCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+               categoriesSelectionActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout categoriesPanelLayout = new javax.swing.GroupLayout(categoriesPanel);
         categoriesPanel.setLayout(categoriesPanelLayout);
         categoriesPanelLayout.setHorizontalGroup(
-            categoriesPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            categoriesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(categoriesPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(produceCheckBox)
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(categoriesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, categoriesPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(bakingCB))
+                    .addGroup(categoriesPanelLayout.createSequentialGroup()
+                        .addGroup(categoriesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(miscellaneousCB)
+                            .addComponent(pantryCB)
+                            .addComponent(beveragesCB)
+                            .addComponent(breadsBakeryCB)
+                            .addComponent(dairyRefCB)
+                            .addComponent(householdSCB)
+                            .addComponent(meatsPoultryCB))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         categoriesPanelLayout.setVerticalGroup(
-            categoriesPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            categoriesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(categoriesPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(produceCheckBox)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bakingCB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(beveragesCB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(breadsBakeryCB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(dairyRefCB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(householdSCB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(meatsPoultryCB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(miscellaneousCB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pantryCB))
         );
 
         GroupLayout inventoryLeftPanelLayout = new GroupLayout(inventoryLeftPanel);
@@ -139,12 +220,10 @@ public class PerfectPantryGUI extends JFrame {
                     .addComponent(sortingComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        
-        
-			j.GetConnection("default");
+        j.GetConnection("default");
 		
         inventoryTable.setModel(
-        	j.GetModel()
+                j.GetModel()
         );
         inventoryTable.getColumnModel().getColumn(0).setPreferredWidth(10);
         inventoryTable.getColumnModel().getColumn(1).setPreferredWidth(30);
@@ -206,26 +285,30 @@ public class PerfectPantryGUI extends JFrame {
     private void addInventoryButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_addInventoryButtonActionPerformed
         // TODO add your handling code here:
         
+        
     }//GEN-LAST:event_addInventoryButtonActionPerformed
 
     private void sortingComboBoxActionPerformed(ActionEvent evt) {//GEN-FIRST:event_sortingComboBoxActionPerformed
-    	String sort= (String)sortingComboBox.getSelectedItem();
+        String sort= (String)sortingComboBox.getSelectedItem();
     	if(sort.equals("UPC")){
-        	j.GetConnection("default");
-        	inventoryTable.setModel(j.GetModel());
-        	inventoryTable.repaint();
-        }    	else if(sort.equals("Name")){
-        	j.GetConnection("Name");
-        	inventoryTable.setModel(j.GetModel());
-        	inventoryTable.repaint();
-        }else if (sort.equals("Categories")) {
-        	j.GetConnection("Categories"); 
-        	inventoryTable.setModel(j.GetModel());
-        inventoryTable.repaint();
-        }else if (sort.equals("Expiration Date")) {
-        	j.GetConnection("date"); 
-        	inventoryTable.setModel(j.GetModel());
-        inventoryTable.repaint();
+            j.GetConnection("default");
+            inventoryTable.setModel(j.GetModel());
+            inventoryTable.repaint();
+        }
+        else if(sort.equals("Name")){
+            j.GetConnection("Name");
+            inventoryTable.setModel(j.GetModel());
+            inventoryTable.repaint();
+        }
+        else if (sort.equals("Categories")) {
+            j.GetConnection("Categories");
+            inventoryTable.setModel(j.GetModel());
+            inventoryTable.repaint();
+        }
+        else if (sort.equals("Expiration Date")) {
+            j.GetConnection("date");
+            inventoryTable.setModel(j.GetModel());
+            inventoryTable.repaint();
         }
         inventoryTable.getColumnModel().getColumn(0).setPreferredWidth(10);
         inventoryTable.getColumnModel().getColumn(1).setPreferredWidth(30);
@@ -236,24 +319,71 @@ public class PerfectPantryGUI extends JFrame {
         inventoryTable.getColumnModel().getColumn(6).setPreferredWidth(15);
       
     }//GEN-LAST:event_sortingComboBoxActionPerformed
-
-    private void fruitCheckBoxActionPerformed(ActionEvent evt) {//GEN-FIRST:event_fruitCheckBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fruitCheckBoxActionPerformed
-
-
+ 
+    private void categoriesSelectionActionPerformed(java.awt.event.ActionEvent evt) {
+        
+        j.GetConnection("default");
+        if(bakingCB.isSelected())
+        {
+            j.GetConnection("bakingCategory");
+        }
+        if(beveragesCB.isSelected()){
+            j.GetConnection("beverageCategory");
+            
+        }
+        if(breadsBakeryCB.isSelected()){
+            j.GetConnection("breadsBCategory");
+            
+        }
+        if(dairyRefCB.isSelected()){
+            j.GetConnection("dairyRCategory");
+            
+        }
+        if(householdSCB.isSelected()){
+            j.GetConnection("housholdSCategory");
+            
+        }
+        if(meatsPoultryCB.isSelected()){
+            j.GetConnection("meatsPCategory");
+            
+        }
+        if(miscellaneousCB.isSelected()){
+            j.GetConnection("miscellaneousCategory");
+            
+        }
+        if(pantryCB.isSelected()){
+            j.GetConnection("pantryCategory");
+            
+        }
+        inventoryTable.setModel(j.GetModel());
+        inventoryTable.repaint();
+        inventoryTable.getColumnModel().getColumn(0).setPreferredWidth(10);
+        inventoryTable.getColumnModel().getColumn(1).setPreferredWidth(30);
+        inventoryTable.getColumnModel().getColumn(2).setPreferredWidth(175);
+        inventoryTable.getColumnModel().getColumn(3).setPreferredWidth(15);
+        inventoryTable.getColumnModel().getColumn(4).setPreferredWidth(10);
+        inventoryTable.getColumnModel().getColumn(5).setPreferredWidth(125);
+        inventoryTable.getColumnModel().getColumn(6).setPreferredWidth(15);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JButton addInventoryButton;
+    private javax.swing.JCheckBox bakingCB;
+    private javax.swing.JCheckBox beveragesCB;
+    private javax.swing.JCheckBox breadsBakeryCB;
     private JPanel categoriesPanel;
+    private javax.swing.JCheckBox dairyRefCB;
     private JLabel filterLabel;
-    private JCheckBox produceCheckBox;
+    private javax.swing.JCheckBox householdSCB;
     private JPanel inventoryLeftPanel;
     private JPanel inventoryRightPanel;
     private JSplitPane inventorySplitPane;
     private JTabbedPane inventoryTabPane;
     private JTable inventoryTable;
     private JScrollPane jScrollPane1;
+    private javax.swing.JCheckBox meatsPoultryCB;
+    private javax.swing.JCheckBox miscellaneousCB;
+    private javax.swing.JCheckBox pantryCB;
     private JComboBox<String> sortingComboBox;
     private JLabel sortingLabel;
     private JPanel sortingPanel;
