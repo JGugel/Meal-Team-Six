@@ -98,7 +98,7 @@ public class InventoryData {
     }
 
   
-    boolean AddInventory(PerfectPantryGUI aThis, String[] data) {
+    boolean AddInventory(String[] data) {
         String upc;
         double quantity;
         double avgUse;
@@ -128,8 +128,7 @@ public class InventoryData {
             //System.out.println(ex);
             JOptionPane.showMessageDialog(null, ex);
             return false;
-        }
-           
+        }        
         //connect to database
         try (Connection conn = JDBC.getConnection2()) {
             // print out a message
@@ -176,7 +175,5 @@ public class InventoryData {
         }
         return true;
 }
-
-   
 
 }

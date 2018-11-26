@@ -411,7 +411,7 @@ public class PerfectPantryGUI extends JFrame {
         if (data == null) {
             return;
         }
-        boolean addSuccess=invData.AddInventory(this,data);
+        boolean addSuccess=invData.AddInventory(data);
         
         if(addSuccess){
                 populatePantryList();
