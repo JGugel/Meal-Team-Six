@@ -27,14 +27,18 @@ import java.util.logging.Logger;
  * @author Hira Waqas, Josh Gugel
  */
 public class PerfectPantryGUI extends JFrame {
-
-    private JDBC jdbc;
+   
+    private InventoryData invData;
 
     /**
      * Creates new form PerfectPantryGUI
      */
     public PerfectPantryGUI() {
-        jdbc = new JDBC();
+        try {
+            invData = new InventoryData();
+        } catch (SQLException ex) {
+            Logger.getLogger(PerfectPantryGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
         initComponents();
     }
 
@@ -57,8 +61,6 @@ public class PerfectPantryGUI extends JFrame {
         //Constructor
         public AddInventoryDialog(Frame frame){
             super(frame, "Add Item", true);
-            Point loc = frame.getLocation();
-            setLocation(loc.x+80,loc.y+80);
             data = new String[5];
             JPanel panel = new JPanel();
             GridBagLayout grid = new GridBagLayout();
@@ -130,6 +132,8 @@ public class PerfectPantryGUI extends JFrame {
             
             getContentPane().add(panel);
             pack();
+            setLocationRelativeTo(null);
+             
         }
         
         public String [] run() {
@@ -234,6 +238,13 @@ public class PerfectPantryGUI extends JFrame {
             }
         });
 
+          pantryCB.setText("Pantry");
+        pantryCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+               categoriesSelectionActionPerformed(evt);
+            }
+        });
+        
         miscellaneousCB.setText("Miscellaneous");
         miscellaneousCB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -241,12 +252,7 @@ public class PerfectPantryGUI extends JFrame {
             }
         });
 
-        pantryCB.setText("Pantry");
-        pantryCB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-               categoriesSelectionActionPerformed(evt);
-            }
-        });
+      
 
         javax.swing.GroupLayout categoriesPanelLayout = new javax.swing.GroupLayout(categoriesPanel);
         categoriesPanel.setLayout(categoriesPanelLayout);
@@ -286,9 +292,9 @@ public class PerfectPantryGUI extends JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(meatsPoultryCB)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(miscellaneousCB)
+                .addComponent(pantryCB)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pantryCB))
+                .addComponent(miscellaneousCB))
         );
 
         GroupLayout inventoryLeftPanelLayout = new GroupLayout(inventoryLeftPanel);
@@ -394,8 +400,8 @@ public class PerfectPantryGUI extends JFrame {
                 .addComponent(inventoryTabPane)
                 .addContainerGap())
         );
-
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void addInventoryButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_addInventoryButtonActionPerformed
@@ -405,84 +411,12 @@ public class PerfectPantryGUI extends JFrame {
         if (data == null) {
             return;
         }
+        boolean addSuccess=invData.AddInventory(this,data);
         
-        String upc;
-        double quantity;
-        double avgUse;
-        String uom;
-        SimpleDateFormat dateFormat;
-        java.sql.Date sqlExp=null;
-        
-        //parse data values
-        if (!(data[3].isEmpty())) {
-            try {
-                dateFormat = new SimpleDateFormat("yyyy-mm-dd");
-                java.util.Date exp;
-                exp = dateFormat.parse(data[3]);
-                sqlExp = new java.sql.Date(exp.getTime());
-            } catch (ParseException ex) {
-                Logger.getLogger(PerfectPantryGUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        }
-        try {
-            upc = data[0];
-            quantity = Double.parseDouble(data[1]);
-            avgUse = Double.parseDouble(data[4]);
-            uom = data[2];     
-        } catch (NumberFormatException ex) {
-            Logger.getLogger(PerfectPantryGUI.class.getName()).log(Level.SEVERE, null, ex);
-            //System.out.println(ex);
-            JOptionPane.showMessageDialog(this, ex);
-            return;
-        }
-        
-        
-        //connect to database
-        try (Connection conn = JDBC.getConnection2()) {
-            // print out a message
-            System.out.println(String.format("Connected to database %s "
-                    + "successfully.", conn.getCatalog()));
-            Statement stmt = conn.createStatement();
-
-            //verify UPC
-            if (upc.length() != 12) {
-                JOptionPane.showMessageDialog(this, "UPC must be a 12 digit integer");
-                return;
-            }
-            String query ="select productID from product where upc=" + upc;
-            ResultSet rs = stmt.executeQuery(query);
-            Integer candidateId=0;
-           
-            if (rs.next()) {//looking for an item
-                //if verified, add item
-                candidateId = rs.getInt("productID");
-                query="";
-                
-                System.out.println(candidateId + " "+quantity+" "+uom+ " " + sqlExp+ " " +avgUse);
-                query = "insert into inventory_list (productID,prod_size,uom,use_by, avg_usage) values(?,?,?,?,?);";
-                PreparedStatement pstmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-                pstmt.setInt(1, candidateId);
-                pstmt.setDouble(2, quantity);
-                pstmt.setString(3, uom);
-                if (sqlExp!=null) {
-                    pstmt.setDate(4, sqlExp);
-                } else {
-                    //http://www.java2s.com/Tutorials/Java/JDBC/Insert/Set_NULL_date_value_to_database_in_Java.htm
-                    pstmt.setNull(4, java.sql.Types.DATE);
-                }
-                pstmt.setDouble(5, avgUse);
-                pstmt.execute();
-                conn.close();
+        if(addSuccess){
                 populatePantryList();
                 JOptionPane.showMessageDialog(this, "Record has been updated");
-            } else {//upc not found
-               JOptionPane.showMessageDialog(this, "UPC not found");
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
         }
-        
         
     }//GEN-LAST:event_addInventoryButtonActionPerformed
 
@@ -540,8 +474,8 @@ public class PerfectPantryGUI extends JFrame {
             selectedCategories = getConcatenatedWhereStatement(selectedCategories,"'Pantry'");            
         }
         
-        jdbc.GetConnection(sortedSelectedOption(), selectedCategories);
-        inventoryTable.setModel(jdbc.GetModel());
+        invData.SetTable(sortedSelectedOption(), selectedCategories);
+        inventoryTable.setModel(invData.GetModel());
         inventoryTable.repaint();
         inventoryTable.getColumnModel().getColumn(0).setPreferredWidth(10);
         inventoryTable.getColumnModel().getColumn(1).setPreferredWidth(30);
