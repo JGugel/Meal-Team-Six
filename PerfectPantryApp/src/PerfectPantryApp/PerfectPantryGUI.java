@@ -411,23 +411,32 @@ public class PerfectPantryGUI extends JFrame {
         double avgUse;
         String uom;
         SimpleDateFormat dateFormat;
-        java.sql.Date sqlExp;
+        java.sql.Date sqlExp=null;
         
         //parse data values
+        if (!(data[3].isEmpty())) {
+            try {
+                dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+                java.util.Date exp;
+                exp = dateFormat.parse(data[3]);
+                sqlExp = new java.sql.Date(exp.getTime());
+            } catch (ParseException ex) {
+                Logger.getLogger(PerfectPantryGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
         try {
             upc = data[0];
             quantity = Double.parseDouble(data[1]);
             avgUse = Double.parseDouble(data[4]);
-            uom = data[2];
-            dateFormat = new SimpleDateFormat("yyyy-mm-dd");
-            java.util.Date exp=dateFormat.parse(data[3]);
-            sqlExp = new java.sql.Date(exp.getTime()); 
-        } catch (ParseException | NumberFormatException ex) {
+            uom = data[2];     
+        } catch (NumberFormatException ex) {
             Logger.getLogger(PerfectPantryGUI.class.getName()).log(Level.SEVERE, null, ex);
             //System.out.println(ex);
             JOptionPane.showMessageDialog(this, ex);
             return;
         }
+        
         
         //connect to database
         try (Connection conn = JDBC.getConnection2()) {
@@ -444,27 +453,31 @@ public class PerfectPantryGUI extends JFrame {
             String query ="select productID from product where upc=" + upc;
             ResultSet rs = stmt.executeQuery(query);
             Integer candidateId=0;
-            if (rs.next()) {
+           
+            if (rs.next()) {//looking for an item
                 //if verified, add item
                 candidateId = rs.getInt("productID");
                 query="";
-                if(candidateId.equals(null)){
-                    JOptionPane.showMessageDialog(this, "UPC not found");
-                }
+                
                 System.out.println(candidateId + " "+quantity+" "+uom+ " " + sqlExp+ " " +avgUse);
                 query = "insert into inventory_list (productID,prod_size,uom,use_by, avg_usage) values(?,?,?,?,?);";
                 PreparedStatement pstmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
                 pstmt.setInt(1, candidateId);
                 pstmt.setDouble(2, quantity);
                 pstmt.setString(3, uom);
-                pstmt.setDate(4, sqlExp);
+                if (sqlExp!=null) {
+                    pstmt.setDate(4, sqlExp);
+                } else {
+                    //http://www.java2s.com/Tutorials/Java/JDBC/Insert/Set_NULL_date_value_to_database_in_Java.htm
+                    pstmt.setNull(4, java.sql.Types.DATE);
+                }
                 pstmt.setDouble(5, avgUse);
                 pstmt.execute();
                 conn.close();
                 populatePantryList();
                 JOptionPane.showMessageDialog(this, "Record has been updated");
-            } else {
-                JOptionPane.showMessageDialog(this, "Error in SQL");
+            } else {//upc not found
+               JOptionPane.showMessageDialog(this, "UPC not found");
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
