@@ -100,12 +100,16 @@ public class InventoryData {
   
     boolean AddInventory(String[] data) {
         String upc;
-        double quantity;
-        double avgUse;
+        int quantity;
+        double size;
         String uom;
         SimpleDateFormat dateFormat;
-        java.sql.Date sqlExp=null;
-        
+        java.sql.Date sqlExp=null;  
+        //checking for empty where there should be values
+        if (data[0].isEmpty() || data[1].isEmpty() || data[2].isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Invalid Input: Field must not be empty");
+            return false;
+        }
         //parse data values
         if (!(data[3].isEmpty())) {
             try {
@@ -115,20 +119,32 @@ public class InventoryData {
                 sqlExp = new java.sql.Date(exp.getTime());
             } catch (ParseException ex) {
                 Logger.getLogger(PerfectPantryGUI.class.getName()).log(Level.SEVERE, null, ex);
+                 JOptionPane.showMessageDialog(null, "Date must be in yyyy-mm-dd format");
+                 return false;
             }
-
         }
-        try {
+      
             upc = data[0];
-            quantity = Double.parseDouble(data[1]);
-            avgUse = Double.parseDouble(data[4]);
-            uom = data[2];     
-        } catch (NumberFormatException ex) {
-            Logger.getLogger(PerfectPantryGUI.class.getName()).log(Level.SEVERE, null, ex);
-            //System.out.println(ex);
-            JOptionPane.showMessageDialog(null, ex);
-            return false;
-        }        
+            size = Double.parseDouble(data[1]);
+            uom = data[2];
+            
+            if (uom.length() > 6) {
+                JOptionPane.showMessageDialog(null, "Unit of Measurement must only be 6 characters");
+                return false;  
+            }
+            if (!data[4].isEmpty()) {//quantity defaults to one
+                try{
+                   quantity = Integer.parseInt(data[4]); 
+                }catch (NumberFormatException e){
+                    JOptionPane.showMessageDialog(null, "Quantity should be a numeric value");
+                    return false;
+                }
+                
+            } else {
+                quantity = 1;
+            }
+        
+       
         //connect to database
         try (Connection conn = JDBC.getConnection2()) {
             // print out a message
@@ -150,11 +166,10 @@ public class InventoryData {
                 candidateId = rs.getInt("productID");
                 query="";
                 
-                System.out.println(candidateId + " "+quantity+" "+uom+ " " + sqlExp+ " " +avgUse);
-                query = "insert into inventory_list (productID,prod_size,uom,use_by, avg_usage) values(?,?,?,?,?);";
+                query = "insert into inventory_list (productID,prod_size,uom,use_by, size) values(?,?,?,?,?);";
                 PreparedStatement pstmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
                 pstmt.setInt(1, candidateId);
-                pstmt.setDouble(2, quantity);
+                pstmt.setDouble(2, size);
                 pstmt.setString(3, uom);
                 if (sqlExp!=null) {
                     pstmt.setDate(4, sqlExp);
@@ -162,7 +177,7 @@ public class InventoryData {
                     //http://www.java2s.com/Tutorials/Java/JDBC/Insert/Set_NULL_date_value_to_database_in_Java.htm
                     pstmt.setNull(4, java.sql.Types.DATE);
                 }
-                pstmt.setDouble(5, avgUse);
+                pstmt.setInt(5,quantity);
                 pstmt.execute();
                 conn.close();
                 

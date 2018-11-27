@@ -69,7 +69,7 @@ public class PerfectPantryGUI extends JFrame {
             gbc.insets = new Insets(5,5,5,5);
             gbc.fill = GridBagConstraints.HORIZONTAL;
             //UPC
-            upcLabel = new JLabel("Item UPC (12 digits)");
+            upcLabel = new JLabel("Item UPC (12 digits)*");
             gbc.gridx = 0;
             gbc.gridy = 0;
             panel.add(upcLabel, gbc);
@@ -79,7 +79,7 @@ public class PerfectPantryGUI extends JFrame {
             panel.add(upcTextField, gbc);
             
             //Quantity
-            quantityLabel = new JLabel("Quantity");
+            quantityLabel = new JLabel("Size*");
             gbc.gridx = 0;
             gbc.gridy = 1;
             panel.add(quantityLabel, gbc);
@@ -89,7 +89,7 @@ public class PerfectPantryGUI extends JFrame {
             panel.add(quantityTextField, gbc);
             
             //Unit of Measurment
-            uomLabel = new JLabel("Unit of Measurment (6 char max)");
+            uomLabel = new JLabel("Unit of Measurment (6 char max)*");
             gbc.gridx = 0;
             gbc.gridy = 2;
             panel.add(uomLabel, gbc);
@@ -109,7 +109,7 @@ public class PerfectPantryGUI extends JFrame {
             panel.add(expirationTextField, gbc);
             
             //Average Usage
-            usageLabel = new JLabel("Average Quantity Usage");
+            usageLabel = new JLabel("Quantity");
             gbc.gridx = 0;
             gbc.gridy = 4;
             panel.add(usageLabel, gbc);
@@ -148,7 +148,6 @@ public class PerfectPantryGUI extends JFrame {
                 data[1] = quantityTextField.getText();
                 data[2] = uomTextField.getText();
                 data[3] = expirationTextField.getText();
-                data[4] = usageTextField.getText();
             } else {
                 data = null;
             }
