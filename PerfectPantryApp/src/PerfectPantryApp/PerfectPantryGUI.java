@@ -3,19 +3,11 @@ package PerfectPantryApp;
 
 import java.awt.event.*;
 import java.awt.*;
-import java.sql.SQLException;
 
 import javax.swing.*;
-import javax.swing.table.*;
 
 //josh test todo
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -42,22 +34,24 @@ public class PerfectPantryGUI extends JFrame {
         initComponents();
     }
 
+    
+
     // ref: http://www2.hawaii.edu/~takebaya/ics111/jdialog/jdialog.html
     class AddInventoryDialog extends JDialog implements ActionListener{
         private String[] data;
         private JLabel upcLabel;
-        private JLabel quantityLabel;
+        private JLabel sizeLabel;
         private JLabel uomLabel;
         private JLabel expirationLabel;
-        private JLabel usageLabel;
+        private JLabel quantityLabel;
         private JTextField upcTextField;
-        private JTextField quantityTextField;
+        private JTextField sizeTextField;
         private JTextField uomTextField;
         private JTextField expirationTextField;
-        private JTextField usageTextField;
+        private JTextField quantityTextField;
         private JButton addBtn;
         private JButton cancelBtn;
-        
+        private  boolean addSuccess=false;
         //Constructor
         public AddInventoryDialog(Frame frame){
             super(frame, "Add Item", true);
@@ -79,14 +73,14 @@ public class PerfectPantryGUI extends JFrame {
             panel.add(upcTextField, gbc);
             
             //Quantity
-            quantityLabel = new JLabel("Size*");
+            sizeLabel = new JLabel("Size*");
             gbc.gridx = 0;
             gbc.gridy = 1;
-            panel.add(quantityLabel, gbc);
-            quantityTextField = new JTextField(10);
+            panel.add(sizeLabel, gbc);
+            sizeTextField = new JTextField(10);
             gbc.gridx = 1;
             gbc.gridy = 1;
-            panel.add(quantityTextField, gbc);
+            panel.add(sizeTextField, gbc);
             
             //Unit of Measurment
             uomLabel = new JLabel("Unit of Measurment (6 char max)*");
@@ -109,14 +103,14 @@ public class PerfectPantryGUI extends JFrame {
             panel.add(expirationTextField, gbc);
             
             //Average Usage
-            usageLabel = new JLabel("Quantity");
+            quantityLabel = new JLabel("Quantity");
             gbc.gridx = 0;
             gbc.gridy = 4;
-            panel.add(usageLabel, gbc);
-            usageTextField = new JTextField(10);
+            panel.add(quantityLabel, gbc);
+            quantityTextField = new JTextField(10);
             gbc.gridx = 1;
             gbc.gridy = 4;
-            panel.add(usageTextField, gbc);
+            panel.add(quantityTextField, gbc);
             
             //Add and Cancel Buttons
             addBtn = new JButton("Add");
@@ -131,9 +125,8 @@ public class PerfectPantryGUI extends JFrame {
             panel.add(cancelBtn, gbc);
             
             getContentPane().add(panel);
-            pack();
+            pack();    
             setLocationRelativeTo(null);
-             
         }
         
         public String [] run() {
@@ -145,13 +138,16 @@ public class PerfectPantryGUI extends JFrame {
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == addBtn) {
                 data[0] = upcTextField.getText();
-                data[1] = quantityTextField.getText();
+                data[1] = sizeTextField.getText();
                 data[2] = uomTextField.getText();
                 data[3] = expirationTextField.getText();
+                data[4] = quantityTextField.getText();
             } else {
                 data = null;
             }
-            dispose();
+                 dispose();
+            
+           
         }
     }
     
@@ -402,7 +398,7 @@ public class PerfectPantryGUI extends JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+  
     private void addInventoryButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_addInventoryButtonActionPerformed
         //check item UPC in database to verify
         AddInventoryDialog dialog = new AddInventoryDialog(this);
@@ -482,7 +478,8 @@ public class PerfectPantryGUI extends JFrame {
         inventoryTable.getColumnModel().getColumn(3).setPreferredWidth(15);
         inventoryTable.getColumnModel().getColumn(4).setPreferredWidth(10);
         inventoryTable.getColumnModel().getColumn(5).setPreferredWidth(125);
-        inventoryTable.getColumnModel().getColumn(6).setPreferredWidth(15);
+        inventoryTable.getColumnModel().getColumn(6).setPreferredWidth(25);
+        inventoryTable.getColumnModel().getColumn(7).setPreferredWidth(5);
     }
     
     private void categoriesSelectionActionPerformed(java.awt.event.ActionEvent evt) {

@@ -38,7 +38,7 @@ public class InventoryData {
     public void SetTable(String orderBy, String selectedCategories) {
 
         tModel = new DefaultTableModel(
-                new String[]{"#", "upc", "name", "size", "uom", "category", "expiration"}, 0);
+                new String[]{"#", "upc", "name", "size", "uom", "category", "expiration", "Quantity"}, 0);
         try {
             this.conn = JDBC.getConnection2();
             System.out.println(String.format("Connected to database %s "
@@ -47,7 +47,7 @@ public class InventoryData {
             Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        String query = " select p.upc, p.invName, i.prod_size,i.uom, c.categoryName, i.use_by\r\n"
+        String query = " select p.upc, p.invName, i.prod_size,i.uom, c.categoryName, i.use_by, i.quantity\r\n"
                 + " from inventory_list i inner join product p on p.ProductID= i.ProductID\r\n"
                 + " inner join category c  on c.catCode=p.Category\r\n";
 
@@ -88,26 +88,34 @@ public class InventoryData {
                 String uom = rs.getString("uom");
                 String category = rs.getString("categoryName");
                 String expiration = rs.getString("use_by");
-                tModel.addRow(new Object[]{number, upc, name, size, uom, category, expiration}); //applies data to table model
+                String quantity = rs.getString("Quantity");
+                tModel.addRow(new Object[]{number, upc, name, size, uom, category, expiration, quantity}); //applies data to table model
                 count++;
             }
-          conn.close();
+            conn.close();
         } catch (SQLException ex) {
             Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-  
     boolean AddInventory(String[] data) {
         String upc;
         int quantity;
         double size;
         String uom;
         SimpleDateFormat dateFormat;
-        java.sql.Date sqlExp=null;  
+        java.sql.Date sqlExp = null;
         //checking for empty where there should be values
-        if (data[0].isEmpty() || data[1].isEmpty() || data[2].isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Invalid Input: Field must not be empty");
+        if (data[0].isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Invalid Input: UPC must not be empty");
+            return false;
+        }
+        if (data[1].isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Invalid Input: Size must not be empty");
+            return false;
+        }
+        if (data[2].isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Invalid Input: Unit of measurement must not be empty");
             return false;
         }
         //parse data values
@@ -119,32 +127,42 @@ public class InventoryData {
                 sqlExp = new java.sql.Date(exp.getTime());
             } catch (ParseException ex) {
                 Logger.getLogger(PerfectPantryGUI.class.getName()).log(Level.SEVERE, null, ex);
-                 JOptionPane.showMessageDialog(null, "Date must be in yyyy-mm-dd format");
-                 return false;
+                JOptionPane.showMessageDialog(null, "Date must be in yyyy-mm-dd format");
+                return false;
             }
         }
-      
-            upc = data[0];
+        upc = data[0];
+        try{
+            Long temp= Long.parseLong(upc);
+        }catch (NumberFormatException e) {
+           JOptionPane.showMessageDialog(null, "UPC should be a numeric value");
+            return false; 
+        }
+        try {
             size = Double.parseDouble(data[1]);
-            uom = data[2];
-            
-            if (uom.length() > 6) {
-                JOptionPane.showMessageDialog(null, "Unit of Measurement must only be 6 characters");
-                return false;  
-            }
-            if (!data[4].isEmpty()) {//quantity defaults to one
-                try{
-                   quantity = Integer.parseInt(data[4]); 
-                }catch (NumberFormatException e){
-                    JOptionPane.showMessageDialog(null, "Quantity should be a numeric value");
-                    return false;
-                }
-                
-            } else {
-                quantity = 1;
-            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Size should be a numeric value");
+            return false;
+        }
         
-       
+        uom = data[2];
+        if (uom.length() > 6) {
+            JOptionPane.showMessageDialog(null, "Unit of Measurement must only be 6 characters");
+            return false;
+        }
+        
+        if (data[4].isEmpty() ) {
+            quantity = 1;
+
+        } else {//quantity defaults to one
+            try {
+                quantity = Integer.parseInt(data[4]);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Quantity should be a numeric value");
+                return false;
+            }
+        }
+
         //connect to database
         try (Connection conn = JDBC.getConnection2()) {
             // print out a message
@@ -157,38 +175,40 @@ public class InventoryData {
                 JOptionPane.showMessageDialog(null, "UPC must be a 12 digit integer");
                 return false;
             }
-            String query ="select productID from product where upc=" + upc;
+            String query = "select productID from product where upc=" + upc;
+        
             ResultSet rs = stmt.executeQuery(query);
-            Integer candidateId=0;
-           
+            Integer candidateId = 0;
+
             if (rs.next()) {//looking for an item
                 //if verified, add item
                 candidateId = rs.getInt("productID");
-                query="";
-                
-                query = "insert into inventory_list (productID,prod_size,uom,use_by, size) values(?,?,?,?,?);";
+                query = "";
+
+                query = "insert into inventory_list (productID,prod_size,uom,use_by, quantity) values(?,?,?,?,?);";
                 PreparedStatement pstmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
                 pstmt.setInt(1, candidateId);
                 pstmt.setDouble(2, size);
                 pstmt.setString(3, uom);
-                if (sqlExp!=null) {
+                if (sqlExp != null) {
                     pstmt.setDate(4, sqlExp);
                 } else {
                     //http://www.java2s.com/Tutorials/Java/JDBC/Insert/Set_NULL_date_value_to_database_in_Java.htm
                     pstmt.setNull(4, java.sql.Types.DATE);
                 }
-                pstmt.setInt(5,quantity);
+                pstmt.setInt(5, quantity);
                 pstmt.execute();
                 conn.close();
-                
+
             } else {//upc not found
-               JOptionPane.showMessageDialog(null, "UPC not found");
-               return false;
+                JOptionPane.showMessageDialog(null, "UPC not found");
+                return false;
             }
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+           System.out.println(ex);
+           return false;
         }
         return true;
-}
+    }
 
 }
