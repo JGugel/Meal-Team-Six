@@ -105,23 +105,28 @@ public class InventoryData {
         }
     }
 
-    boolean AddInventory(String[] data) {
-        boolean correctSize, correctUOM, correctDate, correctQuantity;
-        correctSize = validateSize(data[1]);
-        correctUOM=validateUOM(data[2]);
-        correctDate=validateDate(data[3]);
-        correctQuantity=validateQuantity(data[4]);
-        if(!correctSize||!correctUOM||!correctDate||!correctQuantity){
+   public boolean AddInventory(String[] data) {
+        boolean correctSize = validateSize(data[1]);
+        boolean correctUOM = validateUOM(data[2]);
+        boolean correctDate = validateDate(data[3]);
+        boolean correctQuantity = validateQuantity(data[4]);
+
+        if (!correctSize || !correctUOM || !correctDate || !correctQuantity) {
             return false;
         }
-       
-        //connect to database
+        boolean successfulInsert = runInsertQuery();
+        return successfulInsert;
+    }
+
+    private boolean runInsertQuery() {
         try (Connection conn = JDBC.getConnection2()) {
             // print out a message
             System.out.println(String.format("Connected to database %s "
                     + "successfully.", conn.getCatalog()));
-            Statement stmt = conn.createStatement();
-            String query = "insert into inventory_list (productID,prod_size,uom,use_by, quantity) values(?,?,?,?,?);";
+            
+            String query = "insert into inventory_list (productID,prod_size,uom,"
+                    + "use_by, quantity) values(?,?,?,?,?);";
+            
             PreparedStatement pstmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             pstmt.setInt(1, productID);
             pstmt.setDouble(2, size);
@@ -137,32 +142,34 @@ public class InventoryData {
             conn.close();
 
         } catch (SQLException ex) {
-            System.out.println(ex);
+             JOptionPane.showMessageDialog(null, "Oops!"+ex);
             return false;
         }
         return true;
     }
-   public boolean CheckExists(){
-         try (Connection conn = JDBC.getConnection2()) {
+
+    public boolean CheckExists() {
+        try (Connection conn = JDBC.getConnection2()) {
             // print out a message
             System.out.println(String.format("Connected to database %s "
                     + "successfully.", conn.getCatalog()));
             Statement stmt = conn.createStatement();
-            String query = "select * from Inventory_List where productID="+productID+";" ;
+            String query = "select * from Inventory_List where productID=" + productID + ";";
             ResultSet rs = stmt.executeQuery(query);
             if (rs.next()) {//looking for an item
-               return true;
+                return true;
             } else {//upc not found
                 return false;
             }
         } catch (SQLException ex) {
-            System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Oops!"+ex);
             return false;
         }
     }
+
     //helper method to validate and set quantity
     private boolean validateQuantity(String tempQuant) {
-         if (tempQuant.isEmpty()) {
+        if (tempQuant.isEmpty()) {
             quantity = 1;
 
         } else {//quantity defaults to one
@@ -173,13 +180,14 @@ public class InventoryData {
                 return false;
             }
         }
-         return true;
+        return true;
     }
+
     //helper method to validate and set date
     private boolean validateDate(String tempDate) {
-         SimpleDateFormat dateFormat;
-         java.sql.Date sqlExp = null;
-      
+        SimpleDateFormat dateFormat;
+        java.sql.Date sqlExp = null;
+
         //parse data values
         if (!(tempDate.isEmpty())) {
             try {
@@ -194,6 +202,7 @@ public class InventoryData {
         }
         return true;
     }
+
     //helper method to validate and set size
     private boolean validateSize(String tempSize) {
         if (tempSize.isEmpty()) {
@@ -208,9 +217,9 @@ public class InventoryData {
         }
         return true;
     }
-    
+
     //helper method to validate and set units
-     private boolean validateUOM(String tempUOM) {
+    private boolean validateUOM(String tempUOM) {
         if (tempUOM.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Invalid Input: Unit of measurement must not be empty");
             return false;
@@ -224,8 +233,8 @@ public class InventoryData {
         }
         return true;
     }
-    
-     //called from GUI
+
+    //called from GUI
     public String ValidateUPC(String upc) {
         String regex = "[0-9]+";
         boolean exists = false;
@@ -240,7 +249,7 @@ public class InventoryData {
         }
         exists = runUPCQuery(upc);
         if (exists) {
-           return "valid";
+            return "valid";
         } else {
             return "notFound";
         }
