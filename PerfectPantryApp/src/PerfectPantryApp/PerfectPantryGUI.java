@@ -406,13 +406,37 @@ public class PerfectPantryGUI extends JFrame {
         if (data == null) {
             return;
         }
-        boolean addSuccess=invData.AddInventory(data);
-        
-        if(addSuccess){
-                populatePantryList();
-                JOptionPane.showMessageDialog(this, "Record has been updated");
+        String upcCheck = invData.ValidateUPC(data[0]);
+        switch (upcCheck) {
+            case "valid":
+                boolean addSuccess = invData.AddInventory(data);
+                if (addSuccess) {
+                    populatePantryList();
+                    JOptionPane.showMessageDialog(this, "Record has been updated");
+                }
+                break;
+            case "empty":
+                JOptionPane.showMessageDialog(this, "Invalid Input: UPC must not be empty");
+                break;
+            case "length":
+                JOptionPane.showMessageDialog(this, "UPC must be a 12 digit integer");
+                break;
+            case "notANum":
+                JOptionPane.showMessageDialog(this, "UPC should be a numeric value");
+                break;
+            case "notFound":
+                /**
+                 * We need to add code to this to allow a user to enter information 
+                 * to the master product table. The data variable should remain intact
+                 * because once it is entered as a product it should also be added as 
+                 * an inventory item.
+                 */
+                 JOptionPane.showMessageDialog(this, "UPC not found in database");
+                break;
+            default:
+                break;
         }
-        
+
     }//GEN-LAST:event_addInventoryButtonActionPerformed
 
     private String sortedSelectedOption() {
