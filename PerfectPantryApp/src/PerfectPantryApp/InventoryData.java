@@ -41,44 +41,15 @@ public class InventoryData {
         return tModel;
     }
 
+    //sets the table data for home screen
     public void SetTable(String orderBy, String selectedCategories) {
-
+        String query = buildQuery(orderBy, selectedCategories);
         tModel = new DefaultTableModel(
                 new String[]{"#", "upc", "name", "size", "uom", "category", "expiration", "Quantity"}, 0);
         try {
             this.conn = JDBC.getConnection2();
             System.out.println(String.format("Connected to database %s "
                     + "successfully.", conn.getCatalog()));
-        } catch (SQLException ex) {
-            Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        String query = " select p.upc, p.invName, i.prod_size,i.uom, c.categoryName, i.use_by, i.quantity\r\n"
-                + " from inventory_list i inner join product p on p.ProductID= i.ProductID\r\n"
-                + " inner join category c  on c.catCode=p.Category\r\n";
-
-        if (selectedCategories.length() > 0) {
-            query += " WHERE c.categoryName IN (" + selectedCategories + ")";
-        }
-        //switch case to perform different searches from database
-        switch (orderBy) {
-            case "default":
-                query += " ORDER by p.upc;";
-                break;
-            case "Categories":
-                query += " ORDER by c.categoryName;";
-                break;
-            case "Name":
-                query += " ORDER by p.invName;";
-                break;
-            case "date":
-                query += " ORDER by i.use_by;";
-                break;
-            default:
-                break;
-        }
-
-        try {
             st = (Statement) conn.createStatement();
 
             ResultSet rs = null;
@@ -105,7 +76,37 @@ public class InventoryData {
         }
     }
 
-   public boolean AddInventory(String[] data) {
+    //builds the query to propogate the table
+    private String buildQuery(String orderBy, String selectedCategories) {
+        String query = " select p.upc, p.invName, i.prod_size,i.uom, c.categoryName, i.use_by, i.quantity\r\n"
+                + " from inventory_list i inner join product p on p.ProductID= i.ProductID\r\n"
+                + " inner join category c  on c.catCode=p.Category\r\n";
+
+        if (selectedCategories.length() > 0) {
+            query += " WHERE c.categoryName IN (" + selectedCategories + ")";
+        }
+        //switch case to perform different searches from database
+        switch (orderBy) {
+            case "default":
+                query += " ORDER by p.upc;";
+                break;
+            case "Categories":
+                query += " ORDER by c.categoryName;";
+                break;
+            case "Name":
+                query += " ORDER by p.invName;";
+                break;
+            case "date":
+                query += " ORDER by i.use_by;";
+                break;
+            default:
+                break;
+        }
+        return query;
+    }
+
+    //method called to initiate insertion
+    public boolean AddInventory(String[] data) {
         boolean correctSize = validateSize(data[1]);
         boolean correctUOM = validateUOM(data[2]);
         boolean correctDate = validateDate(data[3]);
@@ -118,15 +119,16 @@ public class InventoryData {
         return successfulInsert;
     }
 
+    //helper method to run insert query
     private boolean runInsertQuery() {
         try (Connection conn = JDBC.getConnection2()) {
             // print out a message
             System.out.println(String.format("Connected to database %s "
                     + "successfully.", conn.getCatalog()));
-            
+
             String query = "insert into inventory_list (productID,prod_size,uom,"
                     + "use_by, quantity) values(?,?,?,?,?);";
-            
+
             PreparedStatement pstmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             pstmt.setInt(1, productID);
             pstmt.setDouble(2, size);
@@ -142,12 +144,13 @@ public class InventoryData {
             conn.close();
 
         } catch (SQLException ex) {
-             JOptionPane.showMessageDialog(null, "Oops!"+ex);
+            JOptionPane.showMessageDialog(null, "Oops!" + ex);
             return false;
         }
         return true;
     }
 
+    //check to see if a record already exists in inventory
     public boolean CheckExists() {
         try (Connection conn = JDBC.getConnection2()) {
             // print out a message
@@ -162,7 +165,7 @@ public class InventoryData {
                 return false;
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Oops!"+ex);
+            JOptionPane.showMessageDialog(null, "Oops!" + ex);
             return false;
         }
     }
