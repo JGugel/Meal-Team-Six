@@ -114,6 +114,7 @@ public class InventoryData {
         if(!correctSize||!correctUOM||!correctDate||!correctQuantity){
             return false;
         }
+       
         //connect to database
         try (Connection conn = JDBC.getConnection2()) {
             // print out a message
@@ -140,6 +141,24 @@ public class InventoryData {
             return false;
         }
         return true;
+    }
+   public boolean CheckExists(){
+         try (Connection conn = JDBC.getConnection2()) {
+            // print out a message
+            System.out.println(String.format("Connected to database %s "
+                    + "successfully.", conn.getCatalog()));
+            Statement stmt = conn.createStatement();
+            String query = "select * from Inventory_List where productID="+productID+";" ;
+            ResultSet rs = stmt.executeQuery(query);
+            if (rs.next()) {//looking for an item
+               return true;
+            } else {//upc not found
+                return false;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            return false;
+        }
     }
     //helper method to validate and set quantity
     private boolean validateQuantity(String tempQuant) {
@@ -169,7 +188,6 @@ public class InventoryData {
                 exp = dateFormat.parse(tempDate);
                 sqlExp = new java.sql.Date(exp.getTime());
             } catch (ParseException ex) {
-                Logger.getLogger(PerfectPantryGUI.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, "Date must be in yyyy-mm-dd format");
                 return false;
             }
@@ -198,7 +216,7 @@ public class InventoryData {
             return false;
         }
 
-        if (uom.length() > 6) {
+        if (tempUOM.length() > 6) {
             JOptionPane.showMessageDialog(null, "Unit of Measurement must only be 6 characters");
             return false;
         } else {
