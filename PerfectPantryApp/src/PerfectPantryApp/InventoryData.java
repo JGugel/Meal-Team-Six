@@ -145,6 +145,7 @@ public class InventoryData {
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Oops!" + ex);
+            Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
         return true;
@@ -166,6 +167,7 @@ public class InventoryData {
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Oops!" + ex);
+            Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
     }
@@ -189,7 +191,6 @@ public class InventoryData {
     //helper method to validate and set date
     private boolean validateDate(String tempDate) {
         SimpleDateFormat dateFormat;
-        java.sql.Date sqlExp = null;
 
         //parse data values
         if (!(tempDate.isEmpty())) {
@@ -276,6 +277,7 @@ public class InventoryData {
             }
         } catch (SQLException ex) {
             System.out.println(ex);
+            Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
         return true;

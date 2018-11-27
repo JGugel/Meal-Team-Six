@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  * @author Hira Waqas, Josh Gugel
  */
 public class PerfectPantryGUI extends JFrame {
-   
+    private static final Logger logger  = Logger.getLogger(AppDriver.class.getName());
     private InventoryData invData;
 
     /**
