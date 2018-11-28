@@ -495,7 +495,7 @@ public class PerfectPantryGUI extends JFrame {
 
         searchInLabel.setText("Search In:");
 
-        searchByComboBox.setModel(new DefaultComboBoxModel<>(new String[] { "Search By Name", "Searcrh by UPC" }));
+        searchByComboBox.setModel(new DefaultComboBoxModel<>(new String[] { "Search By Name", "Search by UPC" }));
 
         enterKeywordLabel.setText("Enter Keyword:");
 
