@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -44,7 +46,7 @@ public class JDBC {
             // create a connection to the database
             conn = DriverManager.getConnection(url, user, password);
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+           Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, e);
         }
         return conn;
     }
