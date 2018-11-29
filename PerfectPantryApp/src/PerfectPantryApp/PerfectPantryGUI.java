@@ -142,7 +142,7 @@ public class PerfectPantryGUI extends JFrame {
             } else {
                 data = null;
             }
-                 dispose(); 
+                // dispose(); 
         }
     }
     
@@ -367,13 +367,14 @@ public class PerfectPantryGUI extends JFrame {
         String upcCheck = invData.ValidateUPC(data[0]);
         switch (upcCheck) {
             case "valid":
-               if(invData.CheckExists()){
-                   /**
-                    * need to add a pop-up asking if they would like to increase 
-                    * quantity. In which case an update to record needs to occur.
-                   */
+                if (invData.CheckExists()) {
+                    /**
+                     * need to add a pop-up asking if they would like to
+                     * increase quantity. In which case an update to record
+                     * needs to occur.
+                     */
                     JOptionPane.showMessageDialog(this, "This item already exists. ");
-               }else if (invData.AddInventory(data)) {
+                } else if (invData.AddInventory(data)) {
                     populatePantryList();
                     JOptionPane.showMessageDialog(this, "Record has been updated");
                 }
@@ -389,12 +390,12 @@ public class PerfectPantryGUI extends JFrame {
                 break;
             case "notFound":
                 /**
-                 * We need to add code to this to allow a user to enter information 
-                 * to the master product table. The data variable should remain intact
-                 * because once it is entered as a product it should also be added as 
-                 * an inventory item.
+                 * We need to add code to this to allow a user to enter
+                 * information to the master product table. The data variable
+                 * should remain intact because once it is entered as a product
+                 * it should also be added as an inventory item.
                  */
-                 JOptionPane.showMessageDialog(this, "UPC not found in database");
+                JOptionPane.showMessageDialog(this, "UPC not found in database");
                 break;
             default:
                 break;
@@ -495,8 +496,11 @@ public class PerfectPantryGUI extends JFrame {
 
         searchInLabel.setText("Search In:");
 
-        searchByComboBox.setModel(new DefaultComboBoxModel<>(new String[] { "Search By Name", "Search by UPC" }));
-
+        searchByComboBox.setModel(new DefaultComboBoxModel<>(new String[] { "Search By Name", "Search by UPC", "Search by Nutrition" }));
+        /**
+         * Nutrition is a complex search...we should narrow this down by a food
+         * category before trying to search.
+         */
         enterKeywordLabel.setText("Enter Keyword:");
 
         goButton.setText("Go");
