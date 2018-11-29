@@ -142,7 +142,7 @@ public class PerfectPantryGUI extends JFrame {
             } else {
                 data = null;
             }
-                // dispose(); 
+                 dispose(); 
         }
     }
     
