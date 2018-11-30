@@ -368,12 +368,10 @@ public class PerfectPantryGUI extends JFrame {
         switch (upcCheck) {
             case "valid":
                 if (invData.CheckExists()) {
-                    /**
-                     * need to add a pop-up asking if they would like to
-                     * increase quantity. In which case an update to record
-                     * needs to occur.
-                     */
-                    JOptionPane.showMessageDialog(this, "This item already exists. ");
+                    if (invData.incrementInventory(data[1],data[4])){
+                    populatePantryList();
+                    JOptionPane.showMessageDialog(this, "This item has been successfully added to existing inventory.");
+                    }else{   JOptionPane.showMessageDialog(this, "Inventory not updated");}
                 } else if (invData.AddInventory(data)) {
                     populatePantryList();
                     JOptionPane.showMessageDialog(this, "Record has been updated");
@@ -467,14 +465,13 @@ public class PerfectPantryGUI extends JFrame {
         invData.SetTable(sortedSelectedOption(), selectedCategories);
         inventoryTable.setModel(invData.GetModel());
         inventoryTable.repaint();
-        inventoryTable.getColumnModel().getColumn(0).setPreferredWidth(10);
-        inventoryTable.getColumnModel().getColumn(1).setPreferredWidth(30);
-        inventoryTable.getColumnModel().getColumn(2).setPreferredWidth(175);
-        inventoryTable.getColumnModel().getColumn(3).setPreferredWidth(15);
-        inventoryTable.getColumnModel().getColumn(4).setPreferredWidth(10);
-        inventoryTable.getColumnModel().getColumn(5).setPreferredWidth(125);
-        inventoryTable.getColumnModel().getColumn(6).setPreferredWidth(25);
-        inventoryTable.getColumnModel().getColumn(7).setPreferredWidth(5);
+        inventoryTable.getColumnModel().getColumn(0).setPreferredWidth(30);
+        inventoryTable.getColumnModel().getColumn(1).setPreferredWidth(175);
+        inventoryTable.getColumnModel().getColumn(2).setPreferredWidth(15);
+        inventoryTable.getColumnModel().getColumn(3).setPreferredWidth(10);
+        inventoryTable.getColumnModel().getColumn(4).setPreferredWidth(125);
+        inventoryTable.getColumnModel().getColumn(5).setPreferredWidth(25);
+        inventoryTable.getColumnModel().getColumn(6).setPreferredWidth(5);
     }
     
     //this method will perform action for go button
