@@ -474,13 +474,14 @@ public class PerfectPantryGUI extends JFrame {
         
         invData.SetTable(sortedSelectedOption(), selectedCategories);
         inventoryTable.setModel(invData.GetModel());
-        //josh todo
         JButtonRenderer jbRender = new JButtonRenderer();
         inventoryTable.setDefaultRenderer(JButton.class, jbRender);
-        //PauseTableEditor pauseEditor = new PauseTableEditor(new JCheckBox());
-        //jobTable.getColumnModel().getColumn(4).setCellEditor(pauseEditor);
-        //CancelTableEditor cancelEditor = new CancelTableEditor(new JCheckBox());
-        //jobTable.getColumnModel().getColumn(5).setCellEditor(cancelEditor);
+        EditTableEditor editEditor = new EditTableEditor(new JCheckBox());
+        inventoryTable.getColumnModel().getColumn(7).setCellEditor(editEditor);
+        DeleteTableEditor deleteEditor = new DeleteTableEditor(new JCheckBox());
+        inventoryTable.getColumnModel().getColumn(8).setCellEditor(deleteEditor);
+        AddToCartTableEditor addEditor = new AddToCartTableEditor(new JCheckBox());
+        inventoryTable.getColumnModel().getColumn(9).setCellEditor(addEditor);
         inventoryTable.repaint();
         inventoryTable.getColumnModel().getColumn(0).setPreferredWidth(30);
         inventoryTable.getColumnModel().getColumn(1).setPreferredWidth(175);
@@ -524,6 +525,69 @@ public class PerfectPantryGUI extends JFrame {
         }
     }
 
+    //Josh Todo
+    public class EditTableEditor extends DefaultCellEditor {
+        JButton button;
+        String label;
+        boolean clicked;
+        int row, col;
+        JTable table;
+
+        public EditTableEditor (JCheckBox checkBox) {
+          super(checkBox);
+          button = new JButton();
+          button.setOpaque(true);
+          button.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent event){
+              fireEditingStopped();
+            }
+          });
+        }
+
+        @Override
+        public Component getTableCellEditorComponent(JTable table, Object value, 
+                boolean isSelected, int row, int column) {
+          this.table = table;
+          this.row = row;
+          this.col = column;
+
+          button.setForeground(Color.black);
+          button.setBackground(UIManager.getColor("Button.background"));
+          label = (value == null) ? "" : value.toString();
+          button.setText(label);
+          clicked = true;
+          return button;
+        }
+
+        @Override
+         public Object getCellEditorValue() {
+          if (clicked)
+          {
+            System.out.println("in getCellEditorValue of Edit");
+            //Edit Item Here - todo
+            //example
+            InventoryItem item = (InventoryItem)((InventoryTableModel)table.getModel()).inventory.get(row);
+//            item.name; 
+//            item.upcDisplay;
+//            item.expiration;
+          }
+          clicked = false;
+          return new String(label);
+        }
+
+        @Override
+        public boolean stopCellEditing() {
+          clicked = false;
+          return super.stopCellEditing();
+        }
+
+        @Override
+        protected void fireEditingStopped() {
+          super.fireEditingStopped();
+        }
+    }
+    
     //Josh Todo
     public class DeleteTableEditor extends DefaultCellEditor {
         JButton button;
@@ -580,6 +644,66 @@ public class PerfectPantryGUI extends JFrame {
           super.fireEditingStopped();
         }
     }
+    
+    //Josh Todo
+    public class AddToCartTableEditor extends DefaultCellEditor {
+        JButton button;
+        String label;
+        boolean clicked;
+        int row, col;
+        JTable table;
+
+        public AddToCartTableEditor (JCheckBox checkBox) {
+          super(checkBox);
+          button = new JButton();
+          button.setOpaque(true);
+          button.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent event){
+              fireEditingStopped();
+            }
+          });
+        }
+
+        @Override
+        public Component getTableCellEditorComponent(JTable table, Object value, 
+                boolean isSelected, int row, int column) {
+          this.table = table;
+          this.row = row;
+          this.col = column;
+
+          button.setForeground(Color.black);
+          button.setBackground(UIManager.getColor("Button.background"));
+          label = (value == null) ? "" : value.toString();
+          button.setText(label);
+          clicked = true;
+          return button;
+        }
+
+        @Override
+         public Object getCellEditorValue() {
+          if (clicked)
+          {
+            //Add Item to Cart Here - todo
+          }
+          clicked = false;
+          return new String(label);
+        }
+
+        @Override
+        public boolean stopCellEditing() {
+          clicked = false;
+          return super.stopCellEditing();
+        }
+
+        @Override
+        protected void fireEditingStopped() {
+          super.fireEditingStopped();
+        }
+    }
+    
+
+    
     
     //this method will perform action for go button
     private void goButton(){
