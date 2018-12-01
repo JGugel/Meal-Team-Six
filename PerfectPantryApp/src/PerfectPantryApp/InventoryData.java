@@ -34,7 +34,7 @@ public class InventoryData {
     protected java.sql.Date sqlExp = null;
 
     public InventoryData() throws SQLException {
-        this.conn = JDBC.getConnection2();
+        this.conn = JDBC.getConnection();
     }
 
     public DefaultTableModel GetModel() {
@@ -47,7 +47,7 @@ public class InventoryData {
         tModel = new DefaultTableModel(
                 new String[]{"upc", "name", "size", "uom", "category", "expiration", "Quantity"}, 0);
         try {
-            this.conn = JDBC.getConnection2();
+            this.conn = JDBC.getConnection();
             System.out.println(String.format("Connected to database %s "
                     + "successfully.", conn.getCatalog()));
             st = (Statement) conn.createStatement();
@@ -119,7 +119,7 @@ public class InventoryData {
     //helper method to run insert query
     private boolean runInsertQuery() {
         try {
-            this.conn = JDBC.getConnection2();
+            this.conn = JDBC.getConnection();
             // print out a message
             System.out.println(String.format("Connected to database %s "
                     + "successfully.", conn.getCatalog()));
@@ -265,7 +265,7 @@ public class InventoryData {
     private boolean runUPCQuery(String upc) {
         //connect to database
         try {
-            this.conn = JDBC.getConnection2();
+            this.conn = JDBC.getConnection();
             // print out a message
             System.out.println(String.format("Connected to database %s "
                     + "successfully.", conn.getCatalog()));
@@ -297,7 +297,7 @@ public class InventoryData {
             String query = "select i.prod_size, i.quantity from "
                     + "inventory_list i where ProductID=" + productID;
             try {
-                this.conn = JDBC.getConnection2();
+                this.conn = JDBC.getConnection();
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(query);
                 while (rs.next()) {
@@ -324,7 +324,7 @@ public class InventoryData {
         String sqlUpdate = "update inventory_list set prod_size=" + size + ", quantity="
                 + quantity + " where productId=" + productID;
         try {
-            this.conn = JDBC.getConnection2();
+            this.conn = JDBC.getConnection();
             Statement stmt = conn.createStatement();
             int record = stmt.executeUpdate(sqlUpdate);
             if (record > 0) {

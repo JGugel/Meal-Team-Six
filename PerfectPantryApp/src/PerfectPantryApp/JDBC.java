@@ -25,11 +25,10 @@ public class JDBC {
     
         /**
      * Get database connection
-     *  josh todo
      * @return a Connection object
      * @throws SQLException
      */
-    public static Connection getConnection2() throws SQLException {
+    public static Connection getConnection() throws SQLException {
         Connection conn = null;
  
         try (FileInputStream f = new FileInputStream("db.properties")) {

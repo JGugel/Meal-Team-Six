@@ -36,6 +36,7 @@ public class PerfectPantryGUI extends JFrame {
 
     class AddInventoryDialog extends JDialog implements ActionListener{
         private String[] data;
+        private JComboBox uomComboBox;
         private JLabel upcLabel;
         private JLabel sizeLabel;
         private JLabel uomLabel;
@@ -43,7 +44,7 @@ public class PerfectPantryGUI extends JFrame {
         private JLabel quantityLabel;
         private JTextField upcTextField;
         private JTextField sizeTextField;
-        private JTextField uomTextField;
+//        private JTextField uomTextField;
         private JTextField expirationTextField;
         private JTextField quantityTextField;
         private JButton addBtn;
@@ -80,14 +81,21 @@ public class PerfectPantryGUI extends JFrame {
             panel.add(sizeTextField, gbc);
             
             //Unit of Measurment
-            uomLabel = new JLabel("Unit of Measurment (6 char max)*");
+            uomLabel = new JLabel("Unit of Measurment");
             gbc.gridx = 0;
             gbc.gridy = 2;
             panel.add(uomLabel, gbc);
-            uomTextField = new JTextField(10);
+            String[] uomStrings = {"units", "lb.", "oz.", "g", "gallon", 
+                                    "quart", "cup", "pc."};
+            uomComboBox = new JComboBox(uomStrings);
+            uomComboBox.setSelectedIndex(0);
             gbc.gridx = 1;
             gbc.gridy = 2;
-            panel.add(uomTextField, gbc);
+            panel.add(uomComboBox, gbc);
+//            uomTextField = new JTextField(10);
+//            gbc.gridx = 1;
+//            gbc.gridy = 2;
+//            panel.add(uomTextField, gbc);
             
             //Expiration
             expirationLabel = new JLabel("Expiration");
@@ -136,7 +144,7 @@ public class PerfectPantryGUI extends JFrame {
             if (e.getSource() == addBtn) {
                 data[0] = upcTextField.getText();
                 data[1] = sizeTextField.getText();
-                data[2] = uomTextField.getText();
+                data[2] = (String)uomComboBox.getSelectedItem();
                 data[3] = expirationTextField.getText();
                 data[4] = quantityTextField.getText();
             } else {
