@@ -45,7 +45,7 @@ public class InventoryData {
     public void SetTable(String orderBy, String selectedCategories) {
         String query = buildQuery(orderBy, selectedCategories);
         tModel = new DefaultTableModel(
-                new String[]{"upc", "name", "size", "uom", "category", "expiration", "Quantity"}, 0);
+                new String[]{"upc", "name", "quantity", "uom", "category", "expiration", "weekly usage"}, 0);
         try {
             this.conn = JDBC.getConnection();
             System.out.println(String.format("Connected to database %s "

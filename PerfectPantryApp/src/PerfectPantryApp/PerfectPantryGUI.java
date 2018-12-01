@@ -38,22 +38,26 @@ public class PerfectPantryGUI extends JFrame {
         private String[] data;
         private JComboBox uomComboBox;
         private JLabel upcLabel;
-        private JLabel sizeLabel;
+        private JLabel qtyLabel;
         private JLabel uomLabel;
         private JLabel expirationLabel;
-        private JLabel quantityLabel;
+        private JLabel usageLabel;
         private JTextField upcTextField;
-        private JTextField sizeTextField;
+        private JTextField qtyTextField;
 //        private JTextField uomTextField;
         private JTextField expirationTextField;
-        private JTextField quantityTextField;
+        private JTextField usageTextField;
         private JButton addBtn;
         private JButton cancelBtn;
         private  boolean addSuccess=false;
         //Constructor
         public AddInventoryDialog(Frame frame){
             super(frame, "Add Item", true);
+            this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
             data = new String[5];
+            for (int i=0; i < data.length; i++) {
+                data[i] = null;
+            }
             JPanel panel = new JPanel();
             GridBagLayout grid = new GridBagLayout();
             panel.setLayout(grid);
@@ -71,22 +75,22 @@ public class PerfectPantryGUI extends JFrame {
             panel.add(upcTextField, gbc);
             
             //Quantity
-            sizeLabel = new JLabel("Size*");
+            qtyLabel = new JLabel("Quantity*");
             gbc.gridx = 0;
             gbc.gridy = 1;
-            panel.add(sizeLabel, gbc);
-            sizeTextField = new JTextField(10);
+            panel.add( qtyLabel, gbc);
+            qtyTextField = new JTextField(10);
             gbc.gridx = 1;
             gbc.gridy = 1;
-            panel.add(sizeTextField, gbc);
+            panel.add(qtyTextField, gbc);
             
             //Unit of Measurment
             uomLabel = new JLabel("Unit of Measurment");
             gbc.gridx = 0;
             gbc.gridy = 2;
             panel.add(uomLabel, gbc);
-            String[] uomStrings = {"units", "lb.", "oz.", "g", "gallon", 
-                                    "quart", "cup", "pc."};
+            String[] uomStrings = {"unit", "pc.", "lb.", "oz.", "g", "gal", 
+                                    "qt.", "cup"};
             uomComboBox = new JComboBox(uomStrings);
             uomComboBox.setSelectedIndex(0);
             gbc.gridx = 1;
@@ -108,14 +112,14 @@ public class PerfectPantryGUI extends JFrame {
             panel.add(expirationTextField, gbc);
             
             //Average Usage
-            quantityLabel = new JLabel("Quantity");
+            usageLabel = new JLabel("Avg Qty Usage");
             gbc.gridx = 0;
             gbc.gridy = 4;
-            panel.add(quantityLabel, gbc);
-            quantityTextField = new JTextField(10);
+            panel.add(usageLabel, gbc);
+            usageTextField = new JTextField(10);
             gbc.gridx = 1;
             gbc.gridy = 4;
-            panel.add(quantityTextField, gbc);
+            panel.add(usageTextField, gbc);
             
             //Add and Cancel Buttons
             addBtn = new JButton("Add");
@@ -143,14 +147,14 @@ public class PerfectPantryGUI extends JFrame {
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == addBtn) {
                 data[0] = upcTextField.getText();
-                data[1] = sizeTextField.getText();
+                data[1] = qtyTextField.getText();
                 data[2] = (String)uomComboBox.getSelectedItem();
                 data[3] = expirationTextField.getText();
-                data[4] = quantityTextField.getText();
-            } else {
-                data = null;
+                data[4] = usageTextField.getText();
+                dispose(); 
+            } else if (e.getSource() == cancelBtn) {
+                dispose(); 
             }
-                 dispose(); 
         }
     }
     
@@ -369,7 +373,7 @@ public class PerfectPantryGUI extends JFrame {
         //check item UPC in database to verify
         AddInventoryDialog dialog = new AddInventoryDialog(this);
         String[] data = dialog.run();
-        if (data == null) {
+        if (data[0] == null) {
             return;
         }
         String upcCheck = invData.ValidateUPC(data[0]);
@@ -392,7 +396,7 @@ public class PerfectPantryGUI extends JFrame {
                 JOptionPane.showMessageDialog(this, "UPC must be a 12 digit integer");
                 break;
             case "notANum":
-                JOptionPane.showMessageDialog(this, "UPC should be a numeric value");
+                JOptionPane.showMessageDialog(this, "UPC must be a numeric value");
                 break;
             case "notFound":
                 /**
@@ -479,7 +483,7 @@ public class PerfectPantryGUI extends JFrame {
         inventoryTable.getColumnModel().getColumn(3).setPreferredWidth(10);
         inventoryTable.getColumnModel().getColumn(4).setPreferredWidth(125);
         inventoryTable.getColumnModel().getColumn(5).setPreferredWidth(25);
-        inventoryTable.getColumnModel().getColumn(6).setPreferredWidth(5);
+        inventoryTable.getColumnModel().getColumn(6).setPreferredWidth(25);
     }
     
     //this method will perform action for go button
