@@ -23,7 +23,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class InventoryData {
 
-    protected DefaultTableModel tModel = null;
+    //protected DefaultTableModel tModel = null;
+    protected InventoryTableModel tModel = null;
     protected Connection conn;
     protected Statement st = null;
     protected static String upc = "";
@@ -37,15 +38,19 @@ public class InventoryData {
         this.conn = JDBC.getConnection();
     }
 
-    public DefaultTableModel GetModel() {
+    //public DefaultTableModel GetModel() {
+    public InventoryTableModel GetModel() {
         return tModel;
     }
 
     //sets the table data for home screen
     public void SetTable(String orderBy, String selectedCategories) {
         String query = buildQuery(orderBy, selectedCategories);
-        tModel = new DefaultTableModel(
-                new String[]{"upc", "name", "quantity", "uom", "category", "expiration", "weekly usage"}, 0);
+        tModel = new InventoryTableModel();
+//        tModel = new DefaultTableModel(
+//                new String[]{"UPC", "Name", "Quantity", "UOM", "Category", 
+//                    "Expiration", "Weekly Usage", "Edit", "Delete", 
+//                    "Add to Cart"}, 0);
         try {
             this.conn = JDBC.getConnection();
             System.out.println(String.format("Connected to database %s "
@@ -64,8 +69,8 @@ public class InventoryData {
                 String category = rs.getString("categoryName");
                 String expiration = rs.getString("use_by");
                 String quantityDisplay = rs.getString("Quantity");
-                tModel.addRow(new Object[]{upcDisplay, name, sizeDisplay,
-                    uomDisplay, category, expiration, quantityDisplay}); //applies data to table model
+                tModel.addInventoryItem(new InventoryItem(upcDisplay, name, sizeDisplay,
+                    uomDisplay, category, expiration, quantityDisplay)); //applies data to table model
             }
             conn.close();
         } catch (SQLException ex) {

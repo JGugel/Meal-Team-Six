@@ -3,13 +3,11 @@ package PerfectPantryApp;
 
 import java.awt.event.*;
 import java.awt.*;
-
 import javax.swing.*;
-
-//josh test todo
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.TableCellRenderer;
 
 
 
@@ -328,7 +326,7 @@ public class PerfectPantryGUI extends JFrame {
                 .addGroup(inventoryRightPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(sortingPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(inventoryRightPanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 900, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 1200, GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -476,6 +474,13 @@ public class PerfectPantryGUI extends JFrame {
         
         invData.SetTable(sortedSelectedOption(), selectedCategories);
         inventoryTable.setModel(invData.GetModel());
+        //josh todo
+        JButtonRenderer jbRender = new JButtonRenderer();
+        inventoryTable.setDefaultRenderer(JButton.class, jbRender);
+        //PauseTableEditor pauseEditor = new PauseTableEditor(new JCheckBox());
+        //jobTable.getColumnModel().getColumn(4).setCellEditor(pauseEditor);
+        //CancelTableEditor cancelEditor = new CancelTableEditor(new JCheckBox());
+        //jobTable.getColumnModel().getColumn(5).setCellEditor(cancelEditor);
         inventoryTable.repaint();
         inventoryTable.getColumnModel().getColumn(0).setPreferredWidth(30);
         inventoryTable.getColumnModel().getColumn(1).setPreferredWidth(175);
@@ -484,12 +489,102 @@ public class PerfectPantryGUI extends JFrame {
         inventoryTable.getColumnModel().getColumn(4).setPreferredWidth(125);
         inventoryTable.getColumnModel().getColumn(5).setPreferredWidth(25);
         inventoryTable.getColumnModel().getColumn(6).setPreferredWidth(25);
+        inventoryTable.getColumnModel().getColumn(7).setPreferredWidth(5);
+        inventoryTable.getColumnModel().getColumn(8).setPreferredWidth(5);
+        inventoryTable.getColumnModel().getColumn(9).setPreferredWidth(20);
+    }
+    
+    
+    //JButtonRenderer provides implementation for a button in a table cell
+    public class JButtonRenderer extends JButton implements TableCellRenderer{
+        //constructor
+        public JButtonRenderer() {
+            super();
+        }
+        public JButtonRenderer(String name) {
+            super(name);
+        }
+
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, 
+                boolean isSelected, boolean hasFocus, int row, int column) {
+            setText((String)value);
+            switch ((String) value) {
+                case "Edit":
+                    setForeground(Color.BLACK);
+                    break;
+                case "Delete":
+                    setForeground(Color.RED);
+                    break;
+                case "Add to Cart":
+                    setForeground(Color.GREEN);
+                    break;
+            }
+            return this;
+        }
+    }
+
+    //Josh Todo
+    public class DeleteTableEditor extends DefaultCellEditor {
+        JButton button;
+        String label;
+        boolean clicked;
+        int row, col;
+        JTable table;
+
+        public DeleteTableEditor (JCheckBox checkBox) {
+          super(checkBox);
+          button = new JButton();
+          button.setOpaque(true);
+          button.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent event){
+              fireEditingStopped();
+            }
+          });
+        }
+
+        @Override
+        public Component getTableCellEditorComponent(JTable table, Object value, 
+                boolean isSelected, int row, int column) {
+          this.table = table;
+          this.row = row;
+          this.col = column;
+
+          button.setForeground(Color.black);
+          button.setBackground(UIManager.getColor("Button.background"));
+          label = (value == null) ? "" : value.toString();
+          button.setText(label);
+          clicked = true;
+          return button;
+        }
+
+        @Override
+         public Object getCellEditorValue() {
+          if (clicked)
+          {
+            //Delete Item Here
+          }
+          clicked = false;
+          return new String(label);
+        }
+
+        @Override
+        public boolean stopCellEditing() {
+          clicked = false;
+          return super.stopCellEditing();
+        }
+
+        @Override
+        protected void fireEditingStopped() {
+          super.fireEditingStopped();
+        }
     }
     
     //this method will perform action for go button
     private void goButton(){
         JOptionPane.showMessageDialog(this, "testing go button");
-        
+
     }
     
     //this method will create search panel components 
