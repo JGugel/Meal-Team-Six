@@ -158,6 +158,7 @@ public class PerfectPantryGUI extends JFrame {
     
     class EditInventoryDialog extends JDialog implements ActionListener{
         private String[] data;
+        private DefaultComboBoxModel model;
         private JComboBox uomComboBox;
         private JLabel qtyLabel;
         private JLabel uomLabel;
@@ -168,15 +169,12 @@ public class PerfectPantryGUI extends JFrame {
         private JTextField usageTextField;
         private JButton updateBtn;
         private JButton cancelBtn;
-        private  boolean addSuccess=false;
+        private  boolean editSuccess=false;
         //Constructor
-        public EditInventoryDialog(Frame frame){
+        public EditInventoryDialog(Frame frame, String[] dataIn){
             super(frame, "Edit Item", true);
             this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-            data = new String[4];
-            for (int i=0; i < data.length; i++) {
-                data[i] = null;
-            }
+            data = dataIn; // String[4]
             JPanel panel = new JPanel();
             GridBagLayout grid = new GridBagLayout();
             panel.setLayout(grid);
@@ -189,7 +187,7 @@ public class PerfectPantryGUI extends JFrame {
             gbc.gridx = 0;
             gbc.gridy = 1;
             panel.add( qtyLabel, gbc);
-            qtyTextField = new JTextField(10);
+            qtyTextField = new JTextField(data[0], 10);
             gbc.gridx = 1;
             gbc.gridy = 1;
             panel.add(qtyTextField, gbc);
@@ -201,8 +199,14 @@ public class PerfectPantryGUI extends JFrame {
             panel.add(uomLabel, gbc);
             String[] uomStrings = {"unit", "pc.", "lb.", "oz.", "g", "gal", 
                                     "qt.", "cup"};
-            uomComboBox = new JComboBox(uomStrings);
-            uomComboBox.setSelectedIndex(0);
+            model = new DefaultComboBoxModel(uomStrings);
+            uomComboBox = new JComboBox(model);
+            int n = model.getIndexOf(data[1]); 
+            if (n == -1) {   //set the uom if it matches
+                uomComboBox.setSelectedIndex(0);
+            } else {
+                uomComboBox.setSelectedIndex(n);
+            }
             gbc.gridx = 1;
             gbc.gridy = 2;
             panel.add(uomComboBox, gbc);
@@ -212,7 +216,7 @@ public class PerfectPantryGUI extends JFrame {
             gbc.gridx = 0;
             gbc.gridy = 3;
             panel.add(expirationLabel, gbc);
-            expirationTextField = new JTextField(10);
+            expirationTextField = new JTextField(data[2], 10);
             gbc.gridx = 1;
             gbc.gridy = 3;
             panel.add(expirationTextField, gbc);
@@ -222,7 +226,7 @@ public class PerfectPantryGUI extends JFrame {
             gbc.gridx = 0;
             gbc.gridy = 4;
             panel.add(usageLabel, gbc);
-            usageTextField = new JTextField(10);
+            usageTextField = new JTextField(data[3], 10);
             gbc.gridx = 1;
             gbc.gridy = 4;
             panel.add(usageTextField, gbc);
@@ -673,14 +677,15 @@ public class PerfectPantryGUI extends JFrame {
           if (clicked)
           {
             System.out.println("in getCellEditorValue of Edit");
-            //Edit Item Here - todo
-            EditInventoryDialog dialog = new EditInventoryDialog(null);
-            String[] data = dialog.run();
-            //example
+            //Edit Item Here
             InventoryItem item = (InventoryItem)((InventoryTableModel)table.getModel()).inventory.get(row);
-//            item.name; 
-//            item.upcDisplay;
-//            item.expiration;
+            String[] data = {item.sizeDisplay, item.uomDisplay, item.expiration, item.quantityDisplay};
+            for (int i=0; i<4; i++) {
+                System.out.println(data[i]);
+            }
+            EditInventoryDialog dialog = new EditInventoryDialog(null, data);
+            data = dialog.run();
+            //verify data todo
           }
           clicked = false;
           return new String(label);
