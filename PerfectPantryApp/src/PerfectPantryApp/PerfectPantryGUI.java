@@ -834,7 +834,9 @@ public class PerfectPantryGUI extends JFrame {
          public Object getCellEditorValue() {
           if (clicked)
           {
-            //Add Item to Cart Here - todo
+              // TO DO: Add to cart once tables are built
+            
+            JOptionPane.showMessageDialog(null, "Coming in week three");
           }
           clicked = false;
           return new String(label);
