@@ -208,7 +208,24 @@ public class InventoryData {
             return false;
         }
     }
-
+    public boolean deleteRecord(String upc) {
+        String query = "DELETE from inventory_List "
+                + "WHERE productID=?";
+        boolean deleted=false;
+        try{
+        PreparedStatement statement = conn.prepareStatement(query);
+        statement.setInt(1, productID);
+        int rowsDeleted = statement.executeUpdate();
+        if (rowsDeleted > 0) {
+            deleted=true;
+        }
+        }catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Oops!" + ex);
+            Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
+            deleted= false;
+        }
+        return deleted;
+    }
     //helper method to validate and set quantity
     private boolean validateQuantity(String tempQuant) {
         quantity = 0;
