@@ -154,7 +154,7 @@ public class PerfectPantryGUI extends JFrame {
                             //todo josh - should maybe bring up the edit item dialog instead
                             if (invData.incrementInventory(data[1],data[4])){
                                 populatePantryList();
-                                JOptionPane.showMessageDialog(this, "This item has been successfully added to existing inventory.");
+                                JOptionPane.showMessageDialog(this, "Quantity added to existing entry");
                                 return;
                             } else {
                                 JOptionPane.showMessageDialog(this, "Inventory not updated"); //failed to increment
