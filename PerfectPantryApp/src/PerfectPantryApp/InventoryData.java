@@ -274,13 +274,13 @@ public class InventoryData {
     private boolean validateSize(String tempSize) {
         size = 0;
         if (tempSize.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Invalid Input: Size must not be empty");
+            JOptionPane.showMessageDialog(null, "Invalid Input: Quantity must not be empty");
             return false;
         }
         try {
             size = Double.parseDouble(tempSize);
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Size should be a numeric value");
+            JOptionPane.showMessageDialog(null, "Quantity should be a numeric value");
             return false;
         }
         return true;
@@ -385,6 +385,8 @@ public class InventoryData {
                 Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
                 return false;
             }
+        }else{
+           updatedSuccefully=false;
         }
 
         return updatedSuccefully;
