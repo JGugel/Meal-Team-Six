@@ -836,7 +836,7 @@ public class PerfectPantryGUI extends JFrame {
           {
               // TO DO: Add to cart once tables are built
             
-            JOptionPane.showMessageDialog(null, "Coming in week three");
+            JOptionPane.showMessageDialog(null, "Coming in week three!");
           }
           clicked = false;
           return new String(label);

@@ -168,8 +168,8 @@ public class InventoryData {
     private boolean runUpdateQuery(){
         boolean updated = false;
 
-        String sqlUpdate = "update inventory_list set prod_size=" + size + 
-                ", uom=" + uom + ", use_by=" + sqlExp + ", quantity="
+        String sqlUpdate = "UPDATE inventory_list SET prod_size=" + size + 
+                ", uom='" + uom + "', use_by='" + sqlExp + "', quantity="
                 + quantity + " where ProductID=" + productID;
         try {
             this.conn = JDBC.getConnection();
