@@ -27,7 +27,7 @@ public class InventoryData {
     protected static double size;
     protected static String uom;
     protected java.sql.Date sqlExp = null;
-
+    boolean validUPC=false;
     public InventoryData() throws SQLException {
         this.conn = JDBC.getConnection();
     }
@@ -35,6 +35,7 @@ public class InventoryData {
     public InventoryTableModel GetModel() {
         return tModel;
     }
+   
 
     //sets the table data for home screen
     public void SetTable(String orderBy, String selectedCategories) {
@@ -65,7 +66,7 @@ public class InventoryData {
                 tModel.addInventoryItem(new InventoryItem(upcDisplay, name, sizeDisplay,
                     uomDisplay, category, expiration, quantityDisplay)); //applies data to table model
             }
-            conn.close();
+           
         } catch (SQLException ex) {
             Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -139,7 +140,7 @@ public class InventoryData {
                     + "successfully.", conn.getCatalog()));
 
             String query = "insert into inventory_list (productID,prod_size,uom,"
-                    + "use_by, quantity) values(?,?,?,?,?);";
+                    + "use_by, us) values(?,?,?,?,?);";
 
             PreparedStatement pstmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             pstmt.setInt(1, productID);
@@ -153,7 +154,7 @@ public class InventoryData {
             }
             pstmt.setInt(5, quantity);
             pstmt.execute();
-            conn.close();
+            
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Oops!" + ex);
@@ -209,11 +210,15 @@ public class InventoryData {
         }
     }
     public boolean deleteRecord(String upc) {
+           boolean deleted=false;
+        if(!runUPCQuery(upc)){
+            deleted=false;
+        }
         String query = "DELETE from inventory_List "
                 + "WHERE productID=?";
-        boolean deleted=false;
+     
         try{
-        PreparedStatement statement = conn.prepareStatement(query);
+        PreparedStatement statement = this.conn.prepareStatement(query);
         statement.setInt(1, productID);
         int rowsDeleted = statement.executeUpdate();
         if (rowsDeleted > 0) {
