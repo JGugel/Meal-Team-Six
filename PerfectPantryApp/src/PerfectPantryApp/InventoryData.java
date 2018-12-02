@@ -288,14 +288,18 @@ public class InventoryData {
 
     //helper method to validate and set units
     private boolean validateUOM(String tempUOM) {
+        if(tempUOM.equals("unit")){
+            JOptionPane.showMessageDialog(null, "Please select a valid unit of measurement.");
+            return false;
+        }
         uom = "";
         if (tempUOM.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Invalid Input: Unit of measurement must not be empty");
+            JOptionPane.showMessageDialog(null, "Invalid Input: Unit of measurement must not be empty.");
             return false;
         }
 
         if (tempUOM.length() > 6) {
-            JOptionPane.showMessageDialog(null, "Unit of Measurement must only be 6 characters");
+            JOptionPane.showMessageDialog(null, "Unit of Measurement must only be 6 characters.");
             return false;
         } else {
             uom = tempUOM;
@@ -311,12 +315,14 @@ public class InventoryData {
         if (upc.isEmpty()) {
             return "empty";
         }
-        if (upc.length() != 12) {
-            return "length";
-        }
         if (!upc.matches(regex)) {
             return "notANum";
         }
+        
+        if (upc.length() != 12) {
+            return "length";
+        }
+        
         exists = runUPCQuery(upc);
         if (exists) {
             return "valid";
