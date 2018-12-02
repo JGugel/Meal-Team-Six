@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package PerfectPantryApp;
 
 import java.sql.Connection;
@@ -15,7 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-//import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -23,7 +18,6 @@ import javax.swing.JOptionPane;
  */
 public class InventoryData {
 
-    //protected DefaultTableModel tModel = null;
     protected InventoryTableModel tModel = null;
     protected Connection conn;
     protected Statement st = null;
@@ -38,7 +32,6 @@ public class InventoryData {
         this.conn = JDBC.getConnection();
     }
 
-    //public DefaultTableModel GetModel() {
     public InventoryTableModel GetModel() {
         return tModel;
     }
@@ -121,6 +114,22 @@ public class InventoryData {
         return successfulInsert;
     }
 
+    //method called to initiate edit
+    public boolean EditInventory(String[] data) {
+        boolean updatedSuccefully = true;
+        boolean correctSize = validateSize(data[1]);
+        boolean correctUOM = validateUOM(data[2]);
+        boolean correctDate = validateDate(data[3]);
+        boolean correctQuantity = validateQuantity(data[4]);
+
+        if (!correctSize || !correctUOM || !correctDate || !correctQuantity) {
+            return false;
+        }
+        
+        updatedSuccefully = runUpdateQuery();
+        return updatedSuccefully;
+    }
+    
     //helper method to run insert query
     private boolean runInsertQuery() {
         try {
@@ -154,6 +163,31 @@ public class InventoryData {
         return true;
     }
 
+    
+    //todo josh - for the edit button, editinventory
+    private boolean runUpdateQuery(){
+        boolean updated = false;
+
+        String sqlUpdate = "update inventory_list set prod_size=" + size + 
+                ", uom=" + uom + ", use_by=" + sqlExp + ", quantity="
+                + quantity + " where ProductID=" + productID;
+        try {
+            this.conn = JDBC.getConnection();
+            Statement stmt = conn.createStatement();
+            int record = stmt.executeUpdate(sqlUpdate);
+            if (record > 0) {
+                updated = true;
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
+            updated = false;
+        }
+
+        return updated;
+    }
+    
     //check to see if a record already exists in inventory
     public boolean CheckExists() {
         try {

@@ -217,7 +217,7 @@ public class PerfectPantryGUI extends JFrame {
         public EditInventoryDialog(Frame frame, String[] dataIn){
             super(frame, "Edit Item", true);
             this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-            data = dataIn; // String[4]
+            data = dataIn; // String[5]
             JPanel panel = new JPanel();
             GridBagLayout grid = new GridBagLayout();
             panel.setLayout(grid);
@@ -230,7 +230,7 @@ public class PerfectPantryGUI extends JFrame {
             gbc.gridx = 0;
             gbc.gridy = 1;
             panel.add( qtyLabel, gbc);
-            qtyTextField = new JTextField(data[0], 10);
+            qtyTextField = new JTextField(data[1], 10);
             gbc.gridx = 1;
             gbc.gridy = 1;
             panel.add(qtyTextField, gbc);
@@ -244,7 +244,7 @@ public class PerfectPantryGUI extends JFrame {
                                     "qt.", "cup"};
             model = new DefaultComboBoxModel(uomStrings);
             uomComboBox = new JComboBox(model);
-            int n = model.getIndexOf(data[1]); 
+            int n = model.getIndexOf(data[2]); 
             if (n == -1) {   //set the uom if it matches
                 uomComboBox.setSelectedIndex(0);
             } else {
@@ -259,7 +259,7 @@ public class PerfectPantryGUI extends JFrame {
             gbc.gridx = 0;
             gbc.gridy = 3;
             panel.add(expirationLabel, gbc);
-            expirationTextField = new JTextField(data[2], 10);
+            expirationTextField = new JTextField(data[3], 10);
             gbc.gridx = 1;
             gbc.gridy = 3;
             panel.add(expirationTextField, gbc);
@@ -269,7 +269,7 @@ public class PerfectPantryGUI extends JFrame {
             gbc.gridx = 0;
             gbc.gridy = 4;
             panel.add(usageLabel, gbc);
-            usageTextField = new JTextField(data[3], 10);
+            usageTextField = new JTextField(data[4], 10);
             gbc.gridx = 1;
             gbc.gridy = 4;
             panel.add(usageTextField, gbc);
@@ -299,11 +299,31 @@ public class PerfectPantryGUI extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == updateBtn) {
-                data[0] = qtyTextField.getText();
-                data[1] = (String)uomComboBox.getSelectedItem();
-                data[2] = expirationTextField.getText();
-                data[3] = usageTextField.getText();
-                dispose(); 
+                data[1] = qtyTextField.getText();
+                data[2] = (String)uomComboBox.getSelectedItem();
+                data[3] = expirationTextField.getText();
+                data[4] = usageTextField.getText();
+                
+                
+                //Validate data
+                System.out.println("UPC is : " + data[0]); //test line josh
+                String upcCheck = invData.ValidateUPC(data[0]);
+                //check to see if record already exists in inventory
+                if (invData.CheckExists()) {
+                    //should always get here
+                    if (invData.EditInventory(data)){
+                        populatePantryList();
+                        JOptionPane.showMessageDialog(this, "Item Updated");
+                        dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Inventory not updated"); //failed to increment
+                        return;
+                    }
+                } else {
+                    //should never get here?
+                    System.out.println("UPC does not exist in Inventory list");
+                    return;
+                }
             } else if (e.getSource() == cancelBtn) {
                 dispose(); 
             }
@@ -686,7 +706,7 @@ public class PerfectPantryGUI extends JFrame {
                 System.out.println("in getCellEditorValue of Edit");
                 //Edit Item Here
                 InventoryItem item = (InventoryItem)((InventoryTableModel)table.getModel()).inventory.get(row);
-                String[] data = {item.sizeDisplay, item.uomDisplay, item.expiration, item.quantityDisplay};
+                String[] data = {item.upcDisplay, item.sizeDisplay, item.uomDisplay, item.expiration, item.quantityDisplay};
 //                for (int i=0; i<4; i++) {
 //                    System.out.println(data[i]); //testing todo josh
 //                }
