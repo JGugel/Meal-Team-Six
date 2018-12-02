@@ -156,6 +156,114 @@ public class PerfectPantryGUI extends JFrame {
         }
     }
     
+    class EditInventoryDialog extends JDialog implements ActionListener{
+        private String[] data;
+        private JComboBox uomComboBox;
+        private JLabel qtyLabel;
+        private JLabel uomLabel;
+        private JLabel expirationLabel;
+        private JLabel usageLabel;
+        private JTextField qtyTextField;
+        private JTextField expirationTextField;
+        private JTextField usageTextField;
+        private JButton updateBtn;
+        private JButton cancelBtn;
+        private  boolean addSuccess=false;
+        //Constructor
+        public EditInventoryDialog(Frame frame){
+            super(frame, "Edit Item", true);
+            this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+            data = new String[4];
+            for (int i=0; i < data.length; i++) {
+                data[i] = null;
+            }
+            JPanel panel = new JPanel();
+            GridBagLayout grid = new GridBagLayout();
+            panel.setLayout(grid);
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.insets = new Insets(5,5,5,5);
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+            
+            //Quantity
+            qtyLabel = new JLabel("Quantity*");
+            gbc.gridx = 0;
+            gbc.gridy = 1;
+            panel.add( qtyLabel, gbc);
+            qtyTextField = new JTextField(10);
+            gbc.gridx = 1;
+            gbc.gridy = 1;
+            panel.add(qtyTextField, gbc);
+            
+            //Unit of Measurment
+            uomLabel = new JLabel("Unit of Measurment");
+            gbc.gridx = 0;
+            gbc.gridy = 2;
+            panel.add(uomLabel, gbc);
+            String[] uomStrings = {"unit", "pc.", "lb.", "oz.", "g", "gal", 
+                                    "qt.", "cup"};
+            uomComboBox = new JComboBox(uomStrings);
+            uomComboBox.setSelectedIndex(0);
+            gbc.gridx = 1;
+            gbc.gridy = 2;
+            panel.add(uomComboBox, gbc);
+            
+            //Expiration
+            expirationLabel = new JLabel("Expiration");
+            gbc.gridx = 0;
+            gbc.gridy = 3;
+            panel.add(expirationLabel, gbc);
+            expirationTextField = new JTextField(10);
+            gbc.gridx = 1;
+            gbc.gridy = 3;
+            panel.add(expirationTextField, gbc);
+            
+            //Average Usage
+            usageLabel = new JLabel("Avg Qty Usage");
+            gbc.gridx = 0;
+            gbc.gridy = 4;
+            panel.add(usageLabel, gbc);
+            usageTextField = new JTextField(10);
+            gbc.gridx = 1;
+            gbc.gridy = 4;
+            panel.add(usageTextField, gbc);
+            
+            //Update and Cancel Buttons
+            updateBtn = new JButton("Update");
+            updateBtn.addActionListener(this);
+            gbc.gridx = 0;
+            gbc.gridy = 5;
+            panel.add(updateBtn, gbc);
+            cancelBtn = new JButton("Cancel");
+            cancelBtn.addActionListener(this);
+            gbc.gridx = 1;
+            gbc.gridy = 5;
+            panel.add(cancelBtn, gbc);
+            
+            getContentPane().add(panel);
+            pack();    
+            setLocationRelativeTo(null);
+        }
+        
+        public String [] run() {
+            this.setVisible(true);
+            return data;
+        }
+        
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == updateBtn) {
+                data[0] = qtyTextField.getText();
+                data[1] = (String)uomComboBox.getSelectedItem();
+                data[2] = expirationTextField.getText();
+                data[3] = usageTextField.getText();
+                dispose(); 
+            } else if (e.getSource() == cancelBtn) {
+                dispose(); 
+            }
+        }
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      */
@@ -326,7 +434,7 @@ public class PerfectPantryGUI extends JFrame {
                 .addGroup(inventoryRightPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(sortingPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(inventoryRightPanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 1200, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 1000, GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -487,7 +595,7 @@ public class PerfectPantryGUI extends JFrame {
         inventoryTable.getColumnModel().getColumn(1).setPreferredWidth(175);
         inventoryTable.getColumnModel().getColumn(2).setPreferredWidth(15);
         inventoryTable.getColumnModel().getColumn(3).setPreferredWidth(10);
-        inventoryTable.getColumnModel().getColumn(4).setPreferredWidth(125);
+        inventoryTable.getColumnModel().getColumn(4).setPreferredWidth(100);
         inventoryTable.getColumnModel().getColumn(5).setPreferredWidth(25);
         inventoryTable.getColumnModel().getColumn(6).setPreferredWidth(25);
         inventoryTable.getColumnModel().getColumn(7).setPreferredWidth(5);
@@ -566,6 +674,8 @@ public class PerfectPantryGUI extends JFrame {
           {
             System.out.println("in getCellEditorValue of Edit");
             //Edit Item Here - todo
+            EditInventoryDialog dialog = new EditInventoryDialog(null);
+            String[] data = dialog.run();
             //example
             InventoryItem item = (InventoryItem)((InventoryTableModel)table.getModel()).inventory.get(row);
 //            item.name; 
@@ -597,51 +707,59 @@ public class PerfectPantryGUI extends JFrame {
         JTable table;
 
         public DeleteTableEditor (JCheckBox checkBox) {
-          super(checkBox);
-          button = new JButton();
-          button.setOpaque(true);
-          button.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent event){
-              fireEditingStopped();
-            }
-          });
+            super(checkBox);
+            button = new JButton();
+            button.setOpaque(true);
+            button.addActionListener(new ActionListener(){
+                @Override
+                public void actionPerformed(ActionEvent event){
+                    fireEditingStopped();
+                }
+            });
         }
 
         @Override
         public Component getTableCellEditorComponent(JTable table, Object value, 
                 boolean isSelected, int row, int column) {
-          this.table = table;
-          this.row = row;
-          this.col = column;
+            this.table = table;
+            this.row = row;
+            this.col = column;
 
-          button.setForeground(Color.black);
-          button.setBackground(UIManager.getColor("Button.background"));
-          label = (value == null) ? "" : value.toString();
-          button.setText(label);
-          clicked = true;
-          return button;
+            button.setForeground(Color.black);
+            button.setBackground(UIManager.getColor("Button.background"));
+            label = (value == null) ? "" : value.toString();
+            button.setText(label);
+            clicked = true;
+            return button;
         }
 
         @Override
-         public Object getCellEditorValue() {
-          if (clicked)
-          {
-            //Delete Item Here
-          }
-          clicked = false;
-          return new String(label);
+        public Object getCellEditorValue() {
+            if (clicked)
+            {
+                int n = JOptionPane.showConfirmDialog(null,
+                        "Delete Item?",
+                        "Delete",
+                        JOptionPane.YES_NO_OPTION);
+                if (n == JOptionPane.YES_OPTION) {
+                    //delete here todo
+                } else {
+                    //do nothing
+                }
+            }
+            clicked = false;
+            return new String(label);
         }
 
         @Override
         public boolean stopCellEditing() {
-          clicked = false;
-          return super.stopCellEditing();
+            clicked = false;
+            return super.stopCellEditing();
         }
 
         @Override
         protected void fireEditingStopped() {
-          super.fireEditingStopped();
+            super.fireEditingStopped();
         }
     }
     
