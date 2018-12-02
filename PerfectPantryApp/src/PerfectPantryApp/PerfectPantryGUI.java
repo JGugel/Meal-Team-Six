@@ -776,7 +776,12 @@ public class PerfectPantryGUI extends JFrame {
                 if (n == JOptionPane.YES_OPTION) {
                     //delete here todo
                     InventoryItem item = (InventoryItem)((InventoryTableModel)table.getModel()).inventory.get(row);
-                    invData.deleteRecord(item.upcDisplay);
+                    System.out.println(item.upcDisplay);
+                    if(invData.deleteRecord(item.upcDisplay)) {
+                        JOptionPane.showMessageDialog(null, "Item Deleted");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Delete Failed");
+                    }
                 } else {
                     //do nothing
                 }
