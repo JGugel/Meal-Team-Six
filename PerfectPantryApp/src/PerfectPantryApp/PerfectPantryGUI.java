@@ -839,7 +839,7 @@ public class PerfectPantryGUI extends JFrame {
           {
               // TO DO: Add to cart once tables are built
             
-            JOptionPane.showMessageDialog(null, "Coming in week three!");
+            JOptionPane.showMessageDialog(null, "Coming in Phase Three!");
           }
           clicked = false;
           return new String(label);
@@ -862,7 +862,7 @@ public class PerfectPantryGUI extends JFrame {
     
     //this method will perform action for go button
     private void goButton(){
-        JOptionPane.showMessageDialog(this, "testing go button");
+        JOptionPane.showMessageDialog(this, "Coming in Phase Three");
 
     }
     
