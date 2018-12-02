@@ -42,14 +42,13 @@ public class PerfectPantryGUI extends JFrame {
         private JLabel usageLabel;
         private JTextField upcTextField;
         private JTextField qtyTextField;
-//        private JTextField uomTextField;
         private JTextField expirationTextField;
         private JTextField usageTextField;
         private JButton addBtn;
         private JButton cancelBtn;
         private  boolean addSuccess=false;
         //Constructor
-        public AddInventoryDialog(Frame frame){
+        public AddInventoryDialog(Frame frame, InventoryData invData){
             super(frame, "Add Item", true);
             this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
             data = new String[5];
@@ -94,10 +93,6 @@ public class PerfectPantryGUI extends JFrame {
             gbc.gridx = 1;
             gbc.gridy = 2;
             panel.add(uomComboBox, gbc);
-//            uomTextField = new JTextField(10);
-//            gbc.gridx = 1;
-//            gbc.gridy = 2;
-//            panel.add(uomTextField, gbc);
             
             //Expiration
             expirationLabel = new JLabel("Expiration");
@@ -149,7 +144,55 @@ public class PerfectPantryGUI extends JFrame {
                 data[2] = (String)uomComboBox.getSelectedItem();
                 data[3] = expirationTextField.getText();
                 data[4] = usageTextField.getText();
-                dispose(); 
+                
+                //Validate data
+                String upcCheck = invData.ValidateUPC(data[0]);
+                switch (upcCheck) {
+                    case "valid":
+                        //check to see if record already exists in inventory
+                        if (invData.CheckExists()) {
+                            //todo josh - should maybe bring up the edit item dialog instead
+                            if (invData.incrementInventory(data[1],data[4])){
+                                populatePantryList();
+                                JOptionPane.showMessageDialog(this, "This item has been successfully added to existing inventory.");
+                                return;
+                            } else {
+                                JOptionPane.showMessageDialog(this, "Inventory not updated"); //failed to increment
+                                return;
+                            }
+                        } else {
+                            //UPC okay to add to Inventory
+                            if(invData.AddInventory(data)) {
+                                populatePantryList();
+                                JOptionPane.showMessageDialog(this, "Record has been updated");
+                                dispose();
+                                break;
+                            } else {
+                                return;
+                            }
+                        }
+                    case "empty":
+                        JOptionPane.showMessageDialog(this, "Invalid Input: UPC must not be empty");
+                        return;
+                    case "length":
+                        JOptionPane.showMessageDialog(this, "UPC must be a 12 digit integer");
+                        return;
+                    case "notANum":
+                        JOptionPane.showMessageDialog(this, "UPC must be a numeric value");
+                        return;
+                    case "notFound":
+                        /**
+                         * We need to add code to this to allow a user to enter
+                         * information to the master product table. The data variable
+                         * should remain intact because once it is entered as a product
+                         * it should also be added as an inventory item.
+                         */
+                        JOptionPane.showMessageDialog(this, "UPC not found in database");
+                        return; //break;
+                    default:
+                        break;
+                }
+
             } else if (e.getSource() == cancelBtn) {
                 dispose(); 
             }
@@ -481,47 +524,11 @@ public class PerfectPantryGUI extends JFrame {
      */
     private void addInventoryButton() {
         //check item UPC in database to verify
-        AddInventoryDialog dialog = new AddInventoryDialog(this);
+        AddInventoryDialog dialog = new AddInventoryDialog(this, invData);
         String[] data = dialog.run();
-        if (data[0] == null) {
-            return;
-        }
-        String upcCheck = invData.ValidateUPC(data[0]);
-        switch (upcCheck) {
-            case "valid":
-                if (invData.CheckExists()) {
-                    if (invData.incrementInventory(data[1],data[4])){
-                    populatePantryList();
-                    JOptionPane.showMessageDialog(this, "This item has been successfully added to existing inventory.");
-                    }else{   JOptionPane.showMessageDialog(this, "Inventory not updated");}
-                } else if (invData.AddInventory(data)) {
-                    populatePantryList();
-                    JOptionPane.showMessageDialog(this, "Record has been updated");
-                }
-                break;
-            case "empty":
-                JOptionPane.showMessageDialog(this, "Invalid Input: UPC must not be empty");
-                break;
-            case "length":
-                JOptionPane.showMessageDialog(this, "UPC must be a 12 digit integer");
-                break;
-            case "notANum":
-                JOptionPane.showMessageDialog(this, "UPC must be a numeric value");
-                break;
-            case "notFound":
-                /**
-                 * We need to add code to this to allow a user to enter
-                 * information to the master product table. The data variable
-                 * should remain intact because once it is entered as a product
-                 * it should also be added as an inventory item.
-                 */
-                JOptionPane.showMessageDialog(this, "UPC not found in database");
-                break;
-            default:
-                break;
-        }
-
+        //switch statement moved to inside dialog
     }
+    
     /**
      * This method sort selected option
      * @return selected option string
@@ -673,22 +680,22 @@ public class PerfectPantryGUI extends JFrame {
         }
 
         @Override
-         public Object getCellEditorValue() {
-          if (clicked)
-          {
-            System.out.println("in getCellEditorValue of Edit");
-            //Edit Item Here
-            InventoryItem item = (InventoryItem)((InventoryTableModel)table.getModel()).inventory.get(row);
-            String[] data = {item.sizeDisplay, item.uomDisplay, item.expiration, item.quantityDisplay};
-            for (int i=0; i<4; i++) {
-                System.out.println(data[i]);
+        public Object getCellEditorValue() {
+            if (clicked)
+            {
+                System.out.println("in getCellEditorValue of Edit");
+                //Edit Item Here
+                InventoryItem item = (InventoryItem)((InventoryTableModel)table.getModel()).inventory.get(row);
+                String[] data = {item.sizeDisplay, item.uomDisplay, item.expiration, item.quantityDisplay};
+//                for (int i=0; i<4; i++) {
+//                    System.out.println(data[i]); //testing todo josh
+//                }
+                EditInventoryDialog dialog = new EditInventoryDialog(null, data);
+                data = dialog.run();
+                //verify data todo
             }
-            EditInventoryDialog dialog = new EditInventoryDialog(null, data);
-            data = dialog.run();
-            //verify data todo
-          }
-          clicked = false;
-          return new String(label);
+            clicked = false;
+            return new String(label);
         }
 
         @Override
