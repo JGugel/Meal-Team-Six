@@ -24,11 +24,7 @@ public class PerfectPantryGUI extends JFrame {
      * Creates new form PerfectPantryGUI
      */
     public PerfectPantryGUI() {
-        try {
-            invData = new InventoryData();
-        } catch (SQLException ex) {
-            Logger.getLogger(PerfectPantryGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        invData = new InventoryData();
         initComponents();
     }
 

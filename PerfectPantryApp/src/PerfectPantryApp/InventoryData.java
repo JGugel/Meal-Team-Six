@@ -11,7 +11,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-
 /**
  *
  * @author Michelle
@@ -19,34 +18,25 @@ import javax.swing.JOptionPane;
 public class InventoryData {
 
     protected InventoryTableModel tModel = null;
-    protected Connection conn;
     protected Statement st = null;
     protected static String upc = "";
     protected static int productID = 0;
-    protected static int quantity = 0;
+    protected static double usage = 0;
     protected static double size;
     protected static String uom;
     protected java.sql.Date sqlExp = null;
-    boolean validUPC=false;
-    public InventoryData() throws SQLException {
-        this.conn = JDBC.getConnection();
-    }
+    boolean validUPC = false;
 
     public InventoryTableModel GetModel() {
         return tModel;
     }
-   
 
     //sets the table data for home screen
     public void SetTable(String orderBy, String selectedCategories) {
         String query = buildQuery(orderBy, selectedCategories);
         tModel = new InventoryTableModel();
-//        tModel = new DefaultTableModel(
-//                new String[]{"UPC", "Name", "Quantity", "UOM", "Category", 
-//                    "Expiration", "Weekly Usage", "Edit", "Delete", 
-//                    "Add to Cart"}, 0);
-        try {
-            this.conn = JDBC.getConnection();
+        try (Connection conn = JDBC.getConnection()) {
+
             System.out.println(String.format("Connected to database %s "
                     + "successfully.", conn.getCatalog()));
             st = (Statement) conn.createStatement();
@@ -62,11 +52,11 @@ public class InventoryData {
                 String uomDisplay = rs.getString("uom");
                 String category = rs.getString("categoryName");
                 String expiration = rs.getString("use_by");
-                String quantityDisplay = rs.getString("Quantity");
+                String usageDisplay = rs.getString("avg_usage");
                 tModel.addInventoryItem(new InventoryItem(upcDisplay, name, sizeDisplay,
-                    uomDisplay, category, expiration, quantityDisplay)); //applies data to table model
+                        uomDisplay, category, expiration, usageDisplay)); //applies data to table model
             }
-           
+            conn.close();
         } catch (SQLException ex) {
             Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -74,7 +64,7 @@ public class InventoryData {
 
     //builds the query to propogate the table
     private String buildQuery(String orderBy, String selectedCategories) {
-        String query = " select p.upc, p.invName, i.prod_size,i.uom, c.categoryName, i.use_by, i.quantity\r\n"
+        String query = " select p.upc, p.invName, i.prod_size,i.uom, c.categoryName, i.use_by, i.avg_usage\r\n"
                 + " from inventory_list i inner join product p on p.ProductID= i.ProductID\r\n"
                 + " inner join category c  on c.catCode=p.Category\r\n";
 
@@ -106,9 +96,9 @@ public class InventoryData {
         boolean correctSize = validateSize(data[1]);
         boolean correctUOM = validateUOM(data[2]);
         boolean correctDate = validateDate(data[3]);
-        boolean correctQuantity = validateQuantity(data[4]);
+        boolean correctUsage = validateUsage(data[4]);
 
-        if (!correctSize || !correctUOM || !correctDate || !correctQuantity) {
+        if (!correctSize || !correctUOM || !correctDate || !correctUsage) {
             return false;
         }
         boolean successfulInsert = runInsertQuery();
@@ -121,26 +111,25 @@ public class InventoryData {
         boolean correctSize = validateSize(data[1]);
         boolean correctUOM = validateUOM(data[2]);
         boolean correctDate = validateDate(data[3]);
-        boolean correctQuantity = validateQuantity(data[4]);
+        boolean correctUsage = validateUsage(data[4]);
 
-        if (!correctSize || !correctUOM || !correctDate || !correctQuantity) {
+        if (!correctSize || !correctUOM || !correctDate || !correctUsage) {
             return false;
         }
-        
+
         updatedSuccefully = runUpdateQuery();
         return updatedSuccefully;
     }
-    
+
     //helper method to run insert query
     private boolean runInsertQuery() {
-        try {
-            this.conn = JDBC.getConnection();
+        try(Connection conn=JDBC.getConnection()){
             // print out a message
             System.out.println(String.format("Connected to database %s "
                     + "successfully.", conn.getCatalog()));
 
             String query = "insert into inventory_list (productID,prod_size,uom,"
-                    + "use_by, us) values(?,?,?,?,?);";
+                    + "use_by, avg_usage, quantity) values(?,?,?,?,?,?);";
 
             PreparedStatement pstmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             pstmt.setInt(1, productID);
@@ -152,10 +141,11 @@ public class InventoryData {
                 //http://www.java2s.com/Tutorials/Java/JDBC/Insert/Set_NULL_date_value_to_database_in_Java.htm
                 pstmt.setNull(4, java.sql.Types.DATE);
             }
-            pstmt.setInt(5, quantity);
+            pstmt.setDouble(5, usage);
+            pstmt.setInt(6, 1);
             pstmt.execute();
-            
-
+            pstmt.close();
+            conn.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Oops!" + ex);
             Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
@@ -164,22 +154,21 @@ public class InventoryData {
         return true;
     }
 
-    
     //todo josh - for the edit button, editinventory
-    private boolean runUpdateQuery(){
+    private boolean runUpdateQuery() {
         boolean updated = false;
 
-        String sqlUpdate = "UPDATE inventory_list SET prod_size=" + size + 
-                ", uom='" + uom + "', use_by='" + sqlExp + "', quantity="
-                + quantity + " where ProductID=" + productID;
-        try {
-            this.conn = JDBC.getConnection();
+        String sqlUpdate = "UPDATE inventory_list SET prod_size=" + size
+                + ", uom='" + uom + "', use_by='" + sqlExp + "', avg_usage="
+                + usage + " where ProductID=" + productID;
+        try (Connection conn = JDBC.getConnection()) {
+
             Statement stmt = conn.createStatement();
             int record = stmt.executeUpdate(sqlUpdate);
             if (record > 0) {
                 updated = true;
             }
-
+            conn.close();
         } catch (SQLException ex) {
             System.out.println(ex);
             Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
@@ -188,10 +177,11 @@ public class InventoryData {
 
         return updated;
     }
-    
+
     //check to see if a record already exists in inventory
     public boolean CheckExists() {
-        try {
+        boolean exists = false;
+        try (Connection conn = JDBC.getConnection()) {
             // print out a message
             System.out.println(String.format("Connected to database %s "
                     + "successfully.", conn.getCatalog()));
@@ -199,49 +189,55 @@ public class InventoryData {
             String query = "select * from Inventory_List where productID=" + productID + ";";
             ResultSet rs = stmt.executeQuery(query);
             if (rs.next()) {//looking for an item
-                return true;
+                exists = true;
             } else {//upc not found
-                return false;
+                exists = false;
             }
+            conn.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Oops!" + ex);
             Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
+            exists = false;
         }
+        return exists;
     }
+
     public boolean deleteRecord(String upc) {
-           boolean deleted=false;
-        if(!runUPCQuery(upc)){
-            deleted=false;
+        boolean deleted = false;
+        if (!runUPCQuery(upc)) {
+            deleted = false;
         }
         String query = "DELETE from inventory_List "
                 + "WHERE productID=?";
-     
-        try{
-        PreparedStatement statement = this.conn.prepareStatement(query);
-        statement.setInt(1, productID);
-        int rowsDeleted = statement.executeUpdate();
-        if (rowsDeleted > 0) {
-            deleted=true;
-        }
-        }catch (SQLException ex) {
+
+        try (Connection conn = JDBC.getConnection()) {
+            PreparedStatement statement = conn.prepareStatement(query);
+            statement.setInt(1, productID);
+            int rowsDeleted = statement.executeUpdate();
+            if (rowsDeleted > 0) {
+                deleted = true;
+            }
+            statement.close();
+            conn.close();
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Oops!" + ex);
             Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
-            deleted= false;
+            deleted = false;
         }
         return deleted;
     }
-    //helper method to validate and set quantity
-    private boolean validateQuantity(String tempQuant) {
-        quantity = 0;
-        if (tempQuant.isEmpty()) {
-            quantity = 1;
 
-        } else {//quantity defaults to one
+    //helper method to validate and set usage
+    private boolean validateUsage(String tempQuant) {
+        usage = 0;
+        if (tempQuant.isEmpty()) {
+            usage = 1.0;
+
+        } else {//usage defaults to one
             try {
-                quantity = Integer.parseInt(tempQuant);
+                usage = Double.parseDouble(tempQuant);
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Quantity should be a numeric value");
+                JOptionPane.showMessageDialog(null, "Usage should be a numeric value");
                 return false;
             }
         }
@@ -325,8 +321,7 @@ public class InventoryData {
     //runs a upc query should be used by all methods that need a upc check
     private boolean runUPCQuery(String upc) {
         //connect to database
-        try {
-            this.conn = JDBC.getConnection();
+        try(Connection conn=JDBC.getConnection()) {
             // print out a message
             System.out.println(String.format("Connected to database %s "
                     + "successfully.", conn.getCatalog()));
@@ -339,6 +334,8 @@ public class InventoryData {
             } else {//upc not found
                 return false;
             }
+            stmt.close();
+            conn.close();
         } catch (SQLException ex) {
             System.out.println(ex);
             Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
@@ -348,27 +345,28 @@ public class InventoryData {
     }
 
     //validates information and gets quantities to add to
-    boolean incrementInventory(String prodSize, String quantity) {
+    boolean incrementInventory(String prodSize, String usage) {
         boolean updatedSuccefully = true;
         boolean correctSize = validateSize(prodSize);
-        boolean correctQuantity = validateQuantity(quantity);
+        boolean correctUsage= validateUsage(usage);
         double prod = 0;
-        int quan = 0;
-        if (correctSize && correctQuantity) {
-            String query = "select i.prod_size, i.quantity from "
+       double use = 0;
+        if (correctSize && correctUsage) {
+            String query = "select i.prod_size, i.avg_usage from "
                     + "inventory_list i where ProductID=" + productID;
-            try {
-                this.conn = JDBC.getConnection();
+            try(Connection conn=JDBC.getConnection()){
+            
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(query);
                 while (rs.next()) {
                     prod = rs.getDouble("prod_size");
-                    quan = rs.getInt("quantity");
+                    use = rs.getInt("avg_usage");
                 }
                 size += prod;
-                quantity += quan;
+                usage += use;
                 updatedSuccefully = updateInventoryList();
-
+                stmt.close();
+                conn.close();
             } catch (SQLException ex) {
                 System.out.println(ex);
                 Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
@@ -378,20 +376,21 @@ public class InventoryData {
 
         return updatedSuccefully;
     }
+
     //actually updates the invenotry
     private boolean updateInventoryList() {
         boolean updated = false;
 
-        String sqlUpdate = "update inventory_list set prod_size=" + size + ", quantity="
-                + quantity + " where productId=" + productID;
-        try {
-            this.conn = JDBC.getConnection();
+        String sqlUpdate = "update inventory_list set prod_size=" + size + ", avg_usage="
+                + usage + " where productId=" + productID;
+        try(Connection conn=JDBC.getConnection()) {
             Statement stmt = conn.createStatement();
             int record = stmt.executeUpdate(sqlUpdate);
             if (record > 0) {
                 updated = true;
             }
-
+            stmt.close();
+            conn.close();
         } catch (SQLException ex) {
             System.out.println(ex);
             Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
