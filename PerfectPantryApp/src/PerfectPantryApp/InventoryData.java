@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
@@ -123,7 +124,7 @@ public class InventoryData {
 
     //helper method to run insert query
     private boolean runInsertQuery() {
-        try(Connection conn=JDBC.getConnection()){
+        try (Connection conn = JDBC.getConnection()) {
             // print out a message
             System.out.println(String.format("Connected to database %s "
                     + "successfully.", conn.getCatalog()));
@@ -157,9 +158,14 @@ public class InventoryData {
     //todo josh - for the edit button, editinventory
     private boolean runUpdateQuery() {
         boolean updated = false;
+        String dateString = "Null";
+        Format formatter = new SimpleDateFormat("yyyy-MM-dd");
 
+        if (sqlExp != null) {
+            dateString = "'" + formatter.format(sqlExp) + "'";
+        }
         String sqlUpdate = "UPDATE inventory_list SET prod_size=" + size
-                + ", uom='" + uom + "', use_by='" + sqlExp + "', avg_usage="
+                + ", uom='" + uom + "', use_by=" + dateString + ", avg_usage="
                 + usage + " where ProductID=" + productID;
         try (Connection conn = JDBC.getConnection()) {
 
@@ -247,15 +253,16 @@ public class InventoryData {
     //helper method to validate and set date
     private boolean validateDate(String tempDate) {
         SimpleDateFormat dateFormat;
+        String formatter = "";
         sqlExp = null;
         //parse data values
         if (!(tempDate.isEmpty())) {
+
+            dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+            formatter = formatter.format(tempDate);
             try {
-                dateFormat = new SimpleDateFormat("yyyy-mm-dd");
-                java.util.Date exp;
-                exp = dateFormat.parse(tempDate);
-                sqlExp = new java.sql.Date(exp.getTime());
-            } catch (ParseException ex) {
+                sqlExp = java.sql.Date.valueOf(formatter);
+            } catch (IllegalArgumentException iae) {
                 JOptionPane.showMessageDialog(null, "Date must be in yyyy-mm-dd format");
                 return false;
             }
@@ -321,7 +328,7 @@ public class InventoryData {
     //runs a upc query should be used by all methods that need a upc check
     private boolean runUPCQuery(String upc) {
         //connect to database
-        try(Connection conn=JDBC.getConnection()) {
+        try (Connection conn = JDBC.getConnection()) {
             // print out a message
             System.out.println(String.format("Connected to database %s "
                     + "successfully.", conn.getCatalog()));
@@ -348,14 +355,14 @@ public class InventoryData {
     boolean incrementInventory(String prodSize, String usage) {
         boolean updatedSuccefully = true;
         boolean correctSize = validateSize(prodSize);
-        boolean correctUsage= validateUsage(usage);
+        boolean correctUsage = validateUsage(usage);
         double prod = 0;
-       double use = 0;
+        double use = 0;
         if (correctSize && correctUsage) {
             String query = "select i.prod_size, i.avg_usage from "
                     + "inventory_list i where ProductID=" + productID;
-            try(Connection conn=JDBC.getConnection()){
-            
+            try (Connection conn = JDBC.getConnection()) {
+
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(query);
                 while (rs.next()) {
@@ -383,7 +390,7 @@ public class InventoryData {
 
         String sqlUpdate = "update inventory_list set prod_size=" + size + ", avg_usage="
                 + usage + " where productId=" + productID;
-        try(Connection conn=JDBC.getConnection()) {
+        try (Connection conn = JDBC.getConnection()) {
             Statement stmt = conn.createStatement();
             int record = stmt.executeUpdate(sqlUpdate);
             if (record > 0) {
