@@ -345,7 +345,7 @@ public class PerfectPantryGUI extends JFrame {
         dairyRefCB = new JCheckBox();
         householdSCB = new JCheckBox();
         meatsPoultryCB = new JCheckBox();
-        miscellaneousCB = new JCheckBox();
+        ProduceCB = new JCheckBox();
         pantryCB = new JCheckBox();
         inventoryRightPanel = new JPanel();
         sortingPanel = new JPanel();
@@ -382,8 +382,8 @@ public class PerfectPantryGUI extends JFrame {
         pantryCB.setText("Pantry");
         pantryCB.addActionListener(e-> populatePantryList());
         
-        miscellaneousCB.setText("Miscellaneous");
-        miscellaneousCB.addActionListener(e-> populatePantryList());
+        ProduceCB.setText("Produce");
+        ProduceCB.addActionListener(e-> populatePantryList());
         
         javax.swing.GroupLayout categoriesPanelLayout = new GroupLayout(categoriesPanel);
         categoriesPanel.setLayout(categoriesPanelLayout);
@@ -397,7 +397,7 @@ public class PerfectPantryGUI extends JFrame {
                         .addComponent(bakingCB))
                     .addGroup(categoriesPanelLayout.createSequentialGroup()
                         .addGroup(categoriesPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                            .addComponent(miscellaneousCB)
+                            .addComponent(ProduceCB)
                             .addComponent(pantryCB)
                             .addComponent(beveragesCB)
                             .addComponent(breadsBakeryCB)
@@ -425,7 +425,7 @@ public class PerfectPantryGUI extends JFrame {
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pantryCB)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(miscellaneousCB))
+                .addComponent(ProduceCB))
         );
 
         createSearchPanel();
@@ -600,8 +600,8 @@ public class PerfectPantryGUI extends JFrame {
         if(meatsPoultryCB.isSelected()){
             selectedCategories = getConcatenatedWhereStatement(selectedCategories,"'Meats, Poultry, and Seafood'");            
         }
-        if(miscellaneousCB.isSelected()){
-            selectedCategories = getConcatenatedWhereStatement(selectedCategories,"'Miscellaneous'");            
+        if(ProduceCB.isSelected()){
+            selectedCategories = getConcatenatedWhereStatement(selectedCategories,"'Produce'");            
         }
         if(pantryCB.isSelected()){
             selectedCategories = getConcatenatedWhereStatement(selectedCategories,"'Pantry'");            
@@ -943,7 +943,7 @@ public class PerfectPantryGUI extends JFrame {
     private JTable inventoryTable;
     private JScrollPane jScrollPane1;
     private JCheckBox meatsPoultryCB;
-    private JCheckBox miscellaneousCB;
+    private JCheckBox ProduceCB;
     private JCheckBox pantryCB;
     private JComboBox<String> sortingComboBox;
     private JLabel sortingLabel;
