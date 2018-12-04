@@ -92,8 +92,7 @@ public class InventoryData {
 
     //method called to initiate insertion
     public boolean AddInventory(String[] data) {
-        DataValidation validData = new DataValidation(data);
-        if (!validateData(validData)) {
+        if (!validateData(data)) {
             return false;
         }
         boolean successfulInsert = runInsertQuery();
@@ -102,9 +101,8 @@ public class InventoryData {
 
     //method called to initiate edit
     public boolean EditInventory(String[] data) {
-        DataValidation validData = new DataValidation(data);
         boolean updatedSuccefully = true;
-        if (!validateData(validData)) {
+        if (!validateData(data)) {
             return false;
         }
         updatedSuccefully = runUpdateQuery();
@@ -269,8 +267,7 @@ public class InventoryData {
         double prod = 0;
         double use = 0;
         boolean updatedSuccefully;
-        DataValidation validData = new DataValidation(data);
-        if (!validateData(validData)) {
+        if (!validateData(data)) {
             return false;
         }
         String query = "select i.prod_size, i.avg_usage from "
@@ -319,17 +316,21 @@ public class InventoryData {
         return updated;
     }
 
-    private boolean validateData(DataValidation data) {
-        boolean correctSize = data.checkValidSize();
-        boolean correctUOM = data.checkValidUOM();
-        boolean correctDate = data.checkValidDate();
-        boolean correctUsage = data.CheckValidUsage();
-        if (correctSize && correctUOM && correctDate && correctUsage) {
+    private boolean validateData(String[] dataArray) {
+        DataValidation data = new DataValidation();
+        if (!data.validateSize(dataArray[1])) {
+            return false;
+        } else if (!data.validateUOM(dataArray[2])) {
+            return false;
+        } else if (!data.validateDate(dataArray[3])) {
+            return false;
+        } else if (!data.validateUsage(dataArray[4])) {
+            return false;
+        } else {
             setFields(data);
             return true;
-        } else {
-            return false;
         }
+
     }
 
     private void setFields(DataValidation data) {

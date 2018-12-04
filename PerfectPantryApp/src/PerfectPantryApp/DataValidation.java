@@ -142,20 +142,5 @@ public class DataValidation {
 
     }
 
-    boolean checkValidSize() {
-      return validSize;
-    }
-
-    boolean checkValidUOM() {
-       return validUOM;
-    }
-
-    boolean checkValidDate() {
-        return validDate;
-    }
-
-    boolean CheckValidUsage() {
-        return validUsage;
-    }
-
+   
 }
