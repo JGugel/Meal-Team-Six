@@ -19,6 +19,7 @@ public class InventoryData {
 
     protected InventoryTableModel tModel = null;
     protected static int productID = 0;
+
     protected String upc = "";
     protected static double usage;
     protected static double size;
@@ -264,7 +265,7 @@ public class InventoryData {
     }
 
     //validates information and gets quantities to add to
-    boolean adjustInventory(String[] data, String adjustmentType) {
+    boolean adjustInventory(String[] data) {
         double prod = 0;
         double use = 0;
         boolean updatedSuccefully;
@@ -282,7 +283,7 @@ public class InventoryData {
                 prod = rs.getDouble("prod_size");
                 use = rs.getInt("avg_usage");
             }
-            setInventoryValues(adjustmentType, prod, use);
+           
             updatedSuccefully = updateInventoryList();
             stmt.close();
             conn.close();
@@ -291,18 +292,9 @@ public class InventoryData {
             Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
-        return updatedSuccefully;
+        return true;
     }
-    private void setInventoryValues(String adj, double p, double u){
-         if(adj.equals("add")){
-             size+=p;
-             usage+=u; 
-         }else if(adj.equals("subtract")){
-             size-=p;
-             usage -=usage;
-         }
-            
-    }
+   
     //actually updates the invenotry
     private boolean updateInventoryList() {
         boolean updated = false;

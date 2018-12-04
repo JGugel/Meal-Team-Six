@@ -148,7 +148,7 @@ public class PerfectPantryGUI extends JFrame {
                         //check to see if record already exists in inventory
                         if (invData.CheckExists()) {
                             //todo josh - should maybe bring up the edit item dialog instead
-                            if (invData.adjustInventory(data, "add")){
+                            if (invData.adjustInventory(data)){
                                 populatePantryList();
                                 JOptionPane.showMessageDialog(this, "Quantity added to existing entry");
                                 return;
