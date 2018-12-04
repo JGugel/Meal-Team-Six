@@ -7,6 +7,8 @@ import javax.swing.*;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.SoftBevelBorder;
 import javax.swing.table.TableCellRenderer;
 
 
@@ -334,7 +336,7 @@ public class PerfectPantryGUI extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        inventoryTabPane = new JTabbedPane();
+        homeTabPane = new JTabbedPane();
         inventorySplitPane = new JSplitPane();
         inventoryLeftPanel = new JPanel();
         addInventoryButton = new JButton();
@@ -513,22 +515,23 @@ public class PerfectPantryGUI extends JFrame {
 
         inventorySplitPane.setRightComponent(inventoryRightPanel);
 
-        inventoryTabPane.addTab("Inventory", inventorySplitPane);
+        homeTabPane.addTab("Inventory", inventorySplitPane);
 
+        shopListTab();
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(inventoryTabPane)
+                .addComponent(homeTabPane)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(inventoryTabPane)
+                .addComponent(homeTabPane)
                 .addContainerGap())
         );
         pack();
@@ -925,6 +928,196 @@ public class PerfectPantryGUI extends JFrame {
                 .addContainerGap(24, Short.MAX_VALUE))
         );
     }
+    private void shopListTab(){
+        shopListTab = new JPanel();
+        shopListSplitPane = new JSplitPane();
+        shopListLeftPanel = new JPanel();
+        createShopListButton = new JButton();
+        viewShopListPanel = new JPanel();
+        selectShopListLabel = new JLabel();
+        selectShopListComboBox = new JComboBox<>();
+        shopListRightPanel = new JPanel();
+        shopListRightTopPanel = new JPanel();
+        shopListNameLabel = new JLabel();
+        deleteshopListButton = new JButton();
+        editShopListButton = new JButton();
+        shopListScrollPane = new JScrollPane();
+        shopListTable = new JTable();
+        addItemShopListButton = new JButton();
+        
+        createShopListButton.setText("Create New List");
+        createShopListButton.addActionListener(e-> createShopListButtonAction());
+
+        viewShopListPanel.setBorder(BorderFactory.createTitledBorder("View List"));
+
+        selectShopListLabel.setText("SelectList:");
+
+        selectShopListComboBox.setModel(new DefaultComboBoxModel<>(new String[] { "Select by Name" }));
+
+        GroupLayout viewShopListPanelLayout = new GroupLayout(viewShopListPanel);
+        viewShopListPanel.setLayout(viewShopListPanelLayout);
+        viewShopListPanelLayout.setHorizontalGroup(
+            viewShopListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(viewShopListPanelLayout.createSequentialGroup()
+                .addGroup(viewShopListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(selectShopListLabel, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(selectShopListComboBox, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        viewShopListPanelLayout.setVerticalGroup(
+            viewShopListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(viewShopListPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(selectShopListLabel)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(selectShopListComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(34, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout shopListLeftPanelLayout = new GroupLayout(shopListLeftPanel);
+        shopListLeftPanel.setLayout(shopListLeftPanelLayout);
+        shopListLeftPanelLayout.setHorizontalGroup(
+            shopListLeftPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(shopListLeftPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(shopListLeftPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(createShopListButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(shopListLeftPanelLayout.createSequentialGroup()
+                        .addComponent(viewShopListPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        shopListLeftPanelLayout.setVerticalGroup(
+            shopListLeftPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(shopListLeftPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(viewShopListPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(createShopListButton, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(210, Short.MAX_VALUE))
+        );
+
+        shopListSplitPane.setLeftComponent(shopListLeftPanel);
+
+        shopListRightTopPanel.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
+
+        shopListNameLabel.setText("List Name");
+
+        deleteshopListButton.setIcon(new ImageIcon(getClass().getResource("delete.png"))); // NOI18N
+        deleteshopListButton.setMaximumSize(new java.awt.Dimension(179, 147));
+        deleteshopListButton.setMinimumSize(new java.awt.Dimension(179, 147));
+        deleteshopListButton.addActionListener(e-> deleteShopListButtonAction());
+
+        editShopListButton.setIcon(new ImageIcon(getClass().getResource("edit.png"))); // NOI18N
+        editShopListButton.setMaximumSize(new java.awt.Dimension(44, 44));
+        editShopListButton.setMinimumSize(new java.awt.Dimension(44, 44));
+        editShopListButton.addActionListener(e-> editShopListButtonAction());
+
+        GroupLayout shopListRightTopPanelLayout = new GroupLayout(shopListRightTopPanel);
+        shopListRightTopPanel.setLayout(shopListRightTopPanelLayout);
+        shopListRightTopPanelLayout.setHorizontalGroup(
+            shopListRightTopPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(shopListRightTopPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(shopListNameLabel, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(editShopListButton, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED,javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(deleteshopListButton, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        shopListRightTopPanelLayout.setVerticalGroup(
+            shopListRightTopPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(shopListRightTopPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(shopListRightTopPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addGroup(shopListRightTopPanelLayout.createSequentialGroup()
+                        .addComponent(editShopListButton, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(shopListRightTopPanelLayout.createSequentialGroup()
+                        .addGroup(shopListRightTopPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(shopListNameLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(deleteshopListButton, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(9, 9, 9))))
+        );
+
+        shopListTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Product Name", "UPC", "Edit", "Delete"
+            }
+        ));
+        shopListScrollPane.setViewportView(shopListTable);
+
+        addItemShopListButton.setText("Add Item");
+        addItemShopListButton.addActionListener(e-> addItemSLButtonAction());
+
+        GroupLayout shopListRightPanelLayout = new GroupLayout(shopListRightPanel);
+        shopListRightPanel.setLayout(shopListRightPanelLayout);
+        shopListRightPanelLayout.setHorizontalGroup(
+            shopListRightPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(shopListRightPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(shopListRightPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addGroup(shopListRightPanelLayout.createSequentialGroup()
+                        .addComponent(addItemShopListButton, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(shopListRightTopPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(shopListScrollPane, GroupLayout.DEFAULT_SIZE, 642, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        shopListRightPanelLayout.setVerticalGroup(
+            shopListRightPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(shopListRightPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(shopListRightTopPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(shopListScrollPane, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(addItemShopListButton)
+                .addContainerGap(179, Short.MAX_VALUE))
+        );
+
+        shopListSplitPane.setRightComponent(shopListRightPanel);
+
+        javax.swing.GroupLayout shopListTabLayout = new javax.swing.GroupLayout(shopListTab);
+        shopListTab.setLayout(shopListTabLayout);
+        shopListTabLayout.setHorizontalGroup(
+            shopListTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(shopListSplitPane)
+        );
+        shopListTabLayout.setVerticalGroup(
+            shopListTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, shopListTabLayout.createSequentialGroup()
+                .addComponent(shopListSplitPane)
+                .addContainerGap())
+        );
+
+        homeTabPane.addTab("Shopping List", shopListTab);
+    }
+    
+    private void createShopListButtonAction() {                                                     
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "create shopping list");
+    }
+    private void deleteShopListButtonAction() {                                                     
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "delete shopping list");
+    }
+    
+    private void editShopListButtonAction() {                                                     
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "edit shopping list");
+    }
+    private void addItemSLButtonAction() {                                                     
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "add iten in shopping list");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JButton addInventoryButton;
@@ -939,7 +1132,7 @@ public class PerfectPantryGUI extends JFrame {
     private JPanel inventoryLeftPanel;
     private JPanel inventoryRightPanel;
     private JSplitPane inventorySplitPane;
-    private JTabbedPane inventoryTabPane;
+    private JTabbedPane homeTabPane;
     private JTable inventoryTable;
     private JScrollPane jScrollPane1;
     private JCheckBox meatsPoultryCB;
@@ -954,5 +1147,20 @@ public class PerfectPantryGUI extends JFrame {
     private JLabel enterKeywordLabel;
     private JTextField keywordTextField;
     private JButton goButton;
+    private JComboBox<String> selectShopListComboBox;
+    private JButton addItemShopListButton;
+    private JButton createShopListButton;
+    private JButton deleteshopListButton;
+    private JButton editShopListButton;
+    private JLabel selectShopListLabel;
+    private JPanel shopListLeftPanel;
+    private JLabel shopListNameLabel;
+    private JPanel shopListRightPanel;
+    private JPanel shopListRightTopPanel;
+    private JScrollPane shopListScrollPane;
+    private JSplitPane shopListSplitPane;
+    private JPanel shopListTab;
+    private JTable shopListTable;
+    private JPanel viewShopListPanel;
     // End of variables declaration//GEN-END:variables
 }
