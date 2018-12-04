@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.Format;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,14 +18,13 @@ import javax.swing.JOptionPane;
 public class InventoryData {
 
     protected InventoryTableModel tModel = null;
-    protected Statement st = null;
-    protected static String upc = "";
     protected static int productID = 0;
-    protected static double usage = 0;
+    protected Statement st = null;
+    protected String upc = "";
+    protected static double usage;
     protected static double size;
     protected static String uom;
     protected java.sql.Date sqlExp = null;
-    boolean validUPC = false;
 
     public InventoryTableModel GetModel() {
         return tModel;
@@ -94,12 +92,8 @@ public class InventoryData {
 
     //method called to initiate insertion
     public boolean AddInventory(String[] data) {
-        boolean correctSize = validateSize(data[1]);
-        boolean correctUOM = validateUOM(data[2]);
-        boolean correctDate = validateDate(data[3]);
-        boolean correctUsage = validateUsage(data[4]);
-
-        if (!correctSize || !correctUOM || !correctDate || !correctUsage) {
+        DataValidation validData = new DataValidation(data);
+        if (!validateData(validData)) {
             return false;
         }
         boolean successfulInsert = runInsertQuery();
@@ -108,16 +102,11 @@ public class InventoryData {
 
     //method called to initiate edit
     public boolean EditInventory(String[] data) {
+        DataValidation validData = new DataValidation(data);
         boolean updatedSuccefully = true;
-        boolean correctSize = validateSize(data[1]);
-        boolean correctUOM = validateUOM(data[2]);
-        boolean correctDate = validateDate(data[3]);
-        boolean correctUsage = validateUsage(data[4]);
-
-        if (!correctSize || !correctUOM || !correctDate || !correctUsage) {
+        if (!validateData(validData)) {
             return false;
         }
-
         updatedSuccefully = runUpdateQuery();
         return updatedSuccefully;
     }
@@ -234,101 +223,19 @@ public class InventoryData {
     }
 
     //helper method to validate and set usage
-    private boolean validateUsage(String tempQuant) {
-        usage = 0;
-        if (tempQuant.isEmpty()) {
-            usage = 1.0;
-
-        } else {//usage defaults to one
-            try {
-                usage = Double.parseDouble(tempQuant);
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Usage should be a numeric value");
-                return false;
-            }
-        }
-        return true;
-    }
-
-    //helper method to validate and set date
-    private boolean validateDate(String tempDate) {
-        SimpleDateFormat dateFormat;
-        String formatter = "";
-        sqlExp = null;
-        //parse data values
-        if (!(tempDate.isEmpty())) {
-
-            dateFormat = new SimpleDateFormat("yyyy-mm-dd");
-            formatter = formatter.format(tempDate);
-            try {
-                sqlExp = java.sql.Date.valueOf(formatter);
-            } catch (IllegalArgumentException iae) {
-                JOptionPane.showMessageDialog(null, "Date must be in yyyy-mm-dd format");
-                return false;
-            }
-        }
-        return true;
-    }
-
-    //helper method to validate and set size
-    private boolean validateSize(String tempSize) {
-        size = 0;
-        if (tempSize.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Invalid Input: Quantity must not be empty");
-            return false;
-        }
-        try {
-            size = Double.parseDouble(tempSize);
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Quantity should be a numeric value");
-            return false;
-        }
-        return true;
-    }
-
-    //helper method to validate and set units
-    private boolean validateUOM(String tempUOM) {
-        if(tempUOM.equals("unit")){
-            JOptionPane.showMessageDialog(null, "Please select a valid unit of measurement.");
-            return false;
-        }
-        uom = "";
-        if (tempUOM.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Invalid Input: Unit of measurement must not be empty.");
-            return false;
-        }
-
-        if (tempUOM.length() > 6) {
-            JOptionPane.showMessageDialog(null, "Unit of Measurement must only be 6 characters.");
-            return false;
-        } else {
-            uom = tempUOM;
-        }
-        return true;
-    }
-
     //called from GUI
     public String ValidateUPC(String interfaceUpc) {
-        upc = interfaceUpc;
-        String regex = "[0-9]+";
-        boolean exists = false;
-        if (upc.isEmpty()) {
-            return "empty";
+        DataValidation data = new DataValidation();
+        String validationMessage = data.validateUPC(interfaceUpc);
+        if (validationMessage.equals("NotInvalid")) {
+            upc = data.getUPC();
+            if (runUPCQuery(upc)) {
+                return "valid";
+            } else {
+                return "notFound";
+            }
         }
-        if (!upc.matches(regex)) {
-            return "notANum";
-        }
-        
-        if (upc.length() != 12) {
-            return "length";
-        }
-        
-        exists = runUPCQuery(upc);
-        if (exists) {
-            return "valid";
-        } else {
-            return "notFound";
-        }
+        return validationMessage;
     }
 
     //runs a upc query should be used by all methods that need a upc check
@@ -358,37 +265,34 @@ public class InventoryData {
     }
 
     //validates information and gets quantities to add to
-    boolean incrementInventory(String prodSize, String usage) {
-        boolean updatedSuccefully = true;
-        boolean correctSize = validateSize(prodSize);
-        boolean correctUsage = validateUsage(usage);
+    boolean incrementInventory(String[] data) {
+        boolean updatedSuccefully;
+        DataValidation validData = new DataValidation(data);
+        if (!validateData(validData)) {
+            return false;
+        }
         double prod = 0;
         double use = 0;
-        if (correctSize && correctUsage) {
-            String query = "select i.prod_size, i.avg_usage from "
-                    + "inventory_list i where ProductID=" + productID;
-            try (Connection conn = JDBC.getConnection()) {
+        String query = "select i.prod_size, i.avg_usage from "
+                + "inventory_list i where ProductID=" + productID;
+        try (Connection conn = JDBC.getConnection()) {
 
-                Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery(query);
-                while (rs.next()) {
-                    prod = rs.getDouble("prod_size");
-                    use = rs.getInt("avg_usage");
-                }
-                size += prod;
-                usage += use;
-                updatedSuccefully = updateInventoryList();
-                stmt.close();
-                conn.close();
-            } catch (SQLException ex) {
-                System.out.println(ex);
-                Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
-                return false;
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                prod = rs.getDouble("prod_size");
+                use = rs.getInt("avg_usage");
             }
-        }else{
-           updatedSuccefully=false;
+            prod += validData.getSize();
+            use += validData.getUsage();
+            updatedSuccefully = updateInventoryList();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
-
         return updatedSuccefully;
     }
 
@@ -415,4 +319,23 @@ public class InventoryData {
         return updated;
     }
 
+    private boolean validateData(DataValidation data) {
+        boolean correctSize = data.checkValidSize();
+        boolean correctUOM = data.checkValidUOM();
+        boolean correctDate = data.checkValidDate();
+        boolean correctUsage = data.CheckValidUsage();
+        if (correctSize && correctUOM && correctDate && correctUsage) {
+            setFields(data);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private void setFields(DataValidation data) {
+        usage = data.getUsage();
+        size = data.getSize();
+        uom = data.getUOM();
+        sqlExp = data.getExpiration();
+    }
 }
