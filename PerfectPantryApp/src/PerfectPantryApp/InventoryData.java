@@ -272,10 +272,10 @@ public class InventoryData {
         DataValidation validData = new DataValidation(data);
         if (!validateData(validData)) {
             return false;
-        }    
+        }
         String query = "select i.prod_size, i.avg_usage from "
                 + "inventory_list i where ProductID=" + productID;
-        
+
         try (Connection conn = JDBC.getConnection()) {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -283,7 +283,8 @@ public class InventoryData {
                 prod = rs.getDouble("prod_size");
                 use = rs.getInt("avg_usage");
             }
-           
+            size += prod;
+            usage += use;
             updatedSuccefully = updateInventoryList();
             stmt.close();
             conn.close();
@@ -294,7 +295,7 @@ public class InventoryData {
         }
         return updatedSuccefully;
     }
-   
+
     //actually updates the invenotry
     private boolean updateInventoryList() {
         boolean updated = false;
