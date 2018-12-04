@@ -47,9 +47,42 @@ CREATE TABLE Inventory_List(
 	uom varchar(6) NOT NULL,
 	use_by date NULL default NULL,
 	avg_usage double NULL default NULL,
-	quantity int NOT Null,
+	quantity int NOT Null, /*currently not using this field*/
 	PRIMARY KEY (ProductID)
 );
+/*adds a usage table which will be populated with information from
+decrementing inventory*/
+CREATE TABLE Usage_data(
+	ProductID int NOT NULL,
+	usageNum int NOT NULL AUTO_INCREMENT,
+	`usage` double(4,2) NOT NULL,
+	uom varchar(6) NOT NULL,
+	PRIMARY KEY (usageNum),
+	FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
+);
+
+/*junction table between List and Products
+required if user has more than one list*/
+CREATE TABLE List_Pointer(
+	ListID int NOT NULL AUTO_INCREMENT,
+	ListName varchar(40) NOT NULL,
+	PRIMARY KEY(ListID)
+);
+
+/*Actual list which is on each product*/
+CREATE TABLE Shopping_List(
+	ItemID int AUTO_INCREMENT,
+	ListID int NOT NULL,
+	ProductID int NULL default NULL,
+	cat_code int(3) NOT Null,
+	quantity int NOT null,/*defaults to one*/
+	ProductName varchar(80) NOT NULL,
+	PRIMARY KEY(ItemID),
+	FOREIGN KEY (ListID) REFERENCES List_Pointer(ListID)
+);
+
+/*set autoIncrement to start at a 3 digit num*/
+ALTER TABLE List_Pointer AUTO_INCREMENT=100;
 
 /*command to start incrementing*/
 ALTER TABLE Product AUTO_INCREMENT=45374984;
