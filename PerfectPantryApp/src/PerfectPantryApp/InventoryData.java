@@ -292,7 +292,7 @@ public class InventoryData {
             Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
-        return true;
+        return updatedSuccefully;
     }
    
     //actually updates the invenotry
