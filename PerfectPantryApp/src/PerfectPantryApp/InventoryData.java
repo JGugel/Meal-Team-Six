@@ -19,7 +19,6 @@ public class InventoryData {
 
     protected InventoryTableModel tModel = null;
     protected static int productID = 0;
-    protected Statement st = null;
     protected String upc = "";
     protected static double usage;
     protected static double size;
@@ -38,7 +37,7 @@ public class InventoryData {
 
             System.out.println(String.format("Connected to database %s "
                     + "successfully.", conn.getCatalog()));
-            st = (Statement) conn.createStatement();
+            Statement st = (Statement) conn.createStatement();
 
             ResultSet rs = null;
 
@@ -265,26 +264,25 @@ public class InventoryData {
     }
 
     //validates information and gets quantities to add to
-    boolean incrementInventory(String[] data) {
+    boolean adjustInventory(String[] data, String adjustmentType) {
+        double prod = 0;
+        double use = 0;
         boolean updatedSuccefully;
         DataValidation validData = new DataValidation(data);
         if (!validateData(validData)) {
             return false;
-        }
-        double prod = 0;
-        double use = 0;
+        }    
         String query = "select i.prod_size, i.avg_usage from "
                 + "inventory_list i where ProductID=" + productID;
+        
         try (Connection conn = JDBC.getConnection()) {
-
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
                 prod = rs.getDouble("prod_size");
                 use = rs.getInt("avg_usage");
             }
-            prod += validData.getSize();
-            use += validData.getUsage();
+            setInventoryValues(adjustmentType, prod, use);
             updatedSuccefully = updateInventoryList();
             stmt.close();
             conn.close();
@@ -295,7 +293,16 @@ public class InventoryData {
         }
         return updatedSuccefully;
     }
-
+    private void setInventoryValues(String adj, double p, double u){
+         if(adj.equals("add")){
+             size+=p;
+             usage+=u; 
+         }else if(adj.equals("subtract")){
+             size-=p;
+             usage -=usage;
+         }
+            
+    }
     //actually updates the invenotry
     private boolean updateInventoryList() {
         boolean updated = false;
