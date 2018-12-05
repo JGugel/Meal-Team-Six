@@ -122,6 +122,10 @@ public class InventoryData {
         return updatedSuccefully;
     }
     
+    public boolean createShoppingList(String name) {
+        return true;
+    }
+    
     //method to add a shopping list item
     //Input: name, quantity, category
     public boolean AddItemSL(String[] data){
@@ -179,13 +183,6 @@ public class InventoryData {
                 default:
                     break;
             }
-            
-            try {
-                category = Integer.parseInt(data[2]);
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Category must be a numeric value");
-                return false;
-            }
             pstmt.setString(1, name);
             pstmt.setDouble(2, size);
             pstmt.setInt(3,category);
@@ -199,7 +196,7 @@ public class InventoryData {
         }
         return true;
     }
-
+    
     //helper method to run insert query
     private boolean runInsertQuery() {
         try (Connection conn = JDBC.getConnection()) {

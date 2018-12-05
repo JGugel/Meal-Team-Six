@@ -445,7 +445,7 @@ public class PerfectPantryGUI extends JFrame {
                 //Check for valid shopping list - todo
                 
                 
-                if(true) {//if(invData.AddItemSL(data)) {
+                if(invData.AddItemSL(data)) { //if(true) {
                     populatePantryList();
                     JOptionPane.showMessageDialog(this, "TEST Item has been added!");
                     dispose();
@@ -1293,10 +1293,15 @@ public class PerfectPantryGUI extends JFrame {
         homeTabPane.addTab("Nutrition Tab", nutritionTab);
     }
     
-    //
+    //method to handle creating a new shopping list
     private void createShopListButtonAction() {                                                     
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "create shopping list");
+        String listName = JOptionPane.showInputDialog("Enter Shopping List Name");
+        if(invData.createShoppingList(listName)) {
+            JOptionPane.showMessageDialog(this, "TEST Shopping list " + listName + " created");
+        } else {
+            JOptionPane.showMessageDialog(this, "Create shopping list failed");
+        }
     }
     
     //
@@ -1311,7 +1316,7 @@ public class PerfectPantryGUI extends JFrame {
         JOptionPane.showMessageDialog(this, "edit shopping list");
     }
     
-    //
+    //method to handle adding new items to the shopping list
     private void addItemSLButtonAction() {                                                     
         // TODO add your handling code here:
         //JOptionPane.showMessageDialog(this, "add item in shopping list");
