@@ -741,7 +741,7 @@ public class PerfectPantryGUI extends JFrame {
             selectedCategories = getConcatenatedWhereStatement(selectedCategories,"'Pantry'");            
         }
         
-        invData.SetTable(sortedSelectedOption(), selectedCategories);
+        invData.buildQuery(sortedSelectedOption(), selectedCategories);
         inventoryTable.setModel(invData.GetModel());
         JButtonRenderer jbRender = new JButtonRenderer();
         inventoryTable.setDefaultRenderer(JButton.class, jbRender);
