@@ -1,6 +1,7 @@
 package PerfectPantryApp;
 
 import javax.swing.*;
+import java.util.logging.*;
 /**
  *
  * @author Hira, Josh
@@ -27,25 +28,16 @@ public class AppDriver {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PerfectPantryGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PerfectPantryGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PerfectPantryGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PerfectPantryGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(PerfectPantryGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
          
         //</editor-fold>
 
         /* Create and display the form */
     	
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PerfectPantryGUI().setVisible(true);
-               
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new PerfectPantryGUI().setVisible(true);
         }); 
        
     }

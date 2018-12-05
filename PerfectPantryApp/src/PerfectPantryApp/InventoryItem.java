@@ -8,6 +8,8 @@ package PerfectPantryApp;
 /**
  *
  * @author Josh
+ * This class defines an inventory Item object for use in the GUI
+ * It is used in PerfecPantyGUI and in InventoryTableModel
  */
 public class InventoryItem {
     String upcDisplay;

@@ -13,13 +13,12 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Michelle
+ * @author Michelle, Josh
  */
 public class InventoryData {
 
     protected InventoryTableModel tModel = null;
     protected static int productID = 0;
-
     protected String upc = "";
     protected static double usage;
     protected static double size;
@@ -142,7 +141,7 @@ public class InventoryData {
         return true;
     }
 
-    //todo josh - for the edit button, editinventory
+    //helper method to run an update for the edit button
     private boolean runUpdateQuery() {
         boolean updated = false;
         String dateString = "Null";
@@ -195,6 +194,7 @@ public class InventoryData {
         return exists;
     }
 
+    //method called to initiate deletion
     public boolean deleteRecord(String upc) {
         boolean deleted = false;
         if (!runUPCQuery(upc)) {
@@ -263,7 +263,7 @@ public class InventoryData {
     }
 
     //validates information and gets quantities to add to
-    boolean adjustInventory(String[] data) {
+    boolean adjustQuantity(String[] data) {
         double prod = 0;
         double use = 0;
         boolean updatedSuccefully;
@@ -282,7 +282,7 @@ public class InventoryData {
             }
             size += prod;
             usage += use;
-            updatedSuccefully = updateInventoryList();
+            updatedSuccefully = updateQuantity();
             stmt.close();
             conn.close();
         } catch (SQLException ex) {
@@ -293,8 +293,8 @@ public class InventoryData {
         return updatedSuccefully;
     }
 
-    //actually updates the invenotry
-    private boolean updateInventoryList() {
+    //updates the quantities only of the record
+    private boolean updateQuantity() {
         boolean updated = false;
 
         String sqlUpdate = "update inventory_list set prod_size=" + size + ", avg_usage="
@@ -316,6 +316,8 @@ public class InventoryData {
         return updated;
     }
 
+
+    //returns false if any data test fails, otherwise true
     private boolean validateData(String[] dataArray) {
         DataValidation data = new DataValidation();
         if (!data.validateSize(dataArray[1])) {
@@ -333,6 +335,7 @@ public class InventoryData {
 
     }
 
+    //sets data global variables, prepares for a query
     private void setFields(DataValidation data) {
         usage = data.getUsage();
         size = data.getSize();

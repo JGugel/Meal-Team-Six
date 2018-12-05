@@ -1,17 +1,11 @@
 package PerfectPantryApp;
 
-
 import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.table.TableCellRenderer;
-
-
 
 
 /**
@@ -19,7 +13,6 @@ import javax.swing.table.TableCellRenderer;
  * @author Hira Waqas, Josh Gugel
  */
 public class PerfectPantryGUI extends JFrame {
-    private static final Logger logger  = Logger.getLogger(AppDriver.class.getName());
     private InventoryData invData;
 
     /**
@@ -149,8 +142,8 @@ public class PerfectPantryGUI extends JFrame {
                     case "valid":
                         //check to see if record already exists in inventory
                         if (invData.CheckExists()) {
-                            //todo josh - should maybe bring up the edit item dialog instead
-                            if (invData.adjustInventory(data)){
+                            //increments the quantity and estimated usage
+                            if (invData.adjustQuantity(data)){
                                 populatePantryList();
                                 JOptionPane.showMessageDialog(this, "Quantity added to existing entry");
                                 return;
@@ -663,7 +656,7 @@ public class PerfectPantryGUI extends JFrame {
         }
     }
 
-    //Josh Todo
+    //EditTableEditor defines the functionality of the edit table cell
     public class EditTableEditor extends DefaultCellEditor {
         JButton button;
         String label;
@@ -706,12 +699,8 @@ public class PerfectPantryGUI extends JFrame {
                 //Edit Item Here
                 InventoryItem item = (InventoryItem)((InventoryTableModel)table.getModel()).inventory.get(row);
                 String[] data = {item.upcDisplay, item.sizeDisplay, item.uomDisplay, item.expiration, item.quantityDisplay};
-//                for (int i=0; i<4; i++) {
-//                    System.out.println(data[i]); //testing todo josh
-//                }
                 EditInventoryDialog dialog = new EditInventoryDialog(null, data);
                 data = dialog.run();
-                //verify data todo
             }
             clicked = false;
             return new String(label);
@@ -729,7 +718,7 @@ public class PerfectPantryGUI extends JFrame {
         }
     }
     
-    //Josh Todo
+    //DeleteTableEditor defines the functionality of the delete table cell
     public class DeleteTableEditor extends DefaultCellEditor {
         JButton button;
         String label;
@@ -802,6 +791,7 @@ public class PerfectPantryGUI extends JFrame {
     }
     
     //Josh Todo
+    //AddToCartTableEditor defines the functionality of the add to cart table cell
     public class AddToCartTableEditor extends DefaultCellEditor {
         JButton button;
         String label;
@@ -862,8 +852,8 @@ public class PerfectPantryGUI extends JFrame {
     
 
     
-    
-    //this method will perform action for go button
+    //TODO
+    //goButton performs a search based on the input in the Search Box
     private void goButton(){
         JOptionPane.showMessageDialog(this, "Coming in Phase Three");
 
@@ -928,6 +918,8 @@ public class PerfectPantryGUI extends JFrame {
                 .addContainerGap(24, Short.MAX_VALUE))
         );
     }
+    
+    //
     private void shopListTab(){
         shopListTab = new JPanel();
         shopListSplitPane = new JSplitPane();
@@ -1101,19 +1093,25 @@ public class PerfectPantryGUI extends JFrame {
         homeTabPane.addTab("Shopping List", shopListTab);
     }
     
+    //
     private void createShopListButtonAction() {                                                     
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(this, "create shopping list");
     }
+    
+    //
     private void deleteShopListButtonAction() {                                                     
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(this, "delete shopping list");
     }
     
+    //
     private void editShopListButtonAction() {                                                     
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(this, "edit shopping list");
     }
+    
+    //
     private void addItemSLButtonAction() {                                                     
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(this, "add iten in shopping list");
