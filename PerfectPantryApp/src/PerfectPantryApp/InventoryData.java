@@ -22,7 +22,9 @@ public class InventoryData {
 
     protected InventoryTableModel tModel = null;
     protected static int productID = 0;
+    protected static int category;
     protected String upc = "";
+    protected String name = "";
     protected static double usage;
     protected static double size;
     protected static String uom;
@@ -166,30 +168,72 @@ public class InventoryData {
         return updatedSuccefully;
     }
     
-    //method to add a shopping list item - josh
+    public boolean createShoppingList(String name) {
+        return true;
+    }
+    
+    //method to add a shopping list item
+    //Input: name, quantity, category
     public boolean AddItemSL(String[] data){
+        DataValidation valid = new DataValidation();
         try (Connection conn = JDBC.getConnection()) {
             // print out a message
             System.out.println(String.format("Connected to database %s "
                     + "successfully.", conn.getCatalog()));
 
-            String query = "insert into shopping_list (productID, ProductName, "
-                    + "quantity, cat_code) values(?,?,?,?);";
+            String query = "insert into shopping_list (ProductName, "
+                    + "quantity, cat_code) values(?,?,?);";
 
-//            PreparedStatement pstmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-//            pstmt.setInt(1, productID);
-//            pstmt.setDouble(2, size);
-//            pstmt.setString(3, uom);
-//            if (sqlExp != null) {
-//                pstmt.setDate(4, sqlExp);
-//            } else {
-//                //http://www.java2s.com/Tutorials/Java/JDBC/Insert/Set_NULL_date_value_to_database_in_Java.htm
-//                pstmt.setNull(4, java.sql.Types.DATE);
-//            }
-//            pstmt.setDouble(5, usage);
-//            pstmt.setInt(6, 1);
-//            pstmt.execute();
-//            pstmt.close();
+            PreparedStatement pstmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            //Check name is not empty or less than 80 chars
+            if(data[0].equals("") | data[0].length() > 80){
+                JOptionPane.showMessageDialog(null, "Name must not be empty");
+                return false;
+            } else {name = data[0];}
+            //Check quantity is a valid number
+            try {
+                size = Double.parseDouble(data[1]);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Quantity should be a numeric value");
+                return false;
+            }
+            //Check category and convert to int - todo josh - separate into modular function
+            switch (data[2]) {
+                case "Miscellaneous":
+                    category = 900;
+                    break;
+                case "Produce":
+                    category = 100;
+                    break;
+                case "Meats, Poultry, and Seafood":
+                    category = 200;
+                    break;
+                case "Dairy and Refrigerated":
+                    category = 300;
+                    break;
+                case "Pantry":
+                    category = 400;
+                    break;
+                case "Breads and Bakery":
+                    category = 500;
+                    break;
+                case "Baking, Herbs, and Spices":
+                    category = 600;
+                    break;
+                case "Beverages":
+                    category = 700;
+                    break;
+                case "Household Supplies":
+                    category = 800;
+                    break;
+                default:
+                    break;
+            }
+            pstmt.setString(1, name);
+            pstmt.setDouble(2, size);
+            pstmt.setInt(3,category);
+            pstmt.execute();
+            pstmt.close();
             conn.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Oops!" + ex);
@@ -198,7 +242,7 @@ public class InventoryData {
         }
         return true;
     }
-
+    
     //helper method to run insert query
     private boolean runInsertQuery() {
         try (Connection conn = JDBC.getConnection()) {
