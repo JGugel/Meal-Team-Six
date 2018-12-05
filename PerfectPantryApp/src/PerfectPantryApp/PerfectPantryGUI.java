@@ -2,6 +2,7 @@ package PerfectPantryApp;
 
 import java.awt.event.*;
 import java.awt.*;
+import java.util.Vector;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
@@ -78,7 +79,7 @@ public class PerfectPantryGUI extends JFrame {
             gbc.gridx = 0;
             gbc.gridy = 2;
             panel.add(uomLabel, gbc);
-            String[] uomStrings = {"unit", "pc.", "lb.", "oz.", "g", "gal", 
+            String[] uomStrings = {"unit", "pc.", "dozen", "lb.", "oz.", "g", "gal", 
                                     "qt.", "cup"};
             uomComboBox = new JComboBox(uomStrings);
             uomComboBox.setSelectedIndex(0);
@@ -244,7 +245,7 @@ public class PerfectPantryGUI extends JFrame {
             gbc.gridx = 0;
             gbc.gridy = 2;
             panel.add(uomLabel, gbc);
-            String[] uomStrings = {"unit", "pc.", "lb.", "oz.", "g", "gal", 
+            String[] uomStrings = {"unit", "pc.", "dozen", "lb.", "oz.", "g", "gal", 
                                     "qt.", "cup"};
             model = new DefaultComboBoxModel(uomStrings);
             uomComboBox = new JComboBox(model);
@@ -340,9 +341,9 @@ public class PerfectPantryGUI extends JFrame {
         private JTextField nameTextField;
         private JComboBox catComboBox;
         private JLabel catLabel;
-        private JComboBox uomComboBox;
+        //private JComboBox uomComboBox;
         private JLabel qtyLabel;
-        private JLabel uomLabel;
+        //private JLabel uomLabel;
         private JTextField qtyTextField;
         private JButton addBtn;
         private JButton cancelBtn;
@@ -351,7 +352,7 @@ public class PerfectPantryGUI extends JFrame {
         public AddItemSLDialog(Frame frame, InventoryData invData){
             super(frame, "Add Item", true);
             this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-            data = new String[4];
+            data = new String[3];
             for (int i=0; i < data.length; i++) {
                 data[i] = null;
             }
@@ -363,7 +364,7 @@ public class PerfectPantryGUI extends JFrame {
             gbc.fill = GridBagConstraints.HORIZONTAL;
             
             //Name
-            nameLabel = new JLabel("Item UPC (12 digits)*");
+            nameLabel = new JLabel("Item Name*");
             gbc.gridx = 0;
             gbc.gridy = 0;
             panel.add(nameLabel, gbc);
@@ -373,7 +374,7 @@ public class PerfectPantryGUI extends JFrame {
             panel.add(nameTextField, gbc);
             
             //Quantity
-            qtyLabel = new JLabel("Quantity*");
+            qtyLabel = new JLabel("Quantity");
             gbc.gridx = 0;
             gbc.gridy = 1;
             panel.add( qtyLabel, gbc);
@@ -383,42 +384,44 @@ public class PerfectPantryGUI extends JFrame {
             panel.add(qtyTextField, gbc);
             
             //Unit of Measurment
+            /*
             uomLabel = new JLabel("Unit of Measurment");
             gbc.gridx = 0;
             gbc.gridy = 2;
             panel.add(uomLabel, gbc);
-            String[] uomStrings = {"unit", "pc.", "lb.", "oz.", "g", "gal", 
+            String[] uomStrings = {"unit", "pc.", "dozen", "lb.", "oz.", "g", "gal", 
                                     "qt.", "cup"};
             uomComboBox = new JComboBox(uomStrings);
             uomComboBox.setSelectedIndex(0);
             gbc.gridx = 1;
             gbc.gridy = 2;
             panel.add(uomComboBox, gbc);
+            */
 
             //Category
             catLabel = new JLabel("Category");
             gbc.gridx = 0;
-            gbc.gridy = 3;
+            gbc.gridy = 2;
             panel.add(catLabel, gbc);
-            String[] catStrings = {"misc", "Baking, Herbs, & Spices", "Beverages",
-                "Breads & Bakery", "Dairy & Refrigeration", "Household Supplies", 
-                "Meats & Poultry", "Pantry", "Produce"};
+            String[] catStrings = {"Miscellaneous", "Produce", "Meats, Poultry, and Seafood",
+                "Dairy and Refrigerated", "Pantry", "Breads and Bakery", "Baking, Herbs, and Spices", 
+                "Beverages", "Household Supplies"};
             catComboBox = new JComboBox(catStrings);
             catComboBox.setSelectedIndex(0);
             gbc.gridx = 1;
-            gbc.gridy = 3;
+            gbc.gridy = 2;
             panel.add(catComboBox, gbc);
             
             //Add and Cancel Buttons
             addBtn = new JButton("Add");
             addBtn.addActionListener(this);
             gbc.gridx = 0;
-            gbc.gridy = 4;
+            gbc.gridy = 3;
             panel.add(addBtn, gbc);
             cancelBtn = new JButton("Cancel");
             cancelBtn.addActionListener(this);
             gbc.gridx = 1;
-            gbc.gridy = 4;
+            gbc.gridy = 3;
             panel.add(cancelBtn, gbc);
             
             getContentPane().add(panel);
@@ -436,17 +439,15 @@ public class PerfectPantryGUI extends JFrame {
             if (e.getSource() == addBtn) {
                 data[0] = nameTextField.getText();
                 data[1] = qtyTextField.getText();
-                data[2] = (String)uomComboBox.getSelectedItem();
-                data[3] = (String)catComboBox.getSelectedItem();
+                //data[2] = (String)uomComboBox.getSelectedItem();
+                data[2] = (String)catComboBox.getSelectedItem();
                 
-                //Validate name is not empty
-                if(data[0].equals("")){
-                    JOptionPane.showMessageDialog(this, "Name must not be empty");
-                    return;
-                }
-                if(invData.AddItemSL(data)) {
+                //Check for valid shopping list - todo
+                
+                
+                if(true) {//if(invData.AddItemSL(data)) {
                     populatePantryList();
-                    JOptionPane.showMessageDialog(this, "Record has been updated");
+                    JOptionPane.showMessageDialog(this, "TEST Item has been added!");
                     dispose();
                 } else {
                     return;
