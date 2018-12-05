@@ -14,12 +14,13 @@ import javax.swing.table.TableCellRenderer;
  */
 public class PerfectPantryGUI extends JFrame {
     private InventoryData invData;
-
+    JFrame thisFrame;
     /**
      * Creates new form PerfectPantryGUI
      */
     public PerfectPantryGUI() {
         invData = new InventoryData();
+        thisFrame=this;
         initComponents();
     }
 
@@ -172,14 +173,12 @@ public class PerfectPantryGUI extends JFrame {
                         JOptionPane.showMessageDialog(this, "UPC must be a numeric value");
                         return;
                     case "notFound":
-                        /**
-                         * We need to add code to this to allow a user to enter
-                         * information to the master product table. The data variable
-                         * should remain intact because once it is entered as a product
-                         * it should also be added as an inventory item.
-                         */
-                        JOptionPane.showMessageDialog(this, "UPC not found in database");
-                        return; //break;
+                        createDialog(data[0]);
+                         if(invData.AddInventory(data)) {
+                                populatePantryList();
+                                JOptionPane.showMessageDialog(this, "Record has been updated");
+                                dispose();
+                         }
                     default:
                         break;
                 }
@@ -188,6 +187,20 @@ public class PerfectPantryGUI extends JFrame {
                 dispose(); 
             }
         }
+        private void createDialog( String upc) {
+            int n = JOptionPane.showOptionDialog(this,
+                    "This Product does not exist in "
+                    + "our system.\r\n Would you like to add it now?", "Add Product Now?",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
+                    null, new Object[]{"Yes", "No"}, JOptionPane.YES_OPTION);
+            if (n == JOptionPane.YES_OPTION) {
+              ProductDialog productInput= new ProductDialog(thisFrame, upc);
+              if(!productInput.addSuccessful()){
+                  JOptionPane.showMessageDialog(this, "Record not added");
+              }
+            } 
+        }
+         
     }
     
     class EditInventoryDialog extends JDialog implements ActionListener{
@@ -1160,5 +1173,6 @@ public class PerfectPantryGUI extends JFrame {
     private JPanel shopListTab;
     private JTable shopListTable;
     private JPanel viewShopListPanel;
+    
     // End of variables declaration//GEN-END:variables
 }

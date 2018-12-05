@@ -19,10 +19,7 @@ public class DataValidation {
     private static double size;
     private static String uom;
     private java.sql.Date sqlExp = null;
-    private boolean validUsage;
-    private boolean validSize;
-    private boolean validUOM;
-    private boolean validDate;
+  
 
     DataValidation() {
         upc = "";
@@ -31,12 +28,7 @@ public class DataValidation {
         uom = "";
     }
 
-    DataValidation(String[] data) {
-        validSize = validateSize(data[1]);
-        validUOM = validateUOM(data[2]);
-        validDate = validateDate(data[3]);
-        validUsage = validateUsage(data[4]);
-    }
+    
 
     public String getUPC() {
         return upc;
@@ -125,7 +117,8 @@ public class DataValidation {
         }
         return true;
     }
-
+   /*validates usage and returns a string if and 
+        why it failed or the word valid*/
     String validateUPC(String interfaceUpc) {
         upc = interfaceUpc;
         String regex = "[0-9]+";
@@ -137,7 +130,7 @@ public class DataValidation {
             return "length";
         } else {
 
-            return "NotInvalid";
+            return "valid";
         }
 
     }

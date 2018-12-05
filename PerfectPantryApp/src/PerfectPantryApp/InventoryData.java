@@ -225,7 +225,7 @@ public class InventoryData {
     public String ValidateUPC(String interfaceUpc) {
         DataValidation data = new DataValidation();
         String validationMessage = data.validateUPC(interfaceUpc);
-        if (validationMessage.equals("NotInvalid")) {
+        if (validationMessage.equals("valid")) {
             upc = data.getUPC();
             if (runUPCQuery(upc)) {
                 return "valid";
@@ -335,7 +335,7 @@ public class InventoryData {
 
     }
 
-    //sets data global variables, prepares for a query
+    //sets data instance variables, prepares for a query
     private void setFields(DataValidation data) {
         usage = data.getUsage();
         size = data.getSize();
