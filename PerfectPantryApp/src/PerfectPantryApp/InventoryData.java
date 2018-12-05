@@ -1,5 +1,6 @@
 package PerfectPantryApp;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,6 +11,8 @@ import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -24,10 +27,12 @@ public class InventoryData {
     protected static double size;
     protected static String uom;
     protected java.sql.Date sqlExp = null;
+    protected DefaultTableModel nTable=null;
 
     public InventoryTableModel GetModel() {
         return tModel;
     }
+
 
     //sets the table data for home screen
     public void SetTable(String createdQuery) {
@@ -58,6 +63,47 @@ public class InventoryData {
         } catch (SQLException ex) {
             Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    public DefaultTableModel setNutritionalModel() {
+        nTable = new DefaultTableModel(new String[]{
+            "Product name",  "Calories","unit","Protien","unit", "Fat","unit"
+        }, 0);
+       
+        String query="{CALL getNutrition()}";
+                /*"select p.invName, n.nut_val/100*s.servingSize) as protein,"
+        + "(n2.nut_val/100*s.servingSize) as fat,"
+        + "(n3.nut_val/100*s.servingSize) as calories, s.uom "
+        + "from Product p join inventory_List i on i.ProductID=p.ProductID "
+        + "join Nutrition n on n. ProductID=p.ProductID "
+        + "join Nutrition n2 on n2. ProductID=p.ProductID "
+        + "join Nutrition n3 on n3. ProductID=p.ProductID "
+        + "join serving_size s on s.ProductID=p.ProductID "
+        + "WHERE (n.Nut_Code=203 AND n2.Nut_Code=204 AND  n3.Nut_Code=205)";*/
+         try (Connection conn = JDBC.getConnection()) {
+
+            CallableStatement st = conn.prepareCall(query);
+
+            ResultSet rs = null;
+
+            rs = st.executeQuery(); //performs query
+
+            while (rs.next()) { //gets string from db
+               String name=rs.getString("invName");
+               double protein=rs.getDouble("protein");
+               double fat=rs.getDouble("fat");
+               double calories=rs.getDouble("calories");
+               String nUOM=rs.getString("uom");
+               
+                nTable.addRow(new Object[]{name,
+                    (Math.round(calories * 100.0) / 100.0),
+                    nUOM,(Math.round(protein * 100.0) / 100.0),nUOM,
+                    (Math.round(fat * 100.0) / 100.0),nUOM }); 
+            }
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return nTable;
     }
     public void buildsearchQuery(String searchType) {
         String appendQuery="";
