@@ -63,7 +63,7 @@ public class ProductDialog extends JDialog implements ActionListener {
         gbc.gridx = 1;
         gbc.gridy = 0;
         panel.add(nameField, gbc);
-        JLabel categoryLabel = new JLabel("Select a category");
+        JLabel categoryLabel = new JLabel("Select a Category");
         gbc.gridwidth = 1;
         gbc.gridx = 0;
         gbc.gridy = 1;
