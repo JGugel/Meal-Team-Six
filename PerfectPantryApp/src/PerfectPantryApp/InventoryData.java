@@ -30,8 +30,8 @@ public class InventoryData {
     }
 
     //sets the table data for home screen
-    public void SetTable(String orderBy, String selectedCategories) {
-        String query = buildQuery(orderBy, selectedCategories);
+    public void SetTable(String createdQuery) {
+        String query = createdQuery;
         tModel = new InventoryTableModel();
         try (Connection conn = JDBC.getConnection()) {
 
@@ -70,9 +70,10 @@ public class InventoryData {
                 + " from inventory_list i inner join product p on p.ProductID= i.ProductID\r\n"
                 + " inner join category c  on c.catCode=p.Category\r\n "
                 + appendQuery;
+         SetTable(query);
     }
     //builds the query to propogate the table
-    private String buildQuery(String orderBy, String selectedCategories) {
+    public void buildQuery(String orderBy, String selectedCategories) {
         String query = " select p.upc, p.invName, i.prod_size,i.uom, c.categoryName, i.use_by, i.avg_usage\r\n"
                 + " from inventory_list i inner join product p on p.ProductID= i.ProductID\r\n"
                 + " inner join category c  on c.catCode=p.Category\r\n";
@@ -97,7 +98,7 @@ public class InventoryData {
             default:
                 break;
         }
-        return query;
+        SetTable(query);
     }
 
     //method called to initiate insertion
