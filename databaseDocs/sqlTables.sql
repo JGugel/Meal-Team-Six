@@ -1,4 +1,4 @@
-Drop schema Inventory_System;
+Drop schema if exists Inventory_System;
 
 CREATE DATABASE Inventory_System;
 
@@ -86,3 +86,21 @@ ALTER TABLE List_Pointer AUTO_INCREMENT=100;
 
 /*command to start incrementing*/
 ALTER TABLE Product AUTO_INCREMENT=45374984;
+
+
+DELIMITER //
+drop procedure if exists getNutrition;//
+
+Create Procedure getNutrition()
+begin
+select p.invName, (n.nut_val/100*s.servingSize) as protein,
+(n2.nut_val/100*s.servingSize) as fat,
+(n3.nut_val/100*s.servingSize) as calories, s.uom
+from Product p join inventory_List i on i.ProductID=p.ProductID
+join Nutrition n on n. ProductID=p.ProductID
+join Nutrition n2 on n2. ProductID=p.ProductID
+join Nutrition n3 on n3. ProductID=p.ProductID
+join serving_size s on s.ProductID=p.ProductID
+WHERE (n.Nut_Code=203 AND n2.Nut_Code=204 AND  n3.Nut_Code=205);
+end//
+Delimiter ;
