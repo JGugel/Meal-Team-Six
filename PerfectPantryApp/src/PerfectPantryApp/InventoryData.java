@@ -107,6 +107,39 @@ public class InventoryData {
         updatedSuccefully = runUpdateQuery();
         return updatedSuccefully;
     }
+    
+    //method to add a shopping list item - josh
+    public boolean AddItemSL(String[] data){
+        try (Connection conn = JDBC.getConnection()) {
+            // print out a message
+            System.out.println(String.format("Connected to database %s "
+                    + "successfully.", conn.getCatalog()));
+
+            String query = "insert into shopping_list (productID, ProductName, "
+                    + "quantity, cat_code) values(?,?,?,?);";
+
+//            PreparedStatement pstmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+//            pstmt.setInt(1, productID);
+//            pstmt.setDouble(2, size);
+//            pstmt.setString(3, uom);
+//            if (sqlExp != null) {
+//                pstmt.setDate(4, sqlExp);
+//            } else {
+//                //http://www.java2s.com/Tutorials/Java/JDBC/Insert/Set_NULL_date_value_to_database_in_Java.htm
+//                pstmt.setNull(4, java.sql.Types.DATE);
+//            }
+//            pstmt.setDouble(5, usage);
+//            pstmt.setInt(6, 1);
+//            pstmt.execute();
+//            pstmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Oops!" + ex);
+            Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
+    }
 
     //helper method to run insert query
     private boolean runInsertQuery() {

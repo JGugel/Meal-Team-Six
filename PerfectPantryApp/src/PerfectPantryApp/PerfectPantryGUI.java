@@ -334,6 +334,129 @@ public class PerfectPantryGUI extends JFrame {
         }
     }
     
+    class AddItemSLDialog extends JDialog implements ActionListener{
+        private String[] data;
+        private JLabel nameLabel;
+        private JTextField nameTextField;
+        private JComboBox catComboBox;
+        private JLabel catLabel;
+        private JComboBox uomComboBox;
+        private JLabel qtyLabel;
+        private JLabel uomLabel;
+        private JTextField qtyTextField;
+        private JButton addBtn;
+        private JButton cancelBtn;
+        private  boolean addSuccess=false;
+        //Constructor
+        public AddItemSLDialog(Frame frame, InventoryData invData){
+            super(frame, "Add Item", true);
+            this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+            data = new String[4];
+            for (int i=0; i < data.length; i++) {
+                data[i] = null;
+            }
+            JPanel panel = new JPanel();
+            GridBagLayout grid = new GridBagLayout();
+            panel.setLayout(grid);
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.insets = new Insets(5,5,5,5);
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+            
+            //Name
+            nameLabel = new JLabel("Item UPC (12 digits)*");
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+            panel.add(nameLabel, gbc);
+            nameTextField = new JTextField(10);
+            gbc.gridx = 1;
+            gbc.gridy = 0;
+            panel.add(nameTextField, gbc);
+            
+            //Quantity
+            qtyLabel = new JLabel("Quantity*");
+            gbc.gridx = 0;
+            gbc.gridy = 1;
+            panel.add( qtyLabel, gbc);
+            qtyTextField = new JTextField(10);
+            gbc.gridx = 1;
+            gbc.gridy = 1;
+            panel.add(qtyTextField, gbc);
+            
+            //Unit of Measurment
+            uomLabel = new JLabel("Unit of Measurment");
+            gbc.gridx = 0;
+            gbc.gridy = 2;
+            panel.add(uomLabel, gbc);
+            String[] uomStrings = {"unit", "pc.", "lb.", "oz.", "g", "gal", 
+                                    "qt.", "cup"};
+            uomComboBox = new JComboBox(uomStrings);
+            uomComboBox.setSelectedIndex(0);
+            gbc.gridx = 1;
+            gbc.gridy = 2;
+            panel.add(uomComboBox, gbc);
+
+            //Category
+            catLabel = new JLabel("Category");
+            gbc.gridx = 0;
+            gbc.gridy = 3;
+            panel.add(catLabel, gbc);
+            String[] catStrings = {"misc", "Baking, Herbs, & Spices", "Beverages",
+                "Breads & Bakery", "Dairy & Refrigeration", "Household Supplies", 
+                "Meats & Poultry", "Pantry", "Produce"};
+            catComboBox = new JComboBox(catStrings);
+            catComboBox.setSelectedIndex(0);
+            gbc.gridx = 1;
+            gbc.gridy = 3;
+            panel.add(catComboBox, gbc);
+            
+            //Add and Cancel Buttons
+            addBtn = new JButton("Add");
+            addBtn.addActionListener(this);
+            gbc.gridx = 0;
+            gbc.gridy = 4;
+            panel.add(addBtn, gbc);
+            cancelBtn = new JButton("Cancel");
+            cancelBtn.addActionListener(this);
+            gbc.gridx = 1;
+            gbc.gridy = 4;
+            panel.add(cancelBtn, gbc);
+            
+            getContentPane().add(panel);
+            pack();    
+            setLocationRelativeTo(null);
+        }
+        
+        public String [] run() {
+            this.setVisible(true);
+            return data;
+        }
+        
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == addBtn) {
+                data[0] = nameTextField.getText();
+                data[1] = qtyTextField.getText();
+                data[2] = (String)uomComboBox.getSelectedItem();
+                data[3] = (String)catComboBox.getSelectedItem();
+                
+                //Validate name is not empty
+                if(data[0].equals("")){
+                    JOptionPane.showMessageDialog(this, "Name must not be empty");
+                    return;
+                }
+                if(invData.AddItemSL(data)) {
+                    populatePantryList();
+                    JOptionPane.showMessageDialog(this, "Record has been updated");
+                    dispose();
+                } else {
+                    return;
+                }
+            } else if (e.getSource() == cancelBtn) {
+                dispose(); 
+            }
+        }
+    }
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -1127,7 +1250,9 @@ public class PerfectPantryGUI extends JFrame {
     //
     private void addItemSLButtonAction() {                                                     
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "add iten in shopping list");
+        //JOptionPane.showMessageDialog(this, "add item in shopping list");
+        AddItemSLDialog dialog = new AddItemSLDialog(this, invData);
+        String[] data = dialog.run();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
