@@ -194,7 +194,7 @@ public class PerfectPantryGUI extends JFrame {
             int n = JOptionPane.showOptionDialog(this,
                     "This Product does not exist in "
                     + "our system.\r\n Would you like to add it now?", "Add Product Now?",
-                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
+                    JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,
                     null, new Object[]{"Yes", "No"}, JOptionPane.YES_OPTION);
             if (n == JOptionPane.YES_OPTION) {
               ProductDialog productInput= new ProductDialog(thisFrame, upc);
@@ -354,7 +354,7 @@ public class PerfectPantryGUI extends JFrame {
         public AddItemSLDialog(Frame frame, InventoryData invData){
             super(frame, "Add Item", true);
             this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-            data = new String[3];
+            data = new String[4];
             for (int i=0; i < data.length; i++) {
                 data[i] = null;
             }
@@ -439,10 +439,11 @@ public class PerfectPantryGUI extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == addBtn) {
-                data[0] = nameTextField.getText();
-                data[1] = qtyTextField.getText();
+                data[0]="default";
+                data[1] = nameTextField.getText();
+                data[2] = qtyTextField.getText();
                 //data[2] = (String)uomComboBox.getSelectedItem();
-                data[2] = (String)catComboBox.getSelectedItem();
+                data[3] = (String)catComboBox.getSelectedItem();
                 
                 //Check for valid shopping list - todo
                 

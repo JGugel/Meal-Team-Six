@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.Format;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -23,16 +24,31 @@ public class InventoryData {
     protected InventoryTableModel tModel = null;
     protected static int productID = 0;
     protected static int category;
+    protected static int ListID = 0;
     protected String upc = "";
     protected String name = "";
+    protected String listName = "";
     protected static double usage;
     protected static double size;
     protected static String uom;
     protected java.sql.Date sqlExp = null;
     protected DefaultTableModel nTable = null;
+    HashMap<String, Integer> categoryMap = new HashMap();
 
     public InventoryTableModel GetModel() {
         return tModel;
+    }
+
+    public InventoryData() {
+        categoryMap.put("Produce", 100);
+        categoryMap.put("Meats, Poultry, and Seafood", 200);
+        categoryMap.put("Dairy and Refrigerated", 300);
+        categoryMap.put("Pantry", 400);
+        categoryMap.put("Breads and Bakery", 500);
+        categoryMap.put("Baking, Herbs, and Spices", 600);
+        categoryMap.put("Beverages", 700);
+        categoryMap.put("Household Supplies", 800);
+        categoryMap.put("Miscellaneous", 900);
     }
 
     //sets the table data for home screen
@@ -169,65 +185,27 @@ public class InventoryData {
     //method to add a shopping list item
     //Input: name, quantity, category
     public boolean AddItemSL(String[] data) {
-        DataValidation valid = new DataValidation();
+
+        if (!checkForList(data[0])) {
+            return false;
+        } else if (!validateShoppingList(data)) {//verifies list in another method
+            return false;
+        }
+
         try (Connection conn = JDBC.getConnection()) {
             // print out a message
             System.out.println(String.format("Connected to database %s "
                     + "successfully.", conn.getCatalog()));
 
-            String query = "insert into shopping_list (ProductName, "
-                    + "quantity, cat_code) values(?,?,?);";
+            String query = "insert into shopping_list (ProductName, ListID, "
+                    + "quantity, cat_code) values(?,?,?,?);";
 
             PreparedStatement pstmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            //Check name is not empty or less than 80 chars
-            if (data[0].equals("") | data[0].length() > 80) {
-                JOptionPane.showMessageDialog(null, "Name must not be empty");
-                return false;
-            } else {
-                name = data[0];
-            }
-            //Check quantity is a valid number
-            try {
-                size = Double.parseDouble(data[1]);
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Quantity should be a numeric value");
-                return false;
-            }
-            //Check category and convert to int - todo josh - separate into modular function
-            switch (data[2]) {
-                case "Miscellaneous":
-                    category = 900;
-                    break;
-                case "Produce":
-                    category = 100;
-                    break;
-                case "Meats, Poultry, and Seafood":
-                    category = 200;
-                    break;
-                case "Dairy and Refrigerated":
-                    category = 300;
-                    break;
-                case "Pantry":
-                    category = 400;
-                    break;
-                case "Breads and Bakery":
-                    category = 500;
-                    break;
-                case "Baking, Herbs, and Spices":
-                    category = 600;
-                    break;
-                case "Beverages":
-                    category = 700;
-                    break;
-                case "Household Supplies":
-                    category = 800;
-                    break;
-                default:
-                    break;
-            }
+
             pstmt.setString(1, name);
-            pstmt.setDouble(2, size);
-            pstmt.setInt(3, category);
+            pstmt.setInt(2, ListID);
+            pstmt.setDouble(3, size);
+            pstmt.setInt(4, category);//category set in shoppinList validation
             pstmt.execute();
             pstmt.close();
             conn.close();
@@ -239,8 +217,72 @@ public class InventoryData {
         return true;
     }
 
+    //method to check and set List
+    private Boolean checkForList(String name) {
+        Boolean listExists = false;
+        String Query = "Select ListID from list_pointer where "
+                + "listName=' " + name + "'";
+        try (Connection conn = JDBC.getConnection()) {
+            Statement stmt = conn.createStatement();
+
+            ResultSet rs = stmt.executeQuery(Query);
+            if (rs.next()) {//looking for an shoppin list
+                //if verified, add item
+                ListID = rs.getInt("ListID");
+            } else {//upc not found
+                listExists = false;
+            }
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+
+        if (listExists) {
+            return listExists;
+        } else {
+            listExists = createList(name);
+        }
+        return listExists;
+    }
+    /**
+     * if the named list isn't created this
+     * this list creates the list and sets
+     * the list id*/    
+    private boolean createList(String name) {
+        boolean successfulCreate = false;
+        listName = name;
+        String query = "insert into list_pointer(ListName)"
+                + "values('" + listName + "')";
+        try (Connection conn = JDBC.getConnection()) {
+            Statement stmt = conn.prepareStatement(query);
+            stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = stmt.getGeneratedKeys();
+
+            if (rs.next()) {
+                ListID = rs.getInt(1);
+                successfulCreate = true;
+            } else {
+                successfulCreate = false;
+                // throw an exception from here
+            }
+            rs.close();
+            stmt.close();
+            conn.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Oops!" + ex);
+            Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return successfulCreate;
+    }
+
     //helper method to run insert query
     private boolean runInsertQuery() {
+        boolean successfulInsert = false;
         try (Connection conn = JDBC.getConnection()) {
             // print out a message
             System.out.println(String.format("Connected to database %s "
@@ -261,7 +303,12 @@ public class InventoryData {
             }
             pstmt.setDouble(5, usage);
             pstmt.setInt(6, 1);
-            pstmt.execute();
+            int rowsUpdated = pstmt.executeUpdate();
+            if (rowsUpdated == 0) {
+                successfulInsert = false;
+            } else {
+                successfulInsert = true;
+            }
             pstmt.close();
             conn.close();
         } catch (SQLException ex) {
@@ -269,7 +316,7 @@ public class InventoryData {
             Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
-        return true;
+        return successfulInsert;
     }
 
     //helper method to run an update for the edit button
@@ -465,7 +512,29 @@ public class InventoryData {
 
     }
 
-    //sets data instance variables, prepares for a query
+    private boolean validateShoppingList(String[] data) {
+        DataValidation dv = new DataValidation();
+        category = categoryMap.getOrDefault(data[3], 0);
+        if (category == 0) {
+            JOptionPane.showMessageDialog(null, "Not a valid Category");
+            return false;
+        }
+        if (!dv.validateSize(data[2])) {
+            JOptionPane.showMessageDialog(null, "Not a valid Size");
+            return false;
+        } else {
+            size = dv.getSize();
+        }
+        if (data[1].equals("") | data[1].length() > 80) {
+            JOptionPane.showMessageDialog(null, "Name must not be empty");
+            return false;
+        } else {
+            name = data[1];
+        }
+        return true;
+    }
+//sets data instance variables, prepares for a query
+
     private void setFields(DataValidation data) {
         usage = data.getUsage();
         size = data.getSize();
