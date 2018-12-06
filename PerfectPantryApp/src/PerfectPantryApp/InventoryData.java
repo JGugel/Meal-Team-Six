@@ -33,22 +33,14 @@ public class InventoryData {
     protected static String uom;
     protected java.sql.Date sqlExp = null;
     protected DefaultTableModel nTable = null;
-    HashMap<String, Integer> categoryMap = new HashMap();
+   
 
     public InventoryTableModel GetModel() {
         return tModel;
     }
 
     public InventoryData() {
-        categoryMap.put("Produce", 100);
-        categoryMap.put("Meats, Poultry, and Seafood", 200);
-        categoryMap.put("Dairy and Refrigerated", 300);
-        categoryMap.put("Pantry", 400);
-        categoryMap.put("Breads and Bakery", 500);
-        categoryMap.put("Baking, Herbs, and Spices", 600);
-        categoryMap.put("Beverages", 700);
-        categoryMap.put("Household Supplies", 800);
-        categoryMap.put("Miscellaneous", 900);
+       
     }
 
     //sets the table data for home screen
@@ -516,7 +508,7 @@ public class InventoryData {
 
     private boolean validateShoppingList(String[] data) {
         DataValidation dv = new DataValidation();
-        category = categoryMap.getOrDefault(data[3], 0);
+        category = dv.getCategory(data[0]);
         if (category == 0) {
             JOptionPane.showMessageDialog(null, "Not a valid Category");
             return false;
@@ -526,11 +518,10 @@ public class InventoryData {
         } else {
             size = dv.getSize();
         }
-        if (data[1].equals("") | data[1].length() > 80) {
-            JOptionPane.showMessageDialog(null, "Name must not be empty");
+        if (!dv.validateName(data[1])){
             return false;
         } else {
-            name = data[1];
+            name = dv.getName();
         }
         return true;
     }
