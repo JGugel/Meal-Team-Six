@@ -219,16 +219,18 @@ public class InventoryData {
 
     //method to check and set List
     private Boolean checkForList(String name) {
-        Boolean listExists = false;
+        Boolean listExists;
         String Query = "Select ListID from list_pointer where "
-                + "listName=' " + name + "'";
+                + "listName='" + name + "'";
         try (Connection conn = JDBC.getConnection()) {
             Statement stmt = conn.createStatement();
 
             ResultSet rs = stmt.executeQuery(Query);
-            if (rs.next()) {//looking for an shoppin list
+            if (rs.next()) {//looking for a shoppin list
                 //if verified, add item
+                 listExists=true;
                 ListID = rs.getInt("ListID");
+               
             } else {//upc not found
                 listExists = false;
             }
@@ -251,7 +253,7 @@ public class InventoryData {
      * if the named list isn't created this
      * this list creates the list and sets
      * the list id*/    
-    private boolean createList(String name) {
+    public boolean createList(String name) {
         boolean successfulCreate = false;
         listName = name;
         String query = "insert into list_pointer(ListName)"
@@ -520,7 +522,6 @@ public class InventoryData {
             return false;
         }
         if (!dv.validateSize(data[2])) {
-            JOptionPane.showMessageDialog(null, "Not a valid Size");
             return false;
         } else {
             size = dv.getSize();
