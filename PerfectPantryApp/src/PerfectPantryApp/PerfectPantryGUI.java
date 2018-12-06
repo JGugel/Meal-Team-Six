@@ -157,6 +157,7 @@ public class PerfectPantryGUI extends JFrame {
                             //UPC okay to add to Inventory
                             if(invData.AddInventory(data)) {
                                 populatePantryList();
+                                populateNutritionTable();
                                 JOptionPane.showMessageDialog(this, "Record has been updated");
                                 dispose();
                                 break;
@@ -177,6 +178,7 @@ public class PerfectPantryGUI extends JFrame {
                         createDialog(data[0]);
                          if(invData.AddInventory(data)) {
                                 populatePantryList();
+                                populateNutritionTable();
                                 JOptionPane.showMessageDialog(this, "Record has been updated");
                                 dispose();
                          }

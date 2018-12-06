@@ -29,12 +29,11 @@ public class InventoryData {
     protected static double size;
     protected static String uom;
     protected java.sql.Date sqlExp = null;
-    protected DefaultTableModel nTable=null;
+    protected DefaultTableModel nTable = null;
 
     public InventoryTableModel GetModel() {
         return tModel;
     }
-
 
     //sets the table data for home screen
     public void SetTable(String createdQuery) {
@@ -66,22 +65,15 @@ public class InventoryData {
             Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public DefaultTableModel setNutritionalModel() {
         nTable = new DefaultTableModel(new String[]{
-            "Product name",  "Calories","unit","Protien","unit", "Fat","unit"
+            "Product name", "Calories", "unit", "Protien", "unit", "Fat", "unit"
         }, 0);
-       
-        String query="{CALL getNutrition()}";
-                /*"select p.invName, n.nut_val/100*s.servingSize) as protein,"
-        + "(n2.nut_val/100*s.servingSize) as fat,"
-        + "(n3.nut_val/100*s.servingSize) as calories, s.uom "
-        + "from Product p join inventory_List i on i.ProductID=p.ProductID "
-        + "join Nutrition n on n. ProductID=p.ProductID "
-        + "join Nutrition n2 on n2. ProductID=p.ProductID "
-        + "join Nutrition n3 on n3. ProductID=p.ProductID "
-        + "join serving_size s on s.ProductID=p.ProductID "
-        + "WHERE (n.Nut_Code=203 AND n2.Nut_Code=204 AND  n3.Nut_Code=205)";*/
-         try (Connection conn = JDBC.getConnection()) {
+
+        String query = "{CALL getNutrition()}";
+
+        try (Connection conn = JDBC.getConnection()) {
 
             CallableStatement st = conn.prepareCall(query);
 
@@ -90,16 +82,16 @@ public class InventoryData {
             rs = st.executeQuery(); //performs query
 
             while (rs.next()) { //gets string from db
-               String name=rs.getString("invName");
-               double protein=rs.getDouble("protein");
-               double fat=rs.getDouble("fat");
-               double calories=rs.getDouble("calories");
-               String nUOM=rs.getString("uom");
-               
+                String name = rs.getString("invName");
+                double protein = rs.getDouble("protein");
+                double fat = rs.getDouble("fat");
+                double calories = rs.getDouble("calories");
+                String nUOM = rs.getString("uom");
+
                 nTable.addRow(new Object[]{name,
                     (Math.round(calories * 100.0) / 100.0),
-                    nUOM,(Math.round(protein * 100.0) / 100.0),nUOM,
-                    (Math.round(fat * 100.0) / 100.0),nUOM }); 
+                    nUOM, (Math.round(protein * 100.0) / 100.0), nUOM,
+                    (Math.round(fat * 100.0) / 100.0), nUOM});
             }
             conn.close();
         } catch (SQLException ex) {
@@ -107,19 +99,21 @@ public class InventoryData {
         }
         return nTable;
     }
+
     public void buildsearchQuery(String searchType) {
-        String appendQuery="";
-        if(searchType.equals("upc")){
-            appendQuery="WHERE p.productID="+productID;
-        }else {
-            appendQuery="WHERE p.invName LIKE '%"+searchType+"%'";
+        String appendQuery = "";
+        if (searchType.equals("upc")) {
+            appendQuery = "WHERE p.productID=" + productID;
+        } else {
+            appendQuery = "WHERE p.invName LIKE '%" + searchType + "%'";
         }
-         String query = " select p.upc, p.invName, i.prod_size,i.uom, c.categoryName, i.use_by, i.avg_usage\r\n"
+        String query = " select p.upc, p.invName, i.prod_size,i.uom, c.categoryName, i.use_by, i.avg_usage\r\n"
                 + " from inventory_list i inner join product p on p.ProductID= i.ProductID\r\n"
                 + " inner join category c  on c.catCode=p.Category\r\n "
                 + appendQuery;
-         SetTable(query);
+        SetTable(query);
     }
+
     //builds the query to propogate the table
     public void buildQuery(String orderBy, String selectedCategories) {
         String query = " select p.upc, p.invName, i.prod_size,i.uom, c.categoryName, i.use_by, i.avg_usage\r\n"
@@ -167,14 +161,14 @@ public class InventoryData {
         updatedSuccefully = runUpdateQuery();
         return updatedSuccefully;
     }
-    
+
     public boolean createShoppingList(String name) {
         return true;
     }
-    
+
     //method to add a shopping list item
     //Input: name, quantity, category
-    public boolean AddItemSL(String[] data){
+    public boolean AddItemSL(String[] data) {
         DataValidation valid = new DataValidation();
         try (Connection conn = JDBC.getConnection()) {
             // print out a message
@@ -186,10 +180,12 @@ public class InventoryData {
 
             PreparedStatement pstmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             //Check name is not empty or less than 80 chars
-            if(data[0].equals("") | data[0].length() > 80){
+            if (data[0].equals("") | data[0].length() > 80) {
                 JOptionPane.showMessageDialog(null, "Name must not be empty");
                 return false;
-            } else {name = data[0];}
+            } else {
+                name = data[0];
+            }
             //Check quantity is a valid number
             try {
                 size = Double.parseDouble(data[1]);
@@ -231,7 +227,7 @@ public class InventoryData {
             }
             pstmt.setString(1, name);
             pstmt.setDouble(2, size);
-            pstmt.setInt(3,category);
+            pstmt.setInt(3, category);
             pstmt.execute();
             pstmt.close();
             conn.close();
@@ -242,7 +238,7 @@ public class InventoryData {
         }
         return true;
     }
-    
+
     //helper method to run insert query
     private boolean runInsertQuery() {
         try (Connection conn = JDBC.getConnection()) {
@@ -450,7 +446,6 @@ public class InventoryData {
 
         return updated;
     }
-
 
     //returns false if any data test fails, otherwise true
     private boolean validateData(String[] dataArray) {
