@@ -107,7 +107,7 @@ public class InventoryData {
         return nTable;
     }
 
-    public void buildsearchQuery(String searchType) {
+    public void buildSearchQuery(String Keyword, String searchType) {
         String appendQuery = "";
         if (searchType.equals("upc")) {
             appendQuery = "WHERE p.productID=" + productID;
@@ -548,7 +548,7 @@ public class InventoryData {
     
     private void searchByName(String searchKeyWord){
          JOptionPane.showMessageDialog( null, "Search by name");
-    }
+    } 
     
     private void searchByUPC(String searchKeyWord){
         
