@@ -92,52 +92,33 @@ public class DataValidation {
 
     //helper to validate and set size
     boolean validateSize(String tempSize) {
-        size = validateDouble("size", tempSize);
-        if (size == NaN) {
-            return false;
-        } else {
-            return true;
-        }
+       
+        size = validateDouble("Size", tempSize);
+        return !Double.isNaN(size);
     }
 
     boolean validateServingSize(String tempSize) {
         servSize = 0;
         servSize = validateDouble("Serving Size", tempSize);
-        if (servSize == NaN) {
-            return false;
-        } else {
-            return true;
-        }
+        return !Double.isNaN(servSize);
     }
 
     boolean validateCalories(String tempSize) {
         calories = 0;
         calories = validateDouble("Calories", tempSize);
-        if (calories == NaN) {
-            return false;
-        } else {
-            return true;
-        }
+       return !Double.isNaN(calories);
     }
 
     boolean validateProtein(String tempSize) {
         protein = 0;
         protein = validateDouble("Protein", tempSize);
-        if (protein == NaN) {
-            return false;
-        } else {
-            return true;
-        }
+        return !Double.isNaN(protein);
     }
 
     boolean validateFat(String tempSize) {
         fat = 0;
         fat = validateDouble("Fat", tempSize);
-        if (fat == NaN) {
-            return false;
-        } else {
-            return true;
-        }
+       return !Double.isNaN(fat);
     }
 
     // method to validate and set units
@@ -244,14 +225,10 @@ public class DataValidation {
     private double validateDouble(String type1, String tempDub) {
         double validNumber;
         String message = "Invalid Input:" + type1 + " must not be empty";
-        if (!type1.equals(size)) {
-            message = "Invalid Input:" + type1 + "!" + "If enterering nutrition "
-                    + "all fields must be added";
-        }
+       
         if (tempDub.isEmpty()) {
             JOptionPane.showMessageDialog(null, message);
             return NaN;
-
         }
         try {
             validNumber = Double.parseDouble(tempDub);
