@@ -1000,8 +1000,8 @@ public class PerfectPantryGUI extends JFrame {
     
     //TODO
     //goButton performs a search based on the input in the Search Box
-    private void goButton(){
-        JOptionPane.showMessageDialog(this, "Coming in Phase Three");
+    private void goButton(String searchType, String searchKeyword){
+        invData.search(searchType, searchKeyword);
 
     }
     
@@ -1026,7 +1026,8 @@ public class PerfectPantryGUI extends JFrame {
         enterKeywordLabel.setText("Enter Keyword:");
 
         goButton.setText("Go");
-        goButton.addActionListener(e-> goButton());
+        goButton.addActionListener(e-> goButton((String)
+                (searchByComboBox.getSelectedItem()), keywordTextField.getText()));
      
         GroupLayout searchPanelLayout = new GroupLayout(searchPanel);
         searchPanel.setLayout(searchPanelLayout);
