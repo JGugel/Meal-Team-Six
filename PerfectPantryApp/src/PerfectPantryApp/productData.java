@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package PerfectPantryApp;
-
-import static PerfectPantryApp.InventoryData.ListID;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,27 +21,28 @@ public class productData {
     private String productName = "", uom = "", upc = "";
     private int category = 0, productID = 0;
     private double servingSize = 0, protein = 0, fat = 0, calories = 0;
-
-    boolean AddProductToInventory(String upc, String[] prodData, boolean isEmpty) {
+    boolean AddProductToInventory(String upc, String[] prodData) {
         this.upc = upc;
         productID = 0;
         boolean addedCorrectly;
-        if (!verifyDetails(prodData, isEmpty)) {
+        if (!verifyProductDetails(prodData)) {
             return false;
         }
         addedCorrectly = insertIntoProduct();
-        if (isEmpty && addedCorrectly) {
-            JOptionPane.showMessageDialog(null, "Item add to master list successfully");
+        if (addedCorrectly) {
+            JOptionPane.showMessageDialog(null, "Item added to master list successfully");
             return addedCorrectly;
         } else {
             //  insertIntoServingSize();
         }
         return addedCorrectly;
     }
+    public int getProductID(){
+        return productID;
+    }
 
     private boolean insertIntoProduct() {
         boolean successfulCreate = false;
-
         String query = "INSERT into Product(UPC, invName,Category)"
                 + "VALUES('" + upc + "'," + "'" + productName + "'," + category + ")";
         try (Connection conn = JDBC.getConnection()) {
@@ -68,7 +67,7 @@ public class productData {
         return successfulCreate;
     }
 
-    private boolean verifyDetails(String[] data, boolean isEmpty) {
+    private boolean verifyProductDetails(String[] data) {
         boolean validData = false;
         DataValidation dv = new DataValidation();
         category = dv.getCategory(data[1]);
@@ -80,37 +79,43 @@ public class productData {
         } else {
             return false;
         }
-        if (!isEmpty) {
-            if (dv.validateServingSize(data[2])) {
+        
+
+        return validData;
+    }
+    /*
+    private boolean verifyNutritionDetails(String[]data){
+         boolean validData = false;
+        DataValidation dv = new DataValidation();
+        if () {
+            if (dv.validateServingSize(data[])) {
                 validData = true;
                 servingSize = dv.getServingSize();
             } else {
                 return false;
             }
 
-            if (dv.validateCalories(data[4])) {
+            if (dv.validateCalories(data[])) {
                 validData = true;
                 calories = dv.getCalories();
             } else {
                 return false;
             }
 
-            if (dv.validateProtein(data[5])) {
+            if (dv.validateProtein(data[])) {
                 validData = true;
                 protein = dv.getProtein();
             } else {
                 return false;
             }
 
-            if (dv.validateFat(data[6])) {
+            if (dv.validateFat(data[])) {
                 validData = true;
                 fat = dv.getFat();
             } else {
                 return false;
             }
         }
-
-        return validData;
-    }
+    }*/
 
 }

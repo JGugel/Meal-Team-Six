@@ -39,9 +39,7 @@ public class InventoryData {
         return tModel;
     }
 
-    public InventoryData() {
-       
-    }
+   
 
     //sets the table data for home screen
     public void SetTable(String createdQuery) {
@@ -152,7 +150,10 @@ public class InventoryData {
     }
 
     //method called to initiate insertion
-    public boolean AddInventory(String[] data) {
+    public boolean AddInventory(String[] data, int IncomingProductID) {
+        if(productID ==0){
+            productID=IncomingProductID;
+        }
         if (!validateData(data)) {
             return false;
         }
@@ -170,9 +171,6 @@ public class InventoryData {
         return updatedSuccefully;
     }
 
-    public boolean createShoppingList(String name) {
-        return true;
-    }
 
     //method to add a shopping list item
     //Input: name, quantity, category
@@ -237,7 +235,7 @@ public class InventoryData {
         if (listExists) {
             return listExists;
         } else {
-            listExists = createList(name);
+            listExists = createShoppingList(name);
         }
         return listExists;
     }
@@ -245,7 +243,7 @@ public class InventoryData {
      * if the named list isn't created this
      * this list creates the list and sets
      * the list id*/    
-    public boolean createList(String name) {
+    public boolean createShoppingList(String name) {
         boolean successfulCreate = false;
         listName = name;
         String query = "insert into list_pointer(ListName)"
@@ -305,6 +303,7 @@ public class InventoryData {
             }
             pstmt.close();
             conn.close();
+            productID=0;
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Oops!" + ex);
             Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);

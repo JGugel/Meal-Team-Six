@@ -155,7 +155,7 @@ public class PerfectPantryGUI extends JFrame {
                             }
                         } else {
                             //UPC okay to add to Inventory
-                            if(invData.AddInventory(data)) {
+                            if(invData.AddInventory(data,0)) {
                                 populatePantryList();
                                 populateNutritionTable();
                                 JOptionPane.showMessageDialog(this, "Record has been updated");
@@ -175,8 +175,9 @@ public class PerfectPantryGUI extends JFrame {
                         JOptionPane.showMessageDialog(this, "UPC must be a numeric value");
                         return;
                     case "notFound":
-                        createDialog(data[0]);
-                         if(invData.AddInventory(data)) {
+                       createDialog(data[0]);
+                      int productID= productInput.getProductID();
+                         if(invData.AddInventory(data, productID)) {
                                 populatePantryList();
                                 populateNutritionTable();
                                 JOptionPane.showMessageDialog(this, "Record has been updated");
@@ -190,18 +191,23 @@ public class PerfectPantryGUI extends JFrame {
                 dispose(); 
             }
         }
-        private void createDialog( String upc) {
+        ProductDialog productInput = null;
+
+        private void createDialog(String upc) {
+            int productID = 0;
             int n = JOptionPane.showOptionDialog(this,
                     "This Product does not exist in "
                     + "our system.\r\n Would you like to add it now?", "Add Product Now?",
                     JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,
                     null, new Object[]{"Yes", "No"}, JOptionPane.YES_OPTION);
             if (n == JOptionPane.YES_OPTION) {
-              ProductDialog productInput= new ProductDialog(thisFrame, upc);
-              if(!productInput.addSuccessful()){
-                  JOptionPane.showMessageDialog(this, "Record not added");
-              }
-            } 
+              productInput = new ProductDialog(thisFrame, upc);
+
+                if (!productInput.addSuccessful()) {
+                    JOptionPane.showMessageDialog(this, "Product not added");
+
+                }
+            }
         }
          
     }
