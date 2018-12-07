@@ -35,21 +35,27 @@ public class DataValidation {
         uom = "";
         quantity = 0;
         productName = "";
-        categoryMap.put("Produce", 100);
-        categoryMap.put("Meats, Poultry, and Seafood", 200);
-        categoryMap.put("Dairy and Refrigerated", 300);
-        categoryMap.put("Pantry", 400);
-        categoryMap.put("Breads and Bakery", 500);
-        categoryMap.put("Baking, Herbs, and Spices", 600);
-        categoryMap.put("Beverages", 700);
-        categoryMap.put("Household Supplies", 800);
-        categoryMap.put("Miscellaneous", 900);
+        
     }
     
+    public int getNutCode(String s){
+        String mapCode=s.toLowerCase();
+        switch(mapCode){
+            case "fat":
+                return 204;
+            case "protein":
+                return 203;
+            case "calorie":
+                return 205;
+            default:
+                return 0;
+        }
+    }
     public int getCategory(String s) {
+        intializeMap();
         return categoryMap.getOrDefault(s, 0);
     }
-
+    
     public String getUPC() {
         return upc;
     }
@@ -89,7 +95,17 @@ public class DataValidation {
     public double getFat() {
         return fat;
     }
-
+    private void intializeMap(){
+        categoryMap.put("Produce", 100);
+        categoryMap.put("Meats, Poultry, and Seafood", 200);
+        categoryMap.put("Dairy and Refrigerated", 300);
+        categoryMap.put("Pantry", 400);
+        categoryMap.put("Breads and Bakery", 500);
+        categoryMap.put("Baking, Herbs, and Spices", 600);
+        categoryMap.put("Beverages", 700);
+        categoryMap.put("Household Supplies", 800);
+        categoryMap.put("Miscellaneous", 900);
+    }
     //helper to validate and set size
     boolean validateSize(String tempSize) {
        

@@ -140,10 +140,9 @@ public class ProductDialog extends JDialog implements ActionListener {
             
             if (AddNutrition.isSelected() || createDialog()) {
                 NutritionDialog nd = new NutritionDialog(frame, newProd);
-                if (nd.addSuccessful()) {
-                    JOptionPane.showMessageDialog(this, "Nutrition Successfuly Added");
-                }
+                nd.addSuccessful();
             }
+            JOptionPane.showMessageDialog(null, "Item added to master list successfully");
             dispose();
         } else if (e.getSource() == cancelBtn) {
             dispose();
@@ -291,7 +290,8 @@ public class ProductDialog extends JDialog implements ActionListener {
                 nutritionData[3] = proteinField.getText();
                 nutritionData[4] = fatField.getText();
                 if (prodData.addNutrition(nutritionData)) {
-                    addedNutrition = true;   
+                    addedNutrition = true;
+                    dispose();
                 }
             } else if (e.getSource() == cancelButton) {
                 dispose();

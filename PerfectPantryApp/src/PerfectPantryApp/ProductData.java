@@ -6,9 +6,12 @@
 package PerfectPantryApp;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -19,6 +22,8 @@ import javax.swing.JOptionPane;
  */
 public class ProductData {
 
+    NutritionRecord record;
+    List<NutritionRecord> recordList;
     private String productName = "", uom = "", upc = "";
     private int category = 0, productID = 0;
     private double servingSize = 0, protein = 0, fat = 0, calories = 0;
@@ -35,9 +40,7 @@ public class ProductData {
             return false;
         }
         productAddedCorrectly = insertIntoProduct();
-        if (productAddedCorrectly) {
-            JOptionPane.showMessageDialog(null, "Item added to master list successfully");
-        }
+
         return productAddedCorrectly;
     }
 
@@ -45,10 +48,13 @@ public class ProductData {
         if (!verifyNutritionDetails(nutritionData)) {
             return false;
         } else if (!insertIntoServingSize()) {
+            JOptionPane.showMessageDialog(null, "Unable to insert into Serving Size");
             return false;
         } else if (!insertIntoNutrition()) {
+            JOptionPane.showMessageDialog(null, "Unable to Insert Nutrition");
             return false;
         } else {
+            JOptionPane.showMessageDialog(null, "Nutrition has been added successfully!");
             return true;
         }
     }
@@ -83,7 +89,7 @@ public class ProductData {
         boolean validData = false;
         DataValidation dv = new DataValidation();
         category = dv.getCategory(data[1]);
-          if (dv.validateName(data[0])) {
+        if (dv.validateName(data[0])) {
             validData = true;
             productName = dv.getName();
         } else {
@@ -95,7 +101,9 @@ public class ProductData {
 
     private boolean verifyNutritionDetails(String[] data) {
         boolean validData = false;
+
         uom = data[1];
+        recordList = new ArrayList<NutritionRecord>();
         DataValidation dv = new DataValidation();
 
         if (dv.validateServingSize(data[0])) {
@@ -107,24 +115,34 @@ public class ProductData {
 
         if (dv.validateCalories(data[2])) {
             validData = true;
-            calories = dv.getCalories();
-            calories *= 100;
+            double calories1 = dv.getCalories();
+            calories = (calories1 / servingSize) * 100;
+            record = new NutritionRecord(productID,
+                    dv.getNutCode("calorie"), "calories", calories, uom);
+            recordList.add(record);
         } else {
             return false;
         }
 
         if (dv.validateProtein(data[3])) {
             validData = true;
-            protein = dv.getProtein();
-            protein *= 100;
+            double protein1 = dv.getProtein();
+            protein = (protein1 / servingSize) * 100;
+
+            record = new NutritionRecord(productID,
+                    dv.getNutCode("protein"), "protein", protein, uom);
+            recordList.add(record);
         } else {
             return false;
         }
 
         if (dv.validateFat(data[4])) {
             validData = true;
-            fat = dv.getFat();
-            fat *= 100;
+            double fat1 = dv.getFat();
+            fat = (fat1 / servingSize) * 100;
+            record = new NutritionRecord(productID,
+                    dv.getNutCode("fat"), "fat", fat, uom);
+            recordList.add(record);
         } else {
             return false;
         }
@@ -152,7 +170,49 @@ public class ProductData {
     }
 
     private boolean insertIntoNutrition() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean successfulCreate = false;
+        String query = "INSERT into Nutrition(ProductID,Nut_Code,Nutr_name, nut_val, uom)"
+                + "VALUES(?,?,?,?,?)";
+        try (Connection conn = JDBC.getConnection()) {
+            PreparedStatement ps = conn.prepareStatement(query);
+            for (NutritionRecord nr : recordList) {
+                ps.setInt(1, nr.productID);
+                ps.setInt(2, nr.nut_code);
+                ps.setString(3, nr.nut_name);
+                ps.setDouble(4, nr.nut_val);
+                ps.setString(5, uom);
+                ps.addBatch();
+            }
+
+            ps.executeBatch();
+            successfulCreate = true;
+            ps.close();
+            conn.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Oops!" + ex);
+            Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return successfulCreate;
+    }
+
+}
+
+class NutritionRecord {
+
+    int productID;
+    int nut_code;
+    String nut_name;
+    Double nut_val;
+    String uom;
+
+    NutritionRecord(int productID, int nutCode,
+            String nut_name, double nut_val, String uom) {
+        this.productID = productID;
+        this.nut_code = nutCode;
+        this.nut_name = nut_name;
+        this.nut_val = nut_val;
+        this.uom = uom;
     }
 
 }

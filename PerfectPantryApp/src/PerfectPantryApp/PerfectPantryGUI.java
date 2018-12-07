@@ -1283,9 +1283,7 @@ public class PerfectPantryGUI extends JFrame {
 
         nutritionTab.setLeftComponent(nutritionLeftPanel);
 
-        nutritionTable.setModel(
-         invData.setNutritionalModel()
-       );
+       
         populateNutritionTable();
         nutritionRightScrollPane.setViewportView(nutritionTable);
 
@@ -1294,6 +1292,10 @@ public class PerfectPantryGUI extends JFrame {
         homeTabPane.addTab("Nutrition Tab", nutritionTab);
     }
     private void populateNutritionTable(){
+         nutritionTable.setModel(
+         invData.setNutritionalModel()
+       );
+       
         nutritionTable.getColumnModel().getColumn(0).setMinWidth(400);
         nutritionTable.getColumnModel().getColumn(1).setPreferredWidth(15);
         nutritionTable.getColumnModel().getColumn(2).setPreferredWidth(15);
