@@ -178,11 +178,11 @@ public class InventoryData {
     //Input: name, quantity, category
     public boolean AddItemSL(String[] data) {
 
-        if (!checkForList(data[0])) {
+        if (!validateShoppingList(data)) {//verifies list in another method
             return false;
-        } else if (!validateShoppingList(data)) {//verifies list in another method
+        }else  if (!checkForList(data[0])) {
             return false;
-        }
+        } 
 
         try (Connection conn = JDBC.getConnection()) {
             // print out a message
@@ -508,12 +508,12 @@ public class InventoryData {
 
     private boolean validateShoppingList(String[] data) {
         DataValidation dv = new DataValidation();
-        category = dv.getCategory(data[0]);
+        category = dv.getCategory(data[3]);
         if (category == 0) {
             JOptionPane.showMessageDialog(null, "Not a valid Category");
             return false;
         }
-        if (!dv.validateSize(data[2])) {
+        if (!dv.validateQuantity(data[2])) {
             return false;
         } else {
             size = dv.getSize();

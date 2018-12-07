@@ -5,6 +5,7 @@
  */
 package PerfectPantryApp;
 
+import static java.lang.Double.NaN;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
@@ -17,6 +18,7 @@ public class DataValidation {
 
     private static String upc;
     private static double usage;
+    private static int quantity;
     private static double size, servSize, calories, protein, fat;
     private static String uom, productName;
     private java.sql.Date sqlExp = null;
@@ -31,6 +33,7 @@ public class DataValidation {
         protein = 0;
         fat = 0;
         uom = "";
+        quantity = 0;
         productName = "";
         categoryMap.put("Produce", 100);
         categoryMap.put("Meats, Poultry, and Seafood", 200);
@@ -89,29 +92,53 @@ public class DataValidation {
 
     //helper to validate and set size
     boolean validateSize(String tempSize) {
-        size=0;
-        return validateDouble("size", tempSize);
+        size = validateDouble("size", tempSize);
+        if (size == NaN) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     boolean validateServingSize(String tempSize) {
         servSize = 0;
-        return validateDouble("Serving Size", tempSize);
+        servSize = validateDouble("Serving Size", tempSize);
+        if (servSize == NaN) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     boolean validateCalories(String tempSize) {
         calories = 0;
-        return validateDouble("Calories", tempSize);
+        calories = validateDouble("Calories", tempSize);
+        if (calories == NaN) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     boolean validateProtein(String tempSize) {
         protein = 0;
-        return validateDouble("Protein", tempSize);
+        protein = validateDouble("Protein", tempSize);
+        if (protein == NaN) {
+            return false;
+        } else {
+            return true;
+        }
     }
+
     boolean validateFat(String tempSize) {
         fat = 0;
-        return validateDouble("Fat", tempSize);
+        fat = validateDouble("Fat", tempSize);
+        if (fat == NaN) {
+            return false;
+        } else {
+            return true;
+        }
     }
-    
 
     // method to validate and set units
     boolean validateUOM(String tempUOM) {
@@ -197,24 +224,42 @@ public class DataValidation {
         }
 
     }
+
+    public boolean validateQuantity(String quan) {
+        quantity = 0;
+        if (quan == "") {
+            JOptionPane.showMessageDialog(null, "Size cannot be empty!");
+            return false;
+        }
+        try {
+            quantity = Integer.parseInt(quan);
+            return true;
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Size should be numeric with no decimal");
+            return false;
+        }
+    }
+
     //validates nullable field;
-    private boolean validateDouble(String type1, String tempDub) {
-        String message="Invalid Input:"+type1+" must not be empty";
-        if(!type1.equals(size)){
-            message= "Invalid Input:"+type1+"!"+"If enterering nutrition "
-                    + "all fields must be added"; 
+    private double validateDouble(String type1, String tempDub) {
+        double validNumber;
+        String message = "Invalid Input:" + type1 + " must not be empty";
+        if (!type1.equals(size)) {
+            message = "Invalid Input:" + type1 + "!" + "If enterering nutrition "
+                    + "all fields must be added";
         }
         if (tempDub.isEmpty()) {
-            JOptionPane.showMessageDialog(null,message );
-            return false;
+            JOptionPane.showMessageDialog(null, message);
+            return NaN;
+
         }
-         try {
-            size = Double.parseDouble(tempDub);
+        try {
+            validNumber = Double.parseDouble(tempDub);
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null,type1+ " should be a numeric value");
-            return false;
+            JOptionPane.showMessageDialog(null, type1 + " should be a numeric value");
+            return NaN;
         }
-        return true;
+        return validNumber;
     }
 
 }
