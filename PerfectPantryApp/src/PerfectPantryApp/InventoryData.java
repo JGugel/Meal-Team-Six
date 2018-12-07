@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JOptionPane;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -531,5 +532,41 @@ public class InventoryData {
         size = data.getSize();
         uom = data.getUOM();
         sqlExp = data.getExpiration();
+    }
+    
+    public void search(String searchType, String searchKeyWord){
+        switch(searchType){
+            case "Search By Name": searchByName(searchKeyWord);
+            break;
+                
+            case "Search by UPC" : searchByUPC(searchKeyWord);
+            break;
+            default:
+                break;
+        }
+    }
+    
+    private void searchByName(String searchKeyWord){
+         JOptionPane.showMessageDialog( null, "Search by name");
+    }
+    
+    private void searchByUPC(String searchKeyWord){
+        
+        String upcCheck = ValidateUPC(searchKeyWord);
+        switch (upcCheck) {
+                    case "valid": JOptionPane.showMessageDialog( null, "valid UPC");
+                    break;
+                    case "empty":
+                        JOptionPane.showMessageDialog(null, "Invalid Input: UPC must not be empty");
+                    break;
+                    case "length":
+                        JOptionPane.showMessageDialog(null, "UPC must be a 12 digit integer");
+                    break;
+                    case "notANum":
+                        JOptionPane.showMessageDialog(null, "UPC must be a numeric value");
+                    break;
+                    default:
+                        break;
+        }
     }
 }
