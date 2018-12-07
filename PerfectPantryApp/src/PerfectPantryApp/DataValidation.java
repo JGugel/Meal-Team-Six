@@ -45,7 +45,7 @@ public class DataValidation {
         categoryMap.put("Household Supplies", 800);
         categoryMap.put("Miscellaneous", 900);
     }
-
+    
     public int getCategory(String s) {
         return categoryMap.getOrDefault(s, 0);
     }
@@ -96,25 +96,25 @@ public class DataValidation {
         size = validateDouble("Size", tempSize);
         return !Double.isNaN(size);
     }
-
+    //validates and sets serving size
     boolean validateServingSize(String tempSize) {
         servSize = 0;
         servSize = validateDouble("Serving Size", tempSize);
         return !Double.isNaN(servSize);
     }
-
+    //validates and sets calories
     boolean validateCalories(String tempSize) {
         calories = 0;
         calories = validateDouble("Calories", tempSize);
        return !Double.isNaN(calories);
     }
-
+    //validatates and sets protein
     boolean validateProtein(String tempSize) {
         protein = 0;
         protein = validateDouble("Protein", tempSize);
         return !Double.isNaN(protein);
     }
-
+    //validates and sets fat
     boolean validateFat(String tempSize) {
         fat = 0;
         fat = validateDouble("Fat", tempSize);
@@ -137,6 +137,7 @@ public class DataValidation {
         return true;
     }
 
+    //used to validate product names in shppoing list and add product
     boolean validateName(String name) {
         if (name.equals("")) {
             JOptionPane.showMessageDialog(null, "Name must not be empty");
@@ -205,7 +206,8 @@ public class DataValidation {
         }
 
     }
-
+    
+    //validates the integer quantity
     public boolean validateQuantity(String quan) {
         quantity = 0;
         if (quan == "") {
@@ -221,7 +223,8 @@ public class DataValidation {
         }
     }
 
-    //validates nullable field;
+    //validates and sets all doubles returns special case of NaN 
+    //if unable to validate
     private double validateDouble(String type1, String tempDub) {
         double validNumber;
         String message = "Invalid Input:" + type1 + " must not be empty";

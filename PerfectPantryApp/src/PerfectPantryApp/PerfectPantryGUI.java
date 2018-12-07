@@ -202,7 +202,6 @@ public class PerfectPantryGUI extends JFrame {
                     null, new Object[]{"Yes", "No"}, JOptionPane.YES_OPTION);
             if (n == JOptionPane.YES_OPTION) {
               productInput = new ProductDialog(thisFrame, upc);
-
                 if (!productInput.addSuccessful()) {
                     JOptionPane.showMessageDialog(this, "Product not added");
 
