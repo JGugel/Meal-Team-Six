@@ -1362,7 +1362,7 @@ public class PerfectPantryGUI extends JFrame {
         
     }
     private void viewNutInfoAction(String productName){
-        nutData.viewNutritionInfo(productName);
+        nutData.viewSearchNutritionInfo(productName);
         populateNutritionTable();
     }
     

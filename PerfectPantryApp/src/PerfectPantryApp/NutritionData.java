@@ -29,8 +29,6 @@ public class NutritionData {
             "Product name", "Calories", "unit", "Protien", "unit", "Fat", "unit"
         }, 0);
 
-        //String query = "{CALL getNutrition()}";
-
         try (Connection conn = JDBC.getConnection()) {
 
             CallableStatement st = conn.prepareCall(query);
@@ -58,10 +56,37 @@ public class NutritionData {
         return nTable;
     }
     
-    public void viewNutritionInfo(String productName){
+    //sets the query for searching NutritionInfo
+    public void viewSearchNutritionInfo(String productName){
         DataValidation data = new DataValidation();
        if(data.validateName(productName)){
-           query = "select p.invName, (n.nut_val/100*s.servingSize) as protein,\n" +
+           buildQuery(" AND p.invName LIKE '%"+productName+"%')");
+       }
+       setNutritionalModel();
+    }
+    
+    //sets the query for sorting info
+    public void viewSortNutritionInfo(String order){
+        switch (order){
+            case "calories":
+                 buildQuery( ")Order By calories asc");
+                break;
+            case "protein":
+                buildQuery(")Order By protein desc");
+                break;
+            case "fat": 
+                buildQuery(")Order By fat asc");
+                break;
+            default:
+                buildQuery(")Order By invName");
+        } 
+       
+       setNutritionalModel();
+    }
+
+    //helper method to build the actual query
+    private void buildQuery(String string) {
+        query="select p.invName, (n.nut_val/100*s.servingSize) as protein,\n" +
                    "(n2.nut_val/100*s.servingSize) as fat,\n" +
                     "(n3.nut_val/100*s.servingSize) as calories, s.uom\n" +
                     "from Product p join inventory_List i on i.ProductID=p.ProductID\n" +
@@ -69,7 +94,6 @@ public class NutritionData {
                     "join Nutrition n2 on n2. ProductID=p.ProductID\n" +
                     "join Nutrition n3 on n3. ProductID=p.ProductID\n" +
                     "join serving_size s on s.ProductID=p.ProductID\n" +
-                    "WHERE (n.Nut_Code=203 AND n2.Nut_Code=204 AND  n3.Nut_Code=205 AND p.invName = \""+productName+"\")";
-       }
+                    "WHERE (n.Nut_Code=203 AND n2.Nut_Code=204 AND  n3.Nut_Code=205"+string;
     }
 }
