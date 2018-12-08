@@ -167,9 +167,10 @@ public class ProductDialog extends JDialog implements ActionListener {
         boolean addNutrition;
         int n = JOptionPane.showOptionDialog(this,
                 "<html> <p style='font-style:italic;'>By not adding Nutrition "
-                + "acknowledge that you will not see it in the nutritional tab"
+                + " you acknowledge that you will not be able to"
+                        + " see it in the nutritional tab"
                 + " <br>Would you like to add it now?</p></html>",
-                "Nutrition data will not be available",
+                "Nutrition data will not be available!",
                 JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE,
                 null, new Object[]{"Yes", "No"}, JOptionPane.YES_OPTION);
         if (n == JOptionPane.YES_OPTION) {
