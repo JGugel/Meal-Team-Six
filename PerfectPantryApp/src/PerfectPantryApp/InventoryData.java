@@ -431,6 +431,7 @@ public class InventoryData {
         }
         return validationMessage;
     }
+    
 
     //runs a upc query should be used by all methods that need a upc check
     private boolean runUPCQuery(String upc) {

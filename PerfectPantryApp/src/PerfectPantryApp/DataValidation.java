@@ -154,7 +154,7 @@ public class DataValidation {
         return true;
     }
 
-    //used to validate product names in shppoing list and add product
+    //used to validate product names in shopping list add product and search 
     boolean validateName(String name) {
         if (name.equals("")) {
             JOptionPane.showMessageDialog(null, "Name must not be empty");
@@ -162,10 +162,6 @@ public class DataValidation {
         } else if (name.length() > 80) {
             JOptionPane.showMessageDialog(null, null,
                     "Name mustless than 80 Characters", JOptionPane.ERROR_MESSAGE);
-            return false;
-        } 
-        else if (!Pattern.matches("[a-zA-Z]+",name)){
-            JOptionPane.showMessageDialog(null, "Invalid Name: Name must be in alphabets");
             return false;
         } 
         else {
@@ -232,7 +228,7 @@ public class DataValidation {
     //validates the integer quantity
     public boolean validateQuantity(String quan) {
         quantity = 0;
-        if (quan == "") {
+        if (quan.equals("")) {
             JOptionPane.showMessageDialog(null, "Size cannot be empty!");
             return false;
         }
