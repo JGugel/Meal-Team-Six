@@ -107,12 +107,12 @@ public class InventoryData {
         return nTable;
     }
 
-    public void buildSearchQuery(String Keyword, String searchType) {
+    public void buildSearchQuery( String searchType,String Keyword) {
         String appendQuery = "";
         if (searchType.equals("upc")) {
             appendQuery = "WHERE p.productID=" + productID;
         } else {
-            appendQuery = "WHERE p.invName LIKE '%" + searchType + "%'";
+            appendQuery = "WHERE p.invName LIKE '%" + Keyword + "%'";
         }
         String query = " select p.upc, p.invName, i.prod_size,i.uom, c.categoryName, i.use_by, i.avg_usage\r\n"
                 + " from inventory_list i inner join product p on p.ProductID= i.ProductID\r\n"
