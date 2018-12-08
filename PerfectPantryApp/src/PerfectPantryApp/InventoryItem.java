@@ -31,4 +31,10 @@ public class InventoryItem {
         this.expiration = expiration;
         this.quantityDisplay = quantityDisplay; //avg weekly usage
     }
+    //Constructor for shopping list items
+    public InventoryItem(String name, String sizeDisplay, String category) {
+        this.name = name;
+        this.sizeDisplay = sizeDisplay; //quantity
+        this.category = category;
+    }
 }

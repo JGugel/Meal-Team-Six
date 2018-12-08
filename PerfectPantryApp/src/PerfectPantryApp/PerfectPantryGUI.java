@@ -435,10 +435,7 @@ public class PerfectPantryGUI extends JFrame {
             gbc.gridx = 0;
             gbc.gridy = 3;
             panel.add(listLabel, gbc);
-            
-            //build list box here todo josh
-            ShoppingData slData = new ShoppingData();
-            String[] listStrings = slData.getLists();
+            String[] listStrings = shopData.getLists();
             listComboBox = new JComboBox(listStrings);
             listComboBox.setSelectedIndex(0);
             gbc.gridx = 1;
