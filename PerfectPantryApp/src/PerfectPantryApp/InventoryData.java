@@ -8,10 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.Format;
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.JOptionPane;
 
 import javax.swing.table.DefaultTableModel;
@@ -25,17 +23,14 @@ public class InventoryData {
     protected InventoryTableModel tModel = null;
     protected static int productID = 0;
     protected static int category;
-    protected static int ListID = 0;
     protected String upc = "";
-    protected String shopProdName = "";
-    protected String listName = "";
     protected static double usage;
     protected static double size;
     protected static int quantity;
     protected static String uom;
     protected java.sql.Date sqlExp = null;
-    protected DefaultTableModel nTable = null;
-    protected DefaultTableModel sTable = null;
+   
+   
 
     public InventoryTableModel GetModel() {
         return tModel;
@@ -74,73 +69,8 @@ public class InventoryData {
         }
     }
 
-    public DefaultTableModel setShoppingList(String name) {
-       this. listName = name;
-        sTable = new DefaultTableModel(new String[]{"UPC","Product Name", 
-            "Quantity Needed", "Edit", "Delete"}, 0);
-        String query = "select p.upc,s.productName, s.quantity, c.categoryName "
-                + " from shopping_list s join list_pointer l on s.ListID=l.listID"
-                + " join category c on s.cat_code = c.catCode"
-                + " left join product p on s.ProductID = p.ProductID"
-                + " where l.ListName='"+listName+"'";
-        
-        try (Connection conn = JDBC.getConnection()) {
-            Statement st = (Statement) conn.createStatement();
-            ResultSet rs = null;
-            rs = st.executeQuery(query); //performs query
-            while (rs.next()) { //gets string from db
-              String prodUPC=rs.getString("upc");
-              String prodName=rs.getString("productName");
-              int prodQuan=rs.getInt("quantity");
-              String prodCat=rs.getString("categoryName");
-              if(prodUPC==null){ prodUPC="";}
-              
-                sTable.addRow(new Object[]{prodUPC, prodName,
-                        prodQuan, prodCat}); //applies data to table model
-            }
-            rs.close();
-            st.close();
-            conn.close();
-            listName="";
-        } catch (SQLException ex) {
-            Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return sTable;
-    }
-
-    public DefaultTableModel setNutritionalModel() {
-        nTable = new DefaultTableModel(new String[]{
-            "Product name", "Calories", "unit", "Protien", "unit", "Fat", "unit"
-        }, 0);
-
-        String query = "{CALL getNutrition()}";
-
-        try (Connection conn = JDBC.getConnection()) {
-
-            CallableStatement st = conn.prepareCall(query);
-
-            ResultSet rs = null;
-
-            rs = st.executeQuery(); //performs query
-
-            while (rs.next()) { //gets string from db
-                String name = rs.getString("invName");
-                double protein = rs.getDouble("protein");
-                double fat = rs.getDouble("fat");
-                double calories = rs.getDouble("calories");
-                String nUOM = rs.getString("uom");
-                //this line rounds to two decimal places
-                nTable.addRow(new Object[]{name,
-                    (Math.round(calories * 100.0) / 100.0),
-                    nUOM, (Math.round(protein * 100.0) / 100.0), nUOM,
-                    (Math.round(fat * 100.0) / 100.0), nUOM});
-            }
-            conn.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return nTable;
-    }
+   
+    
 
     public void buildSearchQuery(String searchType, String Keyword) {
         String appendQuery = "";
@@ -229,109 +159,6 @@ public class InventoryData {
         }
         updatedSuccefully = runUpdateQuery();
         return updatedSuccefully;
-    }
-
-    //method to add a shopping list item
-    //Input: name, quantity, category
-    public boolean AddItemSL(String[] data) {
-
-        if (!validateShoppingList(data)) {//verifies list in another method
-            return false;
-        } else if (!checkForList(data[0])) {
-            return false;
-        }
-
-        try (Connection conn = JDBC.getConnection()) {
-            // print out a message
-            System.out.println(String.format("Connected to database %s "
-                    + "successfully.", conn.getCatalog()));
-
-            String query = "insert into shopping_list (ProductName, ListID, "
-                    + "quantity, cat_code) values(?,?,?,?);";
-
-            PreparedStatement pstmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-
-            pstmt.setString(1, shopProdName);
-            pstmt.setInt(2, ListID);
-            pstmt.setInt(3, quantity);
-            pstmt.setInt(4, category);//category set in shoppinList validation
-            pstmt.execute();
-            pstmt.close();
-            conn.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Oops!" + ex);
-            Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
-        return true;
-    }
-
-    //method to check and set List
-    private Boolean checkForList(String name) {
-        Boolean listExists;
-        String Query = "Select ListID from list_pointer where "
-                + "listName='" + name + "'";
-        try (Connection conn = JDBC.getConnection()) {
-            Statement stmt = conn.createStatement();
-
-            ResultSet rs = stmt.executeQuery(Query);
-            if (rs.next()) {//looking for a shoppin list
-                //if verified, add item
-                listExists = true;
-                ListID = rs.getInt("ListID");
-
-            } else {//upc not found
-                listExists = false;
-            }
-            stmt.close();
-            conn.close();
-        } catch (SQLException ex) {
-            System.out.println(ex);
-            Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
-
-        if (listExists) {
-            return listExists;
-        } else {
-            listExists = createShoppingList(name);
-        }
-        return listExists;
-    }
-
-    /**
-     * if the named list isn't created this this list creates the list and sets
-     * the list id
-     * @param name
-     * @return 
-     */
-    public boolean createShoppingList(String name) {
-        boolean successfulCreate;
-        listName = name;
-        String query = "insert into list_pointer(ListName)"
-                + "values('" + listName + "')";
-        try (Connection conn = JDBC.getConnection()) {
-            Statement stmt = conn.prepareStatement(query);
-            stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
-            ResultSet rs = stmt.getGeneratedKeys();
-
-            if (rs.next()) {
-                ListID = rs.getInt(1);
-                successfulCreate = true;
-            } else {
-                successfulCreate = false;
-                // throw an exception from here
-            }
-            rs.close();
-            stmt.close();
-            conn.close();
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Oops!" + ex);
-            Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
-        return successfulCreate;
     }
 
     //helper method to run insert query
@@ -563,27 +390,7 @@ public class InventoryData {
 
     }
 
-    private boolean validateShoppingList(String[] data) {
-        DataValidation dv = new DataValidation();
-        category = dv.getCategory(data[3]);
-        if (category == 0) {
-            JOptionPane.showMessageDialog(null, "Not a valid Category");
-            return false;
-        }
-        if (!dv.validateQuantity(data[2])) {
-            return false;
-        } else {
-            quantity = dv.getQuantity();
-        }
-        if (!dv.validateName(data[1])) {
-            return false;
-        } else {
-            shopProdName = dv.getName();
-        }
-        return true;
-    }
 //sets data instance variables, prepares for a query
-
     private void setFields(DataValidation data) {
         usage = data.getUsage();
         size = data.getSize();

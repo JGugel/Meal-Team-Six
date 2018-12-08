@@ -15,18 +15,22 @@ import javax.swing.table.TableCellRenderer;
  */
 public class PerfectPantryGUI extends JFrame {
     private InventoryData invData;
+    private ShoppingData shopData;
+    private NutritionData nutData;
     JFrame thisFrame;
     /**
      * Creates new form PerfectPantryGUI
      */
     public PerfectPantryGUI() {
         invData = new InventoryData();
+        shopData=new ShoppingData();
+        nutData= new NutritionData();
         thisFrame=this;
         initComponents();
     }
 
     private void populateShoppingTable(String listName) {
-     shopListTable.setModel(invData.setShoppingList(listName));  
+     shopListTable.setModel(shopData.setShoppingList(listName));  
     }
 
     class AddInventoryDialog extends JDialog implements ActionListener{
@@ -360,7 +364,7 @@ public class PerfectPantryGUI extends JFrame {
         private JButton cancelBtn;
         private  boolean addSuccess=false;
         //Constructor
-        public AddItemSLDialog(Frame frame, InventoryData invData){
+        public AddItemSLDialog(Frame frame, ShoppingData shopData){
             super(frame, "Add Item", true);
             this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
             data = new String[4];
@@ -457,7 +461,7 @@ public class PerfectPantryGUI extends JFrame {
                 //Check for valid shopping list - todo
                 
                 
-                if(invData.AddItemSL(data)) { //if(true) {
+                if(shopData.AddItemSL(data)) { //if(true) {
                     populateShoppingTable(data[0]);
                     JOptionPane.showMessageDialog(this, "TEST Item has been added!");
                     dispose();
@@ -995,7 +999,8 @@ public class PerfectPantryGUI extends JFrame {
          public Object getCellEditorValue() {
           if (clicked)
           {
-              // TO DO: Add to cart once tables are built
+               InventoryItem item = (InventoryItem)((InventoryTableModel)table.getModel()).inventory.get(row);
+              AddToCartDialog(item);
             
             JOptionPane.showMessageDialog(null, "Coming in Phase Three!");
           }
@@ -1013,6 +1018,15 @@ public class PerfectPantryGUI extends JFrame {
         protected void fireEditingStopped() {
           super.fireEditingStopped();
         }
+        
+
+        private void AddToCartDialog(InventoryItem item) {
+              String[]ShoppingList=shopData.getLists();
+           
+            //JTextField quantityField= new JTextField();
+            //JComboBox listBox=new
+        }
+       
     }
     
 
@@ -1303,7 +1317,7 @@ public class PerfectPantryGUI extends JFrame {
     }
     private void populateNutritionTable(){
          nutritionTable.setModel(
-         invData.setNutritionalModel()
+         nutData.setNutritionalModel()
        );
        
         nutritionTable.getColumnModel().getColumn(0).setMinWidth(400);
@@ -1323,7 +1337,7 @@ public class PerfectPantryGUI extends JFrame {
     private void createShopListButtonAction() {                                                     
         // TODO add your handling code here:
         String listName = JOptionPane.showInputDialog("Enter Shopping List Name");
-        if(invData.createShoppingList(listName)) {
+        if(shopData.createShoppingList(listName)) {
           
             JOptionPane.showMessageDialog(this, "TEST Shopping list " + listName + " created");
         } else {
@@ -1347,7 +1361,7 @@ public class PerfectPantryGUI extends JFrame {
     private void addItemSLButtonAction() {                                                     
         // TODO add your handling code here:
         //JOptionPane.showMessageDialog(this, "add item in shopping list");
-        AddItemSLDialog dialog = new AddItemSLDialog(this, invData);
+        AddItemSLDialog dialog = new AddItemSLDialog(this, shopData);
         String[] data = dialog.run();
     }
 
