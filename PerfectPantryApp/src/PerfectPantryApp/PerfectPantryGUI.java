@@ -25,6 +25,10 @@ public class PerfectPantryGUI extends JFrame {
         initComponents();
     }
 
+    private void populateShoppingTable(String listName) {
+     shopListTable.setModel(invData.setShoppingList(listName));  
+    }
+
     class AddInventoryDialog extends JDialog implements ActionListener{
         private String[] data;
         private JComboBox uomComboBox;
@@ -776,9 +780,7 @@ public class PerfectPantryGUI extends JFrame {
         inventoryTable.getColumnModel().getColumn(9).setPreferredWidth(20);
     }
 
-   private void populateSearchPantryList(){
-       setModel();
-    }
+  
     
     //JButtonRenderer provides implementation for a button in a table cell
     public class JButtonRenderer extends JButton implements TableCellRenderer{
@@ -1008,9 +1010,8 @@ public class PerfectPantryGUI extends JFrame {
     //TODO
     //goButton performs a search based on the input in the Search Box
     private void goButton(String searchType, String searchKeyword){
-       // invData.search(searchType, searchKeyword);
        invData.buildSearchQuery(searchType, searchKeyword);
-        populateSearchPantryList();//this Must be called INSTEAD OF populate Pantry
+         setModel();
     }
     
     //this method will create search panel components 
@@ -1187,17 +1188,8 @@ public class PerfectPantryGUI extends JFrame {
                         .addGap(9, 9, 9))))
         );
 
-        shopListTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Product Name", "UPC", "Edit", "Delete"
-            }
-        ));
+      populateShoppingTable("default");
+        
         shopListScrollPane.setViewportView(shopListTable);
 
         addItemShopListButton.setText("Add Item");
@@ -1316,7 +1308,7 @@ public class PerfectPantryGUI extends JFrame {
         nutritionTable.repaint();
         
     }
-    
+    String listName="";
     //method to handle creating a new shopping list
     private void createShopListButtonAction() {                                                     
         // TODO add your handling code here:

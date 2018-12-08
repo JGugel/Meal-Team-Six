@@ -161,7 +161,7 @@ public class DataValidation {
             return false;
         } else if (name.length() > 80) {
             JOptionPane.showMessageDialog(null, null,
-                    "Name mustless than 80 Characters", JOptionPane.ERROR_MESSAGE);
+                    "Name must be less than 80 Characters", JOptionPane.ERROR_MESSAGE);
             return false;
         } 
         else {

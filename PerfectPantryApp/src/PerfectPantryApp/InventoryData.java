@@ -27,20 +27,18 @@ public class InventoryData {
     protected static int category;
     protected static int ListID = 0;
     protected String upc = "";
-    protected String name = "";
+    protected String shopProdName = "";
     protected String listName = "";
     protected static double usage;
     protected static double size;
     protected static String uom;
     protected java.sql.Date sqlExp = null;
     protected DefaultTableModel nTable = null;
-   
+    protected DefaultTableModel sTable = null;
 
     public InventoryTableModel GetModel() {
         return tModel;
     }
-
-   
 
     //sets the table data for home screen
     public void SetTable(String createdQuery) {
@@ -67,10 +65,46 @@ public class InventoryData {
                 tModel.addInventoryItem(new InventoryItem(upcDisplay, name, sizeDisplay,
                         uomDisplay, category, expiration, usageDisplay)); //applies data to table model
             }
+            rs.close();
+            st.close();
             conn.close();
         } catch (SQLException ex) {
             Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public DefaultTableModel setShoppingList(String name) {
+       this. listName = name;
+        sTable = new DefaultTableModel(new String[]{"UPC","Product Name", 
+            "Quantity Needed", "Edit", "Delete"}, 0);
+        String query = "select p.upc,s.productName, s.quantity, c.categoryName "
+                + " from shopping_list s join list_pointer l on s.ListID=l.listID"
+                + " join category c on s.cat_code = c.catCode"
+                + " left join product p on s.ProductID = p.ProductID"
+                + " where l.ListName='"+listName+"'";
+        
+        try (Connection conn = JDBC.getConnection()) {
+            Statement st = (Statement) conn.createStatement();
+            ResultSet rs = null;
+            rs = st.executeQuery(query); //performs query
+            while (rs.next()) { //gets string from db
+              String prodUPC=rs.getString("upc");
+              String prodName=rs.getString("productName");
+              int prodQuan=rs.getInt("quantity");
+              String prodCat=rs.getString("categoryName");
+              if(prodUPC==null){ prodUPC="";}
+              
+                sTable.addRow(new Object[]{prodUPC, prodName,
+                        prodQuan, prodCat}); //applies data to table model
+            }
+            rs.close();
+            st.close();
+            conn.close();
+            listName="";
+        } catch (SQLException ex) {
+            Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return sTable;
     }
 
     public DefaultTableModel setNutritionalModel() {
@@ -94,7 +128,7 @@ public class InventoryData {
                 double fat = rs.getDouble("fat");
                 double calories = rs.getDouble("calories");
                 String nUOM = rs.getString("uom");
-
+                //this line rounds to two decimal places
                 nTable.addRow(new Object[]{name,
                     (Math.round(calories * 100.0) / 100.0),
                     nUOM, (Math.round(protein * 100.0) / 100.0), nUOM,
@@ -107,12 +141,12 @@ public class InventoryData {
         return nTable;
     }
 
-    public void buildSearchQuery(String searchType,String Keyword) {
+    public void buildSearchQuery(String searchType, String Keyword) {
         String appendQuery = "";
-        if (searchType.equals("Search by UPC")) { 
+        if (searchType.equals("Search by UPC")) {
             String upcCheck = ValidateUPC(Keyword);
-            switch(upcCheck){
-                case "valid":  
+            switch (upcCheck) {
+                case "valid":
                     appendQuery = "WHERE p.productID=" + productID;
                     break;
                 case "empty":
@@ -129,14 +163,14 @@ public class InventoryData {
                 default:
                     break;
             }
-            
+
             //this assumes you validated UPC for proceding
 //            appendQuery = "WHERE p.productID=" + productID;
         } else {
             DataValidation data = new DataValidation();
-            if(data.validateName(Keyword)){
+            if (data.validateName(Keyword)) {
                 appendQuery = "WHERE p.invName LIKE '%" + Keyword + "%'";
-            } 
+            }
         }
         String query = " select p.upc, p.invName, i.prod_size,i.uom, c.categoryName, i.use_by, i.avg_usage\r\n"
                 + " from inventory_list i inner join product p on p.ProductID= i.ProductID\r\n"
@@ -176,8 +210,8 @@ public class InventoryData {
 
     //method called to initiate insertion
     public boolean AddInventory(String[] data, int IncomingProductID) {
-        if(productID ==0){
-            productID=IncomingProductID;
+        if (productID == 0) {
+            productID = IncomingProductID;
         }
         if (!validateData(data)) {
             return false;
@@ -196,16 +230,15 @@ public class InventoryData {
         return updatedSuccefully;
     }
 
-
     //method to add a shopping list item
     //Input: name, quantity, category
     public boolean AddItemSL(String[] data) {
 
         if (!validateShoppingList(data)) {//verifies list in another method
             return false;
-        }else  if (!checkForList(data[0])) {
+        } else if (!checkForList(data[0])) {
             return false;
-        } 
+        }
 
         try (Connection conn = JDBC.getConnection()) {
             // print out a message
@@ -217,7 +250,7 @@ public class InventoryData {
 
             PreparedStatement pstmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
-            pstmt.setString(1, name);
+            pstmt.setString(1, shopProdName);
             pstmt.setInt(2, ListID);
             pstmt.setDouble(3, size);
             pstmt.setInt(4, category);//category set in shoppinList validation
@@ -243,9 +276,9 @@ public class InventoryData {
             ResultSet rs = stmt.executeQuery(Query);
             if (rs.next()) {//looking for a shoppin list
                 //if verified, add item
-                 listExists=true;
+                listExists = true;
                 ListID = rs.getInt("ListID");
-               
+
             } else {//upc not found
                 listExists = false;
             }
@@ -264,12 +297,15 @@ public class InventoryData {
         }
         return listExists;
     }
+
     /**
-     * if the named list isn't created this
-     * this list creates the list and sets
-     * the list id*/    
+     * if the named list isn't created this this list creates the list and sets
+     * the list id
+     * @param name
+     * @return 
+     */
     public boolean createShoppingList(String name) {
-        boolean successfulCreate = false;
+        boolean successfulCreate;
         listName = name;
         String query = "insert into list_pointer(ListName)"
                 + "values('" + listName + "')";
@@ -299,7 +335,7 @@ public class InventoryData {
 
     //helper method to run insert query
     private boolean runInsertQuery() {
-        boolean successfulInsert = false;
+        boolean successfulInsert;
         try (Connection conn = JDBC.getConnection()) {
             // print out a message
             System.out.println(String.format("Connected to database %s "
@@ -328,7 +364,7 @@ public class InventoryData {
             }
             pstmt.close();
             conn.close();
-            productID=0;
+            productID = 0;
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Oops!" + ex);
             Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
@@ -368,7 +404,7 @@ public class InventoryData {
 
     //check to see if a record already exists in inventory
     public boolean CheckExists() {
-        boolean exists = false;
+        boolean exists;
         try (Connection conn = JDBC.getConnection()) {
             // print out a message
             System.out.println(String.format("Connected to database %s "
@@ -376,11 +412,7 @@ public class InventoryData {
             Statement stmt = conn.createStatement();
             String query = "select * from Inventory_List where productID=" + productID + ";";
             ResultSet rs = stmt.executeQuery(query);
-            if (rs.next()) {//looking for an item
-                exists = true;
-            } else {//upc not found
-                exists = false;
-            }
+            exists = rs.next(); //looking for an item
             conn.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Oops!" + ex);
@@ -431,7 +463,6 @@ public class InventoryData {
         }
         return validationMessage;
     }
-    
 
     //runs a upc query should be used by all methods that need a upc check
     private boolean runUPCQuery(String upc) {
@@ -543,10 +574,10 @@ public class InventoryData {
         } else {
             size = dv.getSize();
         }
-        if (!dv.validateName(data[1])){
+        if (!dv.validateName(data[1])) {
             return false;
         } else {
-            name = dv.getName();
+            shopProdName = dv.getName();
         }
         return true;
     }
