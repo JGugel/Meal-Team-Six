@@ -1306,6 +1306,7 @@ public class PerfectPantryGUI extends JFrame {
         prductNameNutLabel.setText("Enter product Name");
 
         viewNutInfo.setText("View Info");
+        viewNutInfo.addActionListener(e-> viewNutInfoAction((String) nutTextField.getText()));
 
         javax.swing.GroupLayout nutritionLeftPanelLayout = new GroupLayout(nutritionLeftPanel);
         nutritionLeftPanel.setLayout(nutritionLeftPanelLayout);
@@ -1360,6 +1361,10 @@ public class PerfectPantryGUI extends JFrame {
         
         nutritionTable.repaint();
         
+    }
+    private void viewNutInfoAction(String productName){
+        nutData.viewNutritionInfo(productName);
+        populateNutritionTable();
     }
     
     //method to handle creating a new shopping list

@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,13 +22,15 @@ import javax.swing.table.DefaultTableModel;
 public class NutritionData {
 
     protected DefaultTableModel nTable = null;
+    String query = "{CALL getNutrition()}";
+    String appendQuery = "";
 
     public DefaultTableModel setNutritionalModel() {
         nTable = new DefaultTableModel(new String[]{
             "Product name", "Calories", "unit", "Protien", "unit", "Fat", "unit"
         }, 0);
 
-        String query = "{CALL getNutrition()}";
+        //String query = "{CALL getNutrition()}";
 
         try (Connection conn = JDBC.getConnection()) {
 
@@ -54,5 +57,13 @@ public class NutritionData {
             Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
         }
         return nTable;
+    }
+    
+    public void viewNutritionInfo(String productName){
+        DataValidation data = new DataValidation();
+       if(data.validateName(productName)){
+           appendQuery = "";
+           setNutritionalModel();
+       }
     }
 }
