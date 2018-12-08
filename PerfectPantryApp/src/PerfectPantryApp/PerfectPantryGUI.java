@@ -1008,7 +1008,8 @@ public class PerfectPantryGUI extends JFrame {
     //TODO
     //goButton performs a search based on the input in the Search Box
     private void goButton(String searchType, String searchKeyword){
-        invData.search(searchType, searchKeyword);
+       // invData.search(searchType, searchKeyword);
+       invData.buildSearchQuery(searchType, searchKeyword);
         populateSearchPantryList();//this Must be called INSTEAD OF populate Pantry
     }
     

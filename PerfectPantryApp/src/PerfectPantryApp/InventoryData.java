@@ -107,13 +107,36 @@ public class InventoryData {
         return nTable;
     }
 
-    public void buildSearchQuery( String searchType,String Keyword) {
+    public void buildSearchQuery(String searchType,String Keyword) {
         String appendQuery = "";
-        if (searchType.equals("upc")) {
+        if (searchType.equals("Search by UPC")) { 
+            String upcCheck = ValidateUPC(Keyword);
+            switch(upcCheck){
+                case "valid":  
+                    appendQuery = "WHERE p.productID=" + productID;
+                    break;
+                case "empty":
+                    JOptionPane.showMessageDialog(null, "Invalid Input: UPC must not be empty");
+                    break;
+                case "length":
+                    JOptionPane.showMessageDialog(null, "UPC must be a 12 digit integer");
+                    break;
+                case "notANum":
+                    JOptionPane.showMessageDialog(null, "UPC must be a numeric value");
+                    break;
+                case "notFound":
+                    JOptionPane.showMessageDialog(null, "No result found");
+                default:
+                    break;
+            }
+            
             //this assumes you validated UPC for proceding
-            appendQuery = "WHERE p.productID=" + productID;
+//            appendQuery = "WHERE p.productID=" + productID;
         } else {
-            appendQuery = "WHERE p.invName LIKE '%" + Keyword + "%'";
+            DataValidation data = new DataValidation();
+            if(data.validateName(Keyword)){
+                appendQuery = "WHERE p.invName LIKE '%" + Keyword + "%'";
+            } 
         }
         String query = " select p.upc, p.invName, i.prod_size,i.uom, c.categoryName, i.use_by, i.avg_usage\r\n"
                 + " from inventory_list i inner join product p on p.ProductID= i.ProductID\r\n"
@@ -533,41 +556,5 @@ public class InventoryData {
         size = data.getSize();
         uom = data.getUOM();
         sqlExp = data.getExpiration();
-    }
-    
-    public void search(String searchType, String searchKeyWord){
-        switch(searchType){
-            case "Search By Name": searchByName(searchKeyWord);
-            break;
-                
-            case "Search by UPC" : searchByUPC(searchKeyWord);
-            break;
-            default:
-                break;
-        }
-    }
-    
-    private void searchByName(String searchKeyWord){
-         JOptionPane.showMessageDialog( null, "Search by name");
-    } 
-    
-    private void searchByUPC(String searchKeyWord){
-        
-        String upcCheck = ValidateUPC(searchKeyWord);
-        switch (upcCheck) {
-                    case "valid": JOptionPane.showMessageDialog( null, "valid UPC");
-                    break;
-                    case "empty":
-                        JOptionPane.showMessageDialog(null, "Invalid Input: UPC must not be empty");
-                    break;
-                    case "length":
-                        JOptionPane.showMessageDialog(null, "UPC must be a 12 digit integer");
-                    break;
-                    case "notANum":
-                        JOptionPane.showMessageDialog(null, "UPC must be a numeric value");
-                    break;
-                    default:
-                        break;
-        }
     }
 }

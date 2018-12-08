@@ -8,6 +8,7 @@ package PerfectPantryApp;
 import static java.lang.Double.NaN;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 /**
@@ -162,7 +163,12 @@ public class DataValidation {
             JOptionPane.showMessageDialog(null, null,
                     "Name mustless than 80 Characters", JOptionPane.ERROR_MESSAGE);
             return false;
-        } else {
+        } 
+        else if (!Pattern.matches("[a-zA-Z]+",name)){
+            JOptionPane.showMessageDialog(null, "Invalid Name: Name must be in alphabets");
+            return false;
+        } 
+        else {
             productName = name;
             return true;
         }
