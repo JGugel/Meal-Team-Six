@@ -362,6 +362,8 @@ public class PerfectPantryGUI extends JFrame {
         private JTextField qtyTextField;
         private JButton addBtn;
         private JButton cancelBtn;
+        private JLabel listLabel;
+        private JComboBox listComboBox;
         private  boolean addSuccess=false;
         //Constructor
         public AddItemSLDialog(Frame frame, ShoppingData shopData){
@@ -427,16 +429,33 @@ public class PerfectPantryGUI extends JFrame {
             gbc.gridy = 2;
             panel.add(catComboBox, gbc);
             
+            
+            //List
+            listLabel = new JLabel("Shopping List");
+            gbc.gridx = 0;
+            gbc.gridy = 3;
+            panel.add(listLabel, gbc);
+            
+            //build list box here todo josh
+            ShoppingData slData = new ShoppingData();
+            String[] listStrings = slData.getLists();
+            listComboBox = new JComboBox(listStrings);
+            listComboBox.setSelectedIndex(0);
+            gbc.gridx = 1;
+            gbc.gridy = 3;
+            panel.add(listComboBox, gbc);
+            
+            
             //Add and Cancel Buttons
             addBtn = new JButton("Add");
             addBtn.addActionListener(this);
             gbc.gridx = 0;
-            gbc.gridy = 3;
+            gbc.gridy = 4;
             panel.add(addBtn, gbc);
             cancelBtn = new JButton("Cancel");
             cancelBtn.addActionListener(this);
             gbc.gridx = 1;
-            gbc.gridy = 3;
+            gbc.gridy = 4;
             panel.add(cancelBtn, gbc);
             
             getContentPane().add(panel);
@@ -452,7 +471,7 @@ public class PerfectPantryGUI extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == addBtn) {
-                data[0]="default";
+                data[0] = (String)listComboBox.getSelectedItem();
                 data[1] = nameTextField.getText();
                 data[2] = qtyTextField.getText();
                 //data[2] = (String)uomComboBox.getSelectedItem();
