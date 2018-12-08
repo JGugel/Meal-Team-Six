@@ -498,6 +498,7 @@ public class PerfectPantryGUI extends JFrame {
         sortingComboBox = new JComboBox<>();
         jScrollPane1 = new JScrollPane();
         inventoryTable = new JTable();
+        viewInventoryButton = new JButton();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Perfect Pantry");
 
@@ -573,6 +574,8 @@ public class PerfectPantryGUI extends JFrame {
         );
 
         createSearchPanel();
+        viewInventoryButton.setText("View Inventory");
+        viewInventoryButton.addActionListener(e-> viewInventoryAction());
         GroupLayout inventoryLeftPanelLayout = new GroupLayout(inventoryLeftPanel);
         inventoryLeftPanel.setLayout(inventoryLeftPanelLayout);
         inventoryLeftPanelLayout.setHorizontalGroup(
@@ -581,14 +584,18 @@ public class PerfectPantryGUI extends JFrame {
                 .addContainerGap()
                 .addGroup(inventoryLeftPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                     .addComponent(categoriesPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(addInventoryButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(addInventoryButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewInventoryButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addComponent(searchPanel, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                //.addComponent(viewInventoryButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         inventoryLeftPanelLayout.setVerticalGroup(
             inventoryLeftPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(inventoryLeftPanelLayout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(viewInventoryButton)
+                .addGap(18, 18, 18)
                 .addComponent(addInventoryButton)
                 .addGap(18, 18, 18)
                 .addComponent(categoriesPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -651,7 +658,7 @@ public class PerfectPantryGUI extends JFrame {
                 .addContainerGap()
                 .addComponent(sortingPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 298, GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -689,6 +696,9 @@ public class PerfectPantryGUI extends JFrame {
         AddInventoryDialog dialog = new AddInventoryDialog(this, invData);
         String[] data = dialog.run();
         //switch statement moved to inside dialog
+    }
+    private void viewInventoryAction() {
+        populatePantryList();
     }
     
     /**
@@ -1391,6 +1401,7 @@ public class PerfectPantryGUI extends JFrame {
     private JTable nutritionTable;
     private JLabel prductNameNutLabel;
     private JButton viewNutInfo;
+    private JButton viewInventoryButton;
     
     // End of variables declaration//GEN-END:variables
 }
