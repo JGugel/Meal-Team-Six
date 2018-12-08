@@ -23,7 +23,6 @@ public class NutritionData {
 
     protected DefaultTableModel nTable = null;
     String query = "{CALL getNutrition()}";
-    String appendQuery = "";
 
     public DefaultTableModel setNutritionalModel() {
         nTable = new DefaultTableModel(new String[]{
@@ -62,8 +61,15 @@ public class NutritionData {
     public void viewNutritionInfo(String productName){
         DataValidation data = new DataValidation();
        if(data.validateName(productName)){
-           appendQuery = "";
-           setNutritionalModel();
+           query = "select p.invName, (n.nut_val/100*s.servingSize) as protein,\n" +
+                   "(n2.nut_val/100*s.servingSize) as fat,\n" +
+                    "(n3.nut_val/100*s.servingSize) as calories, s.uom\n" +
+                    "from Product p join inventory_List i on i.ProductID=p.ProductID\n" +
+                    "join Nutrition n on n. ProductID=p.ProductID\n" +
+                    "join Nutrition n2 on n2. ProductID=p.ProductID\n" +
+                    "join Nutrition n3 on n3. ProductID=p.ProductID\n" +
+                    "join serving_size s on s.ProductID=p.ProductID\n" +
+                    "WHERE (n.Nut_Code=203 AND n2.Nut_Code=204 AND  n3.Nut_Code=205 AND p.invName = \""+productName+"\")";
        }
     }
 }
