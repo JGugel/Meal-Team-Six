@@ -60,8 +60,7 @@ public class ShoppingData {
                 }
                 sTable.addInventoryItem(new InventoryItem(prodName, 
                         String.valueOf(prodQuan), prodCat));
-                //sTable.addRow(new Object[]{prodUPC, prodName,
-                //    prodQuan, prodCat}); //applies data to table model
+              
             }
             rs.close();
             st.close();
@@ -106,7 +105,7 @@ public class ShoppingData {
         return listExists;
     }
     //method to add a shopping list item
-    //Input: name, quantity, category
+    //Input: list name, name, quantity, category
 
     public boolean AddItemSL(String[] data) {
 
