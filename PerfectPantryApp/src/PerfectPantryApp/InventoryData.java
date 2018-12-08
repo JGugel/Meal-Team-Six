@@ -110,6 +110,7 @@ public class InventoryData {
     public void buildSearchQuery( String searchType,String Keyword) {
         String appendQuery = "";
         if (searchType.equals("upc")) {
+            //this assumes you validated UPC for proceding
             appendQuery = "WHERE p.productID=" + productID;
         } else {
             appendQuery = "WHERE p.invName LIKE '%" + Keyword + "%'";
