@@ -434,10 +434,7 @@ public class PerfectPantryGUI extends JFrame {
             gbc.gridx = 0;
             gbc.gridy = 3;
             panel.add(listLabel, gbc);
-            
-            //build list box here todo josh
-            ShoppingData slData = new ShoppingData();
-            String[] listStrings = slData.getLists();
+            String[] listStrings = shopData.getLists();
             listComboBox = new JComboBox(listStrings);
             listComboBox.setSelectedIndex(0);
             gbc.gridx = 1;
@@ -1308,6 +1305,7 @@ public class PerfectPantryGUI extends JFrame {
         prductNameNutLabel.setText("Enter product Name");
 
         viewNutInfo.setText("View Info");
+        viewNutInfo.addActionListener(e-> viewNutInfoAction((String) nutTextField.getText()));
 
         javax.swing.GroupLayout nutritionLeftPanelLayout = new GroupLayout(nutritionLeftPanel);
         nutritionLeftPanel.setLayout(nutritionLeftPanelLayout);
@@ -1362,6 +1360,10 @@ public class PerfectPantryGUI extends JFrame {
         
         nutritionTable.repaint();
         
+    }
+    private void viewNutInfoAction(String productName){
+        nutData.viewNutritionInfo(productName);
+        populateNutritionTable();
     }
     
     //method to handle creating a new shopping list

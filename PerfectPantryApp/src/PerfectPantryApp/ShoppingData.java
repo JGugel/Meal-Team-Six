@@ -25,7 +25,8 @@ public class ShoppingData {
 
     private int quantity = 0, listID = 0;
     private String shopProdName = "", listName = "";
-    protected DefaultTableModel sTable = null;
+    //protected DefaultTableModel sTable = null;
+    protected SLTableModel sTable = null;
     protected static int category;
 
     /**
@@ -34,10 +35,11 @@ public class ShoppingData {
      * @param name
      * @return
      */
-    public DefaultTableModel setShoppingList(String name) {
+    public SLTableModel setShoppingList(String name) {
         this.listName = name;
-        sTable = new DefaultTableModel(new String[]{"UPC", "Product Name",
-            "Quantity Needed", "Edit", "Delete"}, 0);
+        sTable = new SLTableModel();
+        //sTable = new DefaultTableModel(new String[]{"UPC", "Product Name",
+        //   "Quantity Needed", "Edit", "Delete"}, 0);
         String query = "select p.upc,s.productName, s.quantity, c.categoryName "
                 + " from shopping_list s join list_pointer l on s.ListID=l.listID"
                 + " join category c on s.cat_code = c.catCode"
@@ -56,9 +58,10 @@ public class ShoppingData {
                 if (prodUPC == null) {
                     prodUPC = "";
                 }
-
-                sTable.addRow(new Object[]{prodUPC, prodName,
-                    prodQuan, prodCat}); //applies data to table model
+                sTable.addInventoryItem(new InventoryItem(prodName, 
+                        String.valueOf(prodQuan), prodCat));
+                //sTable.addRow(new Object[]{prodUPC, prodName,
+                //    prodQuan, prodCat}); //applies data to table model
             }
             rs.close();
             st.close();
