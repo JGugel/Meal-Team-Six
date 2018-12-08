@@ -458,7 +458,7 @@ public class PerfectPantryGUI extends JFrame {
                 
                 
                 if(invData.AddItemSL(data)) { //if(true) {
-                    populatePantryList();
+                    populateShoppingTable(data[0]);
                     JOptionPane.showMessageDialog(this, "TEST Item has been added!");
                     dispose();
                 } else {
@@ -1308,12 +1308,13 @@ public class PerfectPantryGUI extends JFrame {
         nutritionTable.repaint();
         
     }
-    String listName="";
+    
     //method to handle creating a new shopping list
     private void createShopListButtonAction() {                                                     
         // TODO add your handling code here:
         String listName = JOptionPane.showInputDialog("Enter Shopping List Name");
         if(invData.createShoppingList(listName)) {
+          
             JOptionPane.showMessageDialog(this, "TEST Shopping list " + listName + " created");
         } else {
             JOptionPane.showMessageDialog(this, "Create shopping list failed");

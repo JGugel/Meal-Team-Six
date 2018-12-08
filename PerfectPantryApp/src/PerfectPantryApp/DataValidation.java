@@ -96,6 +96,9 @@ public class DataValidation {
     public double getFat() {
         return fat;
     }
+    public int getQuantity(){
+        return quantity;
+    }
     private void intializeMap(){
         categoryMap.put("Produce", 100);
         categoryMap.put("Meats, Poultry, and Seafood", 200);

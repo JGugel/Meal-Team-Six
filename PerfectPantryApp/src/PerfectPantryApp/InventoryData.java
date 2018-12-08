@@ -31,6 +31,7 @@ public class InventoryData {
     protected String listName = "";
     protected static double usage;
     protected static double size;
+    protected static int quantity;
     protected static String uom;
     protected java.sql.Date sqlExp = null;
     protected DefaultTableModel nTable = null;
@@ -252,7 +253,7 @@ public class InventoryData {
 
             pstmt.setString(1, shopProdName);
             pstmt.setInt(2, ListID);
-            pstmt.setDouble(3, size);
+            pstmt.setInt(3, quantity);
             pstmt.setInt(4, category);//category set in shoppinList validation
             pstmt.execute();
             pstmt.close();
@@ -572,7 +573,7 @@ public class InventoryData {
         if (!dv.validateQuantity(data[2])) {
             return false;
         } else {
-            size = dv.getSize();
+            quantity = dv.getQuantity();
         }
         if (!dv.validateName(data[1])) {
             return false;
