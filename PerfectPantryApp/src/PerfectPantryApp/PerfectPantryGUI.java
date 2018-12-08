@@ -750,6 +750,10 @@ public class PerfectPantryGUI extends JFrame {
         }
         
         invData.buildQuery(sortedSelectedOption(), selectedCategories);
+        setModel();
+        
+    }
+    private void setModel(){
         inventoryTable.setModel(invData.GetModel());
         JButtonRenderer jbRender = new JButtonRenderer();
         inventoryTable.setDefaultRenderer(JButton.class, jbRender);
@@ -771,27 +775,9 @@ public class PerfectPantryGUI extends JFrame {
         inventoryTable.getColumnModel().getColumn(8).setPreferredWidth(5);
         inventoryTable.getColumnModel().getColumn(9).setPreferredWidth(20);
     }
+
    private void populateSearchPantryList(){
-        inventoryTable.setModel(invData.GetModel());
-        JButtonRenderer jbRender = new JButtonRenderer();
-        inventoryTable.setDefaultRenderer(JButton.class, jbRender);
-        EditTableEditor editEditor = new EditTableEditor(new JCheckBox());
-        inventoryTable.getColumnModel().getColumn(7).setCellEditor(editEditor);
-        DeleteTableEditor deleteEditor = new DeleteTableEditor(new JCheckBox());
-        inventoryTable.getColumnModel().getColumn(8).setCellEditor(deleteEditor);
-        AddToCartTableEditor addEditor = new AddToCartTableEditor(new JCheckBox());
-        inventoryTable.getColumnModel().getColumn(9).setCellEditor(addEditor);
-        inventoryTable.repaint();
-        inventoryTable.getColumnModel().getColumn(0).setPreferredWidth(30);
-        inventoryTable.getColumnModel().getColumn(1).setPreferredWidth(175);
-        inventoryTable.getColumnModel().getColumn(2).setPreferredWidth(15);
-        inventoryTable.getColumnModel().getColumn(3).setPreferredWidth(10);
-        inventoryTable.getColumnModel().getColumn(4).setPreferredWidth(100);
-        inventoryTable.getColumnModel().getColumn(5).setPreferredWidth(25);
-        inventoryTable.getColumnModel().getColumn(6).setPreferredWidth(25);
-        inventoryTable.getColumnModel().getColumn(7).setPreferredWidth(5);
-        inventoryTable.getColumnModel().getColumn(8).setPreferredWidth(5);
-        inventoryTable.getColumnModel().getColumn(9).setPreferredWidth(20);
+       setModel();
     }
     
     //JButtonRenderer provides implementation for a button in a table cell
