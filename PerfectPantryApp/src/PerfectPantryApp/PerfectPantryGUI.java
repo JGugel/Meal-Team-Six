@@ -429,7 +429,6 @@ public class PerfectPantryGUI extends JFrame {
             gbc.gridy = 2;
             panel.add(catComboBox, gbc);
             
-            
             //List
             listLabel = new JLabel("Shopping List");
             gbc.gridx = 0;
@@ -1021,7 +1020,7 @@ public class PerfectPantryGUI extends JFrame {
                InventoryItem item = (InventoryItem)((InventoryTableModel)table.getModel()).inventory.get(row);
               AddToCartDialog(item);
             
-            JOptionPane.showMessageDialog(null, "Coming in Phase Three!");
+            //JOptionPane.showMessageDialog(null, "Coming in Phase Three!");
           }
           clicked = false;
           return new String(label);

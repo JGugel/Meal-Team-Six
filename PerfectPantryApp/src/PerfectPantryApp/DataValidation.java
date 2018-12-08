@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author Michelle
+ * this  class does nothing but data validation
  */
 public class DataValidation {
 
