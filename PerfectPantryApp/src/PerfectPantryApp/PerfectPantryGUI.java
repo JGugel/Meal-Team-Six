@@ -17,7 +17,7 @@ public class PerfectPantryGUI extends JFrame {
     private InventoryData invData;
     private ShoppingData shopData;
     private NutritionData nutData;
-    JFrame thisFrame;
+    static JFrame  thisFrame;
     /**
      * Creates new form PerfectPantryGUI
      */
@@ -1035,12 +1035,25 @@ public class PerfectPantryGUI extends JFrame {
           super.fireEditingStopped();
         }
         
-
+        //This shows the dialog for how many and what list
         private void AddToCartDialog(InventoryItem item) {
+            ImageIcon icon = new ImageIcon(getClass().getResource("./groceryIcon.png"));
               String[]ShoppingList=shopData.getLists();
-           
-            //JTextField quantityField= new JTextField();
-            //JComboBox listBox=new
+           JPanel panel= new JPanel();
+            JTextField quantityField= new JTextField();
+            JComboBox listBox=new JComboBox(ShoppingList);
+            Object []fields={
+                "Add to List:", listBox,
+                "Quantity Needed?", quantityField,
+            };
+            panel.add(listBox);
+            
+            int option = JOptionPane.showConfirmDialog                   
+                        (PerfectPantryGUI.thisFrame, fields,
+                            "Add toCart", JOptionPane.OK_CANCEL_OPTION,
+                            JOptionPane.PLAIN_MESSAGE,
+                          icon);
+            
         }
        
     }
