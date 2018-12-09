@@ -1183,16 +1183,19 @@ public class PerfectPantryGUI extends JFrame {
             String[] data = new String[4];
 
             int option = JOptionPane.showConfirmDialog(PerfectPantryGUI.thisFrame, fields,
-                    "Add toCart", JOptionPane.OK_CANCEL_OPTION,
+                    name, JOptionPane.OK_CANCEL_OPTION,
                     JOptionPane.PLAIN_MESSAGE,
                     icon);
-            if (option == JOptionPane.OK_OPTION) {
-                String listName=(String) listBox.getSelectedItem();
+             String listName=(String) listBox.getSelectedItem();
                 data[0] = listName;
                 data[1] = name;
                 data[2] = quantityField.getText();
                 data[3] = category;
-                shopData.AddItemSL(data);
+            if (option == JOptionPane.OK_OPTION) {
+               
+               if( shopData.AddItemSL(data)){
+                   
+               }
                 populateShoppingTable(listName);
             }
 
@@ -1293,10 +1296,14 @@ public class PerfectPantryGUI extends JFrame {
         viewShopListPanel.setBorder(BorderFactory.createTitledBorder("View List"));
 
         selectShopListLabel.setText("Select List:");
-
-        selectShopListComboBox.setModel(new DefaultComboBoxModel<>(shopData.getLists()));
-       selectShopListComboBox.addActionListener
-            (e->populateShoppingTable((String)selectShopListComboBox.getSelectedItem()));
+        String[] lists=shopData.getLists();
+        if (lists==null){
+            lists=new String[1];
+            lists[0]="None Created";
+        }
+        String initialList=lists[0];
+        selectShopListComboBox.setModel(new DefaultComboBoxModel<>(lists));
+       selectShopListComboBox.addActionListener(e->populateShoppingTable(initialList));
         GroupLayout viewShopListPanelLayout = new GroupLayout(viewShopListPanel);
         viewShopListPanel.setLayout(viewShopListPanelLayout);
         viewShopListPanelLayout.setHorizontalGroup(
@@ -1384,8 +1391,8 @@ public class PerfectPantryGUI extends JFrame {
                         .addGap(9, 9, 9))))
         );
 
-        String[] lists = shopData.getLists();
-        populateShoppingTable(lists[0]);
+    
+      
         
         shopListScrollPane.setViewportView(shopListTable);
 
