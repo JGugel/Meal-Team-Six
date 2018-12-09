@@ -30,7 +30,19 @@ public class PerfectPantryGUI extends JFrame {
     }
 
     private void populateShoppingTable(String listName) {
-     shopListTable.setModel(shopData.setShoppingList(listName));  
+        shopListTable.setModel(shopData.setShoppingList(listName));
+        JButtonRenderer jbRender = new JButtonRenderer();
+        shopListTable.setDefaultRenderer(JButton.class, jbRender);
+        EditTableEditor editEditor = new EditTableEditor(new JCheckBox());
+        shopListTable.getColumnModel().getColumn(3).setCellEditor(editEditor);
+        DeleteTableEditor deleteEditor = new DeleteTableEditor(new JCheckBox());
+        shopListTable.getColumnModel().getColumn(4).setCellEditor(deleteEditor);
+        shopListTable.repaint();
+        shopListTable.getColumnModel().getColumn(0).setPreferredWidth(175);
+        shopListTable.getColumnModel().getColumn(1).setPreferredWidth(15);
+        shopListTable.getColumnModel().getColumn(2).setPreferredWidth(175);
+        shopListTable.getColumnModel().getColumn(3).setPreferredWidth(5);
+        shopListTable.getColumnModel().getColumn(4).setPreferredWidth(5);
     }
 
     class AddInventoryDialog extends JDialog implements ActionListener{
@@ -490,6 +502,125 @@ public class PerfectPantryGUI extends JFrame {
         }
     }
     
+    class EditSLDialog extends JDialog implements ActionListener{
+        private String[] data;
+        private DefaultComboBoxModel model;
+        private JComboBox catComboBox;
+        private JLabel qtyLabel;
+        private JLabel nameLabel;
+        private JLabel catLabel;
+        private JTextField qtyTextField;
+        private JTextField nameTextField;
+        private JButton updateBtn;
+        private JButton cancelBtn;
+        private  boolean editSuccess=false;
+        //Constructor
+        public EditSLDialog(Frame frame, String[] dataIn){
+            super(frame, "Edit Item", true);
+            this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+            data = dataIn; // String[3]
+            JPanel panel = new JPanel();
+            GridBagLayout grid = new GridBagLayout();
+            panel.setLayout(grid);
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.insets = new Insets(5,5,5,5);
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+            
+            //Name
+            nameLabel = new JLabel("Name*");
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+            panel.add( nameLabel, gbc);
+            nameTextField = new JTextField(data[0], 10);
+            gbc.gridx = 1;
+            gbc.gridy = 0;
+            panel.add(nameTextField, gbc);
+            
+            //Quantity
+            qtyLabel = new JLabel("Quantity*");
+            gbc.gridx = 0;
+            gbc.gridy = 1;
+            panel.add( qtyLabel, gbc);
+            qtyTextField = new JTextField(data[1], 10);
+            gbc.gridx = 1;
+            gbc.gridy = 1;
+            panel.add(qtyTextField, gbc);
+            
+            //Category
+            catLabel = new JLabel("Category");
+            gbc.gridx = 0;
+            gbc.gridy = 2;
+            panel.add(catLabel, gbc);
+            String[] catStrings = {"Miscellaneous", "Produce", "Meats, Poultry, and Seafood",
+                "Dairy and Refrigerated", "Pantry", "Breads and Bakery", "Baking, Herbs, and Spices", 
+                "Beverages", "Household Supplies"};
+            model = new DefaultComboBoxModel(catStrings);
+            catComboBox = new JComboBox(model);
+            int n = model.getIndexOf(data[2]); 
+            if (n == -1) {   //set the uom if it matches
+                catComboBox.setSelectedIndex(0);
+            } else {
+                catComboBox.setSelectedIndex(n);
+            }
+            gbc.gridx = 1;
+            gbc.gridy = 2;
+            panel.add(catComboBox, gbc);
+            
+            //Update and Cancel Buttons
+            updateBtn = new JButton("Update");
+            updateBtn.addActionListener(this);
+            gbc.gridx = 0;
+            gbc.gridy = 3;
+            panel.add(updateBtn, gbc);
+            cancelBtn = new JButton("Cancel");
+            cancelBtn.addActionListener(this);
+            gbc.gridx = 1;
+            gbc.gridy = 3;
+            panel.add(cancelBtn, gbc);
+            
+            getContentPane().add(panel);
+            pack();    
+            setLocationRelativeTo(null);
+        }
+        
+        public String [] run() {
+            this.setVisible(true);
+            return data;
+        }
+        
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == updateBtn) {
+                data[0] = nameTextField.getText();
+                data[1] = qtyTextField.getText();
+                data[2] = (String)catComboBox.getSelectedItem();
+                
+                System.out.println("Edit Shopping List - ToDo");
+                //Validate data
+//                System.out.println("UPC is : " + data[0]); //test line josh
+//                String upcCheck = invData.ValidateUPC(data[0]);
+//                //check to see if record already exists in inventory
+//                if (invData.CheckExists()) {
+//                    //should always get here
+//                    if (invData.EditInventory(data)){
+//                        populatePantryList();
+//                        JOptionPane.showMessageDialog(this, "Item Updated");
+//                        dispose();
+//                    } else {
+//                        JOptionPane.showMessageDialog(this, "Inventory not updated"); //failed to increment
+//                        return;
+//                    }
+//                } else {
+//                    //should never get here?
+//                    System.out.println("UPC does not exist in Inventory list");
+//                    return;
+//                }
+            } else if (e.getSource() == cancelBtn) {
+                dispose(); 
+            }
+        }
+    }
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -882,10 +1013,20 @@ public class PerfectPantryGUI extends JFrame {
             {
                 System.out.println("in getCellEditorValue of Edit");
                 //Edit Item Here
-                InventoryItem item = (InventoryItem)((InventoryTableModel)table.getModel()).inventory.get(row);
-                String[] data = {item.upcDisplay, item.sizeDisplay, item.uomDisplay, item.expiration, item.quantityDisplay};
-                EditInventoryDialog dialog = new EditInventoryDialog(null, data);
-                data = dialog.run();
+                //inventory
+                if (table.getModel() instanceof InventoryTableModel) {
+                    InventoryItem item = (InventoryItem)((InventoryTableModel)table.getModel()).inventory.get(row);
+                    String[] data = {item.upcDisplay, item.sizeDisplay, item.uomDisplay, item.expiration, item.quantityDisplay};
+                    EditInventoryDialog dialog = new EditInventoryDialog(null, data);
+                    data = dialog.run();
+                }
+                //shopping list
+                else if (table.getModel() instanceof SLTableModel) {
+                    InventoryItem item = (InventoryItem)((SLTableModel)table.getModel()).inventory.get(row);
+                    String[] data = {item.name, item.sizeDisplay, item.category};
+                    EditSLDialog dialog = new EditSLDialog(null, data);
+                    data = dialog.run();
+                }
             }
             clicked = false;
             return new String(label);
@@ -948,12 +1089,25 @@ public class PerfectPantryGUI extends JFrame {
                         JOptionPane.YES_NO_OPTION);
                 if (n == JOptionPane.YES_OPTION) {
                     //delete here todo
-                    InventoryItem item = (InventoryItem)((InventoryTableModel)table.getModel()).inventory.get(row);
-                   if( invData.deleteRecord(item.upcDisplay)){
-                        populatePantryList();
-                       JOptionPane.showMessageDialog(null, "Record deleted successfully.!");
-                   } else {
-                        JOptionPane.showMessageDialog(null, "Delete Failed");
+                    if (table.getModel() instanceof InventoryTableModel) {
+                        //Inventory
+                        InventoryItem item = (InventoryItem)((InventoryTableModel)table.getModel()).inventory.get(row);
+                        if( invData.deleteRecord(item.upcDisplay)){
+                            populatePantryList();
+                           JOptionPane.showMessageDialog(null, "Record deleted successfully.!");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Delete Failed");
+                        }
+                    } else if (table.getModel() instanceof SLTableModel) {
+                        //Shopping List
+                        InventoryItem item = (InventoryItem)((SLTableModel)table.getModel()).inventory.get(row);
+                        System.out.println("Delete Shopping List Item - ToDo");
+//                        if( shopData.deleteRecord(item.upcDisplay)){
+//                            populatePantryList();
+//                           JOptionPane.showMessageDialog(null, "Record deleted successfully.!");
+//                        } else {
+//                            JOptionPane.showMessageDialog(null, "Delete Failed");
+//                        }
                     }
                 } else {
                     //do nothing
@@ -975,7 +1129,7 @@ public class PerfectPantryGUI extends JFrame {
         }
     }
     
-    //Josh Todo
+    
     //AddToCartTableEditor defines the functionality of the add to cart table cell
     public class AddToCartTableEditor extends DefaultCellEditor {
         JButton button;
