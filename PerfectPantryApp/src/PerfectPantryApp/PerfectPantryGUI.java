@@ -1446,60 +1446,6 @@ public class PerfectPantryGUI extends JFrame {
 
         homeTabPane.addTab("Shopping List", shopListTab);
     }
-    
-//    private void nutritionTab(){
-//        nutritionTab = new JSplitPane();
-//        nutritionLeftPanel = new JPanel();
-//        prductNameNutLabel = new JLabel();
-//        nutTextField = new JTextField();
-//        viewNutInfo = new JButton();
-//        nutritionRightScrollPane = new JScrollPane();
-//        nutritionTable = new JTable();
-//        
-//        nutritionLeftPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Nutrition Info"));
-//
-//        prductNameNutLabel.setText("Enter product Name");
-//
-//        viewNutInfo.setText("View Info");
-//        viewNutInfo.addActionListener(e-> viewNutInfoAction((String) nutTextField.getText()));
-//
-//        javax.swing.GroupLayout nutritionLeftPanelLayout = new GroupLayout(nutritionLeftPanel);
-//        nutritionLeftPanel.setLayout(nutritionLeftPanelLayout);
-//        nutritionLeftPanelLayout.setHorizontalGroup(
-//            nutritionLeftPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-//            .addGroup(nutritionLeftPanelLayout.createSequentialGroup()
-//                .addContainerGap()
-//                .addGroup(nutritionLeftPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-//                    .addComponent(prductNameNutLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-//                    .addGroup(nutritionLeftPanelLayout.createSequentialGroup()
-//                        .addComponent(nutTextField, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
-//                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-//                        .addComponent(viewNutInfo)
-//                        .addGap(0, 0, Short.MAX_VALUE)))
-//                .addContainerGap())
-//        );
-//        nutritionLeftPanelLayout.setVerticalGroup(
-//            nutritionLeftPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-//            .addGroup(nutritionLeftPanelLayout.createSequentialGroup()
-//                .addContainerGap()
-//                .addComponent(prductNameNutLabel, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
-//                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-//                .addGroup(nutritionLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-//                    .addComponent(nutTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-//                    .addComponent(viewNutInfo))
-//                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-//        );
-//
-//        nutritionTab.setLeftComponent(nutritionLeftPanel);
-//
-//       
-//        populateNutritionTable();
-//        nutritionRightScrollPane.setViewportView(nutritionTable);
-//
-//        nutritionTab.setRightComponent(nutritionRightScrollPane);
-//
-//        homeTabPane.addTab("Nutrition Tab", nutritionTab);
-//    }
     private void nutritionTab(){
         nutritionTab = new JSplitPane();
         nutLeftPanel = new JPanel();
@@ -1516,14 +1462,14 @@ public class PerfectPantryGUI extends JFrame {
         nutritionTable = new JTable();
         
         nutViewListButton.setText("View Nutrition List");
-        nutViewListButton.addActionListener(e-> populateNutritionTable());
+        nutViewListButton.addActionListener(e-> viewAllNutInfoAction());
 
         nutSearchPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Search"));
 
         nutKeywordLabel.setText("Keyword In:");
 
         nutSearchButton.setText("Search");
-        nutSearchButton.addActionListener(e-> viewNutInfoAction((String) nutTextField.getText()));
+        nutSearchButton.addActionListener(e-> searchNutInfoAction((String) nutTextField.getText()));
 
         javax.swing.GroupLayout nutSearchPanelLayout = new javax.swing.GroupLayout(nutSearchPanel);
         nutSearchPanel.setLayout(nutSearchPanelLayout);
@@ -1616,10 +1562,7 @@ public class PerfectPantryGUI extends JFrame {
         );
 
         nutritionTab.setRightComponent(nutRightPanel);
-
-        homeTabPane.addTab("Nutrition Tab", nutritionTab);
-
-        
+        homeTabPane.addTab("Nutrition Tab", nutritionTab);  
     }
     private void populateNutritionTable(){
          nutritionTable.setModel(
@@ -1638,8 +1581,13 @@ public class PerfectPantryGUI extends JFrame {
         nutritionTable.repaint();
         
     }
-    private void viewNutInfoAction(String productName){
+    private void searchNutInfoAction(String productName){
         nutData.viewSearchNutritionInfo(productName);
+        populateNutritionTable();
+    }
+    
+    private void viewAllNutInfoAction(){
+        nutData.viewNutritionInfo();
         populateNutritionTable();
     }
     
@@ -1719,13 +1667,6 @@ public class PerfectPantryGUI extends JFrame {
     private JPanel shopListTab;
     private JTable shopListTable;
     private JPanel viewShopListPanel;
-//    private JTextField nutTextField;
-//    private JPanel nutritionLeftPanel;
-//    private JScrollPane nutritionRightScrollPane;
-//    private JSplitPane nutritionTab;
-//    private JTable nutritionTable;
-//    private JLabel prductNameNutLabel;
-//    private JButton viewNutInfo;
     private JLabel nutKeywordLabel;
     private JPanel nutLeftPanel;
     private JPanel nutRightPanel;
@@ -1739,7 +1680,6 @@ public class PerfectPantryGUI extends JFrame {
     private JPanel nutTopPanel;
     private JButton nutViewListButton;
     private JSplitPane nutritionTab;
-    
     private JButton viewInventoryButton;
     
     // End of variables declaration//GEN-END:variables

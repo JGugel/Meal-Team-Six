@@ -63,6 +63,13 @@ public class NutritionData {
            buildQuery(" AND p.invName LIKE '%"+productName+"%')");
        }
        setNutritionalModel();
+       //query = "{CALL getNutrition()}";
+    }
+    
+    public void viewNutritionInfo(){
+        query = "{CALL getNutrition()}";
+       setNutritionalModel();
+       //query = "{CALL getNutrition()}";
     }
     
     //sets the query for sorting info
