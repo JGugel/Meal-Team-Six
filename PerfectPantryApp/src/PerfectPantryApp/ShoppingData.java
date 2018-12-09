@@ -139,6 +139,38 @@ public class ShoppingData {
         }
         return true;
     }
+    
+    public boolean EditItemSL(String[] data) {
+        System.out.println("data[0] = " + data[0]);
+        boolean updated = false;
+        if (!validateShoppingList(data)) {//verifies list in another method
+            return false;
+        } else if (!checkForList(data[0])) {
+            return false;
+        }
+
+        try (Connection conn = JDBC.getConnection()) {
+            // print out a message
+            System.out.println(String.format("Connected to database %s "
+                    + "successfully.", conn.getCatalog()));
+
+            String sqlUpdate = "UPDATE shopping_list SET ProductName=" + shopProdName
+                    + ", quantity=" + quantity + ", cat_code=" + category
+                    + " WHERE ListID=" + listID + " AND ProductName=" + data[4];
+
+            Statement stmt = conn.createStatement();
+            int record = stmt.executeUpdate(sqlUpdate);
+            if (record > 0) {
+                updated = true;
+            }
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
+            updated = false;
+        }
+        return updated;
+    }
 
     /**
      * if the named list isn't created this this list creates the list and sets

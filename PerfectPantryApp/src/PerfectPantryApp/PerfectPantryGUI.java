@@ -518,7 +518,7 @@ public class PerfectPantryGUI extends JFrame {
         public EditSLDialog(Frame frame, String[] dataIn){
             super(frame, "Edit Item", true);
             this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-            data = dataIn; // String[3]
+            data = dataIn; // String[5]
             JPanel panel = new JPanel();
             GridBagLayout grid = new GridBagLayout();
             panel.setLayout(grid);
@@ -531,7 +531,7 @@ public class PerfectPantryGUI extends JFrame {
             gbc.gridx = 0;
             gbc.gridy = 0;
             panel.add( nameLabel, gbc);
-            nameTextField = new JTextField(data[0], 10);
+            nameTextField = new JTextField(data[1], 10);
             gbc.gridx = 1;
             gbc.gridy = 0;
             panel.add(nameTextField, gbc);
@@ -541,7 +541,7 @@ public class PerfectPantryGUI extends JFrame {
             gbc.gridx = 0;
             gbc.gridy = 1;
             panel.add( qtyLabel, gbc);
-            qtyTextField = new JTextField(data[1], 10);
+            qtyTextField = new JTextField(data[2], 10);
             gbc.gridx = 1;
             gbc.gridy = 1;
             panel.add(qtyTextField, gbc);
@@ -556,7 +556,7 @@ public class PerfectPantryGUI extends JFrame {
                 "Beverages", "Household Supplies"};
             model = new DefaultComboBoxModel(catStrings);
             catComboBox = new JComboBox(model);
-            int n = model.getIndexOf(data[2]); 
+            int n = model.getIndexOf(data[3]); 
             if (n == -1) {   //set the uom if it matches
                 catComboBox.setSelectedIndex(0);
             } else {
@@ -591,30 +591,20 @@ public class PerfectPantryGUI extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == updateBtn) {
-                data[0] = nameTextField.getText();
-                data[1] = qtyTextField.getText();
-                data[2] = (String)catComboBox.getSelectedItem();
+                //data[0] should be the shopping list name, not editable
+                data[1] = nameTextField.getText();
+                data[2] = qtyTextField.getText();
+                data[3] = (String)catComboBox.getSelectedItem();
+                //data[4] should be the unedited name for lookup in the db
                 
-                System.out.println("Edit Shopping List - ToDo");
-                //Validate data
-//                System.out.println("UPC is : " + data[0]); //test line josh
-//                String upcCheck = invData.ValidateUPC(data[0]);
-//                //check to see if record already exists in inventory
-//                if (invData.CheckExists()) {
-//                    //should always get here
-//                    if (invData.EditInventory(data)){
-//                        populatePantryList();
-//                        JOptionPane.showMessageDialog(this, "Item Updated");
-//                        dispose();
-//                    } else {
-//                        JOptionPane.showMessageDialog(this, "Inventory not updated"); //failed to increment
-//                        return;
-//                    }
-//                } else {
-//                    //should never get here?
-//                    System.out.println("UPC does not exist in Inventory list");
-//                    return;
-//                }
+                if (shopData.EditItemSL(data)){
+                    populateShoppingTable(shopListNameLabel.getText());
+                    JOptionPane.showMessageDialog(this, "Item Updated");
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Item not updated"); //failed to increment
+                    return;
+                }
             } else if (e.getSource() == cancelBtn) {
                 dispose(); 
             }
@@ -1023,7 +1013,8 @@ public class PerfectPantryGUI extends JFrame {
                 //shopping list
                 else if (table.getModel() instanceof SLTableModel) {
                     InventoryItem item = (InventoryItem)((SLTableModel)table.getModel()).inventory.get(row);
-                    String[] data = {item.name, item.sizeDisplay, item.category};
+                    String[] data = {shopListNameLabel.getText(), item.name, item.sizeDisplay, item.category, item.name};
+                    //System.out.println("data[0] = " + data[0]); test
                     EditSLDialog dialog = new EditSLDialog(null, data);
                     data = dialog.run();
                 }
@@ -1405,7 +1396,7 @@ public class PerfectPantryGUI extends JFrame {
                         .addGap(9, 9, 9))))
         );
 
-      populateShoppingTable("default");
+      populateShoppingTable("default"); //todo?
         
         shopListScrollPane.setViewportView(shopListTable);
 
