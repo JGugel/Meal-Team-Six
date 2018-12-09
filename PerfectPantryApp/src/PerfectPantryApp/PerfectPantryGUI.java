@@ -1521,7 +1521,7 @@ public class PerfectPantryGUI extends JFrame {
 
         nutSortingLabel.setText("Sorting:");
 
-        nutSortingComboBox.setModel(new DefaultComboBoxModel<>(new String[] { "Product Name", "Calories", "Protien", "Fat" }));
+        nutSortingComboBox.setModel(new DefaultComboBoxModel<>(new String[] { "Product Name", "Calories", "Protein", "Fat" }));
         nutSortingComboBox.addActionListener(e-> populateNutritionTable());
         GroupLayout nutTopPanelLayout = new GroupLayout(nutTopPanel);
         nutTopPanel.setLayout(nutTopPanelLayout);
