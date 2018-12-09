@@ -144,10 +144,10 @@ public class DataValidation {
 
     // method to validate and set units
     boolean validateUOM(String tempUOM) {
-        if (tempUOM.equals("unit")) {
-            JOptionPane.showMessageDialog(null, "Please select a valid unit of measurement.");
-            return false;
-        }
+//        if (tempUOM.equals("unit")) {
+//            JOptionPane.showMessageDialog(null, "Please select a valid unit of measurement.");
+//            return false;
+//        }
         uom = "";
         if (tempUOM.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Invalid Input: Unit of measurement must not be empty.");
