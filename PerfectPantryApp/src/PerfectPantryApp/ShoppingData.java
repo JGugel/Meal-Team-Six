@@ -58,7 +58,7 @@ public class ShoppingData {
                 if (prodUPC == null) {
                     prodUPC = "";
                 }
-                sTable.addInventoryItem(new InventoryItem(prodName, 
+                sTable.addInventoryItem(new InventoryItem(prodName,
                         String.valueOf(prodQuan), prodCat));
             }
             rs.close();
@@ -137,7 +137,7 @@ public class ShoppingData {
         }
         return true;
     }
-    
+
     public boolean EditItemSL(String[] data) {
         System.out.println("data[0] = " + data[0]);
         boolean updated = false;
@@ -156,14 +156,14 @@ public class ShoppingData {
             //System.out.println("shopProdName= " + data[4]);
             String sqlUpdate = "UPDATE shopping_list SET ProductName='" + shopProdName
                     + "', quantity=" + quantity + ", cat_code=" + category
-                    + " WHERE ListID=" + listID + " AND ProductName='" 
+                    + " WHERE ListID=" + listID + " AND ProductName='"
                     + data[4] + "'";
 
             Statement stmt = conn.createStatement();
             int record = stmt.executeUpdate(sqlUpdate);
-            if (record > 0) {
-                updated = true; 
-            }
+
+            updated = (record > 0);
+
             conn.close();
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -172,7 +172,7 @@ public class ShoppingData {
         }
         return updated;
     }
-    
+
     public boolean DeleteItemSL(String[] data) {
         //data[0] listid        
         //data[1] name
@@ -233,7 +233,7 @@ public class ShoppingData {
         }
         return successfulCreate;
     }
-    
+
     //
     public boolean editShoppingList(String name, String newName) {
         boolean updated = false;
@@ -242,12 +242,12 @@ public class ShoppingData {
         }
         //Edit the list name in the list pointer
         String sqlUpdate = "UPDATE list_pointer SET ListName='" + newName + "' "
-                + "WHERE ListName='" + name+"'";
+                + "WHERE ListName='" + name + "'";
         try (Connection conn = JDBC.getConnection()) {
             Statement stmt = conn.createStatement();
             int record = stmt.executeUpdate(sqlUpdate);
             if (record > 0) {
-                updated = true; 
+                updated = true;
             }
             conn.close();
         } catch (SQLException ex) {
@@ -257,15 +257,15 @@ public class ShoppingData {
 
         return updated;
     }
-    
-     //
+
+    //
     public boolean deleteShoppingList(String name) {
         boolean deleted = false;
         if (!checkForList(name)) {
             JOptionPane.showMessageDialog(null, "Delete Failed, List Not Found");
             return false;
         }
-        
+
         //Delete items from shopping list with the listID
         String query = "DELETE from shopping_list "
                 + "WHERE ListID=" + listID;
@@ -299,7 +299,6 @@ public class ShoppingData {
         return deleted;
     }
 
-
     /**
      * validates all information for the shopping List
      *
@@ -325,15 +324,15 @@ public class ShoppingData {
         }
         return true;
     }
-    
-    public String[] getLists(){
-        ArrayList<String>tempList=new ArrayList<String>();
-         String query = "Select listName from list_pointer";
-         String[]nameList=null;
+
+    public String[] getLists() {
+        ArrayList<String> tempList = new ArrayList<>();
+        String query = "Select listName from list_pointer";
+        String[] nameList = null;
         try (Connection conn = JDBC.getConnection()) {
             Statement stmt = conn.prepareStatement(query);
-            ResultSet rs=stmt.executeQuery(query);
-            while(rs.next()) {
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
                 tempList.add(rs.getString("listName"));
             }
             rs.close();
@@ -344,12 +343,11 @@ public class ShoppingData {
             JOptionPane.showMessageDialog(null, "Oops!" + ex);
             Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if(tempList.isEmpty()){
-            //JOptionPane.showMessageDialog(null, "No Shopping lists have been created");
+        if (tempList.isEmpty()) {
             return nameList;
         }
-        nameList=tempList.toArray(new String[tempList.size()]);
+        nameList = tempList.toArray(new String[tempList.size()]);
         return nameList;
     }
-    
+
 }

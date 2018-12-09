@@ -54,6 +54,7 @@ public class DataValidation {
         }
     }
     public int getCategory(String s) {
+        //reduces map initialization to the two places it is used
         intializeMap();
         return categoryMap.getOrDefault(s, 0);
     }
@@ -61,10 +62,6 @@ public class DataValidation {
     public String getUPC() {
         return upc;
     }
-
-//    public double getUsage() {
-//        return usage;
-//    }
 
     public double getSize() {
         return size;
@@ -144,10 +141,6 @@ public class DataValidation {
 
     // method to validate and set units
     boolean validateUOM(String tempUOM) {
-//        if (tempUOM.equals("unit")) {
-//            JOptionPane.showMessageDialog(null, "Please select a valid unit of measurement.");
-//            return false;
-//        }
         uom = "";
         if (tempUOM.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Invalid Input: Unit of measurement must not be empty.");
@@ -183,7 +176,7 @@ public class DataValidation {
         if (!(tempDate.isEmpty())) {
 
             dateFormat = new SimpleDateFormat("yyyy-mm-dd");
-            formatter = formatter.format(tempDate);
+            formatter = String.format(tempDate);
             try {
                 sqlExp = java.sql.Date.valueOf(formatter);
             } catch (IllegalArgumentException iae) {
@@ -194,24 +187,9 @@ public class DataValidation {
         return true;
     }
 
-    //special case since contains default
-//    boolean validateUsage(String tempQuant) {
-//        usage = 0;
-//        if (tempQuant.isEmpty()) {
-//            usage = 1.0;
-//
-//        } else {//usage defaults to one
-//            try {
-//                usage = Double.parseDouble(tempQuant);
-//            } catch (NumberFormatException e) {
-//                JOptionPane.showMessageDialog(null, "Usage should be a numeric value");
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
 
-    /*validates usage and returns a string if and 
+
+    /*validates UPC and returns a string if and 
         why it failed or the word valid*/
     String validateUPC(String interfaceUpc) {
         upc = interfaceUpc;

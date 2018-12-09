@@ -180,14 +180,9 @@ public class InventoryData {
                 //http://www.java2s.com/Tutorials/Java/JDBC/Insert/Set_NULL_date_value_to_database_in_Java.htm
                 pstmt.setNull(4, java.sql.Types.DATE);
             }
-            //pstmt.setDouble(5, usage);
             pstmt.setInt(5, 1);
             int rowsUpdated = pstmt.executeUpdate();
-            if (rowsUpdated == 0) {
-                successfulInsert = false;
-            } else {
-                successfulInsert = true;
-            }
+            successfulInsert = (rowsUpdated > 0);
             pstmt.close();
             conn.close();
             productID = 0;
@@ -292,7 +287,6 @@ public class InventoryData {
 
     //runs a upc query should be used by all methods that need a upc check
     private boolean runUPCQuery(String upc) {
-        //connect to database
         try (Connection conn = JDBC.getConnection()) {
             // print out a message
             System.out.println(String.format("Connected to database %s "
@@ -306,6 +300,7 @@ public class InventoryData {
             } else {//upc not found
                 return false;
             }
+            rs.close();
             stmt.close();
             conn.close();
         } catch (SQLException ex) {
@@ -319,7 +314,6 @@ public class InventoryData {
     //validates information and gets quantities to add to
     boolean adjustQuantity(String[] data) {
         double prod = 0;
-        //double use = 0;
         boolean updatedSuccefully;
         if (!validateData(data)) {
             return false;
@@ -354,9 +348,7 @@ public class InventoryData {
         try (Connection conn = JDBC.getConnection()) {
             Statement stmt = conn.createStatement();
             int record = stmt.executeUpdate(sqlUpdate);
-            if (record > 0) {
-                updated = true;
-            }
+            updated=(record>0);
             stmt.close();
             conn.close();
         } catch (SQLException ex) {
