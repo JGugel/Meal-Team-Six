@@ -1355,7 +1355,7 @@ public class PerfectPantryGUI extends JFrame {
         shopListRightTopPanel.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
 
        
-        shopListNameLabel.setText("List Name");
+        shopListNameLabel.setText(lists[0]);
         deleteshopListButton.setIcon(new ImageIcon(getClass().getResource("delete.png"))); // NOI18N
         deleteshopListButton.setMaximumSize(new java.awt.Dimension(179, 147));
         deleteshopListButton.setMinimumSize(new java.awt.Dimension(179, 147));

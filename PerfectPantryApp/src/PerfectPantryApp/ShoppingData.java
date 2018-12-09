@@ -242,7 +242,7 @@ public class ShoppingData {
         }
         //Edit the list name in the list pointer
         String sqlUpdate = "UPDATE list_pointer SET ListName='" + newName + "' "
-                + "WHERE ListID=" + listID;
+                + "WHERE ListName='" + name+"'";
         try (Connection conn = JDBC.getConnection()) {
             Statement stmt = conn.createStatement();
             int record = stmt.executeUpdate(sqlUpdate);
