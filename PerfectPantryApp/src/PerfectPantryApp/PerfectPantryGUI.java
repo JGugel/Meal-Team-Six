@@ -1462,7 +1462,7 @@ public class PerfectPantryGUI extends JFrame {
         nutritionTable = new JTable();
         
         nutViewListButton.setText("View Nutrition List");
-        nutViewListButton.addActionListener(e-> viewAllNutInfoAction());
+        nutViewListButton.addActionListener(e-> populateNutritionTable());
 
         nutSearchPanel.setBorder(BorderFactory.createTitledBorder("Search"));
 
@@ -1577,9 +1577,11 @@ public class PerfectPantryGUI extends JFrame {
         return nutSelectedOption;
     }
     private void populateNutritionTable(){
-        
-//        nutData.viewSortNutritionInfo(sortedSelectedOption());
-        
+        nutData.viewSortNutritionInfo(nutSortedOption());
+        nutModel(); 
+    }
+    
+    private void nutModel(){       
          nutritionTable.setModel(
          nutData.setNutritionalModel()
        );
@@ -1591,19 +1593,12 @@ public class PerfectPantryGUI extends JFrame {
         nutritionTable.getColumnModel().getColumn(4).setPreferredWidth(15);
         nutritionTable.getColumnModel().getColumn(5).setPreferredWidth(15);
         nutritionTable.getColumnModel().getColumn(6).setPreferredWidth(15);
-        
-        
         nutritionTable.repaint();
         
     }
     private void searchNutInfoAction(String productName){
         nutData.viewSearchNutritionInfo(productName);
-        populateNutritionTable();
-    }
-    
-    private void viewAllNutInfoAction(){
-        nutData.viewNutritionInfo();
-        populateNutritionTable();
+        nutModel();
     }
     
     //method to handle creating a new shopping list

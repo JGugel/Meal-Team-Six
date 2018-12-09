@@ -11,22 +11,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  * This class deals only with nutritional data
  *
- * @author Michelle, Hira
+ * @author Michelle
  */
 public class NutritionData {
 
     protected DefaultTableModel nTable = null;
     String query = "{CALL getNutrition()}";
 
-    public DefaultTableModel getModel() {
-        return nTable;
-    }
     public DefaultTableModel setNutritionalModel() {
         nTable = new DefaultTableModel(new String[]{
             "Product name", "Calories", "unit", "Protien", "unit", "Fat", "unit"
@@ -66,19 +62,12 @@ public class NutritionData {
            buildQuery(" AND p.invName LIKE '%"+productName+"%')");
        }
        setNutritionalModel();
-       //query = "{CALL getNutrition()}";
-    }
-    
-    public void viewNutritionInfo(){
-        query = "{CALL getNutrition()}";
-       setNutritionalModel();
-       //query = "{CALL getNutrition()}";
     }
     
     //sets the query for sorting info
     public void viewSortNutritionInfo(String order){
         switch (order){
-            case "default" :
+            case "default":
                 buildQuery(")Order By invName");
                 break;
             case "Calories":
