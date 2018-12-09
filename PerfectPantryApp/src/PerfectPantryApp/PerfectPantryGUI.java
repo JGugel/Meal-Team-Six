@@ -1606,6 +1606,16 @@ public class PerfectPantryGUI extends JFrame {
         if (listName == null) {
             return;
         }
+        //check if name already exists
+        String[] lists = shopData.getLists();
+        if (lists != null) {
+            for (int i=0; i<lists.length; i++) {
+                if (lists[i].equals(listName)) {
+                    JOptionPane.showMessageDialog(this, listName + " already exists");
+                    return;
+                }
+            }
+        }
         if (shopData.createShoppingList(listName)) {
             JOptionPane.showMessageDialog(this, "Shopping list " + listName + " created");
             populateShoppingTable(listName);
@@ -1650,14 +1660,25 @@ public class PerfectPantryGUI extends JFrame {
         String name = shopListNameLabel.getText();
         String newName = JOptionPane.showInputDialog(this,
                 "Enter Shopping List Name", name);
-        if (newName != null) {
-            if (shopData.editShoppingList(name, newName)) {
-                JOptionPane.showMessageDialog(this, "Shopping list " + newName + " edited");
-                populateShoppingTable(newName);
-                selectShopListComboBox.setModel(new DefaultComboBoxModel<>(shopData.getLists()));
-            } else {
-                JOptionPane.showMessageDialog(this, "Edit shopping list failed");
+        if (newName == null) {
+            return;
+        }
+        
+        String[] lists = shopData.getLists();
+        if (lists != null) {
+            for (int i=0; i<lists.length; i++) {
+                if (lists[i].equals(newName)) {
+                    JOptionPane.showMessageDialog(this, newName + " already exists");
+                    return;
+                }
             }
+        }
+        if (shopData.editShoppingList(name, newName)) {
+            JOptionPane.showMessageDialog(this, "Shopping list " + newName + " edited");
+            populateShoppingTable(newName);
+            selectShopListComboBox.setModel(new DefaultComboBoxModel<>(shopData.getLists()));
+        } else {
+            JOptionPane.showMessageDialog(this, "Edit shopping list failed");
         }
     }
 
