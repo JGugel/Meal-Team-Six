@@ -1660,7 +1660,10 @@ public class PerfectPantryGUI extends JFrame {
     }
 
     //method to handle adding new items to the shopping list
-    private void addItemSLButtonAction() {                                                     
+    private void addItemSLButtonAction() {           
+        if (shopData.getLists() == null) {
+            return;
+        }
         AddItemSLDialog dialog = new AddItemSLDialog(this, shopData);
         String[] data = dialog.run();
     }
