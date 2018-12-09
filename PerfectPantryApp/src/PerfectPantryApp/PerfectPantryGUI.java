@@ -1299,14 +1299,12 @@ public class PerfectPantryGUI extends JFrame {
         viewShopListPanel.setBorder(BorderFactory.createTitledBorder("View List"));
 
         selectShopListLabel.setText("Select List:");
-        String[] lists=shopData.getLists();
-        if (lists==null){
-            lists=new String[1];
-            lists[0]="None Created";
+        if (shopData.getLists()==null){
+            shopData.createShoppingList("Default");
         }
-        String initialList=lists[0];
+        String[] lists = shopData.getLists();
         selectShopListComboBox.setModel(new DefaultComboBoxModel<>(lists));
-       selectShopListComboBox.addActionListener(e->populateShoppingTable(initialList));
+        selectShopListComboBox.addActionListener(e->populateShoppingTable((String)selectShopListComboBox.getSelectedItem()));
         GroupLayout viewShopListPanelLayout = new GroupLayout(viewShopListPanel);
         viewShopListPanel.setLayout(viewShopListPanelLayout);
         viewShopListPanelLayout.setHorizontalGroup(
@@ -1355,7 +1353,7 @@ public class PerfectPantryGUI extends JFrame {
         shopListRightTopPanel.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
 
        
-        shopListNameLabel.setText(lists[0]);
+        shopListNameLabel.setText((String)selectShopListComboBox.getSelectedItem());
         deleteshopListButton.setIcon(new ImageIcon(getClass().getResource("delete.png"))); // NOI18N
         deleteshopListButton.setMaximumSize(new java.awt.Dimension(179, 147));
         deleteshopListButton.setMinimumSize(new java.awt.Dimension(179, 147));
@@ -1627,13 +1625,14 @@ public class PerfectPantryGUI extends JFrame {
         if (n == JOptionPane.YES_OPTION) {
             //delete here
             if(shopData.deleteShoppingList(list)){
-                String[] lists = shopData.getLists();
-                if (lists.length == 0) {
-                    populateShoppingTable("");
-                    selectShopListComboBox.setModel(new DefaultComboBoxModel<>());
-                } else {
-                    populateShoppingTable(lists[0]);
+                if (shopData.getLists() == null) {
+                    shopData.createShoppingList("Default");
+                    populateShoppingTable("Default");
                     selectShopListComboBox.setModel(new DefaultComboBoxModel<>(shopData.getLists()));
+                } else {
+                    String[] lists = shopData.getLists();
+                    populateShoppingTable(lists[0]);
+                    selectShopListComboBox.setModel(new DefaultComboBoxModel<>(lists));
                 }
                 JOptionPane.showMessageDialog(this, "List deleted successfully!");
             } else {

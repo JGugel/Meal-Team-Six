@@ -345,7 +345,7 @@ public class ShoppingData {
             Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
         }
         if(tempList.isEmpty()){
-            JOptionPane.showMessageDialog(null, "No Shopping lists have been created");
+            //JOptionPane.showMessageDialog(null, "No Shopping lists have been created");
             return nameList;
         }
         nameList=tempList.toArray(new String[tempList.size()]);
