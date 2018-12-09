@@ -30,6 +30,7 @@ public class PerfectPantryGUI extends JFrame {
     }
 
     private void populateShoppingTable(String listName) {
+        shopListNameLabel.setText(listName);
         shopListTable.setModel(shopData.setShoppingList(listName));
         JButtonRenderer jbRender = new JButtonRenderer();
         shopListTable.setDefaultRenderer(JButton.class, jbRender);
@@ -440,7 +441,6 @@ public class PerfectPantryGUI extends JFrame {
             gbc.gridx = 1;
             gbc.gridy = 2;
             panel.add(catComboBox, gbc);
-            
             
             //List
             listLabel = new JLabel("Shopping List");
@@ -1170,9 +1170,11 @@ public class PerfectPantryGUI extends JFrame {
           if (clicked)
           {
                InventoryItem item = (InventoryItem)((InventoryTableModel)table.getModel()).inventory.get(row);
-              AddToCartDialog(item);
+               String name= item.name;
+               String category=item.category;
+              AddToCartDialog(name, category);
             
-            JOptionPane.showMessageDialog(null, "Coming in Phase Three!");
+            //JOptionPane.showMessageDialog(null, "Coming in Phase Three!");
           }
           clicked = false;
           return new String(label);
@@ -1190,24 +1192,31 @@ public class PerfectPantryGUI extends JFrame {
         }
         
         //This shows the dialog for how many and what list
-        private void AddToCartDialog(InventoryItem item) {
+        private void AddToCartDialog(String name, String category) {
             ImageIcon icon = new ImageIcon(getClass().getResource("./groceryIcon.png"));
-              String[]ShoppingList=shopData.getLists();
-           JPanel panel= new JPanel();
-            JTextField quantityField= new JTextField();
-            JComboBox listBox=new JComboBox(ShoppingList);
-            Object []fields={
+            String[] ShoppingList = shopData.getLists();
+            JPanel panel = new JPanel();
+            JTextField quantityField = new JTextField();
+            JComboBox listBox = new JComboBox(ShoppingList);
+            Object[] fields = {
                 "Add to List:", listBox,
-                "Quantity Needed?", quantityField,
-            };
-            panel.add(listBox);
-            
-            int option = JOptionPane.showConfirmDialog                   
-                        (PerfectPantryGUI.thisFrame, fields,
-                            "Add toCart", JOptionPane.OK_CANCEL_OPTION,
-                            JOptionPane.PLAIN_MESSAGE,
-                          icon);
-            
+                "Quantity Needed?", quantityField,};
+            String[] data = new String[4];
+
+            int option = JOptionPane.showConfirmDialog(PerfectPantryGUI.thisFrame, fields,
+                    "Add toCart", JOptionPane.OK_CANCEL_OPTION,
+                    JOptionPane.PLAIN_MESSAGE,
+                    icon);
+            if (option == JOptionPane.OK_OPTION) {
+                String listName=(String) listBox.getSelectedItem();
+                data[0] = listName;
+                data[1] = name;
+                data[2] = quantityField.getText();
+                data[3] = category;
+                shopData.AddItemSL(data);
+                populateShoppingTable(listName);
+            }
+
         }
        
     }
@@ -1304,10 +1313,11 @@ public class PerfectPantryGUI extends JFrame {
 
         viewShopListPanel.setBorder(BorderFactory.createTitledBorder("View List"));
 
-        selectShopListLabel.setText("SelectList:");
+        selectShopListLabel.setText("Select List:");
 
-        selectShopListComboBox.setModel(new DefaultComboBoxModel<>(new String[] { "Select by Name" }));
-
+        selectShopListComboBox.setModel(new DefaultComboBoxModel<>(shopData.getLists()));
+       selectShopListComboBox.addActionListener
+            (e->populateShoppingTable((String)selectShopListComboBox.getSelectedItem()));
         GroupLayout viewShopListPanelLayout = new GroupLayout(viewShopListPanel);
         viewShopListPanel.setLayout(viewShopListPanelLayout);
         viewShopListPanelLayout.setHorizontalGroup(
@@ -1355,8 +1365,8 @@ public class PerfectPantryGUI extends JFrame {
 
         shopListRightTopPanel.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
 
+       
         shopListNameLabel.setText("List Name");
-
         deleteshopListButton.setIcon(new ImageIcon(getClass().getResource("delete.png"))); // NOI18N
         deleteshopListButton.setMaximumSize(new java.awt.Dimension(179, 147));
         deleteshopListButton.setMinimumSize(new java.awt.Dimension(179, 147));
@@ -1460,6 +1470,7 @@ public class PerfectPantryGUI extends JFrame {
         prductNameNutLabel.setText("Enter product Name");
 
         viewNutInfo.setText("View Info");
+        viewNutInfo.addActionListener(e-> viewNutInfoAction((String) nutTextField.getText()));
 
         javax.swing.GroupLayout nutritionLeftPanelLayout = new GroupLayout(nutritionLeftPanel);
         nutritionLeftPanel.setLayout(nutritionLeftPanelLayout);
@@ -1515,14 +1526,19 @@ public class PerfectPantryGUI extends JFrame {
         nutritionTable.repaint();
         
     }
+    private void viewNutInfoAction(String productName){
+        nutData.viewSearchNutritionInfo(productName);
+        populateNutritionTable();
+    }
     
     //method to handle creating a new shopping list
     private void createShopListButtonAction() {                                                     
         // TODO add your handling code here:
         String listName = JOptionPane.showInputDialog("Enter Shopping List Name");
         if(shopData.createShoppingList(listName)) {
-          
-            JOptionPane.showMessageDialog(this, "TEST Shopping list " + listName + " created");
+      
+            JOptionPane.showMessageDialog(this, "Shopping list " + listName + " created");
+             selectShopListComboBox.setModel(new DefaultComboBoxModel<>(shopData.getLists()));
         } else {
             JOptionPane.showMessageDialog(this, "Create shopping list failed");
         }
