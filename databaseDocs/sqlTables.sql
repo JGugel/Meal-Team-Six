@@ -70,6 +70,7 @@ CREATE TABLE Shopping_List(
 	ProductName varchar(80) NOT NULL,
 	PRIMARY KEY(ItemID),
 	FOREIGN KEY (ListID) REFERENCES List_Pointer(ListID)
+	on Delete cascade
 );
 
 /*set autoIncrement to start at a 3 digit num*/
