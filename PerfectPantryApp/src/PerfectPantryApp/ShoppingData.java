@@ -153,10 +153,13 @@ public class ShoppingData {
             // print out a message
             System.out.println(String.format("Connected to database %s "
                     + "successfully.", conn.getCatalog()));
-
-            String sqlUpdate = "UPDATE shopping_list SET ProductName=" + shopProdName
-                    + ", quantity=" + quantity + ", cat_code=" + category
-                    + " WHERE ListID=" + listID + " AND ProductName=" + data[4];
+            System.out.println("listID= " + listID);
+            System.out.println("shopProdName= " + shopProdName);
+            //System.out.println("shopProdName= " + data[4]);
+            String sqlUpdate = "UPDATE shopping_list SET ProductName='" + shopProdName
+                    + "', quantity=" + quantity + ", cat_code=" + category
+                    + " WHERE ListID=" + listID + " AND ProductName='" 
+                    + data[4] + "'";
 
             Statement stmt = conn.createStatement();
             int record = stmt.executeUpdate(sqlUpdate);
@@ -180,7 +183,7 @@ public class ShoppingData {
             return false;
         }
         String query = "DELETE from shopping_list "
-                + "WHERE ListID=" + data[0] + "AND ProductName=" + data[1];
+                + "WHERE ListID=" + listID + " AND ProductName='" + data[1] + "'";
 
         try (Connection conn = JDBC.getConnection()) {
             PreparedStatement statement = conn.prepareStatement(query);

@@ -339,7 +339,7 @@ public class PerfectPantryGUI extends JFrame {
                 
                 
                 //Validate data
-                System.out.println("UPC is : " + data[0]); //test line josh
+                //System.out.println("UPC is : " + data[0]); //test line josh
                 String upcCheck = invData.ValidateUPC(data[0]);
                 //check to see if record already exists in inventory
                 if (invData.CheckExists()) {
@@ -491,7 +491,7 @@ public class PerfectPantryGUI extends JFrame {
                 
                 if(shopData.AddItemSL(data)) { //if(true) {
                     populateShoppingTable(data[0]);
-                    JOptionPane.showMessageDialog(this, "TEST Item has been added!");
+                    JOptionPane.showMessageDialog(this, "Item has been added!");
                     dispose();
                 } else {
                     return;
@@ -1094,8 +1094,8 @@ public class PerfectPantryGUI extends JFrame {
                         InventoryItem item = (InventoryItem)((SLTableModel)table.getModel()).inventory.get(row);
                         String[] data = {shopListNameLabel.getText(), item.name};
                         if (shopData.DeleteItemSL(data)){
-                            populatePantryList();
-                           JOptionPane.showMessageDialog(null, "Record deleted successfully.!");
+                            populateShoppingTable(shopListNameLabel.getText());
+                           JOptionPane.showMessageDialog(null, "Record deleted successfully!");
                         } else {
                             JOptionPane.showMessageDialog(null, "Delete Failed");
                         }
