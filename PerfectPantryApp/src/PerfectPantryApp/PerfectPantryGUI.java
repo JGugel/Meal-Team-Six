@@ -1374,8 +1374,8 @@ public class PerfectPantryGUI extends JFrame {
             shopListRightTopPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(shopListRightTopPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(shopListNameLabel, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
+                .addComponent(shopListNameLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
                 .addComponent(editShopListButton, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED,javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(deleteshopListButton, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
@@ -1463,7 +1463,7 @@ public class PerfectPantryGUI extends JFrame {
         nutritionTable = new JTable();
         
         nutViewListButton.setText("View Nutrition List");
-        nutViewListButton.addActionListener(e-> viewAllNutInfoAction());
+        nutViewListButton.addActionListener(e-> populateNutritionTable());
 
         nutSearchPanel.setBorder(BorderFactory.createTitledBorder("Search"));
 
@@ -1522,7 +1522,7 @@ public class PerfectPantryGUI extends JFrame {
 
         nutSortingLabel.setText("Sorting:");
 
-        nutSortingComboBox.setModel(new DefaultComboBoxModel<>(new String[] { "Product Name", "Calories", "Protien", "Fat" }));
+        nutSortingComboBox.setModel(new DefaultComboBoxModel<>(new String[] { "Product Name", "Calories", "Protein", "Fat" }));
         nutSortingComboBox.addActionListener(e-> populateNutritionTable());
         GroupLayout nutTopPanelLayout = new GroupLayout(nutTopPanel);
         nutTopPanel.setLayout(nutTopPanelLayout);
@@ -1578,9 +1578,11 @@ public class PerfectPantryGUI extends JFrame {
         return nutSelectedOption;
     }
     private void populateNutritionTable(){
-        
-//        nutData.viewSortNutritionInfo(sortedSelectedOption());
-        
+        nutData.viewSortNutritionInfo(nutSortedOption());
+        nutModel(); 
+    }
+    
+    private void nutModel(){       
          nutritionTable.setModel(
          nutData.setNutritionalModel()
        );
@@ -1592,19 +1594,12 @@ public class PerfectPantryGUI extends JFrame {
         nutritionTable.getColumnModel().getColumn(4).setPreferredWidth(15);
         nutritionTable.getColumnModel().getColumn(5).setPreferredWidth(15);
         nutritionTable.getColumnModel().getColumn(6).setPreferredWidth(15);
-        
-        
         nutritionTable.repaint();
         
     }
     private void searchNutInfoAction(String productName){
         nutData.viewSearchNutritionInfo(productName);
-        populateNutritionTable();
-    }
-    
-    private void viewAllNutInfoAction(){
-        nutData.viewNutritionInfo();
-        populateNutritionTable();
+        nutModel();
     }
     
     //method to handle creating a new shopping list
