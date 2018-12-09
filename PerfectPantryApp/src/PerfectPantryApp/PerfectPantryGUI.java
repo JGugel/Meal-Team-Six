@@ -1323,6 +1323,7 @@ public class PerfectPantryGUI extends JFrame {
         selectShopListComboBox.setModel(new DefaultComboBoxModel<>(lists));
         selectShopListComboBox.setSelectedItem(lists[0]);
         selectShopListComboBox.addActionListener(e->populateShoppingTable((String)selectShopListComboBox.getSelectedItem()));
+        populateShoppingTable((String)selectShopListComboBox.getSelectedItem());
         GroupLayout viewShopListPanelLayout = new GroupLayout(viewShopListPanel);
         viewShopListPanel.setLayout(viewShopListPanelLayout);
         viewShopListPanelLayout.setHorizontalGroup(
