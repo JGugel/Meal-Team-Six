@@ -1447,58 +1447,179 @@ public class PerfectPantryGUI extends JFrame {
         homeTabPane.addTab("Shopping List", shopListTab);
     }
     
+//    private void nutritionTab(){
+//        nutritionTab = new JSplitPane();
+//        nutritionLeftPanel = new JPanel();
+//        prductNameNutLabel = new JLabel();
+//        nutTextField = new JTextField();
+//        viewNutInfo = new JButton();
+//        nutritionRightScrollPane = new JScrollPane();
+//        nutritionTable = new JTable();
+//        
+//        nutritionLeftPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Nutrition Info"));
+//
+//        prductNameNutLabel.setText("Enter product Name");
+//
+//        viewNutInfo.setText("View Info");
+//        viewNutInfo.addActionListener(e-> viewNutInfoAction((String) nutTextField.getText()));
+//
+//        javax.swing.GroupLayout nutritionLeftPanelLayout = new GroupLayout(nutritionLeftPanel);
+//        nutritionLeftPanel.setLayout(nutritionLeftPanelLayout);
+//        nutritionLeftPanelLayout.setHorizontalGroup(
+//            nutritionLeftPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+//            .addGroup(nutritionLeftPanelLayout.createSequentialGroup()
+//                .addContainerGap()
+//                .addGroup(nutritionLeftPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+//                    .addComponent(prductNameNutLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+//                    .addGroup(nutritionLeftPanelLayout.createSequentialGroup()
+//                        .addComponent(nutTextField, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
+//                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+//                        .addComponent(viewNutInfo)
+//                        .addGap(0, 0, Short.MAX_VALUE)))
+//                .addContainerGap())
+//        );
+//        nutritionLeftPanelLayout.setVerticalGroup(
+//            nutritionLeftPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+//            .addGroup(nutritionLeftPanelLayout.createSequentialGroup()
+//                .addContainerGap()
+//                .addComponent(prductNameNutLabel, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
+//                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+//                .addGroup(nutritionLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+//                    .addComponent(nutTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+//                    .addComponent(viewNutInfo))
+//                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+//        );
+//
+//        nutritionTab.setLeftComponent(nutritionLeftPanel);
+//
+//       
+//        populateNutritionTable();
+//        nutritionRightScrollPane.setViewportView(nutritionTable);
+//
+//        nutritionTab.setRightComponent(nutritionRightScrollPane);
+//
+//        homeTabPane.addTab("Nutrition Tab", nutritionTab);
+//    }
     private void nutritionTab(){
         nutritionTab = new JSplitPane();
-        nutritionLeftPanel = new JPanel();
-        prductNameNutLabel = new JLabel();
+        nutLeftPanel = new JPanel();
+        nutViewListButton = new JButton();
+        nutSearchPanel = new JPanel();
         nutTextField = new JTextField();
-        viewNutInfo = new JButton();
-        nutritionRightScrollPane = new JScrollPane();
+        nutKeywordLabel = new JLabel();
+        nutSearchButton = new JButton();
+        nutRightPanel = new JPanel();
+        nutTopPanel = new JPanel();
+        nutSortingLabel = new JLabel();
+        nutSortingComboBox = new JComboBox<>();
+        nutTableScrollPane = new JScrollPane();
         nutritionTable = new JTable();
         
-        nutritionLeftPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Nutrition Info"));
+        nutViewListButton.setText("View Nutrition List");
+        nutViewListButton.addActionListener(e-> populateNutritionTable());
 
-        prductNameNutLabel.setText("Enter product Name");
+        nutSearchPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Search"));
 
-        viewNutInfo.setText("View Info");
-        viewNutInfo.addActionListener(e-> viewNutInfoAction((String) nutTextField.getText()));
+        nutKeywordLabel.setText("Keyword In:");
 
-        javax.swing.GroupLayout nutritionLeftPanelLayout = new GroupLayout(nutritionLeftPanel);
-        nutritionLeftPanel.setLayout(nutritionLeftPanelLayout);
-        nutritionLeftPanelLayout.setHorizontalGroup(
-            nutritionLeftPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(nutritionLeftPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(nutritionLeftPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(prductNameNutLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(nutritionLeftPanelLayout.createSequentialGroup()
-                        .addComponent(nutTextField, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(viewNutInfo)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+        nutSearchButton.setText("Search");
+        nutSearchButton.addActionListener(e-> viewNutInfoAction((String) nutTextField.getText()));
+
+        javax.swing.GroupLayout nutSearchPanelLayout = new javax.swing.GroupLayout(nutSearchPanel);
+        nutSearchPanel.setLayout(nutSearchPanelLayout);
+        nutSearchPanelLayout.setHorizontalGroup(
+            nutSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(nutSearchPanelLayout.createSequentialGroup()
+                .addComponent(nutKeywordLabel)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(nutSearchPanelLayout.createSequentialGroup()
+                .addComponent(nutTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(nutSearchButton)
                 .addContainerGap())
         );
-        nutritionLeftPanelLayout.setVerticalGroup(
-            nutritionLeftPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(nutritionLeftPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(prductNameNutLabel, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(nutritionLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nutTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(viewNutInfo))
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        nutSearchPanelLayout.setVerticalGroup(
+            nutSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(nutSearchPanelLayout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addComponent(nutKeywordLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(nutSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nutTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nutSearchButton))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        nutritionTab.setLeftComponent(nutritionLeftPanel);
+        javax.swing.GroupLayout nutLeftPanelLayout = new javax.swing.GroupLayout(nutLeftPanel);
+        nutLeftPanel.setLayout(nutLeftPanelLayout);
+        nutLeftPanelLayout.setHorizontalGroup(
+            nutLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(nutLeftPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(nutLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(nutViewListButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nutSearchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        nutLeftPanelLayout.setVerticalGroup(
+            nutLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(nutLeftPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(nutViewListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(nutSearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(359, Short.MAX_VALUE))
+        );
 
-       
+        nutritionTab.setLeftComponent(nutLeftPanel);
+
+        nutSortingLabel.setText("Sorting:");
+
+        nutSortingComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Calories", "Protien", "Fat" }));
+
+        javax.swing.GroupLayout nutTopPanelLayout = new javax.swing.GroupLayout(nutTopPanel);
+        nutTopPanel.setLayout(nutTopPanelLayout);
+        nutTopPanelLayout.setHorizontalGroup(
+            nutTopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(nutTopPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(nutSortingLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(nutSortingComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        nutTopPanelLayout.setVerticalGroup(
+            nutTopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(nutTopPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(nutTopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nutSortingLabel)
+                    .addComponent(nutSortingComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
         populateNutritionTable();
-        nutritionRightScrollPane.setViewportView(nutritionTable);
+        nutTableScrollPane.setViewportView(nutritionTable);
 
-        nutritionTab.setRightComponent(nutritionRightScrollPane);
+        javax.swing.GroupLayout nutRightPanelLayout = new javax.swing.GroupLayout(nutRightPanel);
+        nutRightPanel.setLayout(nutRightPanelLayout);
+        nutRightPanelLayout.setHorizontalGroup(
+            nutRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(nutTopPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(nutTableScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
+        );
+        nutRightPanelLayout.setVerticalGroup(
+            nutRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(nutRightPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(nutTopPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(nutTableScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE))
+        );
+
+        nutritionTab.setRightComponent(nutRightPanel);
 
         homeTabPane.addTab("Nutrition Tab", nutritionTab);
+
+        
     }
     private void populateNutritionTable(){
          nutritionTable.setModel(
@@ -1598,13 +1719,27 @@ public class PerfectPantryGUI extends JFrame {
     private JPanel shopListTab;
     private JTable shopListTable;
     private JPanel viewShopListPanel;
-    private JTextField nutTextField;
-    private JPanel nutritionLeftPanel;
-    private JScrollPane nutritionRightScrollPane;
-    private JSplitPane nutritionTab;
+//    private JTextField nutTextField;
+//    private JPanel nutritionLeftPanel;
+//    private JScrollPane nutritionRightScrollPane;
+//    private JSplitPane nutritionTab;
+//    private JTable nutritionTable;
+//    private JLabel prductNameNutLabel;
+//    private JButton viewNutInfo;
+    private JLabel nutKeywordLabel;
+    private JPanel nutLeftPanel;
+    private JPanel nutRightPanel;
+    private JButton nutSearchButton;
+    private JPanel nutSearchPanel;
+    private JComboBox<String> nutSortingComboBox;
+    private JLabel nutSortingLabel;
     private JTable nutritionTable;
-    private JLabel prductNameNutLabel;
-    private JButton viewNutInfo;
+    private JScrollPane nutTableScrollPane;
+    private JTextField nutTextField;
+    private JPanel nutTopPanel;
+    private JButton nutViewListButton;
+    private JSplitPane nutritionTab;
+    
     private JButton viewInventoryButton;
     
     // End of variables declaration//GEN-END:variables
