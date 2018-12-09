@@ -478,6 +478,15 @@ public class PerfectPantryGUI extends JFrame {
                 data[2] = qtyTextField.getText();
                 data[3] = (String)catComboBox.getSelectedItem();
                 
+                //check if item is in table already
+                Vector v = ((SLTableModel)shopListTable.getModel()).getInventory();
+                for (int i=0; i<v.size(); i++) {
+                    if (((InventoryItem)v.get(i)).name.equals(data[1])) {
+                        JOptionPane.showMessageDialog(this, "Item already exists in list");
+                        return;
+                    }
+                }
+                
                 if(shopData.AddItemSL(data)) { //if(true) {
                     populateShoppingTable(data[0]);
                     JOptionPane.showMessageDialog(this, "Item has been added!");
@@ -585,6 +594,7 @@ public class PerfectPantryGUI extends JFrame {
                 data[2] = qtyTextField.getText();
                 data[3] = (String)catComboBox.getSelectedItem();
                 //data[4] should be the unedited name for lookup in the db
+                
                 
                 if (shopData.EditItemSL(data)){
                     populateShoppingTable(shopListNameLabel.getText());
