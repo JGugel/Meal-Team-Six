@@ -54,48 +54,57 @@ public class NutritionData {
         }
         return nTable;
     }
-    
+
     //sets the query for searching NutritionInfo
-    public void viewSearchNutritionInfo(String productName){
+    public void viewSearchNutritionInfo(String productName) {
         DataValidation data = new DataValidation();
-       if(data.validateName(productName)){
-           buildQuery(" AND p.invName LIKE '%"+productName+"%')");
-       }
-       setNutritionalModel();
+        if (data.validateName(productName)) {
+            buildQuery(" AND p.invName LIKE '%" + productName + "%')");
+        }
+        setNutritionalModel();
     }
-    
+
     //sets the query for sorting info
-    public void viewSortNutritionInfo(String order){
-        switch (order){
+    public void viewSortNutritionInfo(String order) {
+        switch (order) {
             case "default":
                 buildQuery(")Order By invName");
                 break;
-            case "Calories":
-                 buildQuery( ")Order By calories asc");
+            case "Calories-Ascending":
+                buildQuery(")Order By calories asc");
                 break;
-            case "Protein":
+            case "Calories-Descending":
+                buildQuery(")Order By calories desc");
+                break;
+            case "Protein-Ascending":
+                buildQuery(")Order By protein asc");
+                break;
+            case "Protein-Descending":
                 buildQuery(")Order By protein desc");
                 break;
-            case "Fat": 
+            case "Fat-Ascending":
                 buildQuery(")Order By fat asc");
+                break;
+            case "Fat-Descending":
+                buildQuery(")Order By fat desc");
                 break;
             default:
                 break;
-        } 
-       
-       setNutritionalModel();
+        }
+
+        setNutritionalModel();
     }
 
     //helper method to build the actual query
     private void buildQuery(String string) {
-        query="select p.invName, (n.nut_val/100*s.servingSize) as protein,\n" +
-                   "(n2.nut_val/100*s.servingSize) as fat,\n" +
-                    "(n3.nut_val/100*s.servingSize) as calories, s.uom\n" +
-                    "from Product p join inventory_List i on i.ProductID=p.ProductID\n" +
-                    "join Nutrition n on n. ProductID=p.ProductID\n" +
-                    "join Nutrition n2 on n2. ProductID=p.ProductID\n" +
-                    "join Nutrition n3 on n3. ProductID=p.ProductID\n" +
-                    "join serving_size s on s.ProductID=p.ProductID\n" +
-                    "WHERE (n.Nut_Code=203 AND n2.Nut_Code=204 AND  n3.Nut_Code=205"+string;
+        query = "select p.invName, (n.nut_val/100*s.servingSize) as protein,\n"
+                + "(n2.nut_val/100*s.servingSize) as fat,\n"
+                + "(n3.nut_val/100*s.servingSize) as calories, s.uom\n"
+                + "from Product p join inventory_List i on i.ProductID=p.ProductID\n"
+                + "join Nutrition n on n. ProductID=p.ProductID\n"
+                + "join Nutrition n2 on n2. ProductID=p.ProductID\n"
+                + "join Nutrition n3 on n3. ProductID=p.ProductID\n"
+                + "join serving_size s on s.ProductID=p.ProductID\n"
+                + "WHERE (n.Nut_Code=203 AND n2.Nut_Code=204 AND  n3.Nut_Code=205" + string;
     }
 }
