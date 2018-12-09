@@ -236,27 +236,27 @@ public class ShoppingData {
     }
     
     //todo josh
-    public boolean editShoppingList(String name) {
-        boolean deleted = false;
-//        if (!checkForList(data[0])) {
-//            return false;
-//        }
-//        String query = "DELETE from shopping_list "
-//                + "WHERE ListID=" + listID + " AND ProductName='" + data[1] + "'";
-//
-//        try (Connection conn = JDBC.getConnection()) {
-//            PreparedStatement statement = conn.prepareStatement(query);
-//            int rowsDeleted = statement.executeUpdate();
-//            if (rowsDeleted > 0) {
-//                deleted = true;
-//            }
-//            statement.close();
-//            conn.close();
-//        } catch (SQLException ex) {
-//            Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
-//            deleted = false;
-//        }
-        return deleted;
+    public boolean editShoppingList(String name, String newName) {
+        boolean updated = false;
+        if (!checkForList(name)) {
+            return false;
+        }
+        //Edit the list name in the list pointer
+        String sqlUpdate = "UPDATE list_pointer SET ListName='" + newName + "' "
+                + "WHERE ListID=" + listID;
+        try (Connection conn = JDBC.getConnection()) {
+            Statement stmt = conn.createStatement();
+            int record = stmt.executeUpdate(sqlUpdate);
+            if (record > 0) {
+                updated = true; 
+            }
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
+            updated = false;
+        }
+
+        return updated;
     }
     
      //todo josh

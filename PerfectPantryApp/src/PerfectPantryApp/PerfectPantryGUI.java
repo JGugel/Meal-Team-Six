@@ -1607,7 +1607,6 @@ public class PerfectPantryGUI extends JFrame {
         // TODO add your handling code here:
         String listName = JOptionPane.showInputDialog("Enter Shopping List Name");
         if(shopData.createShoppingList(listName)) {
-      
             JOptionPane.showMessageDialog(this, "Shopping list " + listName + " created");
              selectShopListComboBox.setModel(new DefaultComboBoxModel<>(shopData.getLists()));
         } else {
@@ -1615,11 +1614,11 @@ public class PerfectPantryGUI extends JFrame {
         }
     }
     
-    //todo josh
+    
     private void deleteShopListButtonAction() {                                                     
         String list = shopListNameLabel.getText();
         int n = JOptionPane.showConfirmDialog(this,
-                "Delete Shopping List " + list + "?",
+                "Delete Shopping List: " + list + "?",
                 "Delete",
                 JOptionPane.YES_NO_OPTION);
         if (n == JOptionPane.YES_OPTION) {
@@ -1645,7 +1644,16 @@ public class PerfectPantryGUI extends JFrame {
     //
     private void editShopListButtonAction() {                                                     
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "edit shopping list");
+        String name = shopListNameLabel.getText();
+        String newName = JOptionPane.showInputDialog(this, 
+                "Enter Shopping List Name", name);
+        if(shopData.editShoppingList(name, newName)) {
+            JOptionPane.showMessageDialog(this, "Shopping list " + newName + " edited");
+            populateShoppingTable(newName);
+            selectShopListComboBox.setModel(new DefaultComboBoxModel<>(shopData.getLists()));
+        } else {
+            JOptionPane.showMessageDialog(this, "Edit shopping list failed");
+        }
     }
     
     //method to handle adding new items to the shopping list
