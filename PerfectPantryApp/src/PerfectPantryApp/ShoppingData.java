@@ -329,6 +329,7 @@ public class ShoppingData {
     public String[] getLists(){
         ArrayList<String>tempList=new ArrayList<String>();
          String query = "Select listName from list_pointer";
+         String[]nameList=null;
         try (Connection conn = JDBC.getConnection()) {
             Statement stmt = conn.prepareStatement(query);
             ResultSet rs=stmt.executeQuery(query);
@@ -344,9 +345,10 @@ public class ShoppingData {
             Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
         }
         if(tempList.isEmpty()){
-            JOptionPane.showMessageDialog(null, "No lists have been created");
+            JOptionPane.showMessageDialog(null, "No Shopping lists have been created");
+            return nameList;
         }
-        String[]nameList=tempList.toArray(new String[tempList.size()]);
+        nameList=tempList.toArray(new String[tempList.size()]);
         return nameList;
     }
 }
