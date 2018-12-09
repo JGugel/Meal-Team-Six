@@ -161,7 +161,7 @@ public class ShoppingData {
             Statement stmt = conn.createStatement();
             int record = stmt.executeUpdate(sqlUpdate);
             if (record > 0) {
-                updated = true;
+                updated = true; 
             }
             conn.close();
         } catch (SQLException ex) {
@@ -170,6 +170,31 @@ public class ShoppingData {
             updated = false;
         }
         return updated;
+    }
+    
+    public boolean DeleteItemSL(String[] data) {
+        //data[0] listid        
+        //data[1] name
+        boolean deleted = false;
+        if (!checkForList(data[0])) {
+            return false;
+        }
+        String query = "DELETE from shopping_list "
+                + "WHERE ListID=" + data[0] + "AND ProductName=" + data[1];
+
+        try (Connection conn = JDBC.getConnection()) {
+            PreparedStatement statement = conn.prepareStatement(query);
+            int rowsDeleted = statement.executeUpdate();
+            if (rowsDeleted > 0) {
+                deleted = true;
+            }
+            statement.close();
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
+            deleted = false;
+        }
+        return deleted;
     }
 
     /**

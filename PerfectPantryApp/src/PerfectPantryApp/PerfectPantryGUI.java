@@ -1092,13 +1092,13 @@ public class PerfectPantryGUI extends JFrame {
                     } else if (table.getModel() instanceof SLTableModel) {
                         //Shopping List
                         InventoryItem item = (InventoryItem)((SLTableModel)table.getModel()).inventory.get(row);
-                        System.out.println("Delete Shopping List Item - ToDo");
-//                        if( shopData.deleteRecord(item.upcDisplay)){
-//                            populatePantryList();
-//                           JOptionPane.showMessageDialog(null, "Record deleted successfully.!");
-//                        } else {
-//                            JOptionPane.showMessageDialog(null, "Delete Failed");
-//                        }
+                        String[] data = {shopListNameLabel.getText(), item.name};
+                        if (shopData.DeleteItemSL(data)){
+                            populatePantryList();
+                           JOptionPane.showMessageDialog(null, "Record deleted successfully.!");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Delete Failed");
+                        }
                     }
                 } else {
                     //do nothing
