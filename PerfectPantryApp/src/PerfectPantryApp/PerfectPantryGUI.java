@@ -200,7 +200,9 @@ public class PerfectPantryGUI extends JFrame {
                             populateNutritionTable();
                             JOptionPane.showMessageDialog(this, "Record has been updated");
                             dispose();
-                         }
+                         }else{
+                            JOptionPane.showMessageDialog(this, "Product Not Updated"); 
+                        }
                     default:
                         break;
                 }
@@ -211,8 +213,8 @@ public class PerfectPantryGUI extends JFrame {
         }
         ProductDialog productInput = null;
 
+        //dialog box to initliaze product insertion
         private boolean createDialog(String upc) {
-            int productID = 0;
             int n = JOptionPane.showOptionDialog(this,
                     "This Product does not exist in "
                     + "our system.\r\n Would you like to add it now?", "Add Product Now?",
@@ -220,16 +222,14 @@ public class PerfectPantryGUI extends JFrame {
                     null, new Object[]{"Yes", "No"}, JOptionPane.YES_OPTION);
             if (n == JOptionPane.YES_OPTION) {
                 productInput = new ProductDialog(thisFrame, upc);
-                if (!productInput.addSuccessful()) {
-                    JOptionPane.showMessageDialog(this, "Product not added");
-                    return false;
-                }else{return true;}
+                return productInput.addSuccessful();
             } else {
-                return true;
+                JOptionPane.showMessageDialog(this, "Product Addition Cancelled");
+                return false;//if no is selected 
             }
-            
+
         }
-         
+
     }
     
     class EditInventoryDialog extends JDialog implements ActionListener{

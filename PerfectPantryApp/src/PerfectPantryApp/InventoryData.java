@@ -24,7 +24,6 @@ public class InventoryData {
     protected static int productID = 0;
     protected static int category;
     protected String upc = "";
-    //protected static double usage;
     protected static double size;
     protected static int quantity;
     protected static String uom;
