@@ -1619,6 +1619,7 @@ public class PerfectPantryGUI extends JFrame {
             populateShoppingTable(listName);
             selectShopListComboBox.setModel(new DefaultComboBoxModel<>(shopData.getLists()));
             selectShopListComboBox.setSelectedItem(listName);
+            shopListNameLabel.setText(listName);
         } else {
             JOptionPane.showMessageDialog(this, "Create shopping list failed");
         }
