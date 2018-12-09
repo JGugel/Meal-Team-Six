@@ -1464,56 +1464,56 @@ public class PerfectPantryGUI extends JFrame {
         nutViewListButton.setText("View Nutrition List");
         nutViewListButton.addActionListener(e-> viewAllNutInfoAction());
 
-        nutSearchPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Search"));
+        nutSearchPanel.setBorder(BorderFactory.createTitledBorder("Search"));
 
         nutKeywordLabel.setText("Keyword In:");
 
         nutSearchButton.setText("Search");
         nutSearchButton.addActionListener(e-> searchNutInfoAction((String) nutTextField.getText()));
 
-        javax.swing.GroupLayout nutSearchPanelLayout = new javax.swing.GroupLayout(nutSearchPanel);
+        GroupLayout nutSearchPanelLayout = new GroupLayout(nutSearchPanel);
         nutSearchPanel.setLayout(nutSearchPanelLayout);
         nutSearchPanelLayout.setHorizontalGroup(
-            nutSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            nutSearchPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(nutSearchPanelLayout.createSequentialGroup()
                 .addComponent(nutKeywordLabel)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(nutSearchPanelLayout.createSequentialGroup()
-                .addComponent(nutTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(nutTextField, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(nutSearchButton)
                 .addContainerGap())
         );
         nutSearchPanelLayout.setVerticalGroup(
-            nutSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            nutSearchPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(nutSearchPanelLayout.createSequentialGroup()
                 .addGap(5, 5, 5)
                 .addComponent(nutKeywordLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(nutSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nutTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(nutSearchPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(nutTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addComponent(nutSearchButton))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout nutLeftPanelLayout = new javax.swing.GroupLayout(nutLeftPanel);
+        GroupLayout nutLeftPanelLayout = new GroupLayout(nutLeftPanel);
         nutLeftPanel.setLayout(nutLeftPanelLayout);
         nutLeftPanelLayout.setHorizontalGroup(
-            nutLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            nutLeftPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(nutLeftPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(nutLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(nutViewListButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(nutSearchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(nutLeftPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(nutViewListButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nutSearchPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         nutLeftPanelLayout.setVerticalGroup(
-            nutLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            nutLeftPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(nutLeftPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(nutViewListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nutSearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nutViewListButton, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(nutSearchPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(359, Short.MAX_VALUE))
         );
 
@@ -1521,50 +1521,65 @@ public class PerfectPantryGUI extends JFrame {
 
         nutSortingLabel.setText("Sorting:");
 
-        nutSortingComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Calories", "Protien", "Fat" }));
-
-        javax.swing.GroupLayout nutTopPanelLayout = new javax.swing.GroupLayout(nutTopPanel);
+        nutSortingComboBox.setModel(new DefaultComboBoxModel<>(new String[] { "Product Name", "Calories", "Protien", "Fat" }));
+        nutSortingComboBox.addActionListener(e-> populateNutritionTable());
+        GroupLayout nutTopPanelLayout = new GroupLayout(nutTopPanel);
         nutTopPanel.setLayout(nutTopPanelLayout);
         nutTopPanelLayout.setHorizontalGroup(
-            nutTopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            nutTopPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(nutTopPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(nutSortingLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nutSortingComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(nutSortingComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         nutTopPanelLayout.setVerticalGroup(
-            nutTopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            nutTopPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(nutTopPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(nutTopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(nutTopPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(nutSortingLabel)
-                    .addComponent(nutSortingComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(nutSortingComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
         );
         populateNutritionTable();
         nutTableScrollPane.setViewportView(nutritionTable);
 
-        javax.swing.GroupLayout nutRightPanelLayout = new javax.swing.GroupLayout(nutRightPanel);
+        javax.swing.GroupLayout nutRightPanelLayout = new GroupLayout(nutRightPanel);
         nutRightPanel.setLayout(nutRightPanelLayout);
         nutRightPanelLayout.setHorizontalGroup(
-            nutRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(nutTopPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(nutTableScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
+            nutRightPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(nutTopPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(nutTableScrollPane, GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
         );
         nutRightPanelLayout.setVerticalGroup(
-            nutRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            nutRightPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(nutRightPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(nutTopPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nutTableScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE))
+                .addComponent(nutTopPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(nutTableScrollPane, GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE))
         );
 
         nutritionTab.setRightComponent(nutRightPanel);
         homeTabPane.addTab("Nutrition Tab", nutritionTab);  
     }
+    
+    private String nutSortedOption() {
+        String sort= (String)nutSortingComboBox.getSelectedItem();
+        String nutSelectedOption = "";
+        if (sort.equals("Product Name")){
+            nutSelectedOption = "default";
+        }
+        else if(sort.equals("Calories") || sort.equals("Protein") || sort.equals("Fat")){
+            nutSelectedOption = sort;
+        }    	
+        return nutSelectedOption;
+    }
     private void populateNutritionTable(){
+        
+//        nutData.viewSortNutritionInfo(sortedSelectedOption());
+        
          nutritionTable.setModel(
          nutData.setNutritionalModel()
        );

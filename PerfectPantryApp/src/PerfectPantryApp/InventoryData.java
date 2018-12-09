@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Michelle, Josh
+ * @author Michelle, Josh, Hira
  */
 public class InventoryData {
 

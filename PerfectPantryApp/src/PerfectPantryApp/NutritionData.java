@@ -17,13 +17,16 @@ import javax.swing.table.DefaultTableModel;
 /**
  * This class deals only with nutritional data
  *
- * @author Michelle
+ * @author Michelle, Hira
  */
 public class NutritionData {
 
     protected DefaultTableModel nTable = null;
     String query = "{CALL getNutrition()}";
 
+    public DefaultTableModel getModel() {
+        return nTable;
+    }
     public DefaultTableModel setNutritionalModel() {
         nTable = new DefaultTableModel(new String[]{
             "Product name", "Calories", "unit", "Protien", "unit", "Fat", "unit"
@@ -75,17 +78,20 @@ public class NutritionData {
     //sets the query for sorting info
     public void viewSortNutritionInfo(String order){
         switch (order){
-            case "calories":
+            case "default" :
+                buildQuery(")Order By invName");
+                break;
+            case "Calories":
                  buildQuery( ")Order By calories asc");
                 break;
-            case "protein":
+            case "Protein":
                 buildQuery(")Order By protein desc");
                 break;
-            case "fat": 
+            case "Fat": 
                 buildQuery(")Order By fat asc");
                 break;
             default:
-                buildQuery(")Order By invName");
+                break;
         } 
        
        setNutritionalModel();
