@@ -96,7 +96,6 @@ public class InventoryData {
             }
 
             //this assumes you validated UPC for proceding
-//            appendQuery = "WHERE p.productID=" + productID;
         } else {
             DataValidation data = new DataValidation();
             if (data.validateName(Keyword)) {
@@ -334,10 +333,8 @@ public class InventoryData {
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
                 prod = rs.getDouble("prod_size");
-                //use = rs.getInt("avg_usage");
             }
             size += prod;
-            //usage += use;
             updatedSuccefully = updateQuantity();
             stmt.close();
             conn.close();
@@ -381,8 +378,6 @@ public class InventoryData {
             return false;
         } else if (!data.validateDate(dataArray[3])) {
             return false;
-//        } else if (!data.validateUsage(dataArray[4])) {
-//            return false;
         } else {
             setFields(data);
             return true;
@@ -392,7 +387,6 @@ public class InventoryData {
 
 //sets data instance variables, prepares for a query
     private void setFields(DataValidation data) {
-        //usage = data.getUsage();
         size = data.getSize();
         uom = data.getUOM();
         sqlExp = data.getExpiration();

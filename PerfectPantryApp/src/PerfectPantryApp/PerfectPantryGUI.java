@@ -17,7 +17,7 @@ import javax.swing.table.TableCellRenderer;
 
 /**
  * This class creates the GUI for the Perfect Pantry application.
- * @author Hira Waqas, Josh Gugel
+ * @author Hira Waqas, Josh Gugel, Michelle Decaire
  */
 public class PerfectPantryGUI extends JFrame {
     private InventoryData invData;
@@ -124,15 +124,6 @@ public class PerfectPantryGUI extends JFrame {
             gbc.gridy = 3;
             panel.add(expirationTextField, gbc);
             
-            //Average Usage
-//            usageLabel = new JLabel("Avg Qty Usage");
-//            gbc.gridx = 0;
-//            gbc.gridy = 4;
-//            panel.add(usageLabel, gbc);
-//            usageTextField = new JTextField(10);
-//            gbc.gridx = 1;
-//            gbc.gridy = 4;
-//            panel.add(usageTextField, gbc);
             
             //Add and Cancel Buttons
             addBtn = new JButton("Add");
@@ -306,15 +297,7 @@ public class PerfectPantryGUI extends JFrame {
             gbc.gridy = 3;
             panel.add(expirationTextField, gbc);
             
-            //Average Usage
-//            usageLabel = new JLabel("Avg Qty Usage");
-//            gbc.gridx = 0;
-//            gbc.gridy = 4;
-//            panel.add(usageLabel, gbc);
-//            usageTextField = new JTextField(data[4], 10);
-//            gbc.gridx = 1;
-//            gbc.gridy = 4;
-//            panel.add(usageTextField, gbc);
+
             
             //Update and Cancel Buttons
             updateBtn = new JButton("Update");
@@ -589,11 +572,11 @@ public class PerfectPantryGUI extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == updateBtn) {
-                //data[0] should be the shopping list name, not editable
+         
                 data[1] = nameTextField.getText();
                 data[2] = qtyTextField.getText();
                 data[3] = (String)catComboBox.getSelectedItem();
-                //data[4] should be the unedited name for lookup in the db
+    
                 
                 
                 if (shopData.EditItemSL(data)){
@@ -634,7 +617,6 @@ public class PerfectPantryGUI extends JFrame {
         pantryCB = new JCheckBox();
         inventoryRightPanel = new JPanel();
         sortingPanel = new JPanel();
-        filterLabel = new JLabel();
         sortingLabel = new JLabel();
         sortingComboBox = new JComboBox<>();
         jScrollPane1 = new JScrollPane();
@@ -753,8 +735,6 @@ public class PerfectPantryGUI extends JFrame {
 
         inventorySplitPane.setLeftComponent(inventoryLeftPanel);
 
-        filterLabel.setText("Filter");
-
         sortingLabel.setText("Sorting:");
 
         sortingComboBox.setModel(new DefaultComboBoxModel<>(new String[] { "UPC","Name", "Categories", "Expiration Date" }));
@@ -766,7 +746,6 @@ public class PerfectPantryGUI extends JFrame {
             sortingPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(sortingPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(filterLabel)
                 .addGap(35, 35, 35)
                 .addComponent(sortingLabel)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
@@ -778,7 +757,6 @@ public class PerfectPantryGUI extends JFrame {
             .addGroup(sortingPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(sortingPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(filterLabel)
                     .addComponent(sortingLabel)
                     .addComponent(sortingComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1747,7 +1725,7 @@ public class PerfectPantryGUI extends JFrame {
     private JCheckBox breadsBakeryCB;
     private JPanel categoriesPanel;
     private JCheckBox dairyRefCB;
-    private JLabel filterLabel;
+  //  private JLabel filterLabel;
     private JCheckBox householdSCB;
     private JPanel inventoryLeftPanel;
     private JPanel inventoryRightPanel;
