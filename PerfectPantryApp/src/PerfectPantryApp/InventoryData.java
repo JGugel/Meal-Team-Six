@@ -24,7 +24,7 @@ public class InventoryData {
     protected static int productID = 0;
     protected static int category;
     protected String upc = "";
-    protected static double usage;
+    //protected static double usage;
     protected static double size;
     protected static int quantity;
     protected static String uom;
@@ -170,7 +170,7 @@ public class InventoryData {
                     + "successfully.", conn.getCatalog()));
 
             String query = "insert into inventory_list (productID,prod_size,uom,"
-                    + "use_by, avg_usage, quantity) values(?,?,?,?,?,?);";
+                    + "use_by, quantity) values(?,?,?,?,?);";
 
             PreparedStatement pstmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             pstmt.setInt(1, productID);
@@ -182,8 +182,8 @@ public class InventoryData {
                 //http://www.java2s.com/Tutorials/Java/JDBC/Insert/Set_NULL_date_value_to_database_in_Java.htm
                 pstmt.setNull(4, java.sql.Types.DATE);
             }
-            pstmt.setDouble(5, usage);
-            pstmt.setInt(6, 1);
+            //pstmt.setDouble(5, usage);
+            pstmt.setInt(5, 1);
             int rowsUpdated = pstmt.executeUpdate();
             if (rowsUpdated == 0) {
                 successfulInsert = false;
@@ -211,8 +211,8 @@ public class InventoryData {
             dateString = "'" + formatter.format(sqlExp) + "'";
         }
         String sqlUpdate = "UPDATE inventory_list SET prod_size=" + size
-                + ", uom='" + uom + "', use_by=" + dateString + ", avg_usage="
-                + usage + " where ProductID=" + productID;
+                + ", uom='" + uom + "', use_by=" + dateString 
+                + " where ProductID=" + productID;
         try (Connection conn = JDBC.getConnection()) {
 
             Statement stmt = conn.createStatement();
@@ -321,12 +321,12 @@ public class InventoryData {
     //validates information and gets quantities to add to
     boolean adjustQuantity(String[] data) {
         double prod = 0;
-        double use = 0;
+        //double use = 0;
         boolean updatedSuccefully;
         if (!validateData(data)) {
             return false;
         }
-        String query = "select i.prod_size, i.avg_usage from "
+        String query = "select i.prod_size from "
                 + "inventory_list i where ProductID=" + productID;
 
         try (Connection conn = JDBC.getConnection()) {
@@ -334,10 +334,10 @@ public class InventoryData {
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
                 prod = rs.getDouble("prod_size");
-                use = rs.getInt("avg_usage");
+                //use = rs.getInt("avg_usage");
             }
             size += prod;
-            usage += use;
+            //usage += use;
             updatedSuccefully = updateQuantity();
             stmt.close();
             conn.close();
@@ -353,8 +353,8 @@ public class InventoryData {
     private boolean updateQuantity() {
         boolean updated = false;
 
-        String sqlUpdate = "update inventory_list set prod_size=" + size + ", avg_usage="
-                + usage + " where productId=" + productID;
+        String sqlUpdate = "update inventory_list set prod_size=" + size 
+                + " where productId=" + productID;
         try (Connection conn = JDBC.getConnection()) {
             Statement stmt = conn.createStatement();
             int record = stmt.executeUpdate(sqlUpdate);
@@ -381,8 +381,8 @@ public class InventoryData {
             return false;
         } else if (!data.validateDate(dataArray[3])) {
             return false;
-        } else if (!data.validateUsage(dataArray[4])) {
-            return false;
+//        } else if (!data.validateUsage(dataArray[4])) {
+//            return false;
         } else {
             setFields(data);
             return true;
@@ -392,7 +392,7 @@ public class InventoryData {
 
 //sets data instance variables, prepares for a query
     private void setFields(DataValidation data) {
-        usage = data.getUsage();
+        //usage = data.getUsage();
         size = data.getSize();
         uom = data.getUOM();
         sqlExp = data.getExpiration();

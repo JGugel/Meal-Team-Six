@@ -18,7 +18,6 @@ public class InventoryItem {
     String uomDisplay;
     String category;
     String expiration;
-    String quantityDisplay; //avg weekly usage
     
     public InventoryItem(String upcDisplay, String name, String sizeDisplay,
                     String uomDisplay, String category, String expiration,
@@ -29,7 +28,6 @@ public class InventoryItem {
         this.uomDisplay = uomDisplay;
         this.category = category;
         this.expiration = expiration;
-        this.quantityDisplay = quantityDisplay; //avg weekly usage
     }
     //Constructor for shopping list items
     public InventoryItem(String name, String sizeDisplay, String category) {

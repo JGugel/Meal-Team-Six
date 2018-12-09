@@ -59,11 +59,11 @@ public class PerfectPantryGUI extends JFrame {
         private JLabel qtyLabel;
         private JLabel uomLabel;
         private JLabel expirationLabel;
-        private JLabel usageLabel;
+        //private JLabel usageLabel;
         private JTextField upcTextField;
         private JTextField qtyTextField;
         private JTextField expirationTextField;
-        private JTextField usageTextField;
+        //private JTextField usageTextField;
         private JButton addBtn;
         private JButton cancelBtn;
         private  boolean addSuccess=false;
@@ -71,7 +71,7 @@ public class PerfectPantryGUI extends JFrame {
         public AddInventoryDialog(Frame frame, InventoryData invData){
             super(frame, "Add Item", true);
             this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-            data = new String[5];
+            data = new String[4];
             for (int i=0; i < data.length; i++) {
                 data[i] = null;
             }
@@ -125,25 +125,25 @@ public class PerfectPantryGUI extends JFrame {
             panel.add(expirationTextField, gbc);
             
             //Average Usage
-            usageLabel = new JLabel("Avg Qty Usage");
-            gbc.gridx = 0;
-            gbc.gridy = 4;
-            panel.add(usageLabel, gbc);
-            usageTextField = new JTextField(10);
-            gbc.gridx = 1;
-            gbc.gridy = 4;
-            panel.add(usageTextField, gbc);
+//            usageLabel = new JLabel("Avg Qty Usage");
+//            gbc.gridx = 0;
+//            gbc.gridy = 4;
+//            panel.add(usageLabel, gbc);
+//            usageTextField = new JTextField(10);
+//            gbc.gridx = 1;
+//            gbc.gridy = 4;
+//            panel.add(usageTextField, gbc);
             
             //Add and Cancel Buttons
             addBtn = new JButton("Add");
             addBtn.addActionListener(this);
             gbc.gridx = 0;
-            gbc.gridy = 5;
+            gbc.gridy = 4;
             panel.add(addBtn, gbc);
             cancelBtn = new JButton("Cancel");
             cancelBtn.addActionListener(this);
             gbc.gridx = 1;
-            gbc.gridy = 5;
+            gbc.gridy = 4;
             panel.add(cancelBtn, gbc);
             
             getContentPane().add(panel);
@@ -163,7 +163,7 @@ public class PerfectPantryGUI extends JFrame {
                 data[1] = qtyTextField.getText();
                 data[2] = (String)uomComboBox.getSelectedItem();
                 data[3] = expirationTextField.getText();
-                data[4] = usageTextField.getText();
+                //data[4] = usageTextField.getText();
                 
                 //Validate data
                 String upcCheck = invData.ValidateUPC(data[0]);
@@ -248,10 +248,10 @@ public class PerfectPantryGUI extends JFrame {
         private JLabel qtyLabel;
         private JLabel uomLabel;
         private JLabel expirationLabel;
-        private JLabel usageLabel;
+        //private JLabel usageLabel;
         private JTextField qtyTextField;
         private JTextField expirationTextField;
-        private JTextField usageTextField;
+        //private JTextField usageTextField;
         private JButton updateBtn;
         private JButton cancelBtn;
         private  boolean editSuccess=false;
@@ -307,14 +307,14 @@ public class PerfectPantryGUI extends JFrame {
             panel.add(expirationTextField, gbc);
             
             //Average Usage
-            usageLabel = new JLabel("Avg Qty Usage");
-            gbc.gridx = 0;
-            gbc.gridy = 4;
-            panel.add(usageLabel, gbc);
-            usageTextField = new JTextField(data[4], 10);
-            gbc.gridx = 1;
-            gbc.gridy = 4;
-            panel.add(usageTextField, gbc);
+//            usageLabel = new JLabel("Avg Qty Usage");
+//            gbc.gridx = 0;
+//            gbc.gridy = 4;
+//            panel.add(usageLabel, gbc);
+//            usageTextField = new JTextField(data[4], 10);
+//            gbc.gridx = 1;
+//            gbc.gridy = 4;
+//            panel.add(usageTextField, gbc);
             
             //Update and Cancel Buttons
             updateBtn = new JButton("Update");
@@ -344,7 +344,7 @@ public class PerfectPantryGUI extends JFrame {
                 data[1] = qtyTextField.getText();
                 data[2] = (String)uomComboBox.getSelectedItem();
                 data[3] = expirationTextField.getText();
-                data[4] = usageTextField.getText();
+                //data[4] = usageTextField.getText();
                 
                 
                 //Validate data
@@ -922,11 +922,11 @@ public class PerfectPantryGUI extends JFrame {
         JButtonRenderer jbRender = new JButtonRenderer();
         inventoryTable.setDefaultRenderer(JButton.class, jbRender);
         EditTableEditor editEditor = new EditTableEditor(new JCheckBox());
-        inventoryTable.getColumnModel().getColumn(7).setCellEditor(editEditor);
+        inventoryTable.getColumnModel().getColumn(6).setCellEditor(editEditor);
         DeleteTableEditor deleteEditor = new DeleteTableEditor(new JCheckBox());
-        inventoryTable.getColumnModel().getColumn(8).setCellEditor(deleteEditor);
+        inventoryTable.getColumnModel().getColumn(7).setCellEditor(deleteEditor);
         AddToCartTableEditor addEditor = new AddToCartTableEditor(new JCheckBox());
-        inventoryTable.getColumnModel().getColumn(9).setCellEditor(addEditor);
+        inventoryTable.getColumnModel().getColumn(8).setCellEditor(addEditor);
         inventoryTable.repaint();
         inventoryTable.getColumnModel().getColumn(0).setPreferredWidth(30);
         inventoryTable.getColumnModel().getColumn(1).setPreferredWidth(175);
@@ -934,10 +934,9 @@ public class PerfectPantryGUI extends JFrame {
         inventoryTable.getColumnModel().getColumn(3).setPreferredWidth(10);
         inventoryTable.getColumnModel().getColumn(4).setPreferredWidth(100);
         inventoryTable.getColumnModel().getColumn(5).setPreferredWidth(25);
-        inventoryTable.getColumnModel().getColumn(6).setPreferredWidth(25);
+        inventoryTable.getColumnModel().getColumn(6).setPreferredWidth(5);
         inventoryTable.getColumnModel().getColumn(7).setPreferredWidth(5);
-        inventoryTable.getColumnModel().getColumn(8).setPreferredWidth(5);
-        inventoryTable.getColumnModel().getColumn(9).setPreferredWidth(20);
+        inventoryTable.getColumnModel().getColumn(8).setPreferredWidth(20);
     }
 
   
@@ -1015,7 +1014,7 @@ public class PerfectPantryGUI extends JFrame {
                 //inventory
                 if (table.getModel() instanceof InventoryTableModel) {
                     InventoryItem item = (InventoryItem)((InventoryTableModel)table.getModel()).inventory.get(row);
-                    String[] data = {item.upcDisplay, item.sizeDisplay, item.uomDisplay, item.expiration, item.quantityDisplay};
+                    String[] data = {item.upcDisplay, item.sizeDisplay, item.uomDisplay, item.expiration};
                     EditInventoryDialog dialog = new EditInventoryDialog(null, data);
                     data = dialog.run();
                 }

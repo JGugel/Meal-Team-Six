@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 public class DataValidation {
 
     private static String upc;
-    private static double usage;
+    //private static double usage;
     private static int quantity;
     private static double size, servSize, calories, protein, fat;
     private static String uom, productName;
@@ -28,7 +28,7 @@ public class DataValidation {
 
     DataValidation() {
         upc = "";
-        usage = 0;
+        //usage = 0;
         size = 0;
         servSize = 0;
         calories = 0;
@@ -62,9 +62,9 @@ public class DataValidation {
         return upc;
     }
 
-    public double getUsage() {
-        return usage;
-    }
+//    public double getUsage() {
+//        return usage;
+//    }
 
     public double getSize() {
         return size;
@@ -195,21 +195,21 @@ public class DataValidation {
     }
 
     //special case since contains default
-    boolean validateUsage(String tempQuant) {
-        usage = 0;
-        if (tempQuant.isEmpty()) {
-            usage = 1.0;
-
-        } else {//usage defaults to one
-            try {
-                usage = Double.parseDouble(tempQuant);
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Usage should be a numeric value");
-                return false;
-            }
-        }
-        return true;
-    }
+//    boolean validateUsage(String tempQuant) {
+//        usage = 0;
+//        if (tempQuant.isEmpty()) {
+//            usage = 1.0;
+//
+//        } else {//usage defaults to one
+//            try {
+//                usage = Double.parseDouble(tempQuant);
+//            } catch (NumberFormatException e) {
+//                JOptionPane.showMessageDialog(null, "Usage should be a numeric value");
+//                return false;
+//            }
+//        }
+//        return true;
+//    }
 
     /*validates usage and returns a string if and 
         why it failed or the word valid*/

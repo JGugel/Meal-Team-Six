@@ -10,10 +10,10 @@ import javax.swing.table.AbstractTableModel;
  */
 public class InventoryTableModel extends AbstractTableModel {
     String[] columnNames = {"UPC", "Name", "Quantity", "UOM", "Category", 
-                    "Expiration", "Weekly Usage", "Edit", "Delete", 
+                    "Expiration", "Edit", "Delete", 
                     "Add to Cart"};
     Class[] columnClasses = {String.class, String.class, String.class, 
-        String.class, String.class, String.class, String.class, JButton.class, 
+        String.class, String.class, String.class, JButton.class, 
         JButton.class, JButton.class};
     Vector inventory;
 
@@ -63,17 +63,16 @@ public class InventoryTableModel extends AbstractTableModel {
         else if (columnIndex == 3) {return item.uomDisplay;}
         else if (columnIndex == 4) {return item.category;}
         else if (columnIndex == 5) {return item.expiration;}
-        else if (columnIndex == 6) {return item.quantityDisplay;}
-        else if (columnIndex == 7) {return "Edit";}
-        else if (columnIndex == 8) {return "Delete";}
-        else if (columnIndex == 9) {return "Add to Cart";}
+        else if (columnIndex == 6) {return "Edit";}
+        else if (columnIndex == 7) {return "Delete";}
+        else if (columnIndex == 8) {return "Add to Cart";}
         else return null;
     }
     
     @Override
     public boolean isCellEditable(int row, int col){
 
-      if (col == 7 || col == 8 || col == 9) {
+      if (col == 6 || col == 7 || col == 8) {
         return true;
       } else {
         return false;
