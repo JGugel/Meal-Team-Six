@@ -339,7 +339,6 @@ public class PerfectPantryGUI extends JFrame {
                 
                 
                 //Validate data
-                //System.out.println("UPC is : " + data[0]); //test line josh
                 String upcCheck = invData.ValidateUPC(data[0]);
                 //check to see if record already exists in inventory
                 if (invData.CheckExists()) {
@@ -369,9 +368,7 @@ public class PerfectPantryGUI extends JFrame {
         private JTextField nameTextField;
         private JComboBox catComboBox;
         private JLabel catLabel;
-        //private JComboBox uomComboBox;
         private JLabel qtyLabel;
-        //private JLabel uomLabel;
         private JTextField qtyTextField;
         private JButton addBtn;
         private JButton cancelBtn;
@@ -483,11 +480,7 @@ public class PerfectPantryGUI extends JFrame {
                 data[0] = (String)listComboBox.getSelectedItem();
                 data[1] = nameTextField.getText();
                 data[2] = qtyTextField.getText();
-                //data[2] = (String)uomComboBox.getSelectedItem();
                 data[3] = (String)catComboBox.getSelectedItem();
-                
-                //Check for valid shopping list - todo
-                
                 
                 if(shopData.AddItemSL(data)) { //if(true) {
                     populateShoppingTable(data[0]);
@@ -630,6 +623,7 @@ public class PerfectPantryGUI extends JFrame {
         dairyRefCB = new JCheckBox();
         householdSCB = new JCheckBox();
         meatsPoultryCB = new JCheckBox();
+        miscellaneousCB = new JCheckBox();
         ProduceCB = new JCheckBox();
         pantryCB = new JCheckBox();
         inventoryRightPanel = new JPanel();
@@ -665,6 +659,9 @@ public class PerfectPantryGUI extends JFrame {
         meatsPoultryCB.setText("Meats and Poultry");
         meatsPoultryCB.addActionListener(e-> populatePantryList());
 
+        miscellaneousCB.setText("Miscellaneous");
+        miscellaneousCB.addActionListener(e-> populatePantryList());
+        
         pantryCB.setText("Pantry");
         pantryCB.addActionListener(e-> populatePantryList());
         
@@ -689,7 +686,8 @@ public class PerfectPantryGUI extends JFrame {
                             .addComponent(breadsBakeryCB)
                             .addComponent(dairyRefCB)
                             .addComponent(householdSCB)
-                            .addComponent(meatsPoultryCB))
+                            .addComponent(meatsPoultryCB)
+                            .addComponent(miscellaneousCB))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -708,6 +706,8 @@ public class PerfectPantryGUI extends JFrame {
                 .addComponent(householdSCB)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(meatsPoultryCB)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(miscellaneousCB)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pantryCB)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
@@ -897,6 +897,9 @@ public class PerfectPantryGUI extends JFrame {
         if(meatsPoultryCB.isSelected()){
             selectedCategories = getConcatenatedWhereStatement(selectedCategories,"'Meats, Poultry, and Seafood'");            
         }
+        if(miscellaneousCB.isSelected()){
+            selectedCategories = getConcatenatedWhereStatement(selectedCategories,"'Miscellaneous'");            
+        }
         if(ProduceCB.isSelected()){
             selectedCategories = getConcatenatedWhereStatement(selectedCategories,"'Produce'");            
         }
@@ -1014,7 +1017,6 @@ public class PerfectPantryGUI extends JFrame {
                 else if (table.getModel() instanceof SLTableModel) {
                     InventoryItem item = (InventoryItem)((SLTableModel)table.getModel()).inventory.get(row);
                     String[] data = {shopListNameLabel.getText(), item.name, item.sizeDisplay, item.category, item.name};
-                    //System.out.println("data[0] = " + data[0]); test
                     EditSLDialog dialog = new EditSLDialog(null, data);
                     data = dialog.run();
                 }
@@ -1079,7 +1081,6 @@ public class PerfectPantryGUI extends JFrame {
                         "Delete",
                         JOptionPane.YES_NO_OPTION);
                 if (n == JOptionPane.YES_OPTION) {
-                    //delete here todo
                     if (table.getModel() instanceof InventoryTableModel) {
                         //Inventory
                         InventoryItem item = (InventoryItem)((InventoryTableModel)table.getModel()).inventory.get(row);
@@ -1647,7 +1648,6 @@ public class PerfectPantryGUI extends JFrame {
     
     //
     private void editShopListButtonAction() {                                                     
-        // TODO add your handling code here:
         String name = shopListNameLabel.getText();
         String newName = JOptionPane.showInputDialog(this, 
                 "Enter Shopping List Name", name);
@@ -1662,8 +1662,6 @@ public class PerfectPantryGUI extends JFrame {
     
     //method to handle adding new items to the shopping list
     private void addItemSLButtonAction() {                                                     
-        // TODO add your handling code here:
-        //JOptionPane.showMessageDialog(this, "add item in shopping list");
         AddItemSLDialog dialog = new AddItemSLDialog(this, shopData);
         String[] data = dialog.run();
     }
@@ -1677,7 +1675,6 @@ public class PerfectPantryGUI extends JFrame {
     private JCheckBox dairyRefCB;
     private JLabel filterLabel;
     private JCheckBox householdSCB;
-    private JCheckBox produceCheckBox;
     private JPanel inventoryLeftPanel;
     private JPanel inventoryRightPanel;
     private JSplitPane inventorySplitPane;
@@ -1685,6 +1682,7 @@ public class PerfectPantryGUI extends JFrame {
     private JTable inventoryTable;
     private JScrollPane jScrollPane1;
     private JCheckBox meatsPoultryCB;
+    private JCheckBox miscellaneousCB;
     private JCheckBox ProduceCB;
     private JCheckBox pantryCB;
     private JComboBox<String> sortingComboBox;
