@@ -1604,11 +1604,15 @@ public class PerfectPantryGUI extends JFrame {
     
     //method to handle creating a new shopping list
     private void createShopListButtonAction() {                                                     
-        // TODO add your handling code here:
         String listName = JOptionPane.showInputDialog("Enter Shopping List Name");
-        if(shopData.createShoppingList(listName)) {
+        if (listName == null) {
+            return;
+        }
+        if (shopData.createShoppingList(listName)) {
             JOptionPane.showMessageDialog(this, "Shopping list " + listName + " created");
-             selectShopListComboBox.setModel(new DefaultComboBoxModel<>(shopData.getLists()));
+            populateShoppingTable(listName);
+            selectShopListComboBox.setModel(new DefaultComboBoxModel<>(shopData.getLists()));
+            selectShopListComboBox.setSelectedItem(listName);
         } else {
             JOptionPane.showMessageDialog(this, "Create shopping list failed");
         }
