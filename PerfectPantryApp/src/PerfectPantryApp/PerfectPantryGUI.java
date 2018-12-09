@@ -410,20 +410,7 @@ public class PerfectPantryGUI extends JFrame {
             gbc.gridy = 1;
             panel.add(qtyTextField, gbc);
             
-            //Unit of Measurment
-            /*
-            uomLabel = new JLabel("Unit of Measurment");
-            gbc.gridx = 0;
-            gbc.gridy = 2;
-            panel.add(uomLabel, gbc);
-            String[] uomStrings = {"unit", "pc.", "dozen", "lb.", "oz.", "g", "gal", 
-                                    "qt.", "cup"};
-            uomComboBox = new JComboBox(uomStrings);
-            uomComboBox.setSelectedIndex(0);
-            gbc.gridx = 1;
-            gbc.gridy = 2;
-            panel.add(uomComboBox, gbc);
-            */
+            
 
             //Category
             catLabel = new JLabel("Category");
@@ -1647,19 +1634,21 @@ public class PerfectPantryGUI extends JFrame {
     }
     
     //
-    private void editShopListButtonAction() {                                                     
+    private void editShopListButtonAction() {
         String name = shopListNameLabel.getText();
-        String newName = JOptionPane.showInputDialog(this, 
+        String newName = JOptionPane.showInputDialog(this,
                 "Enter Shopping List Name", name);
-        if(shopData.editShoppingList(name, newName)) {
-            JOptionPane.showMessageDialog(this, "Shopping list " + newName + " edited");
-            populateShoppingTable(newName);
-            selectShopListComboBox.setModel(new DefaultComboBoxModel<>(shopData.getLists()));
-        } else {
-            JOptionPane.showMessageDialog(this, "Edit shopping list failed");
+        if (newName != null) {
+            if (shopData.editShoppingList(name, newName)) {
+                JOptionPane.showMessageDialog(this, "Shopping list " + newName + " edited");
+                populateShoppingTable(newName);
+                selectShopListComboBox.setModel(new DefaultComboBoxModel<>(shopData.getLists()));
+            } else {
+                JOptionPane.showMessageDialog(this, "Edit shopping list failed");
+            }
         }
     }
-    
+
     //method to handle adding new items to the shopping list
     private void addItemSLButtonAction() {                                                     
         AddItemSLDialog dialog = new AddItemSLDialog(this, shopData);
