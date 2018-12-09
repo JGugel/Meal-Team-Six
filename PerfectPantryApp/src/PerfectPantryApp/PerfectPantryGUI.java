@@ -1316,8 +1316,8 @@ public class PerfectPantryGUI extends JFrame {
             viewShopListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(viewShopListPanelLayout.createSequentialGroup()
                 .addGroup(viewShopListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(selectShopListLabel, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(selectShopListComboBox, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE))
+                    .addComponent(selectShopListLabel, GroupLayout.DEFAULT_SIZE, 58, GroupLayout.DEFAULT_SIZE)
+                    .addComponent(selectShopListComboBox, GroupLayout.DEFAULT_SIZE, 94, GroupLayout.DEFAULT_SIZE))
                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         viewShopListPanelLayout.setVerticalGroup(
@@ -1339,7 +1339,7 @@ public class PerfectPantryGUI extends JFrame {
                 .addGroup(shopListLeftPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(createShopListButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(shopListLeftPanelLayout.createSequentialGroup()
-                        .addComponent(viewShopListPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(viewShopListPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
