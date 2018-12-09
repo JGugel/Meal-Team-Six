@@ -84,7 +84,6 @@ public class ShoppingData {
                 //if verified, add item
                 listExists = true;
                 listID = rs.getInt("ListID");
-                System.out.println("listID is " + listID); //test todo
             } else {//upc not found
                 listExists = false;
             }
@@ -235,7 +234,7 @@ public class ShoppingData {
         return successfulCreate;
     }
     
-    //todo josh
+    //
     public boolean editShoppingList(String name, String newName) {
         boolean updated = false;
         if (!checkForList(name)) {
@@ -259,7 +258,7 @@ public class ShoppingData {
         return updated;
     }
     
-     //todo josh
+     //
     public boolean deleteShoppingList(String name) {
         boolean deleted = false;
         if (!checkForList(name)) {
