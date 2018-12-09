@@ -50,16 +50,7 @@ CREATE TABLE Inventory_List(
 	quantity int NOT Null, /*currently not using this field*/
 	PRIMARY KEY (ProductID)
 );
-/*adds a usage table which will be populated with information from
-decrementing inventory*/
-CREATE TABLE Usage_data(
-	ProductID int NOT NULL,
-	usageNum int NOT NULL AUTO_INCREMENT,
-	`usage` double(4,2) NOT NULL,
-	uom varchar(6) NOT NULL,
-	PRIMARY KEY (usageNum),
-	FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
-);
+
 
 /*junction table between List and Products
 required if user has more than one list*/
