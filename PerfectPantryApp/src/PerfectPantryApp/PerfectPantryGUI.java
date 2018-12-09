@@ -2,7 +2,13 @@ package PerfectPantryApp;
 
 import java.awt.event.*;
 import java.awt.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
@@ -1281,6 +1287,7 @@ public class PerfectPantryGUI extends JFrame {
         shopListSplitPane = new JSplitPane();
         shopListLeftPanel = new JPanel();
         createShopListButton = new JButton();
+        exportCSVButton = new JButton();
         viewShopListPanel = new JPanel();
         selectShopListLabel = new JLabel();
         selectShopListComboBox = new JComboBox<>();
@@ -1296,6 +1303,16 @@ public class PerfectPantryGUI extends JFrame {
         createShopListButton.setText("Create New List");
         createShopListButton.addActionListener(e-> createShopListButtonAction());
 
+        exportCSVButton.setText("Export to CSV");
+        exportCSVButton.addActionListener(e-> {
+            try {
+                exportCSVButtonAction();
+            } catch (IOException ex) {
+                Logger.getLogger(PerfectPantryGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        
+        
         viewShopListPanel.setBorder(BorderFactory.createTitledBorder("View List"));
 
         selectShopListLabel.setText("Select List:");
@@ -1304,6 +1321,7 @@ public class PerfectPantryGUI extends JFrame {
         }
         String[] lists = shopData.getLists();
         selectShopListComboBox.setModel(new DefaultComboBoxModel<>(lists));
+        selectShopListComboBox.setSelectedItem(lists[0]);
         selectShopListComboBox.addActionListener(e->populateShoppingTable((String)selectShopListComboBox.getSelectedItem()));
         GroupLayout viewShopListPanelLayout = new GroupLayout(viewShopListPanel);
         viewShopListPanel.setLayout(viewShopListPanelLayout);
@@ -1333,6 +1351,7 @@ public class PerfectPantryGUI extends JFrame {
                 .addContainerGap()
                 .addGroup(shopListLeftPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(createShopListButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(exportCSVButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(shopListLeftPanelLayout.createSequentialGroup()
                         .addComponent(viewShopListPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -1345,7 +1364,9 @@ public class PerfectPantryGUI extends JFrame {
                 .addComponent(viewShopListPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(createShopListButton, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(210, Short.MAX_VALUE))
+                .addGap(18 ,18, 18)
+                .addComponent(exportCSVButton, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(210, Short.MAX_VALUE)) 
         );
 
         shopListSplitPane.setLeftComponent(shopListLeftPanel);
@@ -1681,6 +1702,24 @@ public class PerfectPantryGUI extends JFrame {
             JOptionPane.showMessageDialog(this, "Edit shopping list failed");
         }
     }
+    
+    private void exportCSVButtonAction() throws IOException {
+        JFileChooser fileChooser = new JFileChooser();
+        if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            // save to file
+            String output = "";
+            Vector v = ((SLTableModel)shopListTable.getModel()).getInventory();
+            for (int i=0; i<v.size(); i++) {
+                output += ((InventoryItem)v.get(i)).name + ", ";
+                output += ((InventoryItem)v.get(i)).sizeDisplay + ", ";
+                output += ((InventoryItem)v.get(i)).category + ",\r\n";
+            }
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+            writer.write(output);
+            writer.close();
+        }
+    }
 
     //method to handle adding new items to the shopping list
     private void addItemSLButtonAction() {           
@@ -1748,6 +1787,7 @@ public class PerfectPantryGUI extends JFrame {
     private JButton nutViewListButton;
     private JSplitPane nutritionTab;
     private JButton viewInventoryButton;
+    private JButton exportCSVButton;
     
     // End of variables declaration//GEN-END:variables
 }

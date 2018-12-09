@@ -19,6 +19,10 @@ public class SLTableModel extends AbstractTableModel {
         this.inventory = new Vector();
     }
     
+    public Vector getInventory() {
+        return inventory;
+    }
+    
     public void addInventoryItem(InventoryItem item) {
         inventory.addElement(item);
         fireTableRowsInserted(inventory.size()-1, inventory.size()-1);
