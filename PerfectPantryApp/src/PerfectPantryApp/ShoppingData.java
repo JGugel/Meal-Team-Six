@@ -18,8 +18,8 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Michelle This class handles all data specific to the shopping list
- * tables
+ * @author Michelle, Josh
+ * This class handles all data specific to the shopping list tables
  */
 public class ShoppingData {
 
@@ -60,7 +60,6 @@ public class ShoppingData {
                 }
                 sTable.addInventoryItem(new InventoryItem(prodName, 
                         String.valueOf(prodQuan), prodCat));
-              
             }
             rs.close();
             st.close();
@@ -73,7 +72,7 @@ public class ShoppingData {
     }
 
     //method to check and set List
-    private Boolean checkForList(String name) {
+    public Boolean checkForList(String name) {
         Boolean listExists;
         String Query = "Select ListID from list_pointer where "
                 + "listName='" + name + "'";
@@ -85,7 +84,7 @@ public class ShoppingData {
                 //if verified, add item
                 listExists = true;
                 listID = rs.getInt("ListID");
-
+                System.out.println("listID is " + listID); //test todo
             } else {//upc not found
                 listExists = false;
             }
@@ -235,6 +234,72 @@ public class ShoppingData {
         }
         return successfulCreate;
     }
+    
+    //todo josh
+    public boolean editShoppingList(String name) {
+        boolean deleted = false;
+//        if (!checkForList(data[0])) {
+//            return false;
+//        }
+//        String query = "DELETE from shopping_list "
+//                + "WHERE ListID=" + listID + " AND ProductName='" + data[1] + "'";
+//
+//        try (Connection conn = JDBC.getConnection()) {
+//            PreparedStatement statement = conn.prepareStatement(query);
+//            int rowsDeleted = statement.executeUpdate();
+//            if (rowsDeleted > 0) {
+//                deleted = true;
+//            }
+//            statement.close();
+//            conn.close();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
+//            deleted = false;
+//        }
+        return deleted;
+    }
+    
+     //todo josh
+    public boolean deleteShoppingList(String name) {
+        boolean deleted = false;
+        if (!checkForList(name)) {
+            JOptionPane.showMessageDialog(null, "Delete Failed, List Not Found");
+            return false;
+        }
+        
+        //Delete items from shopping list with the listID
+        String query = "DELETE from shopping_list "
+                + "WHERE ListID=" + listID;
+        try (Connection conn = JDBC.getConnection()) {
+            PreparedStatement statement = conn.prepareStatement(query);
+            int rowsDeleted = statement.executeUpdate();
+            if (rowsDeleted > 0) {
+                deleted = true;
+            }
+            statement.close();
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
+            deleted = false;
+        }
+        //Delete the list from the list pointer table
+        String query2 = "DELETE from list_pointer "
+                + "WHERE ListID=" + listID;
+        try (Connection conn = JDBC.getConnection()) {
+            PreparedStatement statement = conn.prepareStatement(query2);
+            int rowsDeleted = statement.executeUpdate();
+            if (rowsDeleted > 0) {
+                deleted = true;
+            }
+            statement.close();
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, ex);
+            deleted = false;
+        }
+        return deleted;
+    }
+
 
     /**
      * validates all information for the shopping List

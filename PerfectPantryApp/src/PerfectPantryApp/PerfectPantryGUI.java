@@ -1396,7 +1396,8 @@ public class PerfectPantryGUI extends JFrame {
                         .addGap(9, 9, 9))))
         );
 
-      populateShoppingTable("default"); //todo?
+        String[] lists = shopData.getLists();
+        populateShoppingTable(lists[0]);
         
         shopListScrollPane.setViewportView(shopListTable);
 
@@ -1619,10 +1620,31 @@ public class PerfectPantryGUI extends JFrame {
         }
     }
     
-    //
+    //todo josh
     private void deleteShopListButtonAction() {                                                     
-        // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "delete shopping list");
+        String list = shopListNameLabel.getText();
+        int n = JOptionPane.showConfirmDialog(this,
+                "Delete Shopping List " + list + "?",
+                "Delete",
+                JOptionPane.YES_NO_OPTION);
+        if (n == JOptionPane.YES_OPTION) {
+            //delete here
+            if(shopData.deleteShoppingList(list)){
+                String[] lists = shopData.getLists();
+                if (lists.length == 0) {
+                    populateShoppingTable("");
+                    selectShopListComboBox.setModel(new DefaultComboBoxModel<>());
+                } else {
+                    populateShoppingTable(lists[0]);
+                    selectShopListComboBox.setModel(new DefaultComboBoxModel<>(shopData.getLists()));
+                }
+                JOptionPane.showMessageDialog(this, "List deleted successfully!");
+            } else {
+                JOptionPane.showMessageDialog(this, "Delete Failed");
+            }
+        } else {
+            //do nothing
+        }
     }
     
     //
