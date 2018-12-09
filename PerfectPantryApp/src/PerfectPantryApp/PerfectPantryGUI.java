@@ -222,12 +222,12 @@ public class PerfectPantryGUI extends JFrame {
                 productInput = new ProductDialog(thisFrame, upc);
                 if (!productInput.addSuccessful()) {
                     JOptionPane.showMessageDialog(this, "Product not added");
-                    return true;
-                }
+                    return false;
+                }else{return true;}
             } else {
-                return false;
+                return true;
             }
-            return false;
+            
         }
          
     }
