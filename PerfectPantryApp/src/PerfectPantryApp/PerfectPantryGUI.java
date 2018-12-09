@@ -196,13 +196,13 @@ public class PerfectPantryGUI extends JFrame {
                         JOptionPane.showMessageDialog(this, "UPC must be a numeric value");
                         return;
                     case "notFound":
-                       createDialog(data[0]);
-                      int productID= productInput.getProductID();
-                         if(invData.AddInventory(data, productID)) {
-                                populatePantryList();
-                                populateNutritionTable();
-                                JOptionPane.showMessageDialog(this, "Record has been updated");
-                                dispose();
+                        if(!createDialog(data[0])) {return;}
+                        int productID= productInput.getProductID();
+                        if(invData.AddInventory(data, productID)) {
+                            populatePantryList();
+                            populateNutritionTable();
+                            JOptionPane.showMessageDialog(this, "Record has been updated");
+                            dispose();
                          }
                     default:
                         break;
@@ -214,7 +214,7 @@ public class PerfectPantryGUI extends JFrame {
         }
         ProductDialog productInput = null;
 
-        private void createDialog(String upc) {
+        private boolean createDialog(String upc) {
             int productID = 0;
             int n = JOptionPane.showOptionDialog(this,
                     "This Product does not exist in "
@@ -222,12 +222,15 @@ public class PerfectPantryGUI extends JFrame {
                     JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,
                     null, new Object[]{"Yes", "No"}, JOptionPane.YES_OPTION);
             if (n == JOptionPane.YES_OPTION) {
-              productInput = new ProductDialog(thisFrame, upc);
+                productInput = new ProductDialog(thisFrame, upc);
                 if (!productInput.addSuccessful()) {
                     JOptionPane.showMessageDialog(this, "Product not added");
-
+                    return true;
                 }
+            } else {
+                return false;
             }
+            return false;
         }
          
     }
