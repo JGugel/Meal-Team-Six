@@ -59,11 +59,9 @@ public class PerfectPantryGUI extends JFrame {
         private JLabel qtyLabel;
         private JLabel uomLabel;
         private JLabel expirationLabel;
-        //private JLabel usageLabel;
         private JTextField upcTextField;
         private JTextField qtyTextField;
         private JTextField expirationTextField;
-        //private JTextField usageTextField;
         private JButton addBtn;
         private JButton cancelBtn;
         private  boolean addSuccess=false;
