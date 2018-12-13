@@ -4,8 +4,11 @@ import java.awt.event.*;
 import java.awt.*;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,6 +16,8 @@ import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.table.TableCellRenderer;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 
 /**
@@ -20,6 +25,7 @@ import javax.swing.table.TableCellRenderer;
  * @author Hira Waqas, Josh Gugel, Michelle Decaire
  */
 public class PerfectPantryGUI extends JFrame {
+    
     private InventoryData invData;
     private ShoppingData shopData;
     private NutritionData nutData;
@@ -27,7 +33,14 @@ public class PerfectPantryGUI extends JFrame {
     /**
      * Creates new form PerfectPantryGUI
      */
-    public PerfectPantryGUI() {
+    public PerfectPantryGUI() throws SQLException {
+        //JDBC jdbc = new JDBC();
+        Connection conn = JDBC.getConnection();
+        if (conn == null) {
+            DBPropertiesDialog dialog = new DBPropertiesDialog(null);
+            dialog.run();
+        }
+
         invData = new InventoryData();
         shopData=new ShoppingData();
         nutData= new NutritionData();
@@ -586,6 +599,105 @@ public class PerfectPantryGUI extends JFrame {
                     return;
                 }
             } else if (e.getSource() == cancelBtn) {
+                dispose(); 
+            }
+        }
+    }
+    
+     class DBPropertiesDialog extends JDialog implements ActionListener{
+        private String user = "root";
+        private String pwd = "admin";
+        private JLabel msgLabel;
+        private JLabel userLabel;
+        private JLabel pwdLabel;
+        private JTextField userTextField;
+        private JTextField pwdTextField;
+        private JButton okBtn;
+        private JButton cancelBtn;
+        //private  boolean editSuccess=false;
+        
+        //Constructor
+        public DBPropertiesDialog(Frame frame){
+            super(frame, "Create db.properties", true);
+            this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+            JPanel panel = new JPanel();
+            GridBagLayout grid = new GridBagLayout();
+            panel.setLayout(grid);
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.insets = new Insets(5,5,5,5);
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+            
+            //Message
+            msgLabel = new JLabel("Enter your MySQL username and password\n");
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+            gbc.gridwidth = 2;
+            panel.add(msgLabel, gbc);
+            
+            //User
+            userLabel = new JLabel("User");
+            gbc.gridx = 0;
+            gbc.gridy = 1;
+            gbc.gridwidth = 1;
+            panel.add(userLabel, gbc);
+            userTextField = new JTextField("root", 10);
+            gbc.gridx = 1;
+            gbc.gridy = 1;
+            panel.add(userTextField, gbc);
+            
+            //Password
+            pwdLabel = new JLabel("Password");
+            gbc.gridx = 0;
+            gbc.gridy = 2;
+            panel.add(pwdLabel, gbc);
+            pwdTextField = new JTextField("admin", 10);
+            gbc.gridx = 1;
+            gbc.gridy = 2;
+            panel.add(pwdTextField, gbc);
+             
+            //Update and Cancel Buttons
+            okBtn = new JButton("Ok");
+            okBtn.addActionListener(this);
+            gbc.gridx = 0;
+            gbc.gridy = 3;
+            panel.add(okBtn, gbc);
+            cancelBtn = new JButton("Cancel");
+            cancelBtn.addActionListener(this);
+            gbc.gridx = 1;
+            gbc.gridy = 3;
+            panel.add(cancelBtn, gbc);
+            
+            getContentPane().add(panel);
+            pack();    
+            setLocationRelativeTo(null);
+        }
+        
+        public void run() {
+            this.setVisible(true);
+        }
+        
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == okBtn) {
+                user = userTextField.getText();
+                pwd = pwdTextField.getText();
+                
+                try {
+                    //create db.properties
+                    PrintWriter writer = new PrintWriter("db.properties", "UTF-8");
+                    writer.println("# MySQL DB properties");
+                    writer.println("user=" + user);
+                    writer.println("password=" + pwd);
+                    writer.print("url=jdbc:mysql://localhost:3306/inventory_system?"
+                            + "zeroDateTimeBehavior=convertToNull&autoReconnect=true&useSSL=false");
+                    writer.close();
+                } catch (FileNotFoundException | UnsupportedEncodingException ex) {
+                    //Logger.getLogger(JDBC.class.getName()).log(Level.SEVERE, null, ex);
+                    //System.out.println("File not found, creating db.properties");
+                }
+                dispose(); 
+            } else if (e.getSource() == cancelBtn) {
+                //JOptionPane.showMessageDialog(null, "File db.properties not found");
                 dispose(); 
             }
         }

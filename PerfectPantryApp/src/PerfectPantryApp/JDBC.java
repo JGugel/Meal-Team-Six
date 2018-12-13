@@ -1,7 +1,13 @@
 package PerfectPantryApp;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -28,7 +34,7 @@ public class JDBC {
      */
     public static Connection getConnection() throws SQLException {
         Connection conn = null;
- 
+        
         try (FileInputStream f = new FileInputStream("db.properties")) {
  
             // load the properties file
@@ -43,11 +49,18 @@ public class JDBC {
             // create a connection to the database
             conn = DriverManager.getConnection(url, user, password);
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "File db.properties not found");
-            Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, e);
+            conn=null;
+            System.out.println("File not found, creating db.properties");
+            //Logger.getLogger(InventoryData.class.getName()).log(Level.SEVERE, null, e);
         }
         return conn;
     }
+    
+  
+    
+    
+   
+    
 }
 
 

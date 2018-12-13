@@ -1,5 +1,6 @@
 package PerfectPantryApp;
 
+import java.sql.SQLException;
 import javax.swing.*;
 import java.util.logging.*;
 /**
@@ -37,7 +38,11 @@ public class AppDriver {
         /* Create and display the form */
     	
         java.awt.EventQueue.invokeLater(() -> {
-            new PerfectPantryGUI().setVisible(true);
+            try {
+                new PerfectPantryGUI().setVisible(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(AppDriver.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }); 
        
     }
