@@ -483,6 +483,7 @@ public class PerfectPantryGUI extends JFrame {
                 
                 if(shopData.AddItemSL(data)) { //if(true) {
                     populateShoppingTable(data[0]);
+                    selectShopListComboBox.setSelectedItem(data[0]);
                     JOptionPane.showMessageDialog(this, "Item has been added!");
                     dispose();
                 } else {
